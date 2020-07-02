@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require('mongoose');
-
+const mongoConnect = require("./util/database");
 const app = express();
 const userRoutes = require("./routes/user")
 app.set("view engine", "ejs");
@@ -13,8 +13,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(userRoutes)
 
-mongoose.connect("mongodb+srv://banea9:stonnerexe95@conference.uwatr.mongodb.net/<dbname>?retryWrites=true&w=majority")
-
-app.listen(3000, () => {
-    console.log("Connected")
+mongoConnect(() => {
+    app.listen(3000)
 })
