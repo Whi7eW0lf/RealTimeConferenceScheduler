@@ -6,6 +6,6 @@ Codexio Dev Camp Project
 2. сигнин
 3. алл конференце
 4. мои конференции
-5. нова конференция 
+5. нова конференция -> connected to already added hall and speaker in the database. (dropdown menu)
 6. нов говорител 
 7. нова зала
