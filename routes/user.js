@@ -6,7 +6,7 @@ router.get("/", userController.getConferences);
 
 router.get("/login", userController.getLogin);
 
-router.get("/signup", userController.getLogin);
+router.get("/signup", userController.getSignIn);
 
 router.get("/add-speaker", userController.addSpeaker);
 
