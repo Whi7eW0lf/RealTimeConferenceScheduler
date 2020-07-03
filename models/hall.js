@@ -7,7 +7,7 @@ const hallSchema = new Schema({
     seats: {type: Number, required = true}
 });
 
-module.exports = mongoose.model("hall", orderSchema);
+module.exports = mongoose.model("hall", hallSchema);
 
 //Add to git
 

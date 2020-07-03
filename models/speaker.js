@@ -8,3 +8,5 @@ const speakerSchema = new speakerSchema({
     profilePhoto: {type: String, required: true} 
     
 });
+
+module.exports = mongoose.model("speaker", speakerSchema)

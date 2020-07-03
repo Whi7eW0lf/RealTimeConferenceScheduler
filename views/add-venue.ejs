@@ -1,33 +1,12 @@
-<%- include('includes/head.ejs') %>
-<link rel="stylesheet" href="css/forms.css">
-</head>
-
-<body>
-    <%- include('includes/navigation.ejs') %>
-    <main>
-        <form class="product-form" action="/add-speaker"
-            method="POST">
-            <div class="form-control">
-                <label for="name">Name</label>
+<%- include('includes/head.ejs') %> < link rel = "stylesheet" href = "css/forms.css" > </head> < body > <%- include('includes/navigation.ejs') %> < main > <form class="product-form" action="/add-speaker"
+            method="POST"> < div class = "form-control" > <label for="venue"> Choose venue < /label>
+                <select name="venue" id="venue">
+                    <% for (let venue of venues) { %>
+                        <option><%= venue.address %></option>
+                        <% } %>
+                </select > </div> < div class = "form-control" > <label for="name"> Name < /label>
                 <input type="text" name="name" id="name" placeholder="Enter your name">
-            </div>
-            <div class="form-control">
-                <label for="email">Email address</label>
-                <input type="email" name="email" id="email"
-                   placeholder="Enter your email">
-            </div>
-            <div class="form-control">
-                <label for="profileImg">Price</label>
-                <input type="text" name="profileImg" id="profileImg">
-            </div>
-            <div class="form-control">
-                <label for="description">Description</label>
-                <textarea name="description" id="description"
-                    rows="5" placeholder="Short description..."></textarea>
-            </div>
-           
-            <button class="btn" type="submit">Add new speaker</button>
-        </form>
-    </main>
-
-<%- include('includes/end.ejs') %>
+            </div > <div class="form-control"> < label for  = "name" > Seats available < /label>
+                <input type="text" name="name" id="name" placeholder="Enter your name">
+            </div > <button class="btn" type="submit"> Add new hall</button> < /form>
+    </main > <%- include('includes/end.ejs') %>

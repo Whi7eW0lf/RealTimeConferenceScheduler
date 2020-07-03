@@ -17,6 +17,5 @@ app.use(userRoutes)
 
 mongoose.connect("mongodb+srv://banea9:stonnerexe95@conference-scheduler.m9skm.mongodb.net/conference?retryWrites=true&w=majority")
 .then(result => {
-    console.log(result)
     app.listen(3000)
 }).catch(err => console.log(err))
