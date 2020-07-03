@@ -23,6 +23,7 @@ exports.getConferences = (req, res, next) => {
 }
 
 
+
 exports.postAddSpeaker = (req, res, next) => {
     const name = req.body.name;
     const description = req.body.description;
@@ -86,5 +87,6 @@ exports.postAddNewHall = (req, res, next) => {
             pageTitle: 'Add hall',
             path: "/"
         })
+        console.log("ADDED HALL");
     }).catch(err => console.log(err))
 }

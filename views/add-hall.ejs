@@ -5,27 +5,28 @@
 <body>
     <%- include('includes/navigation.ejs') %>
     <main>
-        <form class="product-form" action="/add-hall"
-            method="POST">
+        <form class="product-form" action="/add-new-hall" method="POST">
             <div class="form-control">
                 <label for="venue">Choose venue</label>
                 <select name="venue" id="venue">
                     <% for (let venue of venues) { %>
-                        <option><%= venue.adress %></option>
-                        <% } %>
-                </select >
+                    <option><%= venue.adress %></option>
+                    <% } %>
+                </select>
             </div>
 
             <div class="form-control">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" placeholder="Enter your name">
             </div>
+
             <div class="form-control">
-                <label for="name">Seats available</label>
-                <input type="text" name="name" id="name" placeholder="Enter your name">
+                <label for="quantity">Seats available:</label>
+                <input type="number" id="seats" name="seats" min="1"><br><br>
             </div>
+
             <button class="btn" type="submit">Add new hall</button>
         </form>
     </main>
 
-<%- include('includes/end.ejs') %>
+    <%- include('includes/end.ejs') %>
