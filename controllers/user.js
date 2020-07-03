@@ -1,4 +1,5 @@
 const Venue = require("../models/venues")
+const speaker = require("../models/speaker")
 
 exports.getLogin = (req, res, next) => {
     res.render("login", {
@@ -22,8 +23,22 @@ exports.getConferences = (req, res, next) => {
 
 exports.postAddSpeaker = (req,res,next) => {
     const name = req.body.name;
+    const description = req.body.description;
+    const imageUrl = req.body.profileImg;
 
-    console.log(name);
+    const speaker = new Speaker({
+        name,
+        description,
+        imageUrl
+
+    });
+
+    speaker.save()
+    .then(result =>{
+        console.log("Added speaker");
+        res.redirect("/")
+    })
+    .catch(err=>console.log("error"))
 
 }
 
