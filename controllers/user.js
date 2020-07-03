@@ -25,13 +25,13 @@ exports.addSpeaker = (req, res, next) => {
         path: "/"
     })
 }
+
 exports.addVenue = (req, res, next) => {
     Venue.find()
     .then(venues => {
-        console.log(venues.slice(0,10))
         res.render("add-venue", {
             venues: venues,
-            pageTitle: 'Add conference',
+            pageTitle: 'Add hall',
             path: "/"
         })
     })
@@ -40,7 +40,6 @@ exports.addVenue = (req, res, next) => {
 exports.addConference = (req, res, next) => {
     Venue.find()
     .then(venues => {
-        console.log(venues.length)
         res.render("add-conference", {
             venues: venues,
             pageTitle: 'Add conference',
