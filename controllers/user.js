@@ -1,5 +1,5 @@
 const Venue = require("../models/venues")
-const speaker = require("../models/speaker")
+const Speaker = require("../models/speaker")
 
 exports.getLogin = (req, res, next) => {
     res.render("login", {
@@ -21,31 +21,17 @@ exports.getConferences = (req, res, next) => {
 }
 
 
-exports.postAddSpeaker = (req,res,next) => {
+exports.postAddSpeaker = (req, res, next) => {
     const name = req.body.name;
     const description = req.body.description;
     const imageUrl = req.body.profileImg;
 
-    const speaker = new Speaker({
-        name,
-        description,
-        imageUrl
+    const speaker = new Speaker({name, description, profilePhoto: imageUrl});
 
-    });
-
-    speaker.save()
-    .then(result =>{
+    speaker.save().then(result => {
         console.log("Added speaker");
         res.redirect("/")
-    })
-    .catch(err=>console.log("error"))
-
-}
-
-exports.postAddSpeaker = (req,res,next) => {
-    const name = req.body.name;
-
-    console.log(name);
+    }).catch(err => console.log(err))
 
 }
 
@@ -58,34 +44,29 @@ exports.postAddConference = (req, res, next) => {
     })
 }
 exports.addSpeaker = (req, res, next) => {
-   
-        res.render("add-speaker", {
-            venues: venues,
-            pageTitle: 'Add conference',
-            path: "/"
-        })
-  
+
+    res.render("add-speaker", {
+        pageTitle: 'Add conference',
+        path: "/"
+    })
+
 }
 
 exports.addVenue = (req, res, next) => {
-    Venue.find()
-    .then(venues => {
+    Venue.find().then(venues => {
         res.render("add-venue", {
             venues: venues,
             pageTitle: 'Add hall',
             path: "/"
         })
-    })
-    .catch(err => console.log(err))
+    }).catch(err => console.log(err))
 }
 exports.addConference = (req, res, next) => {
-    Venue.find()
-    .then(venues => {
+    Venue.find().then(venues => {
         res.render("add-conference", {
             venues: venues,
             pageTitle: 'Add conference',
             path: "/"
         })
-    })
-    .catch(err => console.log(err))
+    }).catch(err => console.log(err))
 }
