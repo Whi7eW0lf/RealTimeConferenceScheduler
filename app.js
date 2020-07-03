@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require('mongoose');
+require('dotenv/config');
 const app = express();
 
 const userRoutes = require("./routes/user")
@@ -16,8 +17,10 @@ app.use(userRoutes)
 
 
 mongoose.connect(
-    "mongodb+srv://banea9:stonnerexe95@conference-scheduler.m9skm.mongodb.net/conference?retryWrites=true&w=majority",
-     { useNewUrlParser: true}, 
+    process.env.DB_CONNECTION, {
+        useUnifiedTopology: true, 
+        useNewUrlParser: true,
+    }, 
      )
 .then(result => {
     app.listen(3000)
