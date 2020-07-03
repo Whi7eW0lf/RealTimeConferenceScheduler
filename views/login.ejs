@@ -20,7 +20,7 @@
         .main {
             background-color: #FFFFFF;
             width: 400px;
-            height: 400px;
+            height: 300px;
             margin: 7em auto;
             border-radius: 1.5em;
             box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
@@ -89,7 +89,7 @@
             cursor: pointer;
             border-radius: 5em;
             color: #fff;
-            background: linear-gradient(to right, #0082e6, #E040FB);
+            background: #0082e6;
             border: 0;
             padding-left: 40px;
             padding-right: 40px;
@@ -99,6 +99,11 @@
             margin-left: 35%;
             font-size: 13px;
             box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+        }
+        .submit:hover{
+            border-radius: 2px #0082e6;
+            background: transparent;
+            color: #0082e6;
         }
 
         .forgot {
@@ -127,7 +132,7 @@
     <%- include('includes/navigation.ejs') %>
 
     <div class="main">
-        <p class="sign" align="center">Sign in</p>
+        <p class="sign" align="center">Login</p>
         <form class="form1"></form>
         <input class="un " type="text" align="center" placeholder="Username">
         <input class="pass" type="password" align="center" placeholder="Password">
@@ -138,3 +143,4 @@
 </body>
 
 </html>
+

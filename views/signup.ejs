@@ -1,123 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <title>Sign in</title>
 </head>
 
 <body>
-  <style>
-    body {
-      font-family: Calibri, Helvetica, sans-serif;
-      background-color: pink;
-    }
 
-    .container {
-      padding: 50px;
-      background-color: lightblue;
-    }
+    <style>
+        body {
+            background-color: #F3EBF6;
+            font-family: 'Ubuntu', sans-serif;
+        }
 
-    input[type=text],
-    input[type=password],
-    textarea {
-      width: 100%;
-      padding: 15px;
-      margin: 5px 0 22px 0;
-      display: inline-block;
-      border: none;
-      background: #f1f1f1;
-    }
+        .main {
+            background-color: #FFFFFF;
+            width: 400px;
+            height: 400px;
+            margin: 7em auto;
+            border-radius: 1.5em;
+            box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+        }
 
-    input[type=text]:focus,
-    input[type=password]:focus {
-      background-color: orange;
-      outline: none;
-    }
+        .sign {
+            padding-top: 40px;
+            color: #0082e6;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: bold;
+            font-size: 23px;
+        }
 
-    div {
-      padding: 10px 0;
-    }
+        .un {
+            width: 76%;
+            color: rgb(38, 50, 56);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            background: rgba(136, 126, 126, 0.04);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            box-sizing: border-box;
+            border: 2px solid rgba(0, 0, 0, 0.02);
+            margin-bottom: 50px;
+            margin-left: 46px;
+            text-align: center;
+            margin-bottom: 27px;
+            font-family: 'Ubuntu', sans-serif;
+        }
 
-    hr {
-      border: 1px solid #f1f1f1;
-      margin-bottom: 25px;
-    }
+        form.form1 {
+            padding-top: 40px;
+        }
 
-    .registerbtn {
-      background-color: #4CAF50;
-      color: white;
-      padding: 16px 20px;
-      margin: 8px 0;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-      opacity: 0.9;
-    }
+        .pass {
+            width: 76%;
+            color: rgb(38, 50, 56);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            background: rgba(136, 126, 126, 0.04);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            box-sizing: border-box;
+            border: 2px solid rgba(0, 0, 0, 0.02);
+            margin-bottom: 50px;
+            margin-left: 46px;
+            text-align: center;
+            margin-bottom: 27px;
+            font-family: 'Ubuntu', sans-serif;
+        }
 
-    .registerbtn:hover {
-      opacity: 1;
-    }
-  </style>
+
+        .un:focus,
+        .pass:focus {
+            border: 2px solid rgba(0, 0, 0, 0.18) !important;
+
+        }
+
+        .submit {
+            cursor: pointer;
+            border-radius: 5em;
+            color: #fff;
+            background: #0082e6;
+            border: 0;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            font-family: 'Ubuntu', sans-serif;
+            margin-left: 35%;
+            font-size: 13px;
+            box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+        }
+        .submit:hover{
+            border-radius: 2px #0082e6;
+            background: transparent;
+            color: #0082e6;
+        }
+
+        .forgot {
+            text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+            color: black;
+            padding-top: 15px;
+        }
+
+        a {
+            text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+            color: black;
+            text-decoration: none
+        }
+
+        a:link {
+            color: #0082e6;
+        }
+
+        @media (max-width: 600px) {
+            .main {
+                border-radius: 0px;
+            }
+        }
+    </style>
   </head>
 
   <body>
     <%- include('includes/navigation.ejs') %>
 
-    <form>
-      <div class="container">
-        <center>
-          <h1> Student Registeration Form</h1>
-        </center>
-        <hr>
-        <label> Firstname </label>
-        <input type="text" name="firstname" placeholder="Firstname" size="15" required />
-        <label> Middlename: </label>
-        <input type="text" name="middlename" placeholder="Middlename" size="15" required />
-        <label> Lastname: </label>
-        <input type="text" name="lastname" placeholder="Lastname" size="15" required />
-        <div>
-          <label>
-            Course :
-          </label>
-
-          <select>
-            <option value="Course">Course</option>
-            <option value="BCA">BCA</option>
-            <option value="BBA">BBA</option>
-            <option value="B.Tech">B.Tech</option>
-            <option value="MBA">MBA</option>
-            <option value="MCA">MCA</option>
-            <option value="M.Tech">M.Tech</option>
-          </select>
-        </div>
-        <div>
-          <label>
-            Gender :
-          </label><br>
-          <input type="radio" value="Male" name="gender" checked> Male
-          <input type="radio" value="Female" name="gender"> Female
-          <input type="radio" value="Other" name="gender"> Other
-
-        </div>
-        <label>
-          Phone :
-        </label>
-        <input type="text" name="country code" placeholder="Country Code" value="+359" size="2" />
-        <input type="text" name="phone" placeholder="phone no." size="10" / required>
-        Current Address :
-        <textarea cols="80" rows="5" placeholder="Current Address" value="address" required>
-        </textarea>
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required>
-
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-
-        <label for="psw-repeat"><b>Re-type Password</b></label>
-        <input type="password" placeholder="Retype Password" name="psw-repeat" required>
-        <button type="submit" class="registerbtn">Register</button>
+      <div class="main">
+        <p class="sign" align="center">Register</p>
+        <form class="form1"></form>
+        <input class="un " type="text" align="center" placeholder="Username">
+        <input class="pass" type="password" align="center" placeholder="Password">
+        <input class="pass" type="password" align="center" placeholder="Repeat Password">
+        <a class="submit" align="center">Sign Up</a>
+    
+    </div>
   </body>
 
 </html>
