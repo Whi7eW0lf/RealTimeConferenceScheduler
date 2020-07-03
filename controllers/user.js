@@ -28,6 +28,7 @@ exports.addSpeaker = (req, res, next) => {
 exports.addVenue = (req, res, next) => {
     Venue.find()
     .then(venues => {
+        console.log(venues.slice(0,10))
         res.render("add-venue", {
             venues: venues,
             pageTitle: 'Add conference',
