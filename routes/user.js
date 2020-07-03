@@ -12,10 +12,12 @@ router.get("/add-speaker", userController.addSpeaker);
 
 router.post("/add-speaker", userController.postAddSpeaker);
 
-router.get("/add-venue", userController.addVenue);
+router.get("/add-hall", userController.addHall);
 
 router.get("/add-conference", userController.addConference);
 
 router.post("/add-conference", userController.postAddConference);
+
+router.post("/add-new-hall", userController.postAddNewHall);
 
 module.exports = router;
