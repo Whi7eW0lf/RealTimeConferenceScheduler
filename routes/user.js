@@ -16,4 +16,6 @@ router.get("/add-venue", userController.addVenue);
 
 router.get("/add-conference", userController.addConference);
 
+router.post("/add-conference", userController.postAddConference);
+
 module.exports = router;

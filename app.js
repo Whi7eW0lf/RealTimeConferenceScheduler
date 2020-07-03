@@ -3,12 +3,11 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require('mongoose');
 
-const dotenv = require("dotenv");
-require('dotenv/config');
+// const dotenv = require("dotenv");
+// require('dotenv/config');
 const app = express();
 
 const userRoutes = require("./routes/user");
-const { CLIENT_RENEG_LIMIT } = require("tls");
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -20,7 +19,7 @@ app.use(userRoutes)
 
 
 mongoose.connect(
-
+    
 
     "mongodb+srv://banea9:stonnerexe95@conference-scheduler.m9skm.mongodb.net/conference?retryWrites=true&w=majority", {
         useUnifiedTopology: true, 

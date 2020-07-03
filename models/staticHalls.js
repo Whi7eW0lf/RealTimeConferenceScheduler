@@ -2,24 +2,26 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const conferenceSchema = new Schema({
-    name: {
+const venueSchema = new Schema({
+    adress: {
         type: String,
         required: true
     },
-    description: {
+    city: {
         type: String,
         required: true
     },
-    startTime: {
-        type: Date,
+    country: {
+        type: String,
         required: true
     },
-    endTime: {
-        type: Date,
+    phone: {
+        type: String,
         required: true
     },
     
+
+    
 })
 
-mongoose.model("Conference", conferenceSchema);
+module.exports = mongoose.model("venue", venueSchema);

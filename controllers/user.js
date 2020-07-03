@@ -42,12 +42,29 @@ exports.postAddSpeaker = (req,res,next) => {
 
 }
 
-exports.addSpeaker = (req, res, next) => {
+exports.postAddSpeaker = (req,res,next) => {
+    const name = req.body.name;
+
+    console.log(name);
+
+}
+
+
+exports.postAddConference = (req, res, next) => {
 
     res.render("add-speaker", {
         pageTitle: 'Add speaker',
         path: "/"
     })
+}
+exports.addSpeaker = (req, res, next) => {
+   
+        res.render("add-speaker", {
+            venues: venues,
+            pageTitle: 'Add conference',
+            path: "/"
+        })
+  
 }
 
 exports.addVenue = (req, res, next) => {
