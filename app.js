@@ -6,7 +6,6 @@ const dotenv = require("dotenv");
 require('dotenv/config');
 const app = express();
 
-
 const userRoutes = require("./routes/user")
 
 app.set("view engine", "ejs");
