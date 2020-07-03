@@ -9,4 +9,4 @@ const speakerSchema = new speakerSchema({
     
 });
 
-module.exports = mongoose.model("speaker", speakerSchema)
+module.exports = mongoose.model("Speaker", speakerSchema)

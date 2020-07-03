@@ -24,4 +24,4 @@ const venueSchema = new Schema({
     
 })
 
-module.exports = mongoose.model("venue", venueSchema);
+module.exports = mongoose.model("Venue", venueSchema);

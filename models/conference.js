@@ -22,4 +22,4 @@ const conferenceSchema = new Schema({
     
 })
 
-mongoose.model("conference", conferenceSchema);
+mongoose.model("Conference", conferenceSchema);
