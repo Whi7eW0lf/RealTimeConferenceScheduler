@@ -11,14 +11,15 @@ const conferenceSchema = new Schema({
         type: String,
         required: true
     },
-    date: {
+    startTime: {
         type: Date,
         required: true
     },
-    conferenceLength: {
-        type: Number,
+    endTime: {
+        type: Date,
         required: true
-    }
+    },
+    
 })
 
 mongoose.model("conference", conferenceSchema);
