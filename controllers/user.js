@@ -18,6 +18,15 @@ exports.getConferences = (req, res, next) => {
         path: "/"
     })
 }
+
+
+exports.postAddSpeaker = (req,res,next) => {
+    const name = req.body.name;
+
+    console.log(name);
+
+}
+
 exports.addSpeaker = (req, res, next) => {
 
     res.render("add-speaker", {
