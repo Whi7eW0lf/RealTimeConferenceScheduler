@@ -23,7 +23,6 @@ exports.getConferences = (req, res, next) => {
 }
 
 
-
 exports.postAddSpeaker = (req, res, next) => {
     const name = req.body.name;
     const description = req.body.description;
@@ -81,12 +80,7 @@ exports.postAddNewHall = (req, res, next) => {
     const halls = new Hall({name, seats});
 
     halls.save().then(seats => {
-        res.render("add-hall", {
-            seats: seats,
-            name: name,
-            pageTitle: 'Add hall',
-            path: "/"
-        })
+        res.redirect("/")
         console.log("ADDED HALL");
     }).catch(err => console.log(err))
 }
