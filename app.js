@@ -19,7 +19,7 @@ app.use(userRoutes)
 
 mongoose.connect(
 
-    process.env.DB_CONNECTION, {
+    "mongodb+srv://banea9:stonnerexe95@conference-scheduler.m9skm.mongodb.net/conference?retryWrites=true&w=majority", {
         useUnifiedTopology: true, 
         useNewUrlParser: true,
     }, 
