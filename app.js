@@ -15,7 +15,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(userRoutes)
 
 
-mongoose.connect("mongodb+srv://banea9:stonnerexe95@conference-scheduler.m9skm.mongodb.net/conference?retryWrites=true&w=majority", { useNewUrlParser: true} )
+mongoose.connect(
+    "mongodb+srv://banea9:stonnerexe95@conference-scheduler.m9skm.mongodb.net/conference?retryWrites=true&w=majority",
+     { useNewUrlParser: true}, 
+     )
 .then(result => {
     app.listen(3000)
 }).catch(err => console.log(err))
