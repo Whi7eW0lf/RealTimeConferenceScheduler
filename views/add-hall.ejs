@@ -1,32 +1,161 @@
-<%- include('includes/head.ejs') %>
-<link rel="stylesheet" href="css/forms.css">
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Hall</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+</head>
+
 </head>
 
 <body>
+    <style>
+        body {
+            background-color: #F3EBF6;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            background-color: #FFFFFF;
+            width: 400px;
+            height: 400px;
+            margin: 7em auto;
+            border-radius: 1.5em;
+            box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+        }
+
+        .sign {
+            padding-top: 40px;
+            color: #0082e6;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: bold;
+            font-size: 23px;
+        }
+
+        .name {
+            width: 76%;
+            color: rgb(38, 50, 56);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            background: rgba(136, 126, 126, 0.04);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            box-sizing: border-box;
+            border: 2px solid rgba(0, 0, 0, 0.02);
+            margin-bottom: 50px;
+            margin-left: 46px;
+            text-align: center;
+            margin-bottom: 27px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        form.form1 {
+            padding-top: 40px;
+        }
+
+        .description,
+        .profile-image {
+            width: 76%;
+            color: rgb(38, 50, 56);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            background: rgba(136, 126, 126, 0.04);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            box-sizing: border-box;
+            border: 2px solid rgba(0, 0, 0, 0.02);
+            margin-bottom: 50px;
+            margin-left: 46px;
+            text-align: center;
+            margin-bottom: 27px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+
+        .name:focus,
+        .description:focus,
+        .profile-image:focus {
+            border: 2px solid rgba(0, 0, 0, 0.18) !important;
+
+        }
+
+        .submit {
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5em;
+            color: #fff;
+            background: #0082e6;
+            border: 0;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 13px;
+            box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+        }
+
+        .submit:hover {
+            border-radius: 2px #0082e6;
+            background: transparent;
+            color: #0082e6;
+        }
+
+        .forgot {
+            text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+            color: black;
+            padding-top: 15px;
+        }
+
+        a {
+            text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+            color: black;
+            text-decoration: none
+        }
+
+        a:link {
+            color: #0082e6;
+        }
+
+        @media (max-width: 600px) {
+            .main {
+                border-radius: 0px;
+            }
+        }
+    </style>
+
     <%- include('includes/navigation.ejs') %>
-    <main>
-        <form class="product-form" action="/add-new-hall" method="POST">
-            <div class="form-control">
-                <label for="venue">Choose venue</label>
-                <select name="venueId" id="venueId">
-                    <% for (let venue of venues) { %>
-                    <option value="<%=venue._id%>"><%= venue.adress %></option>
-                    <% } %>
-                </select>
+    <div class="container">
+        <main>
+            <div class="main">
+                <p class="sign" align="center">Choose venue</p>
+                <form class="product-form" action="/add-new-hall" method="POST"></form>
+                        <select name="venueId" class="selectpicker form-controll" id="venueId">
+                            <% for (let venue of venues) { %>
+                            <option value="<%=venue._id%>"><%= venue.adress %></option>
+                            <% } %>
+                        </select>
+                        <p class="sign" align="center" for="name">Name</p>
+                        <input class="form-control" type="text" name="name" id="name" placeholder="Name">
+                        <p class="sign" align="center" for="quantity">Seats available:</p>
+                        <input class="form-control" type="number" id="seats" name="seats" placeholder="Seats Number" min="1">
+                    <a class="submit btn" align="center" type="submit">Add new hall</a>
             </div>
+            
+        </main>
+    </div>
+    
 
-            <div class="form-control">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" placeholder="Enter your name">
-            </div>
-
-            <div class="form-control">
-                <label for="quantity">Seats available:</label>
-                <input type="number" id="seats" name="seats" min="1"><br><br>
-            </div>
-
-            <button class="btn" type="submit">Add new hall</button>
-        </form>
-    </main>
 
     <%- include('includes/end.ejs') %>
