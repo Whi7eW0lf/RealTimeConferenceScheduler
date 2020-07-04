@@ -20,9 +20,11 @@
         body {
             padding: 40px 0;
             background-color: #f3ebf6;
+            font-size: 8px;
+            line-height: 1.2;
         }
 
-        .container{
+        .container {
             padding-top: 40px;
         }
 
@@ -49,39 +51,43 @@
             padding: 20px;
         }
 
-        .btn{
+        .btn {
             background: #0082e6;
             border: 1px solid #0082e6;
             border-radius: 5em;
         }
 
-        .btn:hover{
+        .btn:hover {
             background: transparent;
             color: #0082e6;
             border-color: #0082e6;
+        }
+
+        .conference-header {
+            color: #0082e6;
         }
     </style>
 
     <%- include('includes/navigation.ejs') %>
 
     <div class="container">
-       
 
-            <main class="grid">
-                <% for (let conference of conferences) { %>
-                    <article>
-                        <img src="https://picsum.photos/600/400?image=1083" alt="Sample photo">
-                        <div class="text">
-                            <h3><%=conference.name%></h3>
-                            <p>Start time: <%=conference.startTime%></p>
-                            <p>End time: <%=conference.endTime%></p>
-                            <p>Description: <%=conference.description%></p>
-                            <p>Address: <%=conference.address.adress%></p>
-                            <a href="<%= conference._id %>" name="conferenceId" class="btn btn-primary btn-block">Details</a>
-                        </div>
-                    </article>
-                    <% } %>
-                <!-- <article>
+
+        <main class="grid">
+            <% for (let conference of conferences) { %>
+            <article>
+                <img src="https://picsum.photos/600/400?image=1083" alt="Sample photo">
+                <div class="text">
+                    <h3 class="conference-header"><%=conference.name%></h3>
+                    <p><b>Start time: </b><%=conference.startTime%></p>
+                    <p><b>End time: </b><%=conference.endTime%></p>
+                    <p><b>Description: </b><%=conference.description%></p>
+                    <p><b>Address: </b><%=conference.address.adress%></p>
+                    <a href="<%= conference._id %>" name="conferenceId" class="btn btn-primary btn-block">Details</a>
+                </div>
+            </article>
+            <% } %>
+            <!-- <article>
                     <img src="https://picsum.photos/600/400?image=1063" alt="Sample photo">
                     <div class="text">
                         <h3>Second conference</h3>
@@ -122,10 +128,10 @@
                         <a href="https://codepen.io/collection/XdWJOQ/" class="btn btn-primary btn-block">Details</a>
                     </div>
                 </article> -->
-            </main> 
-        </div>
-        </a>
-        </article>
+        </main>
+    </div>
+    </a>
+    </article>
     </div>
 
 
