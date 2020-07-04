@@ -4,6 +4,7 @@ const Hall = require("../models/hall");
 const Conference = require("../models/conference");
 const mongodb = require("mongodb");
 const conference = require("../models/conference");
+const venues = require("../models/venues");
 
 exports.getLogin = (req, res, next) => {
     res.render("login", {
@@ -43,11 +44,13 @@ exports.getConference = (req, res, next) => {
 }
 
 exports.addConference = (req, res, next) => {
-    res.render("add-conference", {
-        venues: venues.slice(0, 10),
-        pageTitle: 'Add Conference',
-        path: "/"
-    })
+    Venue.find().then(venues => {
+        res.render("add-conference", {
+            venues: venues.slice(0, 10),
+            pageTitle: 'Add Conference',
+            path: "/"
+        })
+    }).catch(err => console.log(err))
 
 }
 exports.postAddConference = (req, res, next) => {
