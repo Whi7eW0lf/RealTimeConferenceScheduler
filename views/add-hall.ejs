@@ -19,18 +19,20 @@
         }
 
         .main {
+            padding: 18px;
             display: flex;
             flex-direction: column;
             background-color: #FFFFFF;
             width: 400px;
-            height: 400px;
+            height: fit-content;
             margin: 7em auto;
             border-radius: 1.5em;
             box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
         }
 
         .sign {
-            padding-top: 40px;
+            padding-top: 20px;
+            padding-bottom: 30px;
             color: #0082e6;
             font-family: 'Ubuntu', sans-serif;
             font-weight: bold;
@@ -61,7 +63,7 @@
             padding-top: 40px;
         }
 
-        .description,
+        .seats,
         .profile-image {
             width: 76%;
             color: rgb(38, 50, 56);
@@ -84,7 +86,7 @@
 
 
         .name:focus,
-        .description:focus,
+        .seats:focus,
         .profile-image:focus {
             border: 2px solid rgba(0, 0, 0, 0.18) !important;
 
@@ -141,15 +143,13 @@
             <div class="main">
                 <p class="sign" align="center">Choose venue</p>
                 <form class="product-form" action="/add-new-hall" method="POST"></form>
-                        <select name="venueId" class="selectpicker form-controll" id="venueId">
+                        <select name="venueId" class="name form-controll" id="venueId">
                             <% for (let venue of venues) { %>
                             <option value="<%=venue._id%>"><%= venue.adress %></option>
                             <% } %>
                         </select>
-                        <p class="sign" align="center" for="name">Name</p>
-                        <input class="form-control" type="text" name="name" id="name" placeholder="Name">
-                        <p class="sign" align="center" for="quantity">Seats available:</p>
-                        <input class="form-control" type="number" id="seats" name="seats" placeholder="Seats Number" min="1">
+                        <input class="name form-control" type="text" name="name" id="name" placeholder="Name">
+                        <input class="seats form-control" type="number" id="seats" name="seats" placeholder="Seats Number" min="1">
                     <a class="submit btn" align="center" type="submit">Add new hall</a>
             </div>
             
