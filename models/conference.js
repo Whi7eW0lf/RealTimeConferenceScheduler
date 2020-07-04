@@ -30,6 +30,8 @@ const conferenceSchema = new Schema({
     }
 
 
+    
+
 })
 
 module.exports = mongoose.model("Conference", conferenceSchema);
