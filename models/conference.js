@@ -7,6 +7,10 @@ const conferenceSchema = new Schema({
         type: String,
         required: true
     },
+    // address: {
+    //     type: String,
+    //     required: true
+    // },
     description: {
         type: String,
         required: true
@@ -19,7 +23,13 @@ const conferenceSchema = new Schema({
         type: Date,
         required: true
     },
-    
+    address: {
+        type: Schema.Types.ObjectId,
+        ref: "Venue",
+        required: true
+    }
+
+
 })
 
-mongoose.model("Conference", conferenceSchema);
+module.exports = mongoose.model("Conference", conferenceSchema);
