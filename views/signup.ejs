@@ -58,7 +58,7 @@
             padding-top: 40px;
         }
 
-        .pass {
+        .pass, .pass1 {
             width: 76%;
             color: rgb(38, 50, 56);
             font-weight: 700;
@@ -80,7 +80,8 @@
 
 
         .un:focus,
-        .pass:focus {
+        .pass:focus,
+        .pass1:focus {
             border: 2px solid rgba(0, 0, 0, 0.18) !important;
 
         }
@@ -130,7 +131,6 @@
     </style>
   </head>
 
-  <body>
     <%- include('includes/navigation.ejs') %>
 
       <div class="main">
@@ -138,7 +138,7 @@
         <form class="form1"></form>
         <input class="un " type="text" align="center" placeholder="Username">
         <input class="pass" type="password" align="center" placeholder="Password">
-        <input class="pass" type="password" align="center" placeholder="Repeat Password">
+        <input class="pass1" type="password" align="center" placeholder="Repeat Password">
         <a class="submit" align="center">Sign Up</a>
     
     </div>

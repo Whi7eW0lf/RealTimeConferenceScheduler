@@ -3,7 +3,10 @@ const userController = require("../controllers/user");
 
 const router = express.Router();
 router.get("/", userController.getConferences);
+<<<<<<< HEAD
 router.get("/:conferenceId", userController.getConference)
+=======
+>>>>>>> e14563d71545506ffea4fef165540caa17460184
 
 router.get("/login", userController.getLogin);
 router.get("/signup", userController.getSignIn);

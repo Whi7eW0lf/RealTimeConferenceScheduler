@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/Whi7eW0lf/RealTimeConferenceScheduler#readme",
   "devDependencies": {
+    "@babel/core": "^7.10.4",
     "nodemon": "^1.18.3"
   },
   "dependencies": {
+    "@babel/cli": "^7.10.4",
     "body-parser": "^1.18.3",
     "css3": "0.0.1",
     "dotenv": "^8.2.0",
@@ -30,7 +32,9 @@
     "googlefonts": "^1.1.3",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.20",
+    "node-sass": "^4.14.1",
     "sass": "^1.26.9",
+    "sass-resources-loader": "^2.0.3",
     "scss": "^0.2.4"
   }
 }

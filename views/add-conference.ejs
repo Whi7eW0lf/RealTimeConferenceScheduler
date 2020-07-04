@@ -3,39 +3,45 @@
 </head>
 
 <body>
-    <%- include('includes/navigation.ejs') %>
-    <main>
-        <form class="product-form" action="/add-conference"
-            method="POST">
-            <div class="form-control">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" placeholder="Enter your name">
-            </div>
-            <div class="form-control">
-                <label for="address">Choose address</label>
-                <select name="address" id="venue">
-                    <% for (let venue of venues) { %>
-                        <option name="venue" value="<%=venue._id%>"><%= venue.adress %></option>
-                        <% } %>
-                </select >
-            </div>
 
-            <div class="form-control">
-                <label for="startTime">Start time:</label>
-                <input type="datetime-local" name="startTime" id="startTime">
-            </div>
-            <div class="form-control">
-                <label for="endTime">End time:</label>
-                <input type="datetime-local" name="endTime" id="endTime">
-            </div>
-            <div class="form-control">
-                <label for="description">Description</label>
-                <textarea name="description" id="description"
-                    rows="5" placeholder="Short description..."></textarea>
-            </div>
-           
-            <button class="btn" type="submit">Add event</button>
-        </form>
-    </main>
+    <%- include('includes/navigation.ejs') %>
+
+
+    <div class="continer">
+        <main>
+            <form class="product-form" action="/add-conference"
+                method="POST">
+                <div class="form-control">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-control">
+                    <label for="venue">Choose address</label>
+                    <select name="venue" id="venue">
+                        <% for (let venue of venues) { %>
+                            <option><%= venue.adress %></option>
+                            <% } %>
+                    </select >
+                </div>
+                <div class="form-control">
+                    <label for="startTime">Start time:</label>
+                    <input type="datetime-local" name="startTime" id="startTime">
+                </div>
+                <div class="form-control">
+                    <label for="endTime">End time:</label>
+                    <input type="datetime-local" name="endTime" id="endTime">
+                </div>
+                <div class="form-control">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description"
+                        rows="5" placeholder="Short description..."></textarea>
+                </div>
+               
+                <button class="btn" type="submit">Add event</button>
+            </form>
+        </main>
+    </div>
+    
+
 
 <%- include('includes/end.ejs') %>
