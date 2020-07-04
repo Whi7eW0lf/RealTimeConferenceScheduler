@@ -12,13 +12,14 @@
                 <input type="text" name="name" id="name" placeholder="Enter your name">
             </div>
             <div class="form-control">
-                <label for="venue">Choose address</label>
-                <select name="venue" id="venue">
+                <label for="address">Choose address</label>
+                <select name="address" id="venue">
                     <% for (let venue of venues) { %>
-                        <option><%= venue.adress %></option>
+                        <option name="venue" value="<%=venue._id%>"><%= venue.adress %></option>
                         <% } %>
                 </select >
             </div>
+
             <div class="form-control">
                 <label for="startTime">Start time:</label>
                 <input type="datetime-local" name="startTime" id="startTime">

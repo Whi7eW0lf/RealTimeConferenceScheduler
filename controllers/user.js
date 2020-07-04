@@ -1,8 +1,8 @@
-const Venue = require("../models/venues")
-const Speaker = require("../models/speaker")
-const Hall = require("../models/hall")
-// const staticHall = require("..models/staticHalls")
-
+const Venue = require("../models/venues");
+const Speaker = require("../models/speaker");
+const Hall = require("../models/hall");
+const Conference = require("../models/conference");
+const mongodb = require("mongodb")
 exports.getLogin = (req, res, next) => {
     res.render("login", {
         pageTitle: 'Login page',
@@ -16,10 +16,12 @@ exports.getSignIn = (req, res, next) => {
     })
 }
 exports.getConferences = (req, res, next) => {
-    res.render("event-form", {
-        pageTitle: 'Login page',
-        path: "/"
+    Conference.find().populate("address")
+    .then(result => {
+            console.log(result)
+            res.redirect("/")
     })
+    .catch(err => console.log(err)) 
 }
 
 
@@ -39,9 +41,9 @@ exports.postAddSpeaker = (req, res, next) => {
 
 exports.addConference = (req, res, next) => {
     Venue.find().then(venues => {
-        res.render("add-speaker", {
-            venues: venues,
-            pageTitle: 'Add speaker',
+        res.render("add-conference", {
+            venues: venues.slice(0, 10),
+            pageTitle: 'Add Conference',
             path: "/"
         })
     }).catch(err => console.log(err))
@@ -56,11 +58,19 @@ exports.addHall = (req, res, next) => {
     }).catch(err => console.log(err))
 }
 exports.postAddConference = (req, res, next) => {
-
-    res.render("add-speaker", {
-        pageTitle: 'Add speaker',
-        path: "/"
+    const name = req.body.name
+    const description = req.body.description
+    const startTime = req.body.startTime;
+    const endTime = req.body.endTime;
+    const address = req.body.address;
+    const newConference = new Conference({
+        name,
+        description,
+        startTime,
+        endTime,
+        address
     })
+    newConference.save().then(() => res.redirect("/")).catch(err => console.log(err))
 }
 exports.addSpeaker = (req, res, next) => {
     Venue.find().then(venues => {

@@ -18,10 +18,8 @@ const venueSchema = new Schema({
     phone: {
         type: String,
         required: true
-    },
-    
+    }
 
-    
 })
 
 module.exports = mongoose.model("Venue", venueSchema);
