@@ -2,7 +2,7 @@ const express = require("express");
 const userController = require("../controllers/user");
 
 const router = express.Router();
-router.get("/asd", userController.getConferences);
+router.get("/", userController.getConferences);
 
 router.get("/login", userController.getLogin);
 
