@@ -21,7 +21,7 @@ exports.getSignIn = (req, res, next) => {
 
 exports.getConferences = (req, res, next) => {
     Conference.find().populate("address").then(conferences => {
-        
+
         res.render("event-form", {
             pageTitle: "All conferences",
             path: '/',
@@ -32,26 +32,23 @@ exports.getConferences = (req, res, next) => {
 }
 exports.getConference = (req, res, next) => {
     const confId = req.params.conferenceId;
-    Conference.findById(confId).populate("address")
-    .then(conf => {
+    Conference.findById(confId).populate("address").then(conf => {
         console.log(conf)
         res.render("conference-details", {
             pageTitle: conf.name,
             path: "/",
             conference: conf
         })
-    })
-    .catch(err => console.log(err))
+    }).catch(err => console.log(err))
 }
 
 exports.addConference = (req, res, next) => {
-    Venue.find().then(venues => {
-        res.render("add-conference", {
-            venues: venues.slice(0, 10),
-            pageTitle: 'Add Conference',
-            path: "/"
-        })
-    }).catch(err => console.log(err))
+    res.render("add-conference", {
+        venues: venues.slice(0, 10),
+        pageTitle: 'Add Conference',
+        path: "/"
+    })
+
 }
 exports.postAddConference = (req, res, next) => {
     const name = req.body.name
@@ -94,15 +91,11 @@ exports.postAddNewHall = (req, res, next) => {
 
 
 exports.addSpeaker = (req, res, next) => {
-    Venue.find().then(venues => {
+    res.render("add-speaker", {
 
-        res.render("add-speaker", {
-            venues: venues,
-            pageTitle: 'Add conference',
-            path: "/"
-        })
-    }).catch(err => console.log(err))
-
+        pageTitle: 'Add conference',
+        path: "/"
+    })
 }
 exports.postAddSpeaker = (req, res, next) => {
     const name = req.body.name;

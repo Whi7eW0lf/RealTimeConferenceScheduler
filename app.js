@@ -32,14 +32,3 @@ mongoose.connect(
     app.listen(3000)
 }).catch(err => console.log(err))
 
-// mongoose.connect(
-
-//     process.env.DB_CONNECTION, {
-//         useUnifiedTopology: true, 
-//         useNewUrlParser: true,
-//     }, 
-//      )
-
-// .then(result => {
-//     app.listen(3000)
-// }).catch(err => console.log(err))
