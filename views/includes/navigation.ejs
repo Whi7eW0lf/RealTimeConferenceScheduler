@@ -83,11 +83,11 @@
     }
 
     @media screen and (max-width: 600px) {
-        .topnav ul.li.a:not(:first-child) {
+        .topnav a:not(:first-child) {
             display: none;
         }
 
-        .topnav ul.li.a.icon {
+        .topnav a.icon {
             float: right;
             display: block;
         }
@@ -104,7 +104,7 @@
             top: 0;
         }
 
-        .topnav.responsive ul.li.a {
+        .topnav.responsive a {
             float: none;
             display: block;
             text-align: left;
@@ -126,13 +126,15 @@
                     <a class="<%= path === '/' ? 'active' : '' %>" href="/">Welcome</a>
                 </li>
                 <li class="main-header__item">
-                    <a class="<%= path === '/all-conferences' ? 'active' : '' %>" href="/allconferences">All conferences</a>
+                    <a class="<%= path === '/all-conferences' ? 'active' : '' %>" href="/allconferences">All
+                        conferences</a>
                 </li>
                 <li class="main-header__item">
                     <a class="<%= path === '/my-conferences' ? 'active' : '' %>" href="/myconference">My conferences</a>
                 </li>
                 <li class="main-header__item">
-                    <a class="<%= path === '/add-conference' ? 'active' : '' %>" href="/add-conference">Add conference</a>
+                    <a class="<%= path === '/add-conference' ? 'active' : '' %>" href="/add-conference">Add
+                        conference</a>
                 </li>
                 <li class="main-header__item">
                     <a class="<%= path === '/add-speaker' ? 'active' : '' %>" href="/add-speaker">Add speaker</a>
@@ -145,11 +147,13 @@
                     <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
                 </li>
                 <li class="main-header__item">
-                    <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Signup</a>
+                    <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Signup
+                        <i class="fa fa-bars"></i>
+                    </a>
                 </li>
             </ul>
         </div>
-        
+
 
     </nav>
 </header>
