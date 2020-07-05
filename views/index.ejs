@@ -89,7 +89,8 @@
 
     <div class="container">
 
-
+        <h1>Welcome to Conferences site</h1>
+        <h3>Testing slogan :) </h3>
         <main class="grid">
             <% for (let conference of conferences) { %>
             <article>
@@ -100,11 +101,11 @@
                     <p><b>End time: </b><%=conference.endTime%></p>
                     <p><b>Description: </b><%=conference.description%></p>
                     <p><b>Address: </b><%=conference.address.adress%></p>
-                    <a href="/allconference/<%= conference._id %>" name="conferenceId" class="btn btn-primary btn-block">Details</a>
+                    <a href="/allconferences/<%= conference._id %>" name="conferenceId" class="btn btn-primary btn-block">Details</a>
                 </div>
             </article>
             <% } %>
-   
+         
         </main>
     </div>
     </a>

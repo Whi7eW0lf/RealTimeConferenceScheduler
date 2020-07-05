@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 // require('dotenv/config');
 const app = express();
 
+
 const userRoutes = require("./routes/user");
 
 app.set("view engine", "ejs");
@@ -18,17 +19,12 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(userRoutes)
 
 
-mongoose.connect(
-    
-
-    "mongodb+srv://banea9:stonnerexe95@conference-scheduler.m9skm.mongodb.net/conference?retryWrites=true&w=majority", {
-        useUnifiedTopology: true, 
-        useNewUrlParser: true,
-    }, 
-     )
-
-.then(result => {
+mongoose.connect("mongodb+srv://banea9:stonnerexe95@conference-scheduler.m9skm.mongodb.net/conference?retryWrites=true&w=majority", {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+},).then(result => {
     console.log("Connected to DB")
-    app.listen(3000)
-}).catch(err => console.log(err))
 
+    app.listen(3000)
+
+}).catch(err => console.log(err))
