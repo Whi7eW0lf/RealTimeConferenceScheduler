@@ -2,20 +2,30 @@ const Venue = require("../models/venues");
 const Speaker = require("../models/speaker");
 const Hall = require("../models/hall");
 const Conference = require("../models/conference");
-const mongodb = require("mongodb");
-const conference = require("../models/conference");
-const venues = require("../models/venues");
+
+exports.getIndex = (req, res, next) => {
+
+    Conference.find().populate("address").then(conferences => {
+
+        res.render("index", {
+            pageTitle: "All conferences",
+            path: '/',
+            conferences: conferences.slice(0,3)
+        })
+    }).catch(err => console.log(err))
+
+}
 
 exports.getLogin = (req, res, next) => {
     res.render("login", {
         pageTitle: 'Login page',
-        path: "/"
+        path: "/login"
     })
 }
 exports.getSignIn = (req, res, next) => {
     res.render("signup", {
         pageTitle: 'Login page',
-        path: "/"
+        path: "/signup"
     })
 }
 
@@ -25,7 +35,7 @@ exports.getConferences = (req, res, next) => {
 
         res.render("event-form", {
             pageTitle: "All conferences",
-            path: '/',
+            path: '/all-conferences',
             conferences: conferences
         })
     }).catch(err => console.log(err))
@@ -48,7 +58,7 @@ exports.addConference = (req, res, next) => {
         res.render("add-conference", {
             venues: venues.slice(0, 1000),
             pageTitle: 'Add Conference',
-            path: "/"
+            path: "/add-conference"
         })
     }).catch(err => console.log(err))
 
@@ -74,8 +84,8 @@ exports.addHall = (req, res, next) => {
     Venue.find().then(venues => {
         res.render("add-hall", {
             venues: venues,
-            pageTitle: 'Add speaker',
-            path: "/"
+            pageTitle: 'Add Hall',
+            path: "/add-hall"
         })
     }).catch(err => console.log(err))
 }
@@ -95,9 +105,8 @@ exports.postAddNewHall = (req, res, next) => {
 
 exports.addSpeaker = (req, res, next) => {
     res.render("add-speaker", {
-
         pageTitle: 'Add conference',
-        path: "/"
+        path: "/add-speaker"
     })
 }
 exports.postAddSpeaker = (req, res, next) => {

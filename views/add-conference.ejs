@@ -153,12 +153,12 @@
         <main>
             <div class="main">
                 <p class="sign" align="center">Add New add-conference</p>
-                <form class="product-form" action="/add-conference" method="POST"></form>
+                <form class="product-form" action="/add-conference" method="POST">
                 <input class="seats form-control" type="text" name="name" id="name" placeholder="Name">
                 <p class="sign1" align="center">Choose address</p>
-                <select class="name form-control" name="venue" id="venue">
+                <select class="name form-control" name="address" id="venue">
                     <% for (let venue of venues) { %>
-                    <option><%= venue.adress %></option>
+                    <option value="<%=venue._id%>"><%= venue.adress %></option>
                     <% } %>
                 </select>
                 <input class="seats" type="datetime-local" name="startTime" id="startTime" placeholder="Start time">
@@ -166,7 +166,8 @@
                 <textarea class="name form-control" name="description" id="description" rows="5"
                     placeholder="Short description..."></textarea>
 
-                <a class="submit btn" align="center" type="submit">Add conference</a>
+                <button class="submit btn" align="center" type="submit">Add conference</button>
+            </form>
             </div>
 
         </main>
