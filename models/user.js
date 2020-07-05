@@ -34,4 +34,4 @@ const userSchema = new Schema({
 
 });
 
-module.exports = mongoose.model("Speaker", userSchema)
+module.exports = mongoose.model("User", userSchema)

@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Add Hall</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-</head>
+<%- include('includes/head.ejs') %>
 
 </head>
 
@@ -141,7 +132,9 @@
     <div class="container">
         <main>
             <div class="main">
+
                 <p class="sign" align="center">Choose Venue</p>
+
                 <form class="product-form" action="/add-new-hall" method="POST">
                         <select name="venueId" class="name form-controll" id="venueId">
                             <% for (let venue of venues) { %>

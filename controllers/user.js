@@ -8,7 +8,7 @@ exports.getIndex = (req, res, next) => {
     Conference.find().populate("address").then(conferences => {
 
         res.render("index", {
-            pageTitle: "All conferences",
+            pageTitle: "Welcome to conferences",
             path: '/',
             conferences: conferences.slice(0,3)
         })
@@ -24,7 +24,7 @@ exports.getLogin = (req, res, next) => {
 }
 exports.getSignIn = (req, res, next) => {
     res.render("signup", {
-        pageTitle: 'Login page',
+        pageTitle: 'Signup page',
         path: "/signup"
     })
 }
@@ -105,7 +105,7 @@ exports.postAddNewHall = (req, res, next) => {
 
 exports.addSpeaker = (req, res, next) => {
     res.render("add-speaker", {
-        pageTitle: 'Add conference',
+        pageTitle: 'Add speaker',
         path: "/add-speaker"
     })
 }

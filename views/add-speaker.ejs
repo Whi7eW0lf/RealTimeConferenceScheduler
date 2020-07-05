@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Add Speaker</title>
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-</head>
+<%- include('includes/head.ejs') %>
 
 </head>
 
@@ -150,14 +142,15 @@
 
             <div class="main">
                 <p class="sign" align="center">Add Speaker</p>
-                <form class="product-form form1" action="/add-speaker" method="POST"></form>
-                <input type="text" class="name product-form" align="center" name="name" id="name"
-                    placeholder="Speaker name">
-                <input type="text" class="description form-control" name="description" align="center" id="description"
-                    placeholder="Description">
-                <input type="link" class="profile-image form-control" name="profileImg" align="center" id="profileImg"
-                    placeholder="Profile image">
-                <a class="submit btn" align="center" type="submit">Add Speaker</a>
+                <form class="product-form form1" action="/add-speaker" method="POST">
+                    <input type="text" class="name product-form" align="center" name="name" id="name"
+                        placeholder="Speaker name">
+                    <input type="text" class="description form-control" name="description" align="center" id="description"
+                        placeholder="Description">
+                    <input type="link" class="profile-image form-control" name="profileImg" align="center" id="profileImg"
+                        placeholder="Profile image">
+                    <button class="submit btn" align="center" type="submit">Add Speaker</button>
+                </form>
             </div>
 
         </main>
