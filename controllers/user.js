@@ -46,7 +46,7 @@ exports.getConference = (req, res, next) => {
 exports.addConference = (req, res, next) => {
     Venue.find().then(venues => {
         res.render("add-conference", {
-            venues: venues.slice(0, 10),
+            venues: venues.slice(0, 1000),
             pageTitle: 'Add Conference',
             path: "/"
         })

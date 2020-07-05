@@ -1,15 +1,24 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>All Conferences</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+    <title>All Congerence</title>
+
+
     <link href="https://fonts.googleapis.com/css?family=Bentham|Playfair+Display|Raleway:400,500|Suranna|Trocchi"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
         integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
-    <script>
-        var sass = require('node-sass');
-    </script>
+
+    <script> var sass = require('node-sass'); </script>
+
     <%- include('includes/head.ejs') %>
 
 </head>
@@ -26,6 +35,13 @@
 
         .container {
             padding-top: 40px;
+        }
+
+        .sign {
+            color: #0082e6;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: bold;
+            font-size: 23px;
         }
 
         .grid {
@@ -60,6 +76,7 @@
         .btn:hover {
             background: transparent;
             color: #0082e6;
+            border: 1px solid #0082e6;
             border-color: #0082e6;
         }
 
@@ -78,7 +95,7 @@
             <article>
                 <img src="https://picsum.photos/600/400?image=1083" alt="Sample photo">
                 <div class="text">
-                    <h3 class="conference-header"><%=conference.name%></h3>
+                    <p class="sign conference-header"><%=conference.name%></p>
                     <p><b>Start time: </b><%=conference.startTime%></p>
                     <p><b>End time: </b><%=conference.endTime%></p>
                     <p><b>Description: </b><%=conference.description%></p>
