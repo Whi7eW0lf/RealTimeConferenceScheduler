@@ -142,7 +142,7 @@
         <main>
             <div class="main">
                 <p class="sign" align="center">Choose Venue</p>
-                <form class="product-form" action="/add-new-hall" method="POST"></form>
+                <form class="product-form" action="/add-new-hall" method="POST">
                         <select name="venueId" class="name form-controll" id="venueId">
                             <% for (let venue of venues) { %>
                             <option value="<%=venue._id%>"><%= venue.adress %></option>
@@ -151,6 +151,7 @@
                         <input class="name form-control" type="text" name="name" id="name" placeholder="Name">
                         <input class="seats form-control" type="number" id="seats" name="seats" placeholder="Seats Number" min="1">
                     <a class="submit btn" align="center" type="submit">Add new hall</a>
+                </form>
             </div>
             
         </main>
