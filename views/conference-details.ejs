@@ -1,9 +1,8 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Detailed View</title>
     
-
     <%- include('includes/head.ejs') %>
     <link href="https://fonts.googleapis.com/css?family=Bentham|Playfair+Display|Raleway:400,500|Suranna|Trocchi"
         rel="stylesheet">
@@ -11,8 +10,6 @@
 </head>
 
 <body>
-    <%- include('includes/navigation.ejs') %>
-
     <style>
         .wrapper {
             position: absolute;
@@ -196,6 +193,8 @@
         }
     </style>
 
+<%- include('includes/navigation.ejs') %>
+
 
 
     <h1><%=conference.name%></h1>
@@ -221,7 +220,7 @@
                             </g>
                         </svg>
                     </i>
-                    <font>PUT CONFERENCE NAME REFERENCE HERE</font>
+                    <font><%=conference.name%></font>
                 </label>
                 <a href="#" class="download">
                     <svg class="svg-details"  x="0px" y="0px" width="27px" height="22px">
