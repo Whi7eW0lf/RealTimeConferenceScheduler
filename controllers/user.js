@@ -112,13 +112,13 @@ exports.addSpeaker = (req, res, next) => {
 exports.postAddSpeaker = (req, res, next) => {
     const name = req.body.name;
     const description = req.body.description;
-    const imageUrl = req.body.profileImg;
+    const profilePhoto = req.body.profileImg;
 
-    const speaker = new Speaker({name, description, imageUrl});
+    const speaker = new Speaker({name, description, profilePhoto});
 
     speaker.save().then(result => {
         console.log("Added speaker");
         res.redirect("/")
-    }).catch(err => console.log("error"))
+    }).catch(err => console.log(err))
 
 }
