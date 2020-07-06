@@ -17,4 +17,6 @@ router.post("/add-conference", userController.postAddConference);
 
 router.get("/allconferences/:conferenceId", userController.getConference)
 
+router.get("/myconference", userController.getMyConferences);
+
 module.exports = router;
