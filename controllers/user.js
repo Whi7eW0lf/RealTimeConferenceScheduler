@@ -38,6 +38,7 @@ exports.getConference = (req, res, next) => {
     }).catch(err => console.log(err))
 }
 
+
 exports.addConference = (req, res, next) => {
     Venue.find().then(venues => {
         res.render("add-conference", {
