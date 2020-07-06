@@ -18,9 +18,9 @@ exports.getIndex = (req, res, next) => {
 }
 
 exports.getMyConferences = (req,res,next)=>{
-    res.render({
-        pageTitle: "my-conferences",
-        path: "/myconferences"
+    res.render("my-conferences", {
+        pageTitle: "My Conferences",
+        path: "/my-conferences"
 })
 }
 
