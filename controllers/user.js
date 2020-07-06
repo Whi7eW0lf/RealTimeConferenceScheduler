@@ -7,24 +7,13 @@ const Conference = require("../models/conference");
 exports.getIndex = (req, res, next) => {
 
     Conference.find().populate("address").then(conferences => {
-        console.log(conferences);
-        const asd = conferences.map(e => {
-            const endTime = e.endTime.toString().substring(0, 10);
+       
+        const formatDateTime = formatDateTimeConferences(conferences);
 
-            return {
-                _id: e._id,
-                name: e.name,
-                description: e.description,
-                startTime: e.startTime,
-                endTime: endTime,
-                address: e.address
-            }
-
-        });
         res.render("index", {
             pageTitle: "Welcome to conferences",
             path: '/',
-            conferences: asd.slice(0,3)
+            conferences: formatDateTime.slice(0,3)
         })
     }).catch(err => console.log(err))
 
@@ -43,7 +32,7 @@ exports.getConferences = (req, res, next) => {
         res.render("event-form", {
             pageTitle: "All conferences",
             path: '/all-conferences',
-            conferences: conferences
+            conferences: formatDateTimeConferences(conferences)
         })
     }).catch(err => console.log(err))
 
@@ -128,4 +117,20 @@ exports.postAddSpeaker = (req, res, next) => {
         res.redirect("/")
     }).catch(err => console.log(err))
 
+}
+
+function formatDateTimeConferences(object ){
+    return formatDateTime = object.map(e => {
+        const startTime = e.startTime.toString().substring(0, 21);
+        const endTime = e.endTime.toString().substring(0, 21);
+        return {
+            _id: e._id,
+            name: e.name,
+            description: e.description,
+            startTime: startTime,
+            endTime: endTime,
+            address: e.address
+        }
+
+    });
 }
