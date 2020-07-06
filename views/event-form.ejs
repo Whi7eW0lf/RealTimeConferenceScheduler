@@ -13,7 +13,6 @@
         }
 
         .container {
-            padding-top: 40px;
             display: flex;
             flex-direction: row;
             justify-content: space-around;
@@ -72,11 +71,17 @@
             text-overflow: ellipsis;
             
         }
+
+        .head{
+            font-size: 32px;
+            padding-block-start: 40px;
+        }
     </style>
 
     <%- include('includes/navigation.ejs') %>
-
+    <p align="center" class="sign head">All Conferences</p>
     <div class="container">
+        
 
 
         <main class="grid">

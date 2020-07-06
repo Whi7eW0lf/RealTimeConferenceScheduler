@@ -73,14 +73,18 @@
             text-overflow: ellipsis;
             
         }
+
+        .head{
+            font-size: 32px;
+        }
     </style>
 
     <%- include('includes/navigation.ejs') %>
 
     <div class="container">
 
-        <h1>Welcome to Conferences site</h1>
-        <h3>Testing slogan :) </h3>
+        <p align="center" class="sign head">Welcome to Conferences site</p>
+        <h3 align="center">Testing slogan :) </h3>
         <main class="grid">
             <% for (let conference of conferences) { %>
             <article class="article">
