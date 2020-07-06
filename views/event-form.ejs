@@ -12,12 +12,6 @@
             line-height: 1.2;
         }
 
-        .container {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-        }
-
         .sign {
             color: #0082e6;
             font-family: 'Ubuntu', sans-serif;
@@ -36,6 +30,7 @@
             border: 1px solid #ccc;
             box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
             border-radius: 5em;
+            
         }
 
         .grid>article img {
@@ -80,9 +75,6 @@
 
     <%- include('includes/navigation.ejs') %>
     <p align="center" class="sign head">All Conferences</p>
-    <div class="container">
-        
-
 
         <main class="grid">
             <% for (let conference of conferences) { %>
@@ -100,7 +92,6 @@
             <% } %>
 
         </main>
-    </div>
     </a>
     </article>
     </div>
