@@ -10,6 +10,9 @@
         }
 
         .main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             padding: 18px;
             background-color: #FFFFFF;
             width: 400px;
@@ -48,7 +51,8 @@
             font-family: 'Ubuntu', sans-serif;
         }
 
-        .pass, .pass1 {
+        .pass,
+        .pass1 {
             width: 76%;
             color: rgb(38, 50, 56);
             font-weight: 700;
@@ -81,7 +85,6 @@
             border-radius: 5em;
             color: #fff;
             background: #0082e6;
-            border: 0;
             padding-left: 40px;
             padding-right: 40px;
             padding-bottom: 10px;
@@ -89,9 +92,11 @@
             font-family: 'Ubuntu', sans-serif;
             margin-left: 35%;
             font-size: 13px;
+            margin: auto;
             box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
         }
-        .submit:hover{
+
+        .submit:hover {
             border-radius: 2px #0082e6;
             background: transparent;
             color: #0082e6;
@@ -126,19 +131,19 @@
             }
         }
     </style>
-  </head>
+    </head>
 
     <%- include('includes/navigation.ejs') %>
 
-      <div class="main">
+    <div class="main">
         <p class="sign" align="center">Register</p>
-        <form class="form1"></form>
-        <input class="un " type="text" align="center" placeholder="Username">
-        <input class="pass" type="password" align="center" placeholder="Password">
-        <input class="pass1" type="password" align="center" placeholder="Repeat Password">
-        <a class="submit btn" align="center">Sign Up</a>
-    
+        <form class="form1">
+            <input class="un " type="text" align="center" placeholder="Username">
+            <input class="pass" type="password" align="center" placeholder="Password">
+            <input class="pass1" type="password" align="center" placeholder="Repeat Password">
+            <button class="submit btn" align="center">Sign Up</button>
+        </form>
     </div>
 
-    
+
     <%- include('includes/end.ejs') %>
