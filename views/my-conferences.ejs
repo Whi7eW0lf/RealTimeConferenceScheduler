@@ -63,21 +63,32 @@
         .conference-header {
             color: #0082e6;
         }
+
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+
+        .head{
+            font-size: 32px;
+        }
     </style>
 
     <%- include('includes/navigation.ejs') %>
 
     <div class="container">
 
-        <h1>My Conferences</h1>
+        <p align="center" class="sign head">My Conferences</p>
         <main class="grid">
             <article>
                 <img src="https://picsum.photos/600/400?image=1083" alt="Sample photo">
                 <div class="text">
                     <p class="sign conference-header">Test name</p>
-                    <p><b>Start time: 1.1.1970</p>
+                    <p><b>Start time: </b>1.1.1970</p>
                     <p><b>End time: </b>1.1.1970</p>
-                    <p><b>Description: </b>My Conferences</p>
+                    <p maxlength="20"><b>Description: </b>My Conferences</p>
                     <p><b>Address: </b>Some address</p>
                     <a href="/" name="conferenceId" class="btn btn-primary btn-block">Details</a>
                 </div>

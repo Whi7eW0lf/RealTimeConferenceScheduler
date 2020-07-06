@@ -13,7 +13,9 @@
         }
 
         .container {
-            padding-top: 40px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
         }
 
         .sign {
@@ -62,11 +64,24 @@
         .conference-header {
             color: #0082e6;
         }
+
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+
+        .head{
+            font-size: 32px;
+            padding-block-start: 40px;
+        }
     </style>
 
     <%- include('includes/navigation.ejs') %>
-
+    <p align="center" class="sign head">All Conferences</p>
     <div class="container">
+        
 
 
         <main class="grid">
@@ -77,13 +92,14 @@
                     <p class="sign conference-header"><%=conference.name%></p>
                     <p><b>Start time: </b><%=conference.startTime%></p>
                     <p><b>End time: </b><%=conference.endTime%></p>
-                    <p><b>Description: </b><%=conference.description%></p>
+                    <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
                     <p><b>Address: </b><%=conference.address.adress%></p>
-                    <a href="/allconferences/<%= conference._id %>" name="conferenceId" class="btn btn-primary btn-block">Details</a>
+                    <a href="/allconferences/<%= conference._id %>" name="conferenceId"
+                        class="btn btn-primary btn-block">Details</a>
                 </div>
             </article>
             <% } %>
-   
+
         </main>
     </div>
     </a>
