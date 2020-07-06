@@ -7,11 +7,24 @@ const Conference = require("../models/conference");
 exports.getIndex = (req, res, next) => {
 
     Conference.find().populate("address").then(conferences => {
+        console.log(conferences);
+        const asd = conferences.map(e => {
+            const endTime = e.endTime.toString().substring(0, 10);
 
+            return {
+                _id: e._id,
+                name: e.name,
+                description: e.description,
+                startTime: e.startTime,
+                endTime: endTime,
+                address: e.address
+            }
+
+        });
         res.render("index", {
             pageTitle: "Welcome to conferences",
             path: '/',
-            conferences: conferences.slice(0,3)
+            conferences: asd.slice(0,3)
         })
     }).catch(err => console.log(err))
 
