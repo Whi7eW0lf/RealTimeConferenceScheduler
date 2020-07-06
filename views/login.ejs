@@ -133,11 +133,11 @@
 
     <div class="main">
         <p class="sign" align="center">Login</p>
-        <form class="form1"></form>
+        <form class="form1" action="/login" method="POST">
         <input class="un " type="text" align="center" placeholder="Username">
         <input class="pass" type="password" align="center" placeholder="Password">
-        <a class="submit btn" align="center">Sign in</a>
-
+        <button class="submit btn" align="center" type="submit">Sign in</button>
+    </form>
     </div>
 
     <%- include('includes/end.ejs') %>

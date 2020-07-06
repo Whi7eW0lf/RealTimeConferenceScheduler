@@ -4,10 +4,6 @@ const userController = require("../controllers/user");
 const router = express.Router();
 router.get("/", userController.getIndex);
 
-
-router.get("/login", userController.getLogin);
-router.get("/signup", userController.getSignIn);
-
 router.get("/add-speaker", userController.addSpeaker);
 router.post("/add-speaker", userController.postAddSpeaker);
 

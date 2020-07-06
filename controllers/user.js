@@ -16,20 +16,6 @@ exports.getIndex = (req, res, next) => {
 
 }
 
-exports.getLogin = (req, res, next) => {
-    res.render("login", {
-        pageTitle: 'Login page',
-        path: "/login"
-    })
-}
-exports.getSignIn = (req, res, next) => {
-    res.render("signup", {
-        pageTitle: 'Signup page',
-        path: "/signup"
-    })
-}
-
-
 exports.getConferences = (req, res, next) => {
     Conference.find().populate("address").then(conferences => {
 
