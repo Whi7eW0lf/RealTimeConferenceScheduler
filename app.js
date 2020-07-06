@@ -30,12 +30,5 @@ mongoose.connect(MONDODB_URI, {
     useNewUrlParser: true
 }).then(result => {
     console.log("Connected to DB")
-    User.findOne().then((user) => {
-        if (!user) {
-            const user = new User({email: "test@test.com", password: "123"})
-            return user.save()
-        }
-    }).then(() => {
-        app.listen(3000)
-    }).catch(err => console.log(err))
-})
+    app.listen(3000)
+}).catch(err => console.log(err))

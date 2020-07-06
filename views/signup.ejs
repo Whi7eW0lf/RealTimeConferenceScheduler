@@ -133,9 +133,16 @@
       <div class="main">
         <p class="sign" align="center">Register</p>
         <form class="form1" action="/signup" method="POST">
-        <input class="un " type="text" align="center" placeholder="Username" name: "username">
-        <input class="pass" type="password" align="center" placeholder="Password" name: "password">
-        <input class="pass1" type="password" align="center" placeholder="Repeat Password" name: "confirmPassword">
+            <label for="email"></label>
+            <label for="password"></label>
+            <label for="confirmPassword"></label>
+        <input class="un " name="email" type="text" align="center" placeholder="Email" >
+        <input  class="pass" name="password" type="password" align="center" placeholder="Password" >
+        <input class="pass1" name="confirmPassword" type="password" align="center" placeholder="Repeat Password" >
+        <select name="role" class="role">
+            <option value="conferenceOwner">Conference owner</option>
+            <option value="conferenceAttendee">Conference attendee</option>
+        </select>
         <button class="submit btn" align="center">Sign Up</button>
     </form>
     </div>

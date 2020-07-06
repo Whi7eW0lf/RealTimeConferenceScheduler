@@ -18,15 +18,9 @@ exports.getIndex = (req, res, next) => {
 }
 
 exports.getMyConferences = (req,res,next)=>{
-<<<<<<< HEAD
     res.render("my-conferences", {
         pageTitle: "My Conferences",
         path: "/my-conferences"
-=======
-    res.render("my-conferences",{
-        pageTitle: "My conferences",
-        path: "/myconference"
->>>>>>> 72dd8d5617a8f3b2e83e9e8bd5abd33c1612a52f
 })
 }
 
@@ -44,6 +38,7 @@ exports.getConferences = (req, res, next) => {
 exports.getConference = (req, res, next) => {
     const confId = req.params.conferenceId;
     Conference.findById(confId).populate("address").then(conf => {
+        console.log("1")
         res.render("conference-details", {
             pageTitle: conf.name,
             path: "/",
