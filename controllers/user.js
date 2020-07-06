@@ -1,3 +1,4 @@
+  
 const Venue = require("../models/venues");
 const Speaker = require("../models/speaker");
 const Hall = require("../models/hall");
@@ -14,6 +15,13 @@ exports.getIndex = (req, res, next) => {
         })
     }).catch(err => console.log(err))
 
+}
+
+exports.getMyConferences = (req,res,next)=>{
+    res.render({
+        pageTitle: "my-conferences",
+        path: "/myconferences"
+})
 }
 
 exports.getConferences = (req, res, next) => {
