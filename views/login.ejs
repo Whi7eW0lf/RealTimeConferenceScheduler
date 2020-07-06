@@ -1,5 +1,6 @@
 <%- include('includes/head.ejs') %>
 </head>
+
 <body>
 
     <style>
@@ -47,10 +48,6 @@
             font-family: 'Ubuntu', sans-serif;
         }
 
-        form.form1 {
-            padding-top: 40px;
-        }
-
         .pass {
             width: 76%;
             color: rgb(38, 50, 56);
@@ -93,7 +90,8 @@
             font-size: 13px;
             box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
         }
-        .submit:hover{
+
+        .submit:hover {
             border-radius: 2px #0082e6;
             background: transparent;
             color: #0082e6;
@@ -127,6 +125,7 @@
                 border-radius: 0px;
             }
         }
+
     </style>
 
     <%- include('includes/navigation.ejs') %>
@@ -134,10 +133,10 @@
     <div class="main">
         <p class="sign" align="center">Login</p>
         <form class="form1" action="/login" method="POST">
-        <input class="un " type="text" align="center" placeholder="Username">
-        <input class="pass" type="password" align="center" placeholder="Password">
-        <button class="submit btn" align="center" type="submit">Sign in</button>
-    </form>
+            <input class="un " type="text" align="center" placeholder="Username">
+            <input class="pass" type="password" align="center" placeholder="Password">
+            <button class="submit btn" align="center" type="submit">Sign in</button>
+        </form>
     </div>
 
     <%- include('includes/end.ejs') %>
