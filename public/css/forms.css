@@ -1,4 +1,4 @@
-.form-control {
+ .form-control {
     margin: 1rem 0;
   }
   
@@ -16,7 +16,7 @@
     font: inherit;
     border-radius: 2px;
   }
-  
+ 
   .form-control input:focus,
   .form-control textarea:focus {
     outline-color: #00695c;
