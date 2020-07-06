@@ -7,6 +7,7 @@
         body {
             background-color: #F3EBF6;
             font-family: 'Ubuntu', sans-serif;
+            padding: 40px 0;
         }
 
         .main {
@@ -81,6 +82,7 @@
         }
 
         .submit {
+            display: flex;
             cursor: pointer;
             border-radius: 5em;
             color: #fff;
@@ -94,6 +96,7 @@
             font-size: 13px;
             margin: auto;
             box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+            
         }
 
         .submit:hover {
@@ -141,10 +144,10 @@
             <label for="email"></label>
             <label for="password"></label>
             <label for="confirmPassword"></label>
-        <input class="un " name="email" type="text" align="center" placeholder="Email" >
+        <input class="un" name="email" type="text" align="center" placeholder="Email" >
         <input  class="pass" name="password" type="password" align="center" placeholder="Password" >
         <input class="pass1" name="confirmPassword" type="password" align="center" placeholder="Repeat Password" >
-        <select name="role" class="role">
+        <select name="role" class="role pass">
             <option value="conferenceOwner">Conference owner</option>
             <option value="conferenceAttendee">Conference attendee</option>
         </select>
