@@ -63,6 +63,13 @@
         .conference-header {
             color: #0082e6;
         }
+
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
     </style>
 
     <%- include('includes/navigation.ejs') %>
@@ -77,7 +84,7 @@
                     <p class="sign conference-header">Test name</p>
                     <p><b>Start time: 1.1.1970</p>
                     <p><b>End time: </b>1.1.1970</p>
-                    <p><b>Description: </b>My Conferences</p>
+                    <p maxlength="20"><b>Description: </b>My Conferences</p>
                     <p><b>Address: </b>Some address</p>
                     <a href="/" name="conferenceId" class="btn btn-primary btn-block">Details</a>
                 </div>
