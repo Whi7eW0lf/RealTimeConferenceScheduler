@@ -44,7 +44,6 @@ exports.getConferences = (req, res, next) => {
 exports.getConference = (req, res, next) => {
     const confId = req.params.conferenceId;
     Conference.findById(confId).populate("address").then(conf => {
-        console.log(conf)
         res.render("conference-details", {
             pageTitle: conf.name,
             path: "/",
