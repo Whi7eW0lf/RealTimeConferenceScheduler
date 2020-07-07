@@ -54,7 +54,6 @@ exports.getMyConferences = (req, res, next) => {
         const conferences = user.conferenceOwner.conferences.map(conf => {
             return conf._id._doc
         })
-        console.log(user)
         res.render("my-conferences", {
             pageTitle: "My Conferences",
             isLoggedIn: req.session.isLoggedIn,
