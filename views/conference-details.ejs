@@ -156,6 +156,32 @@ opacity:1;
 
 <%- include('includes/navigation.ejs') %>
 
+    <div class="main">
+        <p class="sign" align="center">Add New Session</p>
+        <form class="product-form" action="/add-session" method="POST">
+            
+            <p><%= conference.address.adress %></p>
+                <input class="seats" type="hidden" name="venueId" value="<%= conference.address._id %>">
+
+            <p class="sign1" align="center">Choose speaker</p>
+    
+            <select class="name form-control" name="speaker" id="speaker">
+                
+                <% for (let speaker of speakers) { %>
+                    <option value="<%=speaker._id%>"><%= speaker.name %></option>
+                    <% } %>
+            </select>
+            <select class="name form-control" name="hall" id="hall">
+                <% for (let hall of halls) { %>
+                    <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
+                    <% } %>
+            </select>
+            <label class="sign1" align="center" for="startTime">Choose start end date and time</label>
+            <input class="seats" type="datetime-local" name="startTime" id="startTime">
+            <label class="sign1" align="center" for="endTime">Choose start end date and time</label>
+            <input class="seats" type="datetime-local" name="endTime" id="endTime">
+            <button class="submit btn" align="center" type="submit">Add Session</button>
+        </form>
 
 <div class="center">
     <div class="property-card">
