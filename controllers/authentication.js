@@ -13,17 +13,17 @@ exports.getLogin = (req, res, next) => {
         isLoggedIn: req.session.isLoggedIn,
         path: "/login",
         errorMessage: message
-      })
-    }
-    exports.getSignup = (req, res, next) => {
-      let message = req.flash("existingEmail");
-      
-      if (message.length > 0) {
+    })
+}
+exports.getSignup = (req, res, next) => {
+    let message = req.flash("error");
+
+    if (message.length > 0) {
         message = message[0]
-      } else {
+    } else {
         message = null
-      }
-      res.render("signup", {
+    }
+    res.render("signup", {
         pageTitle: 'Signup page',
         isLoggedIn: req.session.isLoggedIn,
         path: "/signup",
@@ -36,8 +36,8 @@ exports.postLogin = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
     User.findOne({email: email}).then(user => {
-        if (!user) { 
-          req.flash("error", "Invalid email or password...");
+        if (!user) {
+            req.flash("error", "Invalid email or password...");
             return res.redirect("/login");
         }
         bcrypt.compare(password, user.password).then(doMatch => {
@@ -74,15 +74,20 @@ exports.postSignup = (req, res, next) => {
     const role = req.body.role;
     User.findOne({email: email}).then(userDoc => {
         if (userDoc) {
-            req.flash(
-                "existingEmail",
-                "This email has already been used to create registration."
-            );
+            req.flash("error", "This email has already been used to create registration.");
             return req.session.save(err => {
                 res.redirect("/signup");
             });
         }
+
+        if(password !== confirmPassword) {
+          req.flash("error", "Different passwords");
+          return req.session.save(err => {
+              res.redirect("/signup");
+          });
+        }
         return bcrypt.hash(password, 12).then(hashedPassword => {
+
             const user = new User({
                 email: email,
                 password: hashedPassword,
@@ -98,5 +103,6 @@ exports.postSignup = (req, res, next) => {
         }).then(result => {
             res.redirect("/login");
         });
+
     }).catch(err => console.log(err));
 };
