@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
+
 exports.getLogin = (req, res, next) => {
     let errMessage = req.flash("error");
 

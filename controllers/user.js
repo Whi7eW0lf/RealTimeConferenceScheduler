@@ -54,9 +54,10 @@ exports.getConferenceDetails = (req, res, next) => {
 
         const confId = req.params.conferenceId;
         Conference.findOne({ _id: confId }).populate("address").then(conf => {
-            const allHalls = Hall.find().then(halls => {
-                const allSpeakers = Speaker.find().then(speakers => {
-                    res.render("add-session", {
+
+            Hall.find().then(halls => {
+                Speaker.find().then(speakers => {S
+                    res.render("conference-details", {
                         halls: halls,
                         speakers: speakers,
                         pageTitle: conf.name,
@@ -130,9 +131,15 @@ exports.postAddNewHall = (req, res, next) => {
     }).catch(err => console.log(err))
 }
 
+<<<<<<< HEAD
+
+exports.getAddNewSession = (req, res, next) => {
+
+=======
 exports.postAddNewSession = (req, res, next) => {
 
     req.body.name;
+>>>>>>> 08d1cffa760961b4267d3f5dbfcfdc215430d4d8
 
 }
 
