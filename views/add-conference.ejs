@@ -3,7 +3,7 @@
 
 <body>
 
-    <style>
+    <style>/*
         body {
             background-color: #F3EBF6;
             font-family: 'Ubuntu', sans-serif;
@@ -23,7 +23,7 @@
             box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
         }
 
-        .sign {
+        .signature {
             padding-top: 20px;
             padding-bottom: 30px;
             color: #0082e6;
@@ -32,7 +32,7 @@
             font-size: 23px;
         }
 
-        .sign1 {
+        .signature1 {
             color: #0082e6;
             font-family: 'Ubuntu', sans-serif;
             font-weight: bold;
@@ -148,7 +148,7 @@
             }
         }
 
-        
+        */
     </style>
 
     <%- include('includes/navigation.ejs') %>
@@ -157,10 +157,10 @@
     <div class="continer">
         <main>
             <div class="main">
-                <p class="sign" align="center">Add New Conference</p>
+                <p class="signature" align="center">Add New Conference</p>
                 <form class="product-form" action="/add-conference" method="POST">
                 <input class="seats form-control" type="text" name="name" id="name" placeholder="Name">
-                <p class="sign1" align="center">Choose address</p>
+                <p class="signature1" align="center">Choose address</p>
                 <select class="name form-control" name="address" id="venue">
                     <% for (let venue of venues) { %>
                     <option value="<%=venue._id%>"><%= venue.adress %></option>

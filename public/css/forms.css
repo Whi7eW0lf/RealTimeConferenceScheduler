@@ -1,24 +1,458 @@
- .form-control {
-    margin: 1rem 0;
+/*grid css for first 3 pages Welcome All conf and my conf*/
+
+body {
+  padding: 40px 0;
+  background-color: #f3ebf6;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 8px;
+  line-height: 1.2;
+}
+
+.sign {
+  color: #0082e6;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  font-size: 23px;
+}
+
+.container {
+  padding-top: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+  padding: 40px;
+}
+
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 5em;
+}
+
+.grid > article img {
+  max-width: 100%;
+  border-top-left-radius: 5em;
+  border-top-right-radius: 5em;
+}
+
+.grid .text {
+  padding: 20px;
+}
+
+.btn {
+  background: #0082e6;
+  border: 1px solid #0082e6;
+  border-radius: 5em;
+}
+
+.btn:hover {
+  background: transparent;
+  color: #0082e6;
+  border: 1px solid #0082e6;
+  border-color: #0082e6;
+}
+
+.conference-header {
+  color: #0082e6;
+}
+
+.article {
+  size: 50px;
+}
+
+p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.head {
+  font-size: 32px;
+  padding-block-start: 40px;
+}
+
+/*Conference add signup/in speaker add....*/
+
+.main {
+  padding: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 400px;
+  height: fit-content;
+  margin: 7em auto;
+  border-radius: 1.5em;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
+
+.signature {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  color: #0082e6;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  font-size: 23px;
+}
+
+.signature1 {
+  color: #0082e6;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.name {
+  width: 76%;
+  color: rgb(38, 50, 56);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: rgba(136, 126, 126, 0.04);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.02);
+  margin-bottom: 50px;
+  margin-left: 46px;
+  text-align: center;
+  margin-bottom: 27px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+textarea {
+  resize: none;
+}
+
+/*form.form1 {
+  padding-top: 40px;
+}*/
+
+.seats,
+.description,
+.profile-image {
+  width: 76%;
+  color: rgb(38, 50, 56);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: rgba(136, 126, 126, 0.04);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.02);
+  margin-bottom: 50px;
+  margin-left: 46px;
+  text-align: center;
+  margin-bottom: 27px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.name:focus,
+.seats:focus,
+.description:focus,
+.profile-image:focus {
+  border: 2px solid rgba(0, 0, 0, 0.18) !important;
+}
+
+.submit {
+  display: flex;
+  cursor: pointer;
+  border-radius: 5em;
+  color: #fff;
+  background: #0082e6;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 13px;
+  margin: auto;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+.submit:hover {
+  border-radius: 2px #0082e6;
+  background: transparent;
+  color: #0082e6;
+}
+
+.forgot {
+  text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+  color: black;
+  padding-top: 15px;
+}
+
+a {
+  text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+  color: black;
+  text-decoration: none;
+}
+
+/*a:link {
+  color: #0082e6;
+}*/
+
+@media (max-width: 600px) {
+  .main {
+    border-radius: 0px;
   }
-  
-  .form-control label,
-  .form-control input,
-  .form-control textarea {
-    display: block;
-    width: 100%;
-    margin-bottom: 0.25rem;
-  }
-  
-  .form-control input,
-  .form-control textarea {
-    border: 1px solid #a1a1a1;
-    font: inherit;
-    border-radius: 2px;
-  }
- 
-  .form-control input:focus,
-  .form-control textarea:focus {
-    outline-color: #00695c;
-  }
-  
+}
+
+/*Single conference details*/
+.wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #f3ebf6;
+}
+
+.food {
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  margin: -197px 0 0 -310px;
+}
+
+.food {
+  position: relative;
+  width: 620px;
+  height: 394px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+}
+
+.food > .cover {
+  position: relative;
+  height: 260px;
+  background: transparent center no-repeat;
+  background-size: 100% auto;
+  border-radius: 2px 2px 0 0;
+}
+
+.food > .cover > label {
+  position: absolute;
+  top: 22px;
+  left: -33px;
+  height: 33px;
+  padding: 0 30px 0 63px;
+  line-height: 33px;
+  vertical-align: middle;
+  font-family: sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 2px #000;
+  background: #0082e6;
+}
+
+.food > .cover > label > i {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.food > .cover > label > i > svg {
+  margin: 8px;
+}
+
+.food > .cover > .download {
+  display: block;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 47px;
+  height: 47px;
+  background: rgba(51, 193, 210, 0.6);
+  border-radius: 100%;
+}
+
+.food > .cover > .download:hover {
+  background: #33c1d2;
+}
+
+.food > .cover > .download > svg {
+  margin: 12px 10px 0;
+}
+
+.food > .info {
+  position: relative;
+  height: 134px;
+  overflow: hidden;
+  border-radius: 0 0 2px 2px;
+}
+
+.food > .info > .recipe {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 134px;
+  height: 134px;
+  background: #0082e6;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 0 0 0 2px;
+}
+
+.food > .info > .recipe:hover {
+  background: transparent;
+  border: 1px solid #0082e6;
+  color: #0082e6;
+}
+
+.food > .info > .recipe > i {
+  display: block;
+  margin: 38px 0 15px;
+}
+
+.food > .info > .content {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  left: 154px;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #888;
+}
+
+.food > .info > .content strong {
+  font-weight: normal;
+  color: #333;
+}
+
+.food > .info > .content .pad-right {
+  padding-right: 20px;
+}
+
+.food > .info > .content .border-right {
+  border-right: 1px solid #d9d9d9;
+}
+
+.food > .info > .content .consumers img,
+.food > .info > .content .consumers span {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin: 0 2px 0 0;
+  line-height: 32px;
+  vertical-align: middle;
+  border-radius: 100%;
+}
+
+.food > .info > .content .consumers span {
+  margin: 0;
+}
+
+.food > .info > .content h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  font-weight: normal;
+  color: #333;
+}
+
+.food > .info > .content .stars,
+.food > .info > .content .stars > em {
+  display: block;
+  width: 99px;
+  height: 18px;
+  margin: 0 auto 7px;
+  text-align: left;
+  background: url(https://lh5.googleusercontent.com/uJ_7fIpfUO1hsXDfSXIcwBkJg4h3pYcZtTP5H5bD52wRgOhgPBpIMHOvvNntyHCTOCs9lYY1yuEX-p8EW20-=w2560-h2688);
+}
+
+.food > .info > .content .stars > em {
+  width: 99px;
+  height: 18px;
+  margin: 0;
+  background: url(https://lh5.googleusercontent.com/uJ_7fIpfUO1hsXDfSXIcwBkJg4h3pYcZtTP5H5bD52wRgOhgPBpIMHOvvNntyHCTOCs9lYY1yuEX-p8EW20-=w2560-h2688);
+  background-position: 0 -18px;
+}
+
+.svg-details:hover {
+  fill: #0082e6;
+}
+
+/* CSS for login */
+.un {
+  width: 76%;
+  color: rgb(38, 50, 56);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: rgba(136, 126, 126, 0.04);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.02);
+  margin-bottom: 50px;
+  margin-left: 46px;
+  text-align: center;
+  margin-bottom: 27px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.pass {
+  width: 76%;
+  color: rgb(38, 50, 56);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: rgba(136, 126, 126, 0.04);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.02);
+  margin-bottom: 50px;
+  margin-left: 46px;
+  text-align: center;
+  margin-bottom: 27px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.un:focus,
+.pass:focus {
+  border: 2px solid rgba(0, 0, 0, 0.18) !important;
+}
+
+.user-message {
+  margin: 20px auto;
+  width: 50%;
+  border: 1px solid green;
+  background-color: #47bb24;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+
+.user-message--error {
+  margin: 20px auto;
+  width: 50%;
+  border: 1px solid red;
+  background-color: #f17272;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
