@@ -96,10 +96,12 @@ exports.postAddNewSession = (req, res, next) => {
     const endTime = req.body.endTime;
 
     const session = new Session({speakerId,hallId,conferenceId,startTime,endTime});
-    
+
     session.save().then(sessions=>{
+
         res.redirect("/myconference");
         console.log("ADDED SESSION")
+
     }).catch(err=>console.log(err));
 
 }
