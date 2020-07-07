@@ -1,4 +1,3 @@
-
 const Venue = require("../models/venues");
 const Speaker = require("../models/speaker");
 const Hall = require("../models/hall");
@@ -52,29 +51,33 @@ exports.getConferences = (req, res, next) => {
 }
 exports.getConferenceDetails = (req, res, next) => {
 
-        const confId = req.params.conferenceId;
-        Conference.findOne({ _id: confId }).populate("address").then(conf => {
-            const allHalls = Hall.find().then(halls => {
-                const allSpeakers = Speaker.find().then(speakers => {
-                    res.render("conference-details", {
-                        halls: halls,
-                        speakers: speakers,
-                        pageTitle: conf.name,
-                        path: "/",
-                        conference: conf
-                    })
+    const confId = req.params.conferenceId;
+    Conference.findOne({_id: confId}).populate("address").then(conf => {
+        Hall.find().then(halls => {
+            Speaker.find().then(speakers => {
+                res.render("conference-details", {
+                    halls: halls,
+                    speakers: speakers,
+                    pageTitle: conf.name,
+                    path: "/",
+                    conference: conf
                 })
             })
+        })
 
-        }).catch(err => console.log(err))
+    }).catch(err => console.log(err))
 }
 
-exports.postAddNewSession= (req,res,next)=>{
-    const conferenceId = req.params.conferenceId;
-    console.log(conferenceId);
-    res.render("index",{
-        redirect:"/"
-    });
+exports.postAddNewSession = (req, res, next) => {
+    const speaker = req.body.speaker
+    const hall = req.body.hall
+    const venue = req.body.venueId
+    const venue1 = req.body.venueAddress
+    const startTime = req.body.startTime;
+    const endTime = req.body.endTimes;
+
+    console.log(speaker, hall, venue, venue1, startTime, endTime);
+
 
 }
 
@@ -121,7 +124,7 @@ exports.postAddNewHall = (req, res, next) => {
     const seats = req.body.seats;
     const venueId = req.body.venueId;
     console.log(venueId)
-    const halls = new Hall({ name, seats, venueId });
+    const halls = new Hall({name, seats, venueId});
 
     halls.save().then(seats => {
         res.redirect("/")
@@ -129,11 +132,6 @@ exports.postAddNewHall = (req, res, next) => {
     }).catch(err => console.log(err))
 }
 
-exports.postAddNewSession = (req, res, next) => {
-
-    req.body.name;
-
-}
 
 exports.addSpeaker = (req, res, next) => {
     res.render("add-speaker", {
@@ -147,7 +145,7 @@ exports.postAddSpeaker = (req, res, next) => {
     const description = req.body.description;
     const profilePhoto = req.body.profileImg;
 
-    const speaker = new Speaker({ name, description, profilePhoto });
+    const speaker = new Speaker({name, description, profilePhoto});
 
     speaker.save().then(result => {
         console.log("Added speaker");
