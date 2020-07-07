@@ -82,17 +82,19 @@
 
         <p align="center" class="sign head">My Conferences</p>
         <main class="grid">
+            <% for (let conference of conferences) { %>
             <article>
                 <img src="https://picsum.photos/600/400?image=1083" alt="Sample photo">
                 <div class="text">
-                    <p class="sign conference-header">Test name</p>
-                    <p><b>Start time: </b>1.1.1970</p>
-                    <p><b>End time: </b>1.1.1970</p>
-                    <p maxlength="20"><b>Description: </b>My Conferences</p>
-                    <p><b>Address: </b>Some address</p>
+                    <p class="sign conference-header"><%=conference.name%></p>
+                    <p><b>Start time: </b><%=conference.startTime%></p>
+                    <p><b>End time: </b><%=conference.endTime%></p>
+                    <p maxlength="20"><b>Description: </b><%=conference.description%></p>
+                    <p><b>Address: </b><%=conference.name%></p>
                     <a href="/" name="conferenceId" class="btn btn-primary btn-block">Details</a>
                 </div>
             </article>
+            <% } %>
         <script> var sass = require('node-sass'); </script>
         </main>
     </div>

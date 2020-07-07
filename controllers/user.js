@@ -32,16 +32,6 @@ exports.getIndex = (req, res, next) => {
     }).catch(err => console.log(err))
 
 }
-
-exports.getMyConferences = (req, res, next) => {
-
-    res.render("my-conferences", {
-        pageTitle: "My Conferences",
-        isLoggedIn: req.session.isLoggedIn,
-        path: "/my-conferences"
-    })
-}
-
 exports.getConferences = (req, res, next) => {
 
     Conference.find().populate("address").then(conferences => {
@@ -55,6 +45,25 @@ exports.getConferences = (req, res, next) => {
     }).catch(err => console.log(err))
 
 }
+
+exports.getMyConferences = (req, res, next) => {
+    // console.log(req.user)
+    User.findById(req.user._id).populate("conferenceOwner.conferences.conferenceId")
+    .then(user => {
+        const conferences = user.conferenceOwner.conferences.map(conf => {
+            return conf._id._doc
+        })
+        console.log(user)
+        res.render("my-conferences", {
+            pageTitle: "My Conferences",
+            isLoggedIn: req.session.isLoggedIn,
+            path: "/my-conferences",
+            conferences: user.conferenceOwner.conferences
+        })
+    })
+}
+
+
 exports.getConferenceDetails = (req, res, next) => {
 
     const confId = req.params.conferenceId;
@@ -99,13 +108,13 @@ exports.addConference = (req, res, next) => {
 
 }
 exports.postAddConference = (req, res, next) => {
-    let a;
+
     const name = req.body.name
     const description = req.body.description
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
     const address = req.body.address;
-    const userId = req.session.user._id;
+    const userId = req.user._id;
     const newConference = new Conference({
         name,
         description,
@@ -114,17 +123,11 @@ exports.postAddConference = (req, res, next) => {
         address,
         userId
     })
-    return newConference.save()
-    .then(() => {
-        User.findById(userId)
-        .then(user => {
-            return user.addToConfOwner(newConference)
-        })
-        .then(() => {
-            res.redirect("/");
-        })
-    })
-    .catch(err => console.log(err))
+    return newConference.save().then(() => {
+        return req.user.addToConfOwner(newConference)
+    }).then(() => {
+        res.redirect("/");
+    }).catch(err => console.log(err))
 }
 
 
@@ -143,12 +146,10 @@ exports.postAddNewHall = (req, res, next) => {
     const name = req.body.name;
     const seats = req.body.seats;
     const venueId = req.body.venueId;
-    console.log(venueId)
     const halls = new Hall({name, seats, venueId});
 
-    halls.save().then(seats => {
+    halls.save().then(() => {
         res.redirect("/")
-        console.log("ADDED HALL");
     }).catch(err => console.log(err))
 }
 
@@ -174,4 +175,3 @@ exports.postAddSpeaker = (req, res, next) => {
     }).catch(err => console.log(err))
 
 }
-
