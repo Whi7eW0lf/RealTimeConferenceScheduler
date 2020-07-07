@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const session = require("express-session");
 const MondoDBSession = require("connect-mongodb-session")(session);
 const MONDODB_URI = "mongodb+srv://banea9:stonnerexe95@conference-scheduler.m9skm.mongodb.net/conference?retryWrites=true&w=majority";
+const flash = require("connect-flash");
+
 // const dotenv = require("dotenv");
 // require('dotenv/config');
 const app = express();
@@ -21,7 +23,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session({secret: 'my secret', resave: false, saveUninitialized: false, store: store}))
-
+app.use(flash())
 
 app.use(userRoutes)
 app.use(authRoutes)
