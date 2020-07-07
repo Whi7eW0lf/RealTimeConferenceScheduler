@@ -10,14 +10,17 @@
     }
 
     nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
         background: #0082e6;
-        height: 80px;
+        min-height: 8vh;
         width: 100%;
         text-align: center;
     }
 
     label.logo {
-        color: #f2f2f2;
+        color: #0082e6;
         font-size: 33px;
         line-height: 80px;
         padding: 0 140px;
@@ -121,6 +124,9 @@
 
 <header class="main-header">
     <nav class="main-header__nav">
+        <div class="logo">
+            <img src="logo.png" alt="conference logo">
+        </div>
         <div class="topnav" id="myTopnav">
             <ul class="main-header__item-list topnav">
                 <li class="main-header__item">
