@@ -28,7 +28,8 @@ exports.postLogin = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
     User.findOne({email: email}).then(user => {
-        if (!user) { // req.flash("error", "Invalid email or password...");
+        if (!user) { 
+          req.flash("error", "Invalid email or password...");
             return res.redirect("/login");
         }
         bcrypt.compare(password, user.password).then(doMatch => {
@@ -65,10 +66,10 @@ exports.postSignup = (req, res, next) => {
     const role = req.body.role;
     User.findOne({email: email}).then(userDoc => {
         if (userDoc) {
-            // req.flash(
-            //     "existingEmail",
-            //     "This email has already been used to create registration."
-            // );
+            req.flash(
+                "existingEmail",
+                "This email has already been used to create registration."
+            );
             return req.session.save(err => {
                 res.redirect("/signup");
             });
