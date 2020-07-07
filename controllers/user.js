@@ -131,15 +131,9 @@ exports.postAddNewHall = (req, res, next) => {
     }).catch(err => console.log(err))
 }
 
-<<<<<<< HEAD
-
-exports.getAddNewSession = (req, res, next) => {
-
-=======
 exports.postAddNewSession = (req, res, next) => {
 
     req.body.name;
->>>>>>> 08d1cffa760961b4267d3f5dbfcfdc215430d4d8
 
 }
 
