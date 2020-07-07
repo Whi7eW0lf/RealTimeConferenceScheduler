@@ -23,7 +23,7 @@ exports.getIndex = (req, res, next) => {
 
         res.render("index", {
             pageTitle: "Welcome to conferences",
-            isLoggedIn: req.session.isLoggedIn,
+            
             path: '/',
             conferences: formatDateTime.slice(0,3)
         })
@@ -35,7 +35,7 @@ exports.getMyConferences = (req,res,next)=>{
 
     res.render("my-conferences", {
         pageTitle: "My Conferences",
-        isLoggedIn: req.session.isLoggedIn,
+        
         path: "/my-conferences"
 })
 }
@@ -46,7 +46,7 @@ exports.getConferences = (req, res, next) => {
 
         res.render("event-form", {
             pageTitle: "All conferences",
-            isLoggedIn: req.session.isLoggedIn,
+            
             path: '/all-conferences',
             conferences: formatDateTimeConferences(conferences)
         })
@@ -59,7 +59,7 @@ exports.getConference = (req, res, next) => {
     Conference.findOne({_id: confId}).populate("address").then(conf => {
         res.render("conference-details", {
             pageTitle: conf.name,
-            isLoggedIn: req.session.isLoggedIn,
+            
             path: "/",
             conference: conf
         })
@@ -73,7 +73,7 @@ exports.addConference = (req, res, next) => {
         res.render("add-conference", {
             venues: venues.slice(0, 1000),
             pageTitle: 'Add Conference',
-            isLoggedIn: req.session.isLoggedIn,
+            
             path: "/add-conference"
         })
     }).catch(err => console.log(err))
@@ -102,7 +102,7 @@ exports.addHall = (req, res, next) => {
         res.render("add-hall", {
             venues: venues,
             pageTitle: 'Add Hall',
-            isLoggedIn: req.session.isLoggedIn,
+            
             path: "/add-hall"
         })
     }).catch(err => console.log(err))
@@ -124,7 +124,7 @@ exports.postAddNewHall = (req, res, next) => {
 exports.addSpeaker = (req, res, next) => {
     res.render("add-speaker", {
         pageTitle: 'Add speaker',
-        isLoggedIn: req.session.isLoggedIn,
+        
         path: "/add-speaker"
     })
 }
