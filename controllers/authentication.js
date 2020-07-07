@@ -13,13 +13,21 @@ exports.getLogin = (req, res, next) => {
         isLoggedIn: req.session.isLoggedIn,
         path: "/login",
         errorMessage: message
-    })
-}
-exports.getSignup = (req, res, next) => {
-    res.render("signup", {
+      })
+    }
+    exports.getSignup = (req, res, next) => {
+      let message = req.flash("existingEmail");
+      
+      if (message.length > 0) {
+        message = message[0]
+      } else {
+        message = null
+      }
+      res.render("signup", {
         pageTitle: 'Signup page',
         isLoggedIn: req.session.isLoggedIn,
-        path: "/signup"
+        path: "/signup",
+        errorMessage: message
     })
 }
 
