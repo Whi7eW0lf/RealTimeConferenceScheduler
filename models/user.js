@@ -18,7 +18,7 @@ const userSchema = new Schema({
     conferenceOwner: {
         conferences: [
             {
-                confereneId: {
+                conferenceId: {
                     type: Schema.Types.ObjectId,
                     ref: 'Conference'
                 }
@@ -28,7 +28,7 @@ const userSchema = new Schema({
     conferenceAttendee: {
         conferences: [
             {
-                confereneId: {
+                conferenceId: {
                     type: Schema.Types.ObjectId,
                     ref: 'Conference'
                 }
