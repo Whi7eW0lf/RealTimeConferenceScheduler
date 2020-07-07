@@ -15,7 +15,7 @@ router.get("/allconferences", userController.getConferences);
 router.get("/add-conference", isAuthenticated, userController.addConference);
 router.post("/add-conference", isAuthenticated, userController.postAddConference);
 
-router.get("/allconferences/:conferenceId",  userController.getConference)
+router.get("/allconferences/:conferenceId", userController.getConference)
 
 router.get("/myconference", userController.getMyConferences);
 
