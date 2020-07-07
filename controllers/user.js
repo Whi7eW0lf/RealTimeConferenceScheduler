@@ -5,7 +5,6 @@ const Hall = require("../models/hall");
 const Conference = require("../models/conference");
 
 exports.getIndex = (req, res, next) => {
-
     Conference.find().populate("address").then(conferences => {
         const asd = conferences.map(e => {
             const endTime = e.endTime.toString().substring(0, 10);
@@ -33,6 +32,7 @@ exports.getIndex = (req, res, next) => {
 }
 
 exports.getMyConferences = (req,res,next)=>{
+
     res.render("my-conferences", {
         pageTitle: "My Conferences",
         isLoggedIn: req.session.isLoggedIn,
@@ -41,6 +41,7 @@ exports.getMyConferences = (req,res,next)=>{
 }
 
 exports.getConferences = (req, res, next) => {
+
     Conference.find().populate("address").then(conferences => {
 
         res.render("event-form", {
@@ -53,6 +54,7 @@ exports.getConferences = (req, res, next) => {
 
 }
 exports.getConference = (req, res, next) => {
+
     const confId = req.params.conferenceId;
     Conference.findOne({_id: confId}).populate("address").then(conf => {
         res.render("conference-details", {
@@ -66,6 +68,7 @@ exports.getConference = (req, res, next) => {
 
 
 exports.addConference = (req, res, next) => {
+
     Venue.find().then(venues => {
         res.render("add-conference", {
             venues: venues.slice(0, 1000),
@@ -94,6 +97,7 @@ exports.postAddConference = (req, res, next) => {
 
 
 exports.addHall = (req, res, next) => {
+
     Venue.find().then(venues => {
         res.render("add-hall", {
             venues: venues,
@@ -125,6 +129,7 @@ exports.addSpeaker = (req, res, next) => {
     })
 }
 exports.postAddSpeaker = (req, res, next) => {
+
     const name = req.body.name;
     const description = req.body.description;
     const profilePhoto = req.body.profileImg;
