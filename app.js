@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const session = require("express-session");
 const MondoDBSession = require("connect-mongodb-session")(session);
 const MONDODB_URI = "mongodb+srv://banea9:stonnerexe95@conference-scheduler.m9skm.mongodb.net/conference?retryWrites=true&w=majority";
-const flast = require("connect-flash");
+const flash = require("connect-flash");
 
 // const dotenv = require("dotenv");
 // require('dotenv/config');

@@ -4,7 +4,8 @@ exports.getLogin = (req, res, next) => {
     res.render("login", {
         pageTitle: 'Login page',
         isLoggedIn: req.session.isLoggedIn,
-        path: "/login"
+        path: "/login",
+        errorMessage: req.flash("error")
     })
 }
 exports.getSignup = (req, res, next) => {
@@ -36,7 +37,7 @@ exports.postLogin = (req, res, next) => {
                 res.redirect("/");
               });
             }
-            // req.flash("error", "Invalid email or password...");
+            req.flash("error", "Invalid credentials...");
             req.session.save(err => {
               res.redirect("/login");
             });
