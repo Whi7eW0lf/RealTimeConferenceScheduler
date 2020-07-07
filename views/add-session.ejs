@@ -156,11 +156,12 @@
 
     <div class="continer">
         <main>
-            <div class="main">
+            <div class="q">
                 <p class="sign" align="center">Add New Session</p>
                 <form class="product-form" action="/add-session" method="POST">
-                <p class="sign1" align="center">Name</p>
-                <input class="seats form-control" type="text" name="name" id="name" placeholder="Name" disabled value="<%=conference.name%>">
+                <label for="venueAddress">Venue address</label>
+                    <input class="seats" type="datetime-local" name="venueAddress" id="venueAddress" value="<%= conference.address.adress %>">
+
                 <p class="sign1" align="center">Choose speaker</p>
         
                 <select class="name form-control" name="speaker" id="speaker">
@@ -170,7 +171,6 @@
                         <% } %>
                 </select>
                 <select class="name form-control" name="hall" id="hall">
-                    
                     <% for (let hall of halls) { %>
                         <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
                         <% } %>
@@ -179,8 +179,6 @@
                 <input class="seats" type="datetime-local" name="startTime" id="startTime" placeholder="Start time">
                 <p class="sign1" align="center">Choose start end date and time</p>
                 <input class="seats" type="datetime-local" name="endTime" id="endTime" placeholder="End time">
-                <textarea class="name form-control" name="description" id="description" rows="5" disabled><%=conference.description%> </textarea>
-        
                 <button class="submit btn" align="center" type="submit">Add Session</button>
             </form>
             </div>
