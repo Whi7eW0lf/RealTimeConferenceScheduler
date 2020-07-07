@@ -197,10 +197,9 @@
     <div class="main">
         <p class="sign" align="center">Add New Session</p>
         <form class="product-form" action="/add-session" method="POST">
-            <label for="venueAddress">Venue address</label>
-            <input class="seats" disabled type="text" name="venueAddress" id="venueAddress" value="<%= conference.address.adress %>">
-            <label for="venueId">Venue address</label>
-                <input class="seats" disabled type="text" name="venueId" id="venueId" value="<%= conference._id %>">
+            
+            <p><%= conference.address.adress %></p>
+                <input class="seats" type="hidden" name="venueId" value="<%= conference.address._id %>">
 
             <p class="sign1" align="center">Choose speaker</p>
     

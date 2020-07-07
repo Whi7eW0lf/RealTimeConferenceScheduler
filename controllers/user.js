@@ -72,11 +72,10 @@ exports.postAddNewSession = (req, res, next) => {
     const speaker = req.body.speaker
     const hall = req.body.hall
     const venue = req.body.venueId
-    const venue1 = req.body.venueAddress
     const startTime = req.body.startTime;
-    const endTime = req.body.endTimes;
+    const endTime = req.body.endTime;
 
-    console.log(speaker, hall, venue, venue1, startTime, endTime);
+    console.log(speaker, hall, venue, startTime, endTime);
 
 
 }
