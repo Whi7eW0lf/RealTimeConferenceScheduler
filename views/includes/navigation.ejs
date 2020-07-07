@@ -130,7 +130,6 @@
                     <a class="<%= path === '/all-conferences' ? 'active' : '' %>" href="/allconferences">All
                         conferences</a>
                 </li>
-                <% if(isLoggedIn){ %>
                 <li class="main-header__item">
                     <a class="<%= path === '/my-conferences' ? 'active' : '' %>" href="/myconference">My conferences</a>
                 </li>
@@ -152,7 +151,7 @@
 
                     </a>
                 </li>
-                <% } else{ %> 
+
                     <li class="main-header__item">
                         <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
                     </li>
@@ -161,8 +160,6 @@
     
                         </a>
                     </li>
-                 <% } %>
-
                 <i class="fa fa-bars"></i>
 
             </ul>
