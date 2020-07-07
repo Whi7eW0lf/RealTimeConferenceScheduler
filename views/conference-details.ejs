@@ -194,17 +194,6 @@
 
 <%- include('includes/navigation.ejs') %>
 
-
-<!-- 
-    <h1><%=conference.name%></h1>
-    <h1><%=conference.startTime%></h1>
-    <h1><%=conference.endTime%></h1>
-    <h1><%=conference.description%></h1>
-    <h1><%=conference.address.adress%></h1>
-    
- -->
-
-
     <div class="wrapper">
         <div class="food">
             <div class="cover" style="background-image: url(https://1.bp.blogspot.com/-Y8H-0DWygcI/Uulo6hMuUNI/AAAAAAAALYA/xRbwoLi0qGc/s1600/unsplash_52d5bbef8a613_1.JPG)">
@@ -277,7 +266,26 @@
             </div>
         </div>
     </div>
+    <div class="main">
+        <p class="sign" align="center">Add New Session</p>
+        <form class="product-form" action="/add-session" method="POST">
+        <input class="seats form-control" type="text" name="name" id="name" placeholder="Name" disabled value="<%=conference.name%>">
+        <p class="sign1" align="center">Choose cenral speaker</p>
 
+        <select class="name form-control" name="speaker" id="speaker">
+            
+            <% for (let speaker of speakers) { %>
+                <option value="<%=speaker._id%>"><%= speaker.name %></option>
+                <% } %>
+        </select>
 
+        <input class="seats" type="datetime-local" name="startTime" id="startTime" placeholder="Start time">
+        <input class="seats" type="datetime-local" name="endTime" id="endTime" placeholder="End time">
+        <textarea class="name form-control" name="description" id="description" rows="5"
+            placeholder="Short description..."></textarea>
+
+        <button class="submit btn" align="center" type="submit">Add Session</button>
+    </form>
+    </div>
 
     <%- include('includes/end.ejs') %>

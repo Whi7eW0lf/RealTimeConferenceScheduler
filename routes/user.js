@@ -15,8 +15,9 @@ router.get("/allconferences", userController.getConferences);
 router.get("/add-conference", isAuthenticated, userController.addConference);
 router.post("/add-conference", isAuthenticated, userController.postAddConference);
 
-router.get("/allconferences/:conferenceId", userController.getConference)
+router.get("/allconferences/:conferenceId", userController.getConferenceDetails)
 
 router.get("/myconference", userController.getMyConferences);
+router.post("/add-session", userController.postAddNewSession);
 
 module.exports = router;
