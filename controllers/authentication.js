@@ -1,18 +1,27 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
-exports.getLogin = (req, res, next) => {
-    let message = req.flash("error");
 
-    if (message.length > 0) {
-        message = message[0]
+exports.getLogin = (req, res, next) => {
+    let errMessage = req.flash("error");
+
+    if (errMessage.length > 0) {
+        errMessage = errMessage[0]
     } else {
-        message = null
+        errMessage = null
+    }
+    let successMessage = req.flash("success");
+
+    if (successMessage.length > 0) {
+        successMessage = successMessage[0]
+    } else {
+        successMessage = null
     }
     res.render("login", {
         pageTitle: 'Login page',
         isLoggedIn: req.session.isLoggedIn,
         path: "/login",
-        errorMessage: message
+        errorMessage: errMessage,
+        successMessage: successMessage
     })
 }
 exports.getSignup = (req, res, next) => {
@@ -101,6 +110,7 @@ exports.postSignup = (req, res, next) => {
             });
             return user.save();
         }).then(result => {
+            req.flash("success", "You have successfully signed in. Please login to continue...")
             res.redirect("/login");
         });
 

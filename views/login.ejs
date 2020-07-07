@@ -156,8 +156,14 @@
 
     <%- include('includes/navigation.ejs') %>
     <% if(errorMessage) { %>
-        <div class="user-message user-message--error">
+        <div class="user-message--error">
             <%= errorMessage %>
+        </div>
+
+    <% } %>
+    <% if(successMessage) { %>
+        <div class="user-message">
+            <%= successMessage %>
         </div>
 
     <% } %>
