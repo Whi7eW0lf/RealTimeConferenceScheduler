@@ -49,7 +49,7 @@ exports.postLogin = (req, res, next) => {
       .catch(err => console.log("postLogin error"));
   };
   
-exports.postLogout = (req, res, next) => {
+exports.logout = (req, res, next) => {
   req.session.destroy(err => {
     console.log(err);
     res.redirect("/");
