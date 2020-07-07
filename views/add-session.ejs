@@ -3,7 +3,7 @@
 
 <body>
 
-    <style>/*
+    <style>
         body {
             background-color: #F3EBF6;
             font-family: 'Ubuntu', sans-serif;
@@ -12,6 +12,9 @@
 
         .main {
             padding: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
             background-color: #FFFFFF;
             width: 400px;
             height: fit-content;
@@ -29,7 +32,14 @@
             font-size: 23px;
         }
 
-        .un {
+        .sign1 {
+            color: #0082e6;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .name {
             width: 76%;
             color: rgb(38, 50, 56);
             font-weight: 700;
@@ -49,7 +59,23 @@
             font-family: 'Ubuntu', sans-serif;
         }
 
-        .pass {
+        textarea {
+            resize: none;
+        }
+
+        form.form1 {
+            padding-top: 40px;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: #0082e6;
+            border: 1px solid #0082e6;
+            border-color: #0082e6;
+        }
+
+        .seats,
+        .profile-image {
             width: 76%;
             color: rgb(38, 50, 56);
             font-weight: 700;
@@ -70,8 +96,9 @@
         }
 
 
-        .un:focus,
-        .pass:focus {
+        .name:focus,
+        .seats:focus,
+        .profile-image:focus {
             border: 2px solid rgba(0, 0, 0, 0.18) !important;
 
         }
@@ -87,10 +114,10 @@
             padding-bottom: 10px;
             padding-top: 10px;
             font-family: 'Ubuntu', sans-serif;
-            margin-left: 35%;
             font-size: 13px;
             margin: auto;
             box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+
         }
 
         .submit:hover {
@@ -105,13 +132,6 @@
             padding-top: 15px;
         }
 
-        .btn:hover {
-            background: transparent;
-            color: #0082e6;
-            border: 1px solid #0082e6;
-            border-color: #0082e6;
-        }
-
         a {
             text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
             color: black;
@@ -122,60 +142,46 @@
             color: #0082e6;
         }
 
-        .user-message {
-            margin: 20px auto;
-            width: 50%;
-            border: 1px solid green;
-            background-color: #47bb24;
-            padding: 20px;
-            border-radius: 10px;
-            text-align:center;
-            color: white;
-        }
-
-        .user-message--error {
-            margin: 20px auto;
-            width: 50%;
-            border: 1px solid red;
-            background-color: #f17272;
-            padding: 20px;
-            border-radius: 10px;
-            text-align:center;
-            color: white;
-
-        }
-
-
         @media (max-width: 600px) {
             .main {
                 border-radius: 0px;
             }
         }
-*/
+
+        
     </style>
 
     <%- include('includes/navigation.ejs') %>
-    <% if(errorMessage) { %>
-        <div class="user-message--error">
-            <%= errorMessage %>
-        </div>
 
-    <% } %>
-    <% if(successMessage) { %>
-        <div class="user-message">
-            <%= successMessage %>
-        </div>
 
-    <% } %>
-    <div class="main">
-        <p class="signature" align="center">Login</p>
-        <form class="form1" action="/login" method="POST">
-            <label for="email"></label>
-            <label for="password"></label>
-            <input class="un " name="email" type="text" align="center" placeholder="Username">
-            <input class="pass" name="password" type="password" align="center" placeholder="Password">
-            <button class="submit btn" align="center" type="submit">Sign in</button>
-        </form>
+    <div class="continer">
+        <main>
+            <div class="main">
+                <p class="sign" align="center">Add New Session</p>
+                <form class="product-form" action="/add-session" method="POST">
+                    <p class="sign1" align="center">Name</p>
+                <input class="seats form-control" type="text" name="name" id="name" placeholder="Name" disabled value="<%=conference.name%>">
+                <p class="sign1" align="center">Choose certain speaker</p>
+        
+                <select class="name form-control" name="speaker" id="speaker">
+                    
+                    <% for (let speaker of speakers) { %>
+                        <option value="<%=speaker._id%>"><%= speaker.name %></option>
+                        <% } %>
+                </select>
+                <p class="sign1" align="center">Choose start date and time</p>
+                <input class="seats" type="datetime-local" name="startTime" id="startTime" placeholder="Start time">
+                <p class="sign1" align="center">Choose start end date and time</p>
+                <input class="seats" type="datetime-local" name="endTime" id="endTime" placeholder="End time">
+                <textarea class="name form-control" name="description" id="description" rows="5"
+                    placeholder="Short description..."></textarea>
+        
+                <button class="submit btn" align="center" type="submit">Add Session</button>
+            </form>
+            </div>
+
+        </main>
     </div>
+
 
     <%- include('includes/end.ejs') %>

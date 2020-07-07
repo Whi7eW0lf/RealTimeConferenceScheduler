@@ -127,7 +127,26 @@
         a:link {
             color: #0082e6;
         }
+        .user-message {
+            margin: 20px auto;
+            width: 50%;
+            border: 1px solid green;
+            background-color: #47bb24;
+            padding: 20px;
+            border-radius: 10px;
+            text-align:center;
+            color: white;
+        }
 
+        .user-message--error {
+            margin: 20px auto;
+            width: 50%;
+            border: 1px solid red;
+            background-color: #f17272;
+            padding: 20px;
+            border-radius: 10px;
+            text-align:center;
+            color: white;
         @media (max-width: 600px) {
             .main {
                 border-radius: 0px;
@@ -137,7 +156,12 @@
     </head>
 
     <%- include('includes/navigation.ejs') %>
+    <% if(errorMessage) { %>
+        <div class="user-message user-message--error">
+            <%= errorMessage %>
+        </div>
 
+    <% } %>
     <div class="main">
         <p class="sign" align="center">Register</p>
         <form class="form1" action="/signup" method="POST">
