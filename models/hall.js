@@ -14,5 +14,4 @@ const hallSchema = new Schema({
 
 module.exports = mongoose.model("Hall", hallSchema);
 
-//Add to git
 

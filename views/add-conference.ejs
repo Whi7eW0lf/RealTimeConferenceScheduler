@@ -166,8 +166,9 @@
                     <option value="<%=venue._id%>"><%= venue.adress %></option>
                     <% } %>
                 </select>
-                <input class="seats" type="datetime-local" name="startTime" id="startTime" placeholder="Start time">
-                <input class="seats" type="datetime-local" name="endTime" id="endTime" placeholder="End time">
+                <input class="seats" type="datetime-local" name="startTime" id="startTime">
+                <!-- <input class="seats" type="hidden" name="userId" id="userId" value=> -->
+                <input class="seats" type="datetime-local" name="endTime" id="endTime">
                 <textarea class="name form-control" name="description" id="description" rows="5"
                     placeholder="Short description..."></textarea>
 

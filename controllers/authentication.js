@@ -45,7 +45,8 @@ exports.getSignup = (req, res, next) => {
 exports.postLogin = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
-    User.findOne({email: email}).then(user => {
+    User.findOne({email: email})
+    .then(user => {
         if (!user) {
             req.flash("error", "Invalid email or password...");
             return res.redirect("/login");
@@ -60,9 +61,7 @@ exports.postLogin = (req, res, next) => {
                 });
             }
             req.flash("error", "Invalid credentials...");
-            req.session.save(err => {
-                res.redirect("/login");
-            });
+            res.redirect("/login");
         }).catch(err => {
             console.log(err);
             res.redirect("/login");
@@ -70,12 +69,6 @@ exports.postLogin = (req, res, next) => {
     }).catch(err => console.log("postLogin error"));
 };
 
-exports.logout = (req, res, next) => {
-    req.session.destroy(err => {
-        console.log(err);
-        res.redirect("/");
-    })
-};
 
 exports.postSignup = (req, res, next) => {
     const email = req.body.email;
@@ -85,16 +78,12 @@ exports.postSignup = (req, res, next) => {
     User.findOne({email: email}).then(userDoc => {
         if (userDoc) {
             req.flash("error", "This email has already been used to create registration.");
-            return req.session.save(err => {
-                res.redirect("/signup");
-            });
+            return res.redirect("/signup");   
         }
-
+        
         if(password !== confirmPassword) {
           req.flash("error", "Different passwords");
-          return req.session.save(err => {
-              res.redirect("/signup");
-          });
+          return res.redirect("/signup");
         }
         return bcrypt.hash(password, 12).then(hashedPassword => {
 
@@ -114,6 +103,13 @@ exports.postSignup = (req, res, next) => {
             req.flash("success", "You have successfully signed in. Please login to continue...")
             res.redirect("/login");
         });
-
+        
     }).catch(err => console.log(err));
+};
+
+exports.logout = (req, res, next) => {
+    req.session.destroy(err => {
+        console.log(err);
+        res.redirect("/");
+    })
 };

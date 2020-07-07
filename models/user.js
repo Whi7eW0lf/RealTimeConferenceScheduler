@@ -38,4 +38,10 @@ const userSchema = new Schema({
 
 });
 
+userSchema.methods.addToConfOwner = function (conference) {
+    this.conferenceOwner.conferences.push(conference);
+    return this.save()
+}
+
+
 module.exports = mongoose.model("User", userSchema)
