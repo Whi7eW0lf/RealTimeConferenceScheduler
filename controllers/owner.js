@@ -70,31 +70,31 @@ exports.postAddNewSession = (req, res, next) => {
     const conferenceId = req.body.conferenceId
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
+    Conference.findById(conferenceId).populate("userId").then(conf => {
+        console.log(conf)
+        if(conf.userId._id.toString() === req.user._id.toString()) {
+            console.log("Inside")
+            const session = new ConferenceSession({
+                venueId,
+                speakerId,
+                hallId,
+                conferenceId,
+                startTime,
+                endTime
+            });
+                session.save(err => {
+                    res.redirect("/myconferences");
+                    console.log("ADDED SESSION");
+                })
+        
+            } 
+            else {
+                console.log(typeof conf.userId._id)
+                console.log(typeof req.user._id)
 
-    const userId = req.user._id;
-    const confenreceee = Conference.findById(conferenceId).then(e=>{
-        console.log(e.userId);
-    });
-
-    const session = new ConferenceSession({
-        venueId,
-        speakerId,
-        hallId,
-        conferenceId,
-        startTime,
-        endTime
-    });
-
-    if (req.session.isLoggedIn) {
-        session.save().then(sessions => {
-
-            res.redirect("/myconferences");
-            console.log("ADDED SESSION")
-
-        }).catch(err => console.log(err));
-    } else {
-        res.redirect("/login")
-    }
+                res.redirect("/")
+            }
+})
 
 }
 
@@ -106,8 +106,8 @@ exports.getAddHall = (req, res, next) => {
             pageTitle: 'Add Hall',
             isLoggedIn: req.session.isLoggedIn,
             path: "/add-hall"
-        })
-    }).catch(err => console.log(err))
+        }).catch(err => console.log(err))
+    })
 }
 
 exports.postAddHall = (req, res, next) => {
