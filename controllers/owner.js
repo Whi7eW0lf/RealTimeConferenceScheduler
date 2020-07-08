@@ -28,7 +28,7 @@ exports.getAddConference = (req, res, next) => {
             venues: venues.slice(0, 1000),
             pageTitle: 'Add Conference',
             isLoggedIn: req.session.isLoggedIn,
-            path: "/add-conference"
+            path: "/add-conferences"
         })
     }).catch(err => console.log(err))
 
@@ -86,12 +86,16 @@ exports.postAddNewSession = (req, res, next) => {
         endTime
     });
 
-    session.save().then(sessions => {
+    if(req.session.isLoggedIn){
+        session.save().then(sessions => {
 
-        res.redirect("/myconference");
-        console.log("ADDED SESSION")
-
-    }).catch(err => console.log(err));
+            res.redirect("/myconferences");
+            console.log("ADDED SESSION")
+    
+        }).catch(err => console.log(err));
+    }else{
+        res.redirect("/login")
+    }
 
 }
 
