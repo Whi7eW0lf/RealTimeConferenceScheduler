@@ -20,7 +20,7 @@ router.post("/add-conference", isAuthenticated, ownerController.postAddConferenc
 
 router.post("/add-session", ownerController.postAddNewSession);
 
-router.get("/allconferences/:conferenceId", ownerController.getConferenceDetails)
+router.get("/allconferences/:conferenceId", userController.getConferenceDetails)
 
 router.get("/myconferences", ownerController.getMyConferences);
 

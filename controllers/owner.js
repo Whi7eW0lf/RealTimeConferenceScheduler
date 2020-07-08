@@ -71,30 +71,30 @@ exports.addHall = (req, res, next) => {
 }
 
 exports.postAddNewSession = (req, res, next) => {
-    const venue = req.body.venueId // For why ?
-
-
+    const venueId = req.body.venueId
     const speakerId = req.body.speaker
     const hallId = req.body.hall
     const conferenceId = req.body.conferenceId
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
 
-    const session = new Session({speakerId,hallId,conferenceId,startTime,endTime});
+    const session = new Session({
+        venueId,
+        speakerId,
+        hallId,
+        conferenceId,
+        startTime,
+        endTime
+    });
 
-    session.save().then(sessions=>{
+    session.save().then(sessions => {
 
         res.redirect("/myconference");
         console.log("ADDED SESSION")
 
-    }).catch(err=>console.log(err));
+    }).catch(err => console.log(err));
 
 }
-
-
-
-
-
 
 exports.postAddNewHall = (req, res, next) => {
     const name = req.body.name;
@@ -128,25 +128,4 @@ exports.postAddSpeaker = (req, res, next) => {
         res.redirect("/")
     }).catch(err => console.log(err))
 
-}
-
-
-exports.getConferenceDetails = (req, res, next) => {
-
- const confId = req.params.conferenceId;
- Conference.findOne({_id: confId}).populate("address").then(conf => {
-     Hall.find().then(halls => {
-         Speaker.find().then(speakers => {
-             res.render("conference-details", {
-                 halls: halls,
-                 speakers: speakers,
-                 pageTitle: conf.name,
-                 isLoggedIn: req.session.isLoggedIn,
-                 path: "/",
-                 conference: conf
-             })
-         })
-     })
-
- }).catch(err => console.log(err))
 }
