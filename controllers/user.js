@@ -7,7 +7,7 @@ const dateFormater = require("../util/dateFormater");
 
 exports.getIndex = (req, res, next) => {
     Conference.find().populate("address").then(conferences => {
-        
+        console.log(conferences)
         const formatDateTime = dateFormater(conferences);
         res.render("index", {
             pageTitle: "Welcome to conferences",

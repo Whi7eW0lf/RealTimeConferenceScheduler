@@ -1,4 +1,5 @@
-const Session = require("../models/session");
+const ConferenceSession = require("../models/session");
+const User = require("../models/user");
 const Speaker = require("../models/speaker");
 const Hall = require("../models/hall");
 const Conference = require("../models/conference");
@@ -55,7 +56,7 @@ exports.postAddConference = (req, res, next) => {
         res.redirect("/");
     }).catch(err => console.log(err))
 }
-
+    
 exports.addHall = (req, res, next) => {
 
     Venue.find().then(venues => {
@@ -76,7 +77,7 @@ exports.postAddNewSession = (req, res, next) => {
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
 
-    const session = new Session({
+    const session = new ConferenceSession({
         venueId,
         speakerId,
         hallId,
@@ -119,11 +120,18 @@ exports.postAddSpeaker = (req, res, next) => {
     const description = req.body.description;
     const profilePhoto = req.body.profileImg;
 
-    const speaker = new Speaker({name, description, profilePhoto});
+    const newSpeaker = new Speaker({name, description, profilePhoto});
 
-    speaker.save().then(result => {
-        console.log("Added speaker");
-        res.redirect("/")
-    }).catch(err => console.log(err))
+    Speaker.findOne({name:name}).then(speaker=>{
+        if(!speaker){
+            newSpeaker.save().then(result => {
+                console.log("Added speaker");
+                res.redirect("/")
+            }).catch(err => console.log(err))
+        }else{
+            console.log("Speaker is not added!")
+            res.redirect("/add-speaker")
+        }
+    }).catch(err=>console.log(err));
 
 }
