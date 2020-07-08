@@ -121,7 +121,16 @@
       cursor: pointer;
     }
 
-
+    .sessions {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid blue;
+      width: 50%;
+      margin: 20px auto;
+    }
+    .session > * {
+      font-size: 13px;
+    }
     /* Optional
 
 .property-image-title
@@ -145,33 +154,48 @@ opacity:1;
 
   <%- include('includes/navigation.ejs') %>
 
-  <div class="main">
+  <form class="product-form" action="/add-session" method="POST">
+
+    <p><%= conference.address.adress %></p>
+    <input class="seats" type="hidden" name="venueId" value="<%= conference.address._id %>">
+    <input type="hidden" name="conferenceId" value="<%= conference._id %>">
+
+    <p class="sign1" align="center">Choose speaker</p>
+
+    <select class="name form-control" name="speaker" id="speaker">
+
+      <% for (let speaker of speakers) { %>
+      <option value="<%=speaker._id%>"><%= speaker.name %></option>
+      <% } %>
+    </select>
+    <select class="name form-control" name="hall" id="hall">
+      <% for (let hall of halls) { %>
+      <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
+      <% } %>
+    </select>
+    <label class="sign1" align="center" for="startTime">Choose start end date and time</label>
+    <input class="seats" type="datetime-local" name="startTime" id="startTime">
+    <label class="sign1" align="center" for="endTime">Choose start end date and time</label>
+    <input class="seats" type="datetime-local" name="endTime" id="endTime">
+    <button class="submit btn" align="center" type="submit">Add Session</button>
+  </form>
+
+  <div>
+    <% for(let session of sessions) { %> 
+      <article class="sessions">
+        <h3>Hall : <%=session.hallId.name%></h3>
+        <h3>Seats available: <%=session.hallId.seats%></h3>
+        <h3>Speaker: <%=session.speakerId.name%></h3>
+        <h3>Speaker description: <%=session.speakerId.description%></h3>
+        <h4><%=session.startTime%></h4>
+        <h4><%=session.endTime%></h4>
+        <button type="submit">Join session</button>
+      </article>
+      <% } %>
+  </div>
+  <!-- <div class="main">
     <p class="sign" align="center">Add New Session</p>
-    <form class="product-form" action="/add-session" method="POST">
-
-      <p><%= conference.address.adress %></p>
-      <input class="seats" type="hidden" name="venueId" value="<%= conference.address._id %>">
-      <input type="hidden" name="conferenceId" value="<%= conference._id %>">
-
-      <p class="sign1" align="center">Choose speaker</p>
-
-      <select class="name form-control" name="speaker" id="speaker">
-
-        <% for (let speaker of speakers) { %>
-        <option value="<%=speaker._id%>"><%= speaker.name %></option>
-        <% } %>
-      </select>
-      <select class="name form-control" name="hall" id="hall">
-        <% for (let hall of halls) { %>
-        <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
-        <% } %>
-      </select>
-      <label class="sign1" align="center" for="startTime">Choose start end date and time</label>
-      <input class="seats" type="datetime-local" name="startTime" id="startTime">
-      <label class="sign1" align="center" for="endTime">Choose start end date and time</label>
-      <input class="seats" type="datetime-local" name="endTime" id="endTime">
-      <button class="submit btn" align="center" type="submit">Add Session</button>
-    </form>
+    
 
     <!-- <div class="center">
     <div class="property-card">
@@ -181,17 +205,16 @@ opacity:1;
           Optional <h5>Card Title</h5> If you want it, turn on the CSS also. -->
     <!-- </div>
         </div></a> -->
-    <div class="property-description">
+    <!-- <div class="property-description">
       <h5> Card Title </h5>
       <p>Lorem Ipsum Dipsum hortata. Mixcall Horcho. Mixwell Chingo. More Bingo. Lorem Ipum doth be hard.</p>
     </div>
     <a href="#">
       <div class="property-social-icons">
         <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
-      </div>
+      <!-- </div>
     </a>
 
-  </div>
   </div> -->
-
+  
   <%- include('includes/end.ejs') %>
