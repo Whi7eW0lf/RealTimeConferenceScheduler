@@ -79,6 +79,28 @@
 
 
     /*////////////end of product card details////////*/
+
+    img{
+      border-radius: 5em;
+    }
+
+
+    .imagee p {
+      position: relative;
+      top: 10px;
+      left: 10px;
+    }
+
+    .imagee {
+      background-color: black;
+      min-height: 500px;
+      min-width: 800px;
+      width: 100%;
+      height: 100%;
+      background: url("https://picsum.photos/600/400?image=1083") center no-repeat;
+
+    }
+
     .textt {
       color: #f2f2f2;
       font-weight: 500;
@@ -89,405 +111,403 @@
     }
 
 
-      body {
-        background-color: #F3EBF6;
-        font-family: 'Ubuntu', sans-serif;
-        padding: 40px 0;
+    body {
+      background-color: #F3EBF6;
+      font-family: 'Ubuntu', sans-serif;
+      padding: 40px 0;
 
-      }
+    }
 
+    .main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 18px;
+      background-color: #FFFFFF;
+      width: 400px;
+      height: fit-content;
+      margin: 7em auto;
+      border-radius: 1.5em;
+      box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .main1 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 18px;
+      padding-top: 18px;
+      padding-bottom: 18px;
+      background-color: #FFFFFF;
+      width: 400px;
+      height: fit-content;
+      margin: auto;
+      border-radius: 1.5em;
+      box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+
+    .main2 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 18px;
+      background-color: #FFFFFF;
+      width: 800px;
+      height: fit-content;
+      margin: 7em auto;
+      border-radius: 1.5em;
+      box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+      grid-gap: 20px;
+      align-items: stretch;
+      padding: 40px;
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      grid-gap: 0px;
+      align-items: stretch;
+      padding: 40px;
+    }
+    
+
+    .sign {
+      padding-top: 20px;
+      padding-bottom: 30px;
+      color: #0082e6;
+      font-family: 'Ubuntu', sans-serif;
+      font-weight: bold;
+      font-size: 23px;
+    }
+
+    .sign1 {
+      color: #0082e6;
+      font-family: "Ubuntu", sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .sign2 {
+      color: #0082e6;
+      font-family: "Ubuntu", sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+
+    .name {
+      width: 100%;
+      color: rgb(38, 50, 56);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      background: #fafafa;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5em;
+      outline: none;
+      box-sizing: border-box;
+      border: 2px solid rgba(0, 0, 0, 0.02);
+      margin-bottom: 50px;
+      text-align: center;
+      margin-bottom: 27px;
+      font-family: "Ubuntu", sans-serif;
+    }
+
+    .form1 {
+      text-align: center;
+    }
+
+    h3,
+    h4,
+    p {
+      font-size: 14px;
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    .container {
+      padding-top: 40px;
+    }
+
+    .un {
+      width: 76%;
+      color: rgb(38, 50, 56);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      background: rgba(136, 126, 126, 0.04);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      outline: none;
+      box-sizing: border-box;
+      border: 2px solid rgba(0, 0, 0, 0.02);
+      margin-bottom: 50px;
+      margin-left: 46px;
+      text-align: center;
+      margin-bottom: 27px;
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    .pass,
+    .pass1 {
+      width: 76%;
+      color: rgb(38, 50, 56);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      background: rgba(136, 126, 126, 0.04);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      outline: none;
+      box-sizing: border-box;
+      border: 2px solid rgba(0, 0, 0, 0.02);
+      margin-bottom: 50px;
+      margin-left: 46px;
+      text-align: center;
+      margin-bottom: 27px;
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+
+    .un:focus,
+    .pass:focus,
+    .pass1:focus {
+      border: 2px solid rgba(0, 0, 0, 0.18) !important;
+
+    }
+
+    .submit {
+      display: flex;
+      cursor: pointer;
+      border-radius: 5em;
+      color: #fff;
+      background: #0082e6;
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      font-family: 'Ubuntu', sans-serif;
+      margin-left: 35%;
+      font-size: 13px;
+      margin: auto;
+      box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+      text-align: center;
+
+    }
+
+    .submit:hover {
+      border-radius: 2px #0082e6;
+      background: transparent;
+      color: #0082e6;
+    }
+
+    .forgot {
+      text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+      color: black;
+      padding-top: 15px;
+    }
+
+    a {
+      text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+      color: black;
+      text-decoration: none
+    }
+
+    label {
+      display: inline-flex;
+    }
+
+    .btn {
+      display: block;
+    }
+
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: #0082e6;
+      border: 1px solid #0082e6;
+      border-color: #0082e6;
+    }
+
+    a:link {
+      color: #0082e6;
+    }
+
+    .user-message {
+      margin: 20px auto;
+      width: 50%;
+      border: 1px solid green;
+      background-color: #47bb24;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+    }
+
+    .user-message--error {
+      margin: 20px auto;
+      width: 50%;
+      border: 1px solid red;
+      background-color: #f17272;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
       .main {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 18px;
-        background-color: #FFFFFF;
-        width: 400px;
-        height: fit-content;
-        margin: 7em auto;
-        border-radius: 1.5em;
-        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-        text-align: center;
-        margin-bottom: 30px;
+        border-radius: 0px;
       }
+    }
 
-      .main1 {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 18px;
-        padding-top: 18px;
-        padding-bottom: 18px;
-        background-color: #FFFFFF;
-        width: 400px;
-        height: fit-content;
-        margin: auto;
-        border-radius: 1.5em;
-        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-      }
-
-      .main2 {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 18px;
-        background-color: #FFFFFF;
-        width: 800px;
-        height: fit-content;
-        margin: 7em auto;
-        border-radius: 1.5em;
-        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-        text-align: center;
-        margin-bottom: 30px;
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr;
-        grid-gap: 20px;
-        align-items: stretch;
-        padding: 40px;
-      }
-
-      .sign {
-        padding-top: 20px;
-        padding-bottom: 30px;
-        color: #0082e6;
-        font-family: 'Ubuntu', sans-serif;
-        font-weight: bold;
-        font-size: 23px;
-      }
-
-      .sign1 {
-        color: #0082e6;
-        font-family: "Ubuntu", sans-serif;
-        font-weight: bold;
-        font-size: 18px;
-        text-align: center;
-      }
-
-      .sign2 {
-        color: #0082e6;
-        font-family: "Ubuntu", sans-serif;
-        font-weight: bold;
-        font-size: 14px;
-      }
+    /*/////////nav bar css/////*/
 
 
-      .name {
-        width: 100%;
-        color: rgb(38, 50, 56);
-        font-weight: 700;
-        font-size: 14px;
-        letter-spacing: 1px;
-        background: #fafafa;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5em;
-        outline: none;
-        box-sizing: border-box;
-        border: 2px solid rgba(0, 0, 0, 0.02);
-        margin-bottom: 50px;
-        text-align: center;
-        margin-bottom: 27px;
-        font-family: "Ubuntu", sans-serif;
-      }
+    nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: #0082e6;
+      min-height: 8vh;
+      width: 100%;
+      text-align: center;
+    }
 
-      .form1 {
-        text-align: center;
-      }
+    label.logo {
+      color: #0082e6;
+      font-size: 33px;
+      line-height: 80px;
+      padding: 0 140px;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+    }
 
-      h3,
-      h4,
-      p {
-        font-size: 14px;
-        font-family: 'Ubuntu', sans-serif;
-      }
+    nav ul {
+      margin-right: 60px;
+      display: block;
+    }
 
-      .container {
-        padding-top: 40px;
-      }
+    nav ul li {
+      display: inline;
+      line-height: 80px;
+      margin: 0 1vh;
+      list-style-type: none;
 
-      .un {
-        width: 76%;
-        color: rgb(38, 50, 56);
-        font-weight: 700;
-        font-size: 14px;
-        letter-spacing: 1px;
-        background: rgba(136, 126, 126, 0.04);
-        padding: 10px 20px;
-        border: none;
-        border-radius: 20px;
-        outline: none;
-        box-sizing: border-box;
-        border: 2px solid rgba(0, 0, 0, 0.02);
-        margin-bottom: 50px;
-        margin-left: 46px;
-        text-align: center;
-        margin-bottom: 27px;
-        font-family: 'Ubuntu', sans-serif;
-      }
+    }
 
-      .pass,
-      .pass1 {
-        width: 76%;
-        color: rgb(38, 50, 56);
-        font-weight: 700;
-        font-size: 14px;
-        letter-spacing: 1px;
-        background: rgba(136, 126, 126, 0.04);
-        padding: 10px 20px;
-        border: none;
-        border-radius: 20px;
-        outline: none;
-        box-sizing: border-box;
-        border: 2px solid rgba(0, 0, 0, 0.02);
-        margin-bottom: 50px;
-        margin-left: 46px;
-        text-align: center;
-        margin-bottom: 27px;
-        font-family: 'Ubuntu', sans-serif;
-      }
+    nav ul li a {
+      color: #f2f2f2;
+      font-weight: 500;
+      font-size: 1vh;
+      letter-spacing: 1.099px;
+      padding: 2vh;
+      border-radius: 3px;
+      /* text-transform: uppercase; */
 
 
-      .un:focus,
-      .pass:focus,
-      .pass1:focus {
-        border: 2px solid rgba(0, 0, 0, 0.18) !important;
+      font-family: 'Poppins', sans-serif;
+    }
 
-      }
+    a.active,
+    a:hover {
+      transition: .5s;
+      border-radius: 5em;
+    }
 
-      .submit {
-        display: flex;
-        cursor: pointer;
-        border-radius: 5em;
-        color: #fff;
-        background: #0082e6;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-bottom: 10px;
-        padding-top: 10px;
-        font-family: 'Ubuntu', sans-serif;
-        margin-left: 35%;
-        font-size: 13px;
-        margin: auto;
-        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-        text-align: center;
+    a.active {
+      background: #1b9bff;
+    }
 
-      }
+    .checkbtn {
+      font-size: 30px;
+      color: white;
+      float: right;
+      line-height: 80px;
+      margin-right: 40px;
+      cursor: pointer;
+      display: none;
+    }
 
-      .submit:hover {
-        border-radius: 2px #0082e6;
-        background: transparent;
-        color: #0082e6;
-      }
+    #check {
+      display: none;
+    }
 
-      .forgot {
-        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-        color: black;
-        padding-top: 15px;
-      }
-
-      a {
-        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-        color: black;
-        text-decoration: none
-      }
-
-      label {
-        display: inline-flex;
-      }
-
-      .btn {
-        display: block;
-      }
-
-      p {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .btn:hover {
-        background: transparent;
-        color: #0082e6;
-        border: 1px solid #0082e6;
-        border-color: #0082e6;
-      }
-
-      a:link {
-        color: #0082e6;
-      }
-
-      .user-message {
-        margin: 20px auto;
-        width: 50%;
-        border: 1px solid green;
-        background-color: #47bb24;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-        color: white;
-      }
-
-      .user-message--error {
-        margin: 20px auto;
-        width: 50%;
-        border: 1px solid red;
-        background-color: #f17272;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-        color: white;
-      }
-
-      @media (max-width: 600px) {
-        .main {
-          border-radius: 0px;
-        }
-      }
-
-      /*/////////nav bar css/////*/
-
-
-      nav {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        background: #0082e6;
-        min-height: 8vh;
-        width: 100%;
-        text-align: center;
-      }
-
-      label.logo {
-        color: #0082e6;
-        font-size: 33px;
-        line-height: 80px;
-        padding: 0 140px;
-        font-weight: 600;
-        font-family: 'Poppins', sans-serif;
-      }
-
+    @media only screen and (max-width: 500px) {
       nav ul {
-        margin-right: 60px;
-        display: block;
+        flex-direction: column;
       }
 
       nav ul li {
-        display: inline;
-        line-height: 80px;
-        margin: 0 1vh;
-        list-style-type: none;
-
+        margin: 0;
       }
 
       nav ul li a {
-        color: #f2f2f2;
-        font-weight: 500;
-        font-size: 1vh;
-        letter-spacing: 1.099px;
-        padding: 2vh;
-        border-radius: 3px;
-        /* text-transform: uppercase; */
-
-
-        font-family: 'Poppins', sans-serif;
+        display: block;
       }
+    }
 
-      a.active,
-      a:hover {
-        transition: .5s;
-        border-radius: 5em;
-      }
+    .button-nav {
+      display: none;
+    }
 
-      a.active {
-        background: #1b9bff;
-      }
 
-      .checkbtn {
-        font-size: 30px;
-        color: white;
-        float: right;
-        line-height: 80px;
-        margin-right: 40px;
-        cursor: pointer;
-        display: none;
-      }
-
-      #check {
-        display: none;
-      }
-
-      @media only screen and (max-width: 500px) {
-        nav ul {
-          flex-direction: column;
-        }
-
-        nav ul li {
-          margin: 0;
-        }
-
-        nav ul li a {
-          display: block;
-        }
-      }
-
+    @media only screen and (max-width: 500px) {
       .button-nav {
-        display: none;
+        display: block;
+
+        padding: 2vw;
+        font-size: 3vh;
+        background-color: #AFE0FF;
+        border: none;
+
+        outline: none;
+
+        cursor: pointer;
+        align-self: flex-start;
       }
-
-
-      @media only screen and (max-width: 500px) {
-        .button-nav {
-          display: block;
-
-          padding: 2vw;
-          font-size: 3vh;
-          background-color: #AFE0FF;
-          border: none;
-
-          outline: none;
-
-          cursor: pointer;
-          align-self: flex-start;
-        }
-      }
+    }
   </style>
 
 
   <%- include('includes/navigation.ejs') %>
 
 
+
   <div class="container">
 
-    <main>
-      <div class="main">
-        <div class="row row-margin-bottom">
-          <div class="col-md-5 no-padding lib-item" data-category="view">
-            <div class="lib-panel">
-              <div class="row box-shadow">
-                <div class="col-md-6">
-                  <img src="https://picsum.photos/600/400?image=1083" class="lib-img-show" alt="Two gys on a boat">
-                </div>
-                <div class="col-md-6">
-                  <div class="lib-row lib-header">
-                    <h5 class="card-title sign2"><b>Name: </b><%=conference.name%></h5>
-                  </div>
-                  <div class="lib-row lib-desc">
-                    <p class="card-text sign2"><b>Description: </b><%=conference.description%></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="imagee main textt grid2" >
+      <p>Name: <br><%=conference.name%></p>
+      <p>Description: <br><%=conference.description%></p>
 
-    </main>
+    </div>
 
   </div>
+
+
+
+
+
+
 
 
 
