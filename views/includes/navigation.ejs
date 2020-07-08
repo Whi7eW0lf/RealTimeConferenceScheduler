@@ -1,6 +1,3 @@
-
-
-
 <header>
     <nav class="navbar navbar-expand-lg nav">
         <div class="logo">
@@ -33,14 +30,13 @@
                 </a>
             </li>
             <% if (isLoggedIn) { %>
-                <form action="/logout" method="post">
-                    <!-- <a class="<%= path === '/logout' ? 'active' : '' %>" href="/logout">
+            <!-- <a class="<%= path === '/logout' ? 'active' : '' %>" href="/logout">
                         <button type="submit">Logout</button>
                     </a> -->
-                    <a href="/logout" type="submit"  align="center" class="submit button btn-block">Logout</a>
+            <a href="/logout" class="textt">Logout</a>
 
-                </form>
-            <% } else { %> 
+
+            <% } else { %>
             <li>
                 <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
             </li>
