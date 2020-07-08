@@ -1,24 +1,27 @@
 const express = require("express");
 const userController = require("../controllers/user");
+const ownerController = require("../controllers/owner");
 const isAuthenticated = require("../middleware/authentication")
 const router = express.Router();
+
+
 router.get("/", userController.getIndex);
 
-router.get("/add-speaker", isAuthenticated, userController.addSpeaker);
-router.post("/add-speaker", isAuthenticated, userController.postAddSpeaker);
+router.get("/add-speaker", isAuthenticated, ownerController.getAddSpeaker);
+router.post("/add-speaker", isAuthenticated, ownerController.postAddSpeaker);
 
-router.get("/add-hall", isAuthenticated, userController.addHall);
-router.post("/add-new-hall", isAuthenticated, userController.postAddNewHall);
+router.get("/add-hall", isAuthenticated, ownerController.addHall);
+router.post("/add-new-hall", isAuthenticated, ownerController.postAddNewHall);
 
 router.get("/allconferences", userController.getConferences);
 
-router.get("/add-conference", isAuthenticated, userController.addConference);
-router.post("/add-conference", isAuthenticated, userController.postAddConference);
+router.get("/add-conference", isAuthenticated, ownerController.getAddConference);
+router.post("/add-conference", isAuthenticated, ownerController.postAddConference);
 
-router.post("/add-session", userController.postAddNewSession);
+router.post("/add-session", ownerController.postAddNewSession);
 
-router.get("/allconferences/:conferenceId", userController.getConferenceDetails)
+router.get("/allconferences/:conferenceId", ownerController.getConferenceDetails)
 
-router.get("/myconference", userController.getMyConferences);
+router.get("/myconferences", ownerController.getMyConferences);
 
 module.exports = router;
