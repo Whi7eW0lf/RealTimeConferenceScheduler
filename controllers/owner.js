@@ -70,34 +70,30 @@ exports.postAddNewSession = (req, res, next) => {
     const conferenceId = req.body.conferenceId
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
+    Conference.findById(conferenceId).populate("userId").then(conf => {
+        if(conf.userId._id === req.user._id) {
+            const session = new ConferenceSession({
+                venueId,
+                speakerId,
+                hallId,
+                conferenceId,
+                startTime,
+                endTime
+            });
+            if (req.session.isLoggedIn) {
+                session.save().then(sessions => {
+        
+                    res.redirect("/myconferences");
+                    console.log("ADDED SESSION")
+        
+                }).catch(err => console.log(err));
+            } else {
+                res.redirect("/login")
+            }
+        }
+    }).catch(err => console.log(err))
 
-    const userId = req.user._id;
 
-    const user = User
-    .findById(userId)
-    .populate("conferenceOwner");
-
-    console.log(user);
-
-    const session = new ConferenceSession({
-        venueId,
-        speakerId,
-        hallId,
-        conferenceId,
-        startTime,
-        endTime
-    });
-
-    if (req.session.isLoggedIn) {
-        session.save().then(sessions => {
-
-            res.redirect("/myconferences");
-            console.log("ADDED SESSION")
-
-        }).catch(err => console.log(err));
-    } else {
-        res.redirect("/login")
-    }
 
 }
 
