@@ -43,13 +43,13 @@ body {
   padding: 20px;
 }
 
-.btn {
+.button {
   background: #0082e6;
   border: 1px solid #0082e6;
   border-radius: 5em;
 }
 
-.btn:hover {
+.button:hover {
   background: transparent;
   color: #0082e6;
   border: 1px solid #0082e6;
@@ -107,26 +107,25 @@ p {
 }
 
 .name {
-  width: 76%;
+  width: 100%;
   color: rgb(38, 50, 56);
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 1px;
-  background: rgba(136, 126, 126, 0.04);
+  background: #fafafa;
   padding: 10px 20px;
   border: none;
-  border-radius: 20px;
+  border-radius: 5em;
   outline: none;
   box-sizing: border-box;
   border: 2px solid rgba(0, 0, 0, 0.02);
   margin-bottom: 50px;
-  margin-left: 46px;
   text-align: center;
   margin-bottom: 27px;
   font-family: "Ubuntu", sans-serif;
 }
 
-textarea {
+.name.textarea {
   resize: none;
 }
 
@@ -137,7 +136,7 @@ textarea {
 .seats,
 .description,
 .profile-image {
-  width: 76%;
+  width: 100%;
   color: rgb(38, 50, 56);
   font-weight: 700;
   font-size: 14px;
@@ -150,7 +149,7 @@ textarea {
   box-sizing: border-box;
   border: 2px solid rgba(0, 0, 0, 0.02);
   margin-bottom: 50px;
-  margin-left: 46px;
+  resize: none;
   text-align: center;
   margin-bottom: 27px;
   font-family: "Ubuntu", sans-serif;
@@ -200,14 +199,14 @@ a {
 /*a:link {
   color: #0082e6;
 }*/
-
+/*
 @media (max-width: 600px) {
   .main {
     border-radius: 0px;
   }
 }
 
-
+*/
 /* CSS for login */
 .un {
   width: 76%;
