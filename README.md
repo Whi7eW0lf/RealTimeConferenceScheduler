@@ -16,7 +16,7 @@ Codexio Dev Camp Project
 2. Advane na spiker - gotovo
 	- proverka za ime (dali veche ima takav speaker) - gotovo
 3. Advane na zala 
-	- proverka za ime (dali veche ima takava zala)
+	- proverka za ime (dali veche ima takava zala) - gotovo
 4. Advane na nova sesiq za konferenciq
 	-proverka da li Owner-a koito se opitva da dobavi nova sesiq e owner na tazi konferenciq
 	-proverka da li speakera-a e zaet po tova vreme 
