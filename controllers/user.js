@@ -4,6 +4,7 @@ const Hall = require("../models/hall");
 const Conference = require("../models/conference");
 const Venue = require("../models/venues");
 const dateFormater = require("../util/dateFormater");
+const formatDateTimeConferences = require("../util/dateFormater");
 
 exports.getIndex = (req, res, next) => {
     Conference.find().populate("address").then(conferences => {
@@ -34,26 +35,38 @@ exports.getConferences = (req, res, next) => {
 exports.getConferenceDetails = (req, res, next) => {
 
     const confId = req.params.conferenceId;
-    Conference.findOne({_id: confId}).populate("address").then(conf => {
-        ConferenceSession.find({conferenceId: conf._id})
-        .populate("hallId")
-        .populate("speakerId")
-        .then(sessions => {
-            Hall.find().then(halls => {
-                Speaker.find().then(speakers => {
-                    res.render("conference-details", {
-                        halls: halls,
-                        speakers: speakers,
-                        pageTitle: conf.name,
-                        isLoggedIn: req.session.isLoggedIn,
-                        path: "/",
-                        conference: conf,
-                        sessions: sessions || []
+    Conference.findOne({ _id: confId }).populate("address").then(conf => {
+        ConferenceSession.find({ conferenceId: conf._id })
+            .populate("hallId")
+            .populate("speakerId")
+            .then(sessions => {
+                Hall.find().then(halls => {
+                    Speaker.find().then(speakers => {
+                        sessions =  sessions.map(e => {
+                            const startTime = e.startTime.toString().substring(0, 21);
+                            const endTime = e.endTime.toString().substring(0, 21);
+                            return {
+                                venueId: e.venueId,
+                                speakerId: e.speakerId,
+                                conferenceId: e.conferenceId,
+                                hallId: e.hallId,
+                                startTime: startTime,
+                                endTime: endTime,
+                            }
+                        })
+                        res.render("conference-details", {
+                            halls: halls,
+                            speakers: speakers,
+                            pageTitle: conf.name,
+                            isLoggedIn: req.session.isLoggedIn,
+                            path: "/",
+                            conference: conf,
+                            sessions: sessions || []
+                        })
                     })
                 })
-            })
 
-        })
+            })
 
     }).catch(err => console.log(err))
 }

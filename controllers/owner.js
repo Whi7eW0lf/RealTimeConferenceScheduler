@@ -75,6 +75,10 @@ exports.postAddNewSession = (req, res, next) => {
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
 
+    const userId = req.session.user.userId;
+
+    console.log(userId);
+
     const session = new ConferenceSession({
         venueId,
         speakerId,
