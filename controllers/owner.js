@@ -71,7 +71,9 @@ exports.postAddNewSession = (req, res, next) => {
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
     Conference.findById(conferenceId).populate("userId").then(conf => {
-        if(conf.userId._id === req.user._id) {
+        console.log(conf)
+        if(conf.userId._id.toString() === req.user._id.toString()) {
+            console.log("Inside")
             const session = new ConferenceSession({
                 venueId,
                 speakerId,
@@ -80,17 +82,19 @@ exports.postAddNewSession = (req, res, next) => {
                 startTime,
                 endTime
             });
-            return session.save()
-            .then(() => {
+                session.save(err => {
+                    res.redirect("/myconferences");
+                    console.log("ADDED SESSION");
+                })
         
-                res.redirect("/myconferences");
-                console.log("ADDED SESSION")
-    
-            }).catch(err => console.log(err));
-        }
-    }).catch(err => console.log(err))
+            } 
+            else {
+                console.log(typeof conf.userId._id)
+                console.log(typeof req.user._id)
 
-
+                res.redirect("/")
+            }
+})
 
 }
 
