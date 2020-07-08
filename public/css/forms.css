@@ -118,7 +118,7 @@ p {
 .name {
   width: 100%;
   color: rgb(38, 50, 56);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 14px;
   letter-spacing: 1px;
   background: #fafafa;
@@ -284,162 +284,6 @@ a {
   color: white;
 }
 
-
-
-
-/*
-<style>
-    body {
-      background-color: #f2f2f2;
-      font-family: 'RobotoDraft', 'Roboto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    * {
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-
-    h5 {
-      margin: 0px;
-      font-size: 1.4em;
-      font-weight: 700;
-    }
-
-    p {
-      font-size: 12px;
-    }
-
-    .center {
-      height: 100vh;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* End Non-Essential  */
-/*
-    .property-card {
-      height: 18em;
-      width: 14em;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-      flex-direction: column;
-      position: relative;
-      -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-      -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-      transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-      border-radius: 16px;
-      overflow: hidden;
-      -webkit-box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
-      box-shadow: 15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
-    }
-
-    /* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
-
-    /* Top Half of card, image. */
-/*
-    .property-image {
-      height: 6em;
-      width: 14em;
-      padding: 1em 2em;
-      position: Absolute;
-      top: 0px;
-      -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-      -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-      transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-      background-image: url('https://cdn.pixabay.com/photo/2019/10/29/14/46/landscape-4587079_960_720.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-
-    /* Bottom Card Section */
-/*
-    .property-description {
-      background-color: #FAFAFC;
-      height: 12em;
-      width: 14em;
-      position: absolute;
-      bottom: 0em;
-      -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-      -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-      transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-      padding: 0.5em 1em;
-      text-align: center;
-    }
-
-    /* Social Icons */
-/*
-    .property-social-icons {
-      width: 1em;
-      height: 1em;
-      background-color: black;
-      position: absolute;
-      bottom: 1em;
-      left: 1em;
-      -webkit-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-      -o-transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-      transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-    }
-
-    /* Property Cards Hover States */
-/*
-    .property-card:hover .property-description {
-      height: 0em;
-      padding: 0px 1em;
-    }
-
-    .property-card:hover .property-image {
-      height: 18em;
-    }
-
-    .property-card:hover .property-social-icons {
-      background-color: white;
-    }
-
-    .property-card:hover .property-social-icons:hover {
-      background-color: blue;
-      cursor: pointer;
-    }
-
-    .sessions {
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid blue;
-      width: 50%;
-      margin: 20px auto;
-    }
-    .session > * {
-      font-size: 13px;
-    }
-    /* Optional
-
-.property-image-title
-{
-text-align:center;
-position:Relative;
-top:30%;
-opacity:0;
-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
-color:black;
-font-size:1.2em;
-}
-
-.property-card:hover .property-image-title
-{
-opacity:1;
-}
-
-
-  </style>
-  */
-
-
   .navbar {
     display: flex;
     justify-content: space-around;
@@ -472,7 +316,7 @@ nav ul li {
 
 }
 
-nav ul li a {
+nav ul li a, .textt {
     color: #f2f2f2;
     font-weight: 500;
     font-size: 1vh;
@@ -509,6 +353,11 @@ a.active {
     display: none;
 }
 
+.button-nav {
+  display: none;
+}
+
+/*
 @media only screen and (max-width: 500px) {
     nav ul {
         flex-direction: column;
@@ -521,10 +370,6 @@ a.active {
     nav ul li a {
         display: block;
     }
-}
-
-.button-nav {
-    display: none;
 }
 
 
@@ -543,7 +388,7 @@ a.active {
         align-self: flex-start;
     }
 }
-
+*/
 
 
 
