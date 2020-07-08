@@ -115,9 +115,18 @@ exports.postAddHall = (req, res, next) => {
     const venueId = req.body.venueId;
     const halls = new Hall({name, seats, venueId});
 
-    halls.save().then(() => {
-        res.redirect("/")
-    }).catch(err => console.log(err))
+    Hall.findOne({name:name})
+    .then(hall=>{
+        if(!hall){
+            halls.save().then(() => {
+                res.redirect("/");
+                console.log("Hall added successful!");
+            }).catch(err => console.log(err))
+        }else{
+            console.log("Hall already exist!");
+            res.redirect("/add-hall");
+        }
+    }).catch(ex=>console.log(ex));
 }
 
 
