@@ -70,27 +70,31 @@ exports.postAddNewSession = (req, res, next) => {
     const conferenceId = req.body.conferenceId
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
+    const session = new ConferenceSession({
+        venueId,
+        speakerId,
+        hallId,
+        conferenceId,
+        startTime,
+        endTime
+    });
     Conference.findById(conferenceId).populate("userId").then(conf => {
-        if(conf.userId._id === req.user._id) {
-            const session = new ConferenceSession({
-                venueId,
-                speakerId,
-                hallId,
-                conferenceId,
-                startTime,
-                endTime
-            });
-            return session.save()
-            .then(() => {
         
-                res.redirect("/myconferences");
-                console.log("ADDED SESSION")
-    
-            }).catch(err => console.log(err));
-        }
-    }).catch(err => console.log(err))
-
-
+        if(conf.userId._id.toString() === req.user._id.toString() && 
+        (session.startTime < session.endTime)) {
+                return session.save().then(() => {
+                    
+                        res.redirect("/myconferences");
+                        console.log("ADDED SESSION");
+                    
+                })
+        
+            } 
+            else {
+                console.log("Not your conference or endtime is starttime")
+                res.redirect("/")
+            }
+})
 
 }
 
