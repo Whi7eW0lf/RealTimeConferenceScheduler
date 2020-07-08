@@ -50,23 +50,21 @@ exports.postAddConference = (req, res, next) => {
         address,
         userId
     })
-    return newConference.save().then(() => {
-        return req.user.addToConfOwner(newConference)
-    }).then(() => {
-        res.redirect("/");
-    }).catch(err => console.log(err))
-}
+    Conference.findOne({name:name})
+    .then(c=>{
+        if(!c){
+            return newConference.save().then(() => {
+                return req.user.addToConfOwner(newConference)
+            }).then(() => {
+                res.redirect("/allconferences");
+                console.log("Conference added successful")
+            }).catch(err => console.log(err))
+        }else{
+            console.log("Conference already exist!")
+            res.redirect("/add-conference");
+        }
+    })
     
-exports.addHall = (req, res, next) => {
-
-    Venue.find().then(venues => {
-        res.render("add-hall", {
-            venues: venues,
-            pageTitle: 'Add Hall',
-            isLoggedIn: req.session.isLoggedIn,
-            path: "/add-hall"
-        })
-    }).catch(err => console.log(err))
 }
 
 exports.postAddNewSession = (req, res, next) => {
@@ -99,15 +97,36 @@ exports.postAddNewSession = (req, res, next) => {
 
 }
 
-exports.postAddNewHall = (req, res, next) => {
+exports.getAddHall = (req, res, next) => {
+
+    Venue.find().then(venues => {
+        res.render("add-hall", {
+            venues: venues,
+            pageTitle: 'Add Hall',
+            isLoggedIn: req.session.isLoggedIn,
+            path: "/add-hall"
+        })
+    }).catch(err => console.log(err))
+}
+
+exports.postAddHall = (req, res, next) => {
     const name = req.body.name;
     const seats = req.body.seats;
     const venueId = req.body.venueId;
     const halls = new Hall({name, seats, venueId});
 
-    halls.save().then(() => {
-        res.redirect("/")
-    }).catch(err => console.log(err))
+    Hall.findOne({name:name})
+    .then(hall=>{
+        if(!hall){
+            halls.save().then(() => {
+                res.redirect("/");
+                console.log("Hall added successful!");
+            }).catch(err => console.log(err))
+        }else{
+            console.log("Hall already exist!");
+            res.redirect("/add-hall");
+        }
+    }).catch(ex=>console.log(ex));
 }
 
 
