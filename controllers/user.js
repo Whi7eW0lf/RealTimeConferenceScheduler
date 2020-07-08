@@ -7,21 +7,8 @@ const dateFormater = require("../util/dateFormater");
 
 exports.getIndex = (req, res, next) => {
     Conference.find().populate("address").then(conferences => {
-        const asd = conferences.map(e => {
-            const endTime = e.endTime.toString().substring(0, 10);
-            return {
-                _id: e._id,
-                name: e.name,
-                description: e.description,
-                startTime: e.startTime,
-                endTime: endTime,
-                address: e.address
-            }
-
-        });
-
+        
         const formatDateTime = dateFormater(conferences);
-
         res.render("index", {
             pageTitle: "Welcome to conferences",
             isLoggedIn: req.session.isLoggedIn,
@@ -47,20 +34,18 @@ exports.getConferences = (req, res, next) => {
 }
 
 exports.getMyConferences = (req, res, next) => {
-    // console.log(req.user)
-    User.findById(req.user._id).populate("conferenceOwner.conferences.conferenceId")
-    .then(user => {
-        const conferences = user.conferenceOwner.conferences.map(conf => {
-            return conf._id._doc
-        })
-        console.log(user)
-        res.render("my-conferences", {
+       Conference.find({userId: req.user._id})
+       .populate("userId")
+       .populate("address")
+       .then(conf => {
+            res.render("my-conferences", {
             pageTitle: "My Conferences",
             isLoggedIn: req.session.isLoggedIn,
             path: "/my-conferences",
-            conferences: user.conferenceOwner.conferences
+            conferences: conf
         })
-    })
+       })
+    
 }
 
 

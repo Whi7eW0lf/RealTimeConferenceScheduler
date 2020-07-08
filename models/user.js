@@ -25,6 +25,7 @@ const userSchema = new Schema({
             }
         ]
     },
+
     conferenceAttendee: {
         conferences: [
             {
