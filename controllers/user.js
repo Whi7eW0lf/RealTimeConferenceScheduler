@@ -1,12 +1,13 @@
-const Venue = require("../models/venues");
-const Conference = require("../models/conference");
 const ConferenceSession = require("../models/session");
-const Session = require("../models/session");
+const Speaker = require("../models/speaker");
+const Hall = require("../models/hall");
+const Conference = require("../models/conference");
+const Venue = require("../models/venues");
 const dateFormater = require("../util/dateFormater");
 
 exports.getIndex = (req, res, next) => {
     Conference.find().populate("address").then(conferences => {
-
+        
         const formatDateTime = dateFormater(conferences);
         res.render("index", {
             pageTitle: "Welcome to conferences",
@@ -39,7 +40,6 @@ exports.getConferenceDetails = (req, res, next) => {
         .populate("hallId")
         .populate("speakerId")
         .then(sessions => {
-            console.log(sessions)
             Hall.find().then(halls => {
                 Speaker.find().then(speakers => {
                     res.render("conference-details", {

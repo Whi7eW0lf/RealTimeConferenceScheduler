@@ -1,5 +1,3 @@
-
-const User = require("../models/user");
 const Session = require("../models/session");
 const Speaker = require("../models/speaker");
 const Hall = require("../models/hall");
