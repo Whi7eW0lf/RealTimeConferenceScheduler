@@ -1,4 +1,4 @@
-const Session = require("../models/session");
+const ConferenceSession = require("../models/session");
 const Speaker = require("../models/speaker");
 const Hall = require("../models/hall");
 const Conference = require("../models/conference");
@@ -55,7 +55,7 @@ exports.postAddConference = (req, res, next) => {
         res.redirect("/");
     }).catch(err => console.log(err))
 }
-
+    
 exports.addHall = (req, res, next) => {
 
     Venue.find().then(venues => {
