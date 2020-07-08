@@ -75,9 +75,13 @@ exports.postAddNewSession = (req, res, next) => {
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
 
-    const userId = req.session.user.userId;
+    const userId = req.user._id;
 
-    console.log(userId);
+    const user = User
+    .findById(userId)
+    .populate("conferenceOwner");
+
+    console.log(user);
 
     const session = new ConferenceSession({
         venueId,
