@@ -72,12 +72,11 @@ exports.postAddNewSession = (req, res, next) => {
     const endTime = req.body.endTime;
 
     const userId = req.user._id;
+    const confenreceee = Conference.findById(conferenceId).then(e=>{
+        console.log(e.userId);
+    });
 
-    const user = User
-    .findById(userId)
-    .populate("conferenceOwner");
-
-    console.log(user);
+    console.log(confenreceee);
 
     const session = new ConferenceSession({
         venueId,
@@ -109,8 +108,8 @@ exports.getAddHall = (req, res, next) => {
             pageTitle: 'Add Hall',
             isLoggedIn: req.session.isLoggedIn,
             path: "/add-hall"
-        }).catch(err => console.log(err))
-    })
+        })
+    }).catch(err => console.log(err))
 }
 
 exports.postAddHall = (req, res, next) => {
