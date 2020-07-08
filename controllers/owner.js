@@ -76,8 +76,6 @@ exports.postAddNewSession = (req, res, next) => {
         console.log(e.userId);
     });
 
-    console.log(confenreceee);
-
     const session = new ConferenceSession({
         venueId,
         speakerId,

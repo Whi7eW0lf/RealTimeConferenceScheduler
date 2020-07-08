@@ -11,6 +11,6 @@ router.post('/signup', authController.postSignup);
 router.post('/login', authController.postLogin);
 
 
-router.post('/logout', authController.logout);
+router.get('/logout', authController.logout);
 
 module.exports = router;

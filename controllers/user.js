@@ -35,7 +35,7 @@ exports.getConferences = (req, res, next) => {
 exports.getConferenceDetails = (req, res, next) => {
 
     const confId = req.params.conferenceId;
-    Conference.findOne({ _id: confId }).populate("address").then(conf => {
+    Conference.findOne({_id: confId }).populate("address").then(conf => {
         ConferenceSession.find({ conferenceId: conf._id })
             .populate("hallId")
             .populate("speakerId")
