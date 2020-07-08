@@ -50,11 +50,21 @@ exports.postAddConference = (req, res, next) => {
         address,
         userId
     })
-    return newConference.save().then(() => {
-        return req.user.addToConfOwner(newConference)
-    }).then(() => {
-        res.redirect("/");
-    }).catch(err => console.log(err))
+    Conference.findOne({name:name})
+    .then(c=>{
+        if(!c){
+            return newConference.save().then(() => {
+                return req.user.addToConfOwner(newConference)
+            }).then(() => {
+                res.redirect("/allconferences");
+                console.log("Conference added successful")
+            }).catch(err => console.log(err))
+        }else{
+            console.log("Conference already exist!")
+            res.redirect("/add-conference");
+        }
+    })
+    
 }
     
 exports.addHall = (req, res, next) => {
