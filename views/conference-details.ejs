@@ -1,9 +1,315 @@
 <%- include('includes/head.ejs') %>
-<link rel="stylesheet" href="css/forms.css">
 </head>
 
 <body>
-  
+
+  <style>
+    body {
+      background-color: #F3EBF6;
+      font-family: 'Ubuntu', sans-serif;
+      padding: 40px 0;
+    }
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 18px;
+      background-color: #FFFFFF;
+      width: 400px;
+      height: fit-content;
+      margin: 7em auto;
+      border-radius: 1.5em;
+      box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 20px;
+      align-items: stretch;
+      padding: 40px;
+    }
+
+    .sign {
+      padding-top: 20px;
+      padding-bottom: 30px;
+      color: #0082e6;
+      font-family: 'Ubuntu', sans-serif;
+      font-weight: bold;
+      font-size: 23px;
+    }
+
+    .sign1 {
+      color: #0082e6;
+      font-family: "Ubuntu", sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+      ;
+    }
+
+    .name {
+      width: 100%;
+      color: rgb(38, 50, 56);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      background: #fafafa;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5em;
+      outline: none;
+      box-sizing: border-box;
+      border: 2px solid rgba(0, 0, 0, 0.02);
+      margin-bottom: 50px;
+      text-align: center;
+      margin-bottom: 27px;
+      font-family: "Ubuntu", sans-serif;
+    }
+
+    .form1 {
+      text-align: center;
+    }
+
+    .un {
+      width: 76%;
+      color: rgb(38, 50, 56);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      background: rgba(136, 126, 126, 0.04);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      outline: none;
+      box-sizing: border-box;
+      border: 2px solid rgba(0, 0, 0, 0.02);
+      margin-bottom: 50px;
+      margin-left: 46px;
+      text-align: center;
+      margin-bottom: 27px;
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    .pass,
+    .pass1 {
+      width: 76%;
+      color: rgb(38, 50, 56);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      background: rgba(136, 126, 126, 0.04);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      outline: none;
+      box-sizing: border-box;
+      border: 2px solid rgba(0, 0, 0, 0.02);
+      margin-bottom: 50px;
+      margin-left: 46px;
+      text-align: center;
+      margin-bottom: 27px;
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+
+    .un:focus,
+    .pass:focus,
+    .pass1:focus {
+      border: 2px solid rgba(0, 0, 0, 0.18) !important;
+
+    }
+
+    .submit {
+      display: flex;
+      cursor: pointer;
+      border-radius: 5em;
+      color: #fff;
+      background: #0082e6;
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      font-family: 'Ubuntu', sans-serif;
+      margin-left: 35%;
+      font-size: 13px;
+      margin: auto;
+      box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+      text-align: center;
+
+    }
+
+    .submit:hover {
+      border-radius: 2px #0082e6;
+      background: transparent;
+      color: #0082e6;
+    }
+
+    .forgot {
+      text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+      color: black;
+      padding-top: 15px;
+    }
+
+    a {
+      text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+      color: black;
+      text-decoration: none
+    }
+
+    .btn {
+      display: block;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: #0082e6;
+      border: 1px solid #0082e6;
+      border-color: #0082e6;
+    }
+
+    a:link {
+      color: #0082e6;
+    }
+
+    .user-message {
+      margin: 20px auto;
+      width: 50%;
+      border: 1px solid green;
+      background-color: #47bb24;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+    }
+
+    .user-message--error {
+      margin: 20px auto;
+      width: 50%;
+      border: 1px solid red;
+      background-color: #f17272;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      .main {
+        border-radius: 0px;
+      }
+    }
+
+    /*/////////nav bar css/////*/
+
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: #0082e6;
+      min-height: 8vh;
+      width: 100%;
+      text-align: center;
+    }
+
+    label.logo {
+      color: #0082e6;
+      font-size: 33px;
+      line-height: 80px;
+      padding: 0 140px;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    nav ul {
+      margin-right: 60px;
+      display: block;
+    }
+
+    nav ul li {
+      display: inline;
+      line-height: 80px;
+      margin: 0 1vh;
+      list-style-type: none;
+
+    }
+
+    nav ul li a {
+      color: #f2f2f2;
+      font-weight: 500;
+      font-size: 1vh;
+      letter-spacing: 1.099px;
+      padding: 2vh;
+      border-radius: 3px;
+      /* text-transform: uppercase; */
+
+
+      font-family: 'Poppins', sans-serif;
+    }
+
+    a.active,
+    a:hover {
+      transition: .5s;
+      border-radius: 5em;
+    }
+
+    a.active {
+      background: #1b9bff;
+    }
+
+    .checkbtn {
+      font-size: 30px;
+      color: white;
+      float: right;
+      line-height: 80px;
+      margin-right: 40px;
+      cursor: pointer;
+      display: none;
+    }
+
+    #check {
+      display: none;
+    }
+
+    @media only screen and (max-width: 500px) {
+      nav ul {
+        flex-direction: column;
+      }
+
+      nav ul li {
+        margin: 0;
+      }
+
+      nav ul li a {
+        display: block;
+      }
+    }
+
+    .button-nav {
+      display: none;
+    }
+
+
+    @media only screen and (max-width: 500px) {
+      .button-nav {
+        display: block;
+
+        padding: 2vw;
+        font-size: 3vh;
+        background-color: #AFE0FF;
+        border: none;
+
+        outline: none;
+
+        cursor: pointer;
+        align-self: flex-start;
+      }
+    }
+  </style>
+
 
   <%- include('includes/navigation.ejs') %>
 
@@ -11,44 +317,49 @@
     <form class="product-form form1" action="/add-session" method="POST">
 
       <p class="sign1"><%= conference.address.adress %></p>
-      <input class="un" type="hidden" name="venueId" value="<%= conference.address._id %>">
-      <input class="un" type="hidden" name="conferenceId" value="<%= conference._id %>">
-  
-      <p class="sign1" align="center">Choose speaker</p>
-  
-      <select class="role pass form-control" name="speaker" id="speaker">
-  
+      <input class="name" type="hidden" name="venueId" value="<%= conference.address._id %>">
+      <input class="name" type="hidden" name="conferenceId" value="<%= conference._id %>">
+
+      <p class="sign1">Choose speaker</p>
+
+      <select class="role name form-control" name="speaker" id="speaker">
+
         <% for (let speaker of speakers) { %>
         <option value="<%=speaker._id%>"><%= speaker.name %></option>
         <% } %>
       </select>
-      <select class="role pass form-control" name="hall" id="hall">
+      <select class="role name form-control" name="hall" id="hall">
         <% for (let hall of halls) { %>
         <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
         <% } %>
       </select>
       <label class="sign1" align="center" for="startTime">Choose start end date and time</label>
-      <input class="un" type="datetime-local" name="startTime" id="startTime">
+      <input class="name" type="datetime-local" name="startTime" id="startTime">
       <label class="sign1" align="center" for="endTime">Choose start end date and time</label>
-      <input class="un" type="datetime-local" name="endTime" id="endTime">
-      <button class="submit btn" align="center" type="submit">Add Session</button>
+      <input class="name" type="datetime-local" name="endTime" id="endTime">
+      <button class="submit btn btn-block" type="submit">Add Session</button>
     </form>
   </div>
-  
 
-  <div class="main">
-    <% for(let session of sessions) { %> 
+
+  <div class="grid">
+    <% for(let session of sessions) { %>
+    <div class="main">
+
       <article class="sessions">
-        <h3>Hall : <%=session.hallId.name%></h3>
-        <h3>Seats available: <%=session.hallId.seats%></h3>
-        <h3>Speaker: <%=session.speakerId.name%></h3>
-        <h3>Speaker description: <%=session.speakerId.description%></h3>
+        <h3><b class="sign1">Hall: </b><%=session.hallId.name%></h3>
+        <h3><b class="sign1">Seats available: </b><%=session.hallId.seats%></h3>
+        <h3><b class="sign1">Speaker: </b><%=session.speakerId.name%></h3>
+        <h3><b class="sign1">Speaker description: </b><%=session.speakerId.description%></h3>
         <h4><%=session.startTime%></h4>
         <h4><%=session.endTime%></h4>
-        <button type="submit">Join session</button>
+        <button class="submit btn btn-block type=" submit">Join session</button>
       </article>
-      <% } %>
+
+    </div>
+    <% } %>
   </div>
+
   <!-- <div class="main">
     <p class="sign" align="center">Add New Session</p>
     
@@ -59,16 +370,16 @@
         <div class="property-image">
           <div class="property-image-title">
           Optional <h5>Card Title</h5> If you want it, turn on the CSS also. -->
-    <!-- </div>
+  <!-- </div>
         </div></a> -->
-    <!-- <div class="property-description">
+  <!-- <div class="property-description">
       <h5> Card Title </h5>
       <p>Lorem Ipsum Dipsum hortata. Mixcall Horcho. Mixwell Chingo. More Bingo. Lorem Ipum doth be hard.</p>
     </div>
     <a href="#">
       <div class="property-social-icons">
         <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
-      <!-- </div>
+  <!-- </div>
     </a>
 
   </div> -->
@@ -76,6 +387,6 @@
 
 
 
-  
-  
+
+
   <%- include('includes/end.ejs') %>

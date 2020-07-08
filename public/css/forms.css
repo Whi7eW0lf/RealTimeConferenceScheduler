@@ -43,13 +43,13 @@ body {
   padding: 20px;
 }
 
-.btn {
+.button {
   background: #0082e6;
   border: 1px solid #0082e6;
   border-radius: 5em;
 }
 
-.btn:hover {
+.button:hover {
   background: transparent;
   color: #0082e6;
   border: 1px solid #0082e6;
@@ -107,26 +107,25 @@ p {
 }
 
 .name {
-  width: 76%;
+  width: 100%;
   color: rgb(38, 50, 56);
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 1px;
-  background: rgba(136, 126, 126, 0.04);
+  background: #fafafa;
   padding: 10px 20px;
   border: none;
-  border-radius: 20px;
+  border-radius: 5em;
   outline: none;
   box-sizing: border-box;
   border: 2px solid rgba(0, 0, 0, 0.02);
   margin-bottom: 50px;
-  margin-left: 46px;
   text-align: center;
   margin-bottom: 27px;
   font-family: "Ubuntu", sans-serif;
 }
 
-textarea {
+.name.textarea {
   resize: none;
 }
 
@@ -137,7 +136,7 @@ textarea {
 .seats,
 .description,
 .profile-image {
-  width: 76%;
+  width: 100%;
   color: rgb(38, 50, 56);
   font-weight: 700;
   font-size: 14px;
@@ -150,7 +149,7 @@ textarea {
   box-sizing: border-box;
   border: 2px solid rgba(0, 0, 0, 0.02);
   margin-bottom: 50px;
-  margin-left: 46px;
+  resize: none;
   text-align: center;
   margin-bottom: 27px;
   font-family: "Ubuntu", sans-serif;
@@ -200,195 +199,14 @@ a {
 /*a:link {
   color: #0082e6;
 }*/
-
+/*
 @media (max-width: 600px) {
   .main {
     border-radius: 0px;
   }
 }
 
-/*Single conference details*/
-.wrapper {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: #f3ebf6;
-}
-
-.food {
-  position: absolute !important;
-  top: 50%;
-  left: 50%;
-  margin: -197px 0 0 -310px;
-}
-
-.food {
-  position: relative;
-  width: 620px;
-  height: 394px;
-  background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
-}
-
-.food > .cover {
-  position: relative;
-  height: 260px;
-  background: transparent center no-repeat;
-  background-size: 100% auto;
-  border-radius: 2px 2px 0 0;
-}
-
-.food > .cover > label {
-  position: absolute;
-  top: 22px;
-  left: -33px;
-  height: 33px;
-  padding: 0 30px 0 63px;
-  line-height: 33px;
-  vertical-align: middle;
-  font-family: sans-serif;
-  font-size: 13px;
-  text-transform: uppercase;
-  color: #fff;
-  text-shadow: 0 1px 2px #000;
-  background: #0082e6;
-}
-
-.food > .cover > label > i {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.food > .cover > label > i > svg {
-  margin: 8px;
-}
-
-.food > .cover > .download {
-  display: block;
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  width: 47px;
-  height: 47px;
-  background: rgba(51, 193, 210, 0.6);
-  border-radius: 100%;
-}
-
-.food > .cover > .download:hover {
-  background: #33c1d2;
-}
-
-.food > .cover > .download > svg {
-  margin: 12px 10px 0;
-}
-
-.food > .info {
-  position: relative;
-  height: 134px;
-  overflow: hidden;
-  border-radius: 0 0 2px 2px;
-}
-
-.food > .info > .recipe {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 134px;
-  height: 134px;
-  background: #0082e6;
-  font-family: sans-serif;
-  font-size: 14px;
-  color: #fff;
-  text-transform: uppercase;
-  text-decoration: none;
-  text-align: center;
-  border-radius: 0 0 0 2px;
-}
-
-.food > .info > .recipe:hover {
-  background: transparent;
-  border: 1px solid #0082e6;
-  color: #0082e6;
-}
-
-.food > .info > .recipe > i {
-  display: block;
-  margin: 38px 0 15px;
-}
-
-.food > .info > .content {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  bottom: 20px;
-  left: 154px;
-  font-family: sans-serif;
-  font-size: 14px;
-  color: #888;
-}
-
-.food > .info > .content strong {
-  font-weight: normal;
-  color: #333;
-}
-
-.food > .info > .content .pad-right {
-  padding-right: 20px;
-}
-
-.food > .info > .content .border-right {
-  border-right: 1px solid #d9d9d9;
-}
-
-.food > .info > .content .consumers img,
-.food > .info > .content .consumers span {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  margin: 0 2px 0 0;
-  line-height: 32px;
-  vertical-align: middle;
-  border-radius: 100%;
-}
-
-.food > .info > .content .consumers span {
-  margin: 0;
-}
-
-.food > .info > .content h1 {
-  margin: 0 0 10px;
-  font-size: 26px;
-  font-weight: normal;
-  color: #333;
-}
-
-.food > .info > .content .stars,
-.food > .info > .content .stars > em {
-  display: block;
-  width: 99px;
-  height: 18px;
-  margin: 0 auto 7px;
-  text-align: left;
-  background: url(https://lh5.googleusercontent.com/uJ_7fIpfUO1hsXDfSXIcwBkJg4h3pYcZtTP5H5bD52wRgOhgPBpIMHOvvNntyHCTOCs9lYY1yuEX-p8EW20-=w2560-h2688);
-}
-
-.food > .info > .content .stars > em {
-  width: 99px;
-  height: 18px;
-  margin: 0;
-  background: url(https://lh5.googleusercontent.com/uJ_7fIpfUO1hsXDfSXIcwBkJg4h3pYcZtTP5H5bD52wRgOhgPBpIMHOvvNntyHCTOCs9lYY1yuEX-p8EW20-=w2560-h2688);
-  background-position: 0 -18px;
-}
-
-.svg-details:hover {
-  fill: #0082e6;
-}
-
+*/
 /* CSS for login */
 .un {
   width: 76%;
@@ -611,3 +429,112 @@ opacity:1;
 
   </style>
   */
+
+
+  nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #0082e6;
+    min-height: 8vh;
+    width: 100%;
+    text-align: center;
+}
+
+label.logo {
+    color: #0082e6;
+    font-size: 33px;
+    line-height: 80px;
+    padding: 0 140px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav ul {
+    margin-right: 60px;
+    display: block;
+}
+
+nav ul li {
+    display: inline;
+    line-height: 80px;
+    margin: 0 1vh;
+    list-style-type: none;
+
+}
+
+nav ul li a {
+    color: #f2f2f2;
+    font-weight: 500;
+    font-size: 1vh;
+    letter-spacing: 1.099px;
+    padding: 2vh;
+    border-radius: 3px;
+    /* text-transform: uppercase; */
+
+
+    font-family: 'Poppins', sans-serif;
+}
+
+a.active,
+a:hover {
+    transition: .5s;
+    border-radius: 5em;
+}
+
+a.active {
+    background: #1b9bff;
+}
+
+.checkbtn {
+    font-size: 30px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+@media only screen and (max-width: 500px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 0;
+    }
+
+    nav ul li a {
+        display: block;
+    }
+}
+
+.button-nav {
+    display: none;
+}
+
+
+@media only screen and (max-width: 500px) {
+    .button-nav {
+        display: block;
+
+        padding: 2vw;
+        font-size: 3vh;
+        background-color: #AFE0FF;
+        border: none;
+
+        outline: none;
+
+        cursor: pointer;
+        align-self: flex-start;
+    }
+}
+
+
+
+
