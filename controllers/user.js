@@ -3,6 +3,7 @@ const Speaker = require("../models/speaker");
 const Hall = require("../models/hall");
 const Conference = require("../models/conference");
 const User = require("../models/user");
+const Session = require("../models/session");
 const dateFormater = require("../util/dateFormater");
 
 exports.getIndex = (req, res, next) => {
@@ -70,18 +71,28 @@ exports.getConferenceDetails = (req, res, next) => {
 }
 
 exports.postAddNewSession = (req, res, next) => {
-    const speaker = req.body.speaker
-    const hall = req.body.hall
-    const venue = req.body.venueId
+    const venue = req.body.venueId // For why ?
+
+
+    const speakerId = req.body.speaker
+    const hallId = req.body.hall
+    const conferenceId = req.body.conferenceId
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
 
-    console.log(speaker, hall, venue, startTime, endTime);
+    const session = new Session({speakerId,hallId,conferenceId,startTime,endTime});
 
+    session.save().then(sessions=>{
+
+        res.redirect("/myconference");
+        console.log("ADDED SESSION")
+
+    }).catch(err=>console.log(err));
 
 }
 
 exports.addConference = (req, res, next) => {
+    
     Venue.find().then(venues => {
         res.render("add-conference", {
             venues: venues.slice(0, 1000),
