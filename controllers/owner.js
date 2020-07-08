@@ -80,16 +80,13 @@ exports.postAddNewSession = (req, res, next) => {
                 startTime,
                 endTime
             });
-            if (req.session.isLoggedIn) {
-                session.save().then(sessions => {
+            return session.save()
+            .then(() => {
         
-                    res.redirect("/myconferences");
-                    console.log("ADDED SESSION")
-        
-                }).catch(err => console.log(err));
-            } else {
-                res.redirect("/login")
-            }
+                res.redirect("/myconferences");
+                console.log("ADDED SESSION")
+    
+            }).catch(err => console.log(err));
         }
     }).catch(err => console.log(err))
 
