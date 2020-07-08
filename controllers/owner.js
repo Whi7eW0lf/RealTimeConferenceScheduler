@@ -1,3 +1,5 @@
+
+const User = require("../models/user");
 const Session = require("../models/session");
 const Speaker = require("../models/speaker");
 const Hall = require("../models/hall");
@@ -119,11 +121,18 @@ exports.postAddSpeaker = (req, res, next) => {
     const description = req.body.description;
     const profilePhoto = req.body.profileImg;
 
-    const speaker = new Speaker({name, description, profilePhoto});
+    const newSpeaker = new Speaker({name, description, profilePhoto});
 
-    speaker.save().then(result => {
-        console.log("Added speaker");
-        res.redirect("/")
-    }).catch(err => console.log(err))
+    Speaker.findOne({name:name}).then(speaker=>{
+        if(!speaker){
+            newSpeaker.save().then(result => {
+                console.log("Added speaker");
+                res.redirect("/")
+            }).catch(err => console.log(err))
+        }else{
+            console.log("Speaker is not added!")
+            res.redirect("/add-speaker")
+        }
+    }).catch(err=>console.log(err));
 
 }
