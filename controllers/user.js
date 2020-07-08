@@ -2,13 +2,13 @@ const Venue = require("../models/venues");
 const Speaker = require("../models/speaker");
 const Hall = require("../models/hall");
 const Conference = require("../models/conference");
-const User = require("../models/user");
+const ConferenceSession = require("../models/session");
 const Session = require("../models/session");
 const dateFormater = require("../util/dateFormater");
 
 exports.getIndex = (req, res, next) => {
     Conference.find().populate("address").then(conferences => {
-        
+
         const formatDateTime = dateFormater(conferences);
         res.render("index", {
             pageTitle: "Welcome to conferences",
@@ -35,18 +35,18 @@ exports.getConferences = (req, res, next) => {
 }
 
 exports.getMyConferences = (req, res, next) => {
-       Conference.find({userId: req.user._id})
-       .populate("userId")
-       .populate("address")
-       .then(conf => {
-            res.render("my-conferences", {
+    Conference.find({userId: req.user._id})
+    .populate("userId")
+    .populate("address")
+    .then(conf => {
+        res.render("my-conferences", {
             pageTitle: "My Conferences",
             isLoggedIn: req.session.isLoggedIn,
             path: "/my-conferences",
             conferences: conf
         })
-       })
-    
+    })
+
 }
 
 
@@ -54,45 +54,58 @@ exports.getConferenceDetails = (req, res, next) => {
 
     const confId = req.params.conferenceId;
     Conference.findOne({_id: confId}).populate("address").then(conf => {
-        Hall.find().then(halls => {
-            Speaker.find().then(speakers => {
-                res.render("conference-details", {
-                    halls: halls,
-                    speakers: speakers,
-                    pageTitle: conf.name,
-                    isLoggedIn: req.session.isLoggedIn,
-                    path: "/",
-                    conference: conf
+        ConferenceSession.find({conferenceId: conf._id})
+        .populate("hallId")
+        .populate("speakerId")
+        .then(sessions => {
+            console.log(sessions)
+            Hall.find().then(halls => {
+                Speaker.find().then(speakers => {
+                    res.render("conference-details", {
+                        halls: halls,
+                        speakers: speakers,
+                        pageTitle: conf.name,
+                        isLoggedIn: req.session.isLoggedIn,
+                        path: "/",
+                        conference: conf,
+                        sessions: sessions || []
+                    })
                 })
             })
+
         })
 
     }).catch(err => console.log(err))
 }
 
 exports.postAddNewSession = (req, res, next) => {
-    const venue = req.body.venueId // For why ?
-
-
+    const venueId = req.body.venueId
     const speakerId = req.body.speaker
     const hallId = req.body.hall
     const conferenceId = req.body.conferenceId
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
 
-    const session = new Session({speakerId,hallId,conferenceId,startTime,endTime});
+    const session = new Session({
+        venueId,
+        speakerId,
+        hallId,
+        conferenceId,
+        startTime,
+        endTime
+    });
 
-    session.save().then(sessions=>{
+    session.save().then(sessions => {
 
         res.redirect("/myconference");
         console.log("ADDED SESSION")
 
-    }).catch(err=>console.log(err));
+    }).catch(err => console.log(err));
 
 }
 
 exports.addConference = (req, res, next) => {
-    
+
     Venue.find().then(venues => {
         res.render("add-conference", {
             venues: venues.slice(0, 1000),
