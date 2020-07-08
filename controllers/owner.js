@@ -7,22 +7,19 @@ const Venue = require("../models/venues");
 
 
 exports.getMyConferences = (req, res, next) => {
-    Conference.find({userId: req.user._id})
-    .populate("userId")
-    .populate("address")
-    .then(conf => {
-         res.render("my-conferences", {
-         pageTitle: "My Conferences",
-         isLoggedIn: req.session.isLoggedIn,
-         path: "/myconferences",
-         conferences: conf
-     })
+    Conference.find({userId: req.user._id}).populate("userId").populate("address").then(conf => {
+        res.render("my-conferences", {
+            pageTitle: "My Conferences",
+            isLoggedIn: req.session.isLoggedIn,
+            path: "/myconferences",
+            conferences: conf
+        })
     })
- 
+
 }
 
 exports.getAddConference = (req, res, next) => {
-    
+
     Venue.find().then(venues => {
         res.render("add-conference", {
             venues: venues.slice(0, 1000),
@@ -50,21 +47,20 @@ exports.postAddConference = (req, res, next) => {
         address,
         userId
     })
-    Conference.findOne({name:name})
-    .then(c=>{
-        if(!c){
+    Conference.findOne({name: name}).then(conf => {
+        if (!conf && (newConference.startTime < newConference.endTime)) {
             return newConference.save().then(() => {
                 return req.user.addToConfOwner(newConference)
             }).then(() => {
                 res.redirect("/allconferences");
                 console.log("Conference added successful")
             }).catch(err => console.log(err))
-        }else{
+        } else {
             console.log("Conference already exist!")
             res.redirect("/add-conference");
         }
     })
-    
+
 }
 
 exports.postAddNewSession = (req, res, next) => {
@@ -75,10 +71,6 @@ exports.postAddNewSession = (req, res, next) => {
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
 
-    const userId = req.session.user.userId;
-
-    console.log(userId);
-
     const session = new ConferenceSession({
         venueId,
         speakerId,
@@ -88,14 +80,14 @@ exports.postAddNewSession = (req, res, next) => {
         endTime
     });
 
-    if(req.session.isLoggedIn){
+    if (req.session.isLoggedIn) {
         session.save().then(sessions => {
 
             res.redirect("/myconferences");
             console.log("ADDED SESSION")
-    
+
         }).catch(err => console.log(err));
-    }else{
+    } else {
         res.redirect("/login")
     }
 
@@ -109,8 +101,8 @@ exports.getAddHall = (req, res, next) => {
             pageTitle: 'Add Hall',
             isLoggedIn: req.session.isLoggedIn,
             path: "/add-hall"
-        })
-    }).catch(err => console.log(err))
+        }).catch(err => console.log(err))
+    })
 }
 
 exports.postAddHall = (req, res, next) => {
@@ -119,21 +111,18 @@ exports.postAddHall = (req, res, next) => {
     const venueId = req.body.venueId;
     const halls = new Hall({name, seats, venueId});
 
-    Hall.findOne({name:name})
-    .then(hall=>{
-        if(!hall){
+    Hall.findOne({name: name}).then(hall => {
+        if (!hall) {
             halls.save().then(() => {
                 res.redirect("/");
                 console.log("Hall added successful!");
             }).catch(err => console.log(err))
-        }else{
+        } else {
             console.log("Hall already exist!");
             res.redirect("/add-hall");
         }
-    }).catch(ex=>console.log(ex));
+    }).catch(ex => console.log(ex));
 }
-
-
 exports.getAddSpeaker = (req, res, next) => {
     res.render("add-speaker", {
         pageTitle: 'Add speaker',
@@ -149,16 +138,16 @@ exports.postAddSpeaker = (req, res, next) => {
 
     const newSpeaker = new Speaker({name, description, profilePhoto});
 
-    Speaker.findOne({name:name}).then(speaker=>{
-        if(!speaker){
+    Speaker.findOne({name: name}).then(speaker => {
+        if (!speaker) {
             newSpeaker.save().then(result => {
                 console.log("Added speaker");
                 res.redirect("/")
             }).catch(err => console.log(err))
-        }else{
+        } else {
             console.log("Speaker is not added!")
             res.redirect("/add-speaker")
         }
-    }).catch(err=>console.log(err));
+    }).catch(err => console.log(err));
 
 }

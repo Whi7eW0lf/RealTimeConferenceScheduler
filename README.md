@@ -11,9 +11,10 @@ Codexio Dev Camp Project
 7. нова зала
 
 1. Advane na konferenciq
-	- proverka za ime (dali vece ima takava konferenciq)
-2. Advane na spiker
-	- proverka za ime (dali veche ima takav speaker)
+	- proverka za ime (dali vece ima takava konferenciq) - gotovo
+	- proverka dali end time e sled start time - gotovo
+2. Advane na spiker - gotovo
+	- proverka za ime (dali veche ima takav speaker) - gotovo
 3. Advane na zala 
 	- proverka za ime (dali veche ima takava zala)
 4. Advane na nova sesiq za konferenciq
