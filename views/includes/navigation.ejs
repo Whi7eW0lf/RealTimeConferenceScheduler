@@ -17,12 +17,12 @@
                     conferences</a>
             </li>
             <li>
-                <a class="<%= path === '/my-conferences' ? 'active' : '' %>" href="/myconferences">My conferences</a>
+                <a class="<%= path === '/myconferences' ? 'active' : '' %>" href="/myconferences">My conferences</a>
             </li>
 
 
             <li>
-                <a class="<%= path === '/add-conference' ? 'active' : '' %>" href="/add-conference">Add
+                <a class="<%= path === '/add-conferences' ? 'active' : '' %>" href="/add-conference">Add
                     conference</a>
             </li>
             <li>
@@ -34,9 +34,11 @@
             </li>
             <% if (isLoggedIn) { %>
                 <form action="/logout" method="post">
-                    <a class="<%= path === '/logout' ? 'active' : '' %>" href="/logout">
+                    <!-- <a class="<%= path === '/logout' ? 'active' : '' %>" href="/logout">
                         <button type="submit">Logout</button>
-                    </a>
+                    </a> -->
+                    <a href="/logout" type="submit"  align="center" class="submit button btn-block">Logout</a>
+
                 </form>
             <% } else { %> 
             <li>
