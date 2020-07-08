@@ -18,7 +18,9 @@ Codexio Dev Camp Project
 3. Advane na zala 
 	- proverka za ime (dali veche ima takava zala)
 4. Advane na nova sesiq za konferenciq
-	-proverka da li Owner-a koito se opitva da dobavi nova sesiq e owner na tazi konferenciq
+	-proverka da li Owner-a koito se opitva da dobavi nova sesiq e owner na tazi konferenciq - gotovo
+	- proverka dali end time e sled start time - gotovo
+
 	-proverka da li speakera-a e zaet po tova vreme 
 	-proverka da li zalata e svobodna po tova vreme
 5. Joinvane na sessiq ot attendee
