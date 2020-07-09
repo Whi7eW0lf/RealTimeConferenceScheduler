@@ -471,6 +471,12 @@ a.active {
     margin-top: 0px;
     margin-bottom: 50px;
   }
+
+  nav ul li a,
+  .textt {
+    padding: 0;
+    line-height: 40px;
+  }
 }
 
 /*
