@@ -36,6 +36,15 @@ body {
   padding: 40px;
 }
 
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 0px;
+  align-items: stretch;
+  padding: 40px;
+}
+
 .grid > article {
   border: 1px solid #ccc;
   box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
@@ -383,11 +392,11 @@ a.active {
   }
   .menuu a {
     display: block;
-    border-bottom: solid gray;
+    border-bottom: solid #d6d6d6;
     margin: 0;
   }
   #toggle:checked + .menuu {
-    display: block;
+    display: unset;
   }
   .navbar {
     display: block;
@@ -397,6 +406,52 @@ a.active {
   }
   body {
     padding-top: 0;
+  }
+
+  .form1 {
+    width: fit-content;
+  }
+
+  .grid2 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    max-width: min-content;
+    text-align: left;
+    background-image: inherit;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .grid {
+    display: inline;
+  }
+
+  .container {
+    display: flow-root;
+    padding: 40px;
+  }
+
+  .main1 {
+    display: grid;
+  }
+
+  p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-grid;
+    width: -webkit-fill-available;
+  }
+
+  .main {
+    max-width: fit-content;
+  }
+
+  .media500 {
+    margin-top: 0px;
+    margin-bottom: 50px;
   }
 }
 
