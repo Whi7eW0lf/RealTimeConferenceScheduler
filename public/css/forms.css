@@ -9,7 +9,7 @@ body {
   padding: 40px 0;
   background-color: #f3ebf6;
   font-family: "Ubuntu", sans-serif;
-  font-size: 8px;
+  font-size: 2vh;
   line-height: 1.2;
 }
 
@@ -18,7 +18,7 @@ body {
   background-color: #f3ebf6;
   background: #ffffff;
   font-family: "Ubuntu", sans-serif;
-  font-size: 8px;
+  font-size: 2vh;
   line-height: 1.2;
 }
 
@@ -427,7 +427,7 @@ a.active {
     display: none;
   }
   body {
-    padding-top: 0;
+    padding: 0;
   }
 
   .form1 {
