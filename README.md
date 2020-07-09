@@ -29,17 +29,17 @@ Codexio Dev Camp Project
 	-proverka da li ima seats available
 
 
-1. Conference -> name, descrption, startTime, endTime, venueId, speakerName, speakerDescription, speakerImg, hall
+1. Conference -> name, descrption, startTime, endTime, venueId, speakerName, speakerDescription, speakerImg, hall    -gotovo
 
-2. Session -> start time, endTime, hall, reference to Conference,
+2. Session -> start time, endTime, hall, reference to Conference,   -gotovo
 
-3. Hall -> name, seatCapacity, reference To Venue
+3. Hall -> name, seatCapacity, reference To Venue   -gotovo
 
 Zadachi: 
 
-1. Mahane na vsichki entrita ot compass osven JSON
-2. Smenqvane na modelite 
-3. Smenqwane na formata za advane na nova konferenciq 
+1. Mahane na vsichki entrita ot compass osven JSON      -gotovo
+2. Smenqvane na modelite     			        -gotovo
+3. Smenqwane na formata za advane na nova konferenciq 	-gotovo
 
 
 // exports.postAddConference = (req, res, next) => {
