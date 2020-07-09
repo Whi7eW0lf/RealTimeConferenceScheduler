@@ -108,7 +108,7 @@ exports.postAddNewSession = (req, res, next) => {
             req.flash("error", "You can only add session for a conference that you created.")
             res.redirect("/myconferences");
 
-        } else if (!session.startTime < session.endTime) {
+        } else if (session.startTime > session.endTime) {
             req.flash("error", "Session end time must be greated then start time. Please try again.")
             res.redirect("/myconferences");
         }
