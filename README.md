@@ -19,9 +19,79 @@ Codexio Dev Camp Project
 	- proverka za ime (dali veche ima takava zala) - gotovo
 4. Advane na nova sesiq za konferenciq
 	-proverka da li Owner-a koito se opitva da dobavi nova sesiq e owner na tazi konferenciq - gotovo
+	- proverka dali end time e sled start time - gotovo
+
 	-proverka da li speakera-a e zaet po tova vreme 
 	-proverka da li zalata e svobodna po tova vreme
 5. Joinvane na sessiq ot attendee
 	-proverka da li e lognat user-a
 	-proverka da li tazi sesiq ne syvpada s druga sessiq koqto user attendva
 	-proverka da li ima seats available
+
+
+// exports.postAddConference = (req, res, next) => {
+
+//     const name = req.body.name
+//     const description = req.body.description
+//     const startTime = req.body.startTime;
+//     const endTime = req.body.endTime;
+//     const address = req.body.address;
+//     const userId = req.user._id;
+//     const newConference = new Conference({
+//         name,
+//         description,
+//         startTime,
+//         endTime,
+//         address,
+//         userId
+//     })
+//     Conference.findOne({name: name}).then(conf => {
+//         if (!conf && (newConference.startTime < newConference.endTime)) {
+//             return newConference.save().then(() => {
+//                 return req.user.addToConfOwner(newConference)
+//             }).then(() => {
+//                 res.redirect("/allconferences");
+//                 console.log("Conference added successful")
+//             }).catch(err => console.log(err))
+//         } else {
+//             console.log("Conference already exist!")
+//             res.redirect("/add-conference");
+//         }
+//     })
+
+// }
+
+// exports.postAddNewSession = (req, res, next) => {
+//     const venueId = req.body.venueId
+//     const speakerId = req.body.speaker
+//     const hallId = req.body.hall
+//     const conferenceId = req.body.conferenceId
+//     const startTime = req.body.startTime;
+//     const endTime = req.body.endTime;
+//     const session = new ConferenceSession({
+//         venueId,
+//         speakerId,
+//         hallId,
+//         conferenceId,
+//         startTime,
+//         endTime
+//     });
+//     Conference.findById(conferenceId).populate("userId").then(conf => {
+        
+//         if(conf.userId._id.toString() === req.user._id.toString() && 
+//         (session.startTime < session.endTime)) {
+//                 return session.save().then(() => {
+                    
+//                         res.redirect("/myconferences");
+//                         console.log("ADDED SESSION");
+                    
+//                 })
+        
+//             } 
+//             else {
+//                 console.log("Not your conference or endtime is starttime")
+//                 res.redirect("/")
+//             }
+// })
+
+// }
