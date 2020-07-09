@@ -136,7 +136,7 @@ exports.getAddHall = (req, res, next) => {
             isLoggedIn: req.session.isLoggedIn,
             path: "/add-hall",
             errorMessage: message
-        }).catch(err => console.log(err))
+        })
     })
 }
 
