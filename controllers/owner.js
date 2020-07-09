@@ -1,6 +1,5 @@
 const ConferenceSession = require("../models/session");
 const User = require("../models/user");
-const Speaker = require("../models/speaker");
 const Hall = require("../models/hall");
 const Conference = require("../models/conference");
 const Venue = require("../models/venues");
