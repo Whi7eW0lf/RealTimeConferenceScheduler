@@ -1,5 +1,10 @@
 /*grid css for first 3 pages Welcome All conf and my conf*/
 
+#description-conference,
+#adddspeaker {
+  margin-top: 30px;
+}
+
 body {
   padding: 40px 0;
   background-color: #f3ebf6;
