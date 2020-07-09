@@ -378,6 +378,7 @@
     @media (max-width: 600px) {
       .main {
         border-radius: 0px;
+        max-width: min-content;
       }
     }
 
@@ -502,6 +503,40 @@
 
       body {
         padding-top: 0;
+      }
+
+      .form1 {
+        width: fit-content;
+      }
+
+      .grid2 {
+        display: contents;
+        max-width: min-content;
+        text-align: left;
+        background-image: inherit;
+        color: black;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .grid {
+        display: inline;
+      }
+
+      .container {
+        padding: 40px;
+      }
+
+      .main1 {
+        display: grid;
+      }
+
+      p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-grid;
+
       }
     }
 
