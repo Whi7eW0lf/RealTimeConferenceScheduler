@@ -24,14 +24,24 @@ const conferenceSchema = new Schema({
         ref: "Venue",
         required: true
     },
+    speakerName: {
+        type: String,
+        required: true
+    },
+    speakerDescription: {
+        type: String,
+        required: true
+    },
+    speakerImg: {
+        type: String,
+        required: true
+    },
     userId: {
         type: Schema.Types.ObjectId,
         ref: "User",
         required: true
     }
 
-
-    
 
 })
 
