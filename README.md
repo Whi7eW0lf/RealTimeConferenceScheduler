@@ -27,3 +27,36 @@ Codexio Dev Camp Project
 	-proverka da li e lognat user-a
 	-proverka da li tazi sesiq ne syvpada s druga sessiq koqto user attendva
 	-proverka da li ima seats available
+
+
+// exports.postAddConference = (req, res, next) => {
+
+//     const name = req.body.name
+//     const description = req.body.description
+//     const startTime = req.body.startTime;
+//     const endTime = req.body.endTime;
+//     const address = req.body.address;
+//     const userId = req.user._id;
+//     const newConference = new Conference({
+//         name,
+//         description,
+//         startTime,
+//         endTime,
+//         address,
+//         userId
+//     })
+//     Conference.findOne({name: name}).then(conf => {
+//         if (!conf && (newConference.startTime < newConference.endTime)) {
+//             return newConference.save().then(() => {
+//                 return req.user.addToConfOwner(newConference)
+//             }).then(() => {
+//                 res.redirect("/allconferences");
+//                 console.log("Conference added successful")
+//             }).catch(err => console.log(err))
+//         } else {
+//             console.log("Conference already exist!")
+//             res.redirect("/add-conference");
+//         }
+//     })
+
+// }
