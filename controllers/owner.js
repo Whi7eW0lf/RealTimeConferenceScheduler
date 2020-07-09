@@ -53,6 +53,9 @@ exports.postAddConference = (req, res, next) => {
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
     const address = req.body.address;
+    const speakerName = req.body.speakerName;
+    const speakerDescription = req.body.speakerDesc;
+    const speakerImg = req.body.speakerImg;
     const userId = req.user._id;
     const newConference = new Conference({
         name,
@@ -60,14 +63,19 @@ exports.postAddConference = (req, res, next) => {
         startTime,
         endTime,
         address,
+        speakerName,
+        speakerImg,
+        speakerDescription,
         userId
     })
     Conference.findOne({name: name}).then(conf => {
+        console.log(conf)
+        console.log(newConference)
         if(conf) {
             req.flash("error", "Conference name is already in use. Please choose different name.")
             res.redirect("/add-conference");
         }
-        else if(!newConference.startTime < newConference.endTime) {
+        else if(newConference.startTime > newConference.endTime) {
             req.flash("error", "End time must be greated than start time.")
             res.redirect("/add-conference");
         }

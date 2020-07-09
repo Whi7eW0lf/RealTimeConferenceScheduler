@@ -8,13 +8,11 @@
     <div class="user-message--error">
         <%= errorMessage %>
     </div>
-
     <% } %>
 
     <div class="continer">
         <main>
             <div class="main media500 main-width ">
-                <div>
                     <p class="signature" align="center">Add New Conference</p>
                     <form class="product-form" action="/add-conference" method="POST">
                         <input class="name" type="text" name="name" id="name-conference" placeholder="Name">
@@ -33,28 +31,21 @@
                         </select>
 
                         <p class="signature1" align="center" id="adddspeaker">Add Speaker</p>
-                        <form class="product-form form1" action="/add-speaker" method="POST">
-                            <input type="text" class="name product-form" align="center" name="name" id="name-speaker"
+                        
+                            <input type="text" class="name product-form" align="center" name="speakerName" id="name-speaker"
                                 placeholder="Speaker name">
-                            <input type="link" class="name " name="profileImg" align="center" id="profileImg"
+                            <input type="link" class="name" name="speakerImg" align="center" id="profileImg"
                                 placeholder="Profile image">
-                                <input type="text" class="name" name="description" align="center" id="description-speaker" row=5
-                                placeholder="Speaker description">
+                                <textarea type="text" class="name" name="speakerDesc" align="center" id="description-speaker" row=5
+                                placeholder="Speaker description"></textarea> 
 
                             <button class="submit button btn-block" align="center" type="submit">Add conference</button>
+                        </form>
                 </div>
 
+            </main>
 
 
-
-
-
-                </form>
-            </div>
-
-
-
-        </main>
     </div>
 
 
