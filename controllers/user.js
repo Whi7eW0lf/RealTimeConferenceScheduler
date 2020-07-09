@@ -39,7 +39,6 @@ exports.getConferenceDetails = (req, res, next) => {
             .populate("hallId")
             .then(sessions => {
                 Hall.find().then(halls => {
-
                         sessions =  sessions.map(e => {
                             const startTime = e.startTime.toString().substring(0, 21);
                             const endTime = e.endTime.toString().substring(0, 21);
