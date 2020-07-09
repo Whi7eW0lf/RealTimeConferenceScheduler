@@ -617,12 +617,6 @@
 
       <p class="sign2">Choose speaker</p>
 
-      <select class="role name form-control" name="speaker" id="speaker">
-
-        <% for (let speaker of speakers) { %>
-        <option value="<%=speaker._id%>"><%= speaker.name %></option>
-        <% } %>
-      </select>
       <select class="role name form-control" name="hall" id="hall">
         <% for (let hall of halls) { %>
         <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
@@ -647,7 +641,6 @@
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.hallId.seats%></h3>
-        <h3><b class="sign2">Speaker: </b><%=session.speakerId.name%></h3>
         <p><b class="sign2">Speaker description: </b><%=session.speakerId.description%></p>
         <p><%=session.startTime%></p>
         <p><%=session.endTime%></p>

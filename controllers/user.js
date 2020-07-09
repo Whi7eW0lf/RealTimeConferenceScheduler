@@ -37,16 +37,14 @@ exports.getConferenceDetails = (req, res, next) => {
     Conference.findOne({_id: confId }).populate("address").then(conf => {
         ConferenceSession.find({ conferenceId: conf._id })
             .populate("hallId")
-            .populate("speakerId")
             .then(sessions => {
                 Hall.find().then(halls => {
-                    Speaker.find().then(speakers => {
+
                         sessions =  sessions.map(e => {
                             const startTime = e.startTime.toString().substring(0, 21);
                             const endTime = e.endTime.toString().substring(0, 21);
                             return {
                                 venueId: e.venueId,
-                                speakerId: e.speakerId,
                                 conferenceId: e.conferenceId,
                                 hallId: e.hallId,
                                 startTime: startTime,
@@ -55,7 +53,6 @@ exports.getConferenceDetails = (req, res, next) => {
                         })
                         res.render("conference-details", {
                             halls: halls,
-                            speakers: speakers,
                             pageTitle: conf.name,
                             isLoggedIn: req.session.isLoggedIn,
                             path: "/",
@@ -63,8 +60,6 @@ exports.getConferenceDetails = (req, res, next) => {
                             sessions: sessions || []
                         })
                     })
-                })
-
             })
 
     }).catch(err => console.log(err))
