@@ -397,6 +397,10 @@ a.active {
   display: none;
 }
 
+.footer-copyright {
+  text-align: center;
+}
+
 @media only screen and (max-width: 500px) {
   .labell {
     display: block;
