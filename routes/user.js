@@ -7,9 +7,6 @@ const router = express.Router();
 
 router.get("/", userController.getIndex);
 
-router.get("/add-speaker", isAuthenticated, ownerController.getAddSpeaker);
-router.post("/add-speaker", isAuthenticated, ownerController.postAddSpeaker);
-
 router.get("/add-hall", isAuthenticated, ownerController.getAddHall);
 router.post("/add-new-hall", isAuthenticated, ownerController.postAddHall);
 

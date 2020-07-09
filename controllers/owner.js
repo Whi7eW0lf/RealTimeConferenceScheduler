@@ -47,15 +47,8 @@ exports.getAddConference = (req, res, next) => {
 
 
 exports.postAddConference = (req, res, next) => {
-
-    const name = req.body.name
-    const description = req.body.description
-    const startTime = req.body.startTime;
-    const endTime = req.body.endTime;
-    const address = req.body.address;
-    const speakerName = req.body.speakerName;
-    const speakerDescription = req.body.speakerDesc;
-    const speakerImg = req.body.speakerImg;
+    const {name, description, startTime, endTime, address, speakerName, speakerDescription, speakerImg} = {...req.body};
+    
     const userId = req.user._id;
     const newConference = new Conference({
         name,
@@ -68,9 +61,9 @@ exports.postAddConference = (req, res, next) => {
         speakerDescription,
         userId
     })
+
     Conference.findOne({ name: name }).then(conf => {
-        console.log(conf)
-        console.log(newConference)
+
         if (conf) {
             req.flash("error", "Conference name is already in use. Please choose different name.")
             res.redirect("/add-conference");
@@ -157,32 +150,4 @@ exports.postAddHall = (req, res, next) => {
             res.redirect("/add-hall");
         }
     }).catch(err => console.log(err));
-}
-exports.getAddSpeaker = (req, res, next) => {
-    res.render("add-speaker", {
-        pageTitle: 'Add speaker',
-        isLoggedIn: req.session.isLoggedIn,
-        path: "/add-speaker"
-    })
-}
-exports.postAddSpeaker = (req, res, next) => {
-
-    const name = req.body.name;
-    const description = req.body.description;
-    const profilePhoto = req.body.profileImg;
-
-    const newSpeaker = new Speaker({ name, description, profilePhoto });
-
-    Speaker.findOne({ name: name }).then(speaker => {
-        if (!speaker) {
-            newSpeaker.save().then(result => {
-                console.log("Added speaker");
-                res.redirect("/")
-            }).catch(err => console.log(err))
-        } else {
-            console.log("Speaker is not added!")
-            res.redirect("/add-speaker")
-        }
-    }).catch(err => console.log(err));
-
 }
