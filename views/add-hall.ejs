@@ -133,6 +133,12 @@
     </style>
 
     <%- include('includes/navigation.ejs') %>
+    <% if(errorMessage) { %>
+        <div class="user-message--error">
+            <%= errorMessage %>
+        </div>
+
+    <% } %>
     <div class="container">
         <main>
             <div class="main">

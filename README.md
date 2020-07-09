@@ -29,6 +29,19 @@ Codexio Dev Camp Project
 	-proverka da li ima seats available
 
 
+1. Conference -> name, descrption, startTime, endTime, venueId, speakerName, speakerDescription, speakerImg, hall
+
+2. Session -> start time, endTime, hall, reference to Conference,
+
+3. Hall -> name, seatCapacity, reference To Venue
+
+Zadachi: 
+
+1. Mahane na vsichki entrita ot compass osven JSON
+2. Smenqvane na modelite 
+3. Smenqwane na formata za advane na nova konferenciq 
+
+
 // exports.postAddConference = (req, res, next) => {
 
 //     const name = req.body.name

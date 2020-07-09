@@ -14,7 +14,6 @@ exports.getMyConferences = (req, res, next) => {
     } else {
         message = null
     }
-    console.log("1" + message)
     Conference.find({userId: req.user._id}).populate("userId").populate("address").then(conf => {
         res.render("my-conferences", {
             pageTitle: "My Conferences",
@@ -120,13 +119,20 @@ exports.postAddNewSession = (req, res, next) => {
 
 }
 exports.getAddHall = (req, res, next) => {
+    let message = req.flash("error");
 
+    if (message.length > 0) {
+        message = message[0]
+    } else {
+        message = null
+    }
     Venue.find().then(venues => {
         res.render("add-hall", {
             venues: venues,
             pageTitle: 'Add Hall',
             isLoggedIn: req.session.isLoggedIn,
-            path: "/add-hall"
+            path: "/add-hall",
+            errorMessage: message
         }).catch(err => console.log(err))
     })
 }
@@ -144,10 +150,10 @@ exports.postAddHall = (req, res, next) => {
                 console.log("Hall added successful!");
             }).catch(err => console.log(err))
         } else {
-            console.log("Hall already exist!");
+            req.flash("error", "This hall already exists.")
             res.redirect("/add-hall");
         }
-    }).catch(ex => console.log(ex));
+    }).catch(err => console.log(err));
 }
 exports.getAddSpeaker = (req, res, next) => {
     res.render("add-speaker", {
