@@ -7,12 +7,21 @@ const Venue = require("../models/venues");
 
 
 exports.getMyConferences = (req, res, next) => {
+    let message = req.flash("error");
+
+    if (message.length > 0) {
+        message = message[0]
+    } else {
+        message = null
+    }
+    console.log("1" + message)
     Conference.find({userId: req.user._id}).populate("userId").populate("address").then(conf => {
         res.render("my-conferences", {
             pageTitle: "My Conferences",
             isLoggedIn: req.session.isLoggedIn,
             path: "/myconferences",
-            conferences: conf
+            conferences: conf,
+            errorMessage: message
         })
     })
 
@@ -75,6 +84,40 @@ exports.postAddConference = (req, res, next) => {
     })
 
 }
+// exports.postAddNewSession = (req, res, next) => {
+//     const venueId = req.body.venueId
+//     const speakerId = req.body.speaker
+//     const hallId = req.body.hall
+//     const conferenceId = req.body.conferenceId
+//     const startTime = req.body.startTime;
+//     const endTime = req.body.endTime;
+//     const session = new ConferenceSession({
+//         venueId,
+//         speakerId,
+//         hallId,
+//         conferenceId,
+//         startTime,
+//         endTime
+//     });
+//     Conference.findById(conferenceId).populate("userId").then(conf => {
+        
+//         if(conf.userId._id.toString() === req.user._id.toString() && 
+//         (session.startTime < session.endTime)) {
+//                 return session.save().then(() => {
+                    
+//                         res.redirect("/myconferences");
+//                         console.log("ADDED SESSION");
+                    
+//                 })
+        
+//             } 
+//             else {
+//                 console.log("Not your conference or endtime is starttime")
+//                 res.redirect("/")
+//             }
+// })
+
+// }
 exports.postAddNewSession = (req, res, next) => {
     const venueId = req.body.venueId
     const speakerId = req.body.speaker
@@ -91,25 +134,24 @@ exports.postAddNewSession = (req, res, next) => {
         endTime
     });
     Conference.findById(conferenceId).populate("userId").then(conf => {
-        
-        if(conf.userId._id.toString() === req.user._id.toString() && 
-        (session.startTime < session.endTime)) {
-                return session.save().then(() => {
-                    
-                        res.redirect("/myconferences");
-                        console.log("ADDED SESSION");
-                    
-                })
-        
-            } 
-            else {
-                console.log("Not your conference or endtime is starttime")
-                res.redirect("/")
-            }
+        if(conf.userId._id.toString() !== req.user._id.toString()) {
+            
+                req.flash("error", "You can only add session for a conference that you created.")
+                res.redirect("/myconferences");
+         
+        } else if(!session.startTime < session.endTime) {
+            req.flash("error", "Session end time must be greated then start time. Please try again.")
+            res.redirect("/myconferences");
+        }
+        else {
+              return session.save().then(() => {
+                res.redirect("/myconferences");
+                console.log("ADDED SESSION");
+            })
+        }
 })
 
 }
-
 exports.getAddHall = (req, res, next) => {
 
     Venue.find().then(venues => {

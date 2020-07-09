@@ -82,7 +82,12 @@
 
 
     <p align="center" class="sign head">My Conferences</p>
+    <% if(errorMessage) { %>
+        <div class="user-message--error">
+            <%= errorMessage %>
+        </div>
 
+    <% } %>
     <main class="grid">
         <% for (let conference of conferences) { %>
         <article>
