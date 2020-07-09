@@ -41,6 +41,8 @@ Zadachi:
 2. Smenqvane na modelite     			        -gotovo
 3. Smenqwane na formata za advane na nova konferenciq 	-gotovo
 
+4. put active past and future sessions to all sessions
+
 
 // exports.postAddConference = (req, res, next) => {
 
