@@ -481,6 +481,11 @@ a.active {
     padding: 0;
     line-height: 40px;
   }
+
+  .footer-copyright {
+    display: none;
+    text-align: center;
+  }
 }
 
 /*
