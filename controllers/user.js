@@ -20,7 +20,20 @@ exports.getIndex = (req, res, next) => {
 
 }
 exports.getConferences = (req, res, next) => {
+    let errMessage = req.flash("error");
 
+    if (errMessage.length > 0) {
+        errMessage = errMessage[0]
+    } else {
+        errMessage = null
+    }
+    // let successMessage = req.flash("success");
+
+    // if (successMessage.length > 0) {
+    //     successMessage = successMessage[0]
+    // } else {
+    //     successMessage = null
+    // }
     Conference.find().populate("address").then(conferences => {
 
         res.render("event-form", {
@@ -28,7 +41,8 @@ exports.getConferences = (req, res, next) => {
             isLoggedIn: req.session.isLoggedIn,
             path: '/all-conferences',
             conferences: conferences,
-            currentDate: req.date
+            currentDate: req.date,
+            errorMessage: errMessage
         })
     }).catch(err => console.log(err))
 
@@ -45,6 +59,7 @@ exports.getConferenceDetails = (req, res, next) => {
                     return {
                         _id: e._id,
                         venueId: e.venueId,
+                        sessionSeats: e.sessionSeats,
                         conferenceId: e.conferenceId,
                         hallId: e.hallId,
                         startTime: startTime,

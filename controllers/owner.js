@@ -13,8 +13,7 @@ exports.getMyConferences = (req, res, next) => {
         message = message[0]
     } else {
         message = null
-    }
-    Conference.find({ userId: req.user._id }).populate("userId").populate("address").then(conf => {
+    } Conference.find({userId: req.user._id}).populate("userId").populate("address").then(conf => {
         res.render("my-conferences", {
             pageTitle: "My Conferences",
             isLoggedIn: req.session.isLoggedIn,
@@ -33,8 +32,7 @@ exports.getAddConference = (req, res, next) => {
         message = message[0]
     } else {
         message = null
-    }
-    Venue.find().then(venues => {
+    } Venue.find().then(venues => {
         res.render("add-conference", {
             venues: venues.slice(0, 1000),
             pageTitle: 'Add Conference',
@@ -48,7 +46,18 @@ exports.getAddConference = (req, res, next) => {
 
 
 exports.postAddConference = (req, res, next) => {
-    const {name, description, startTime, endTime, address, speakerName, speakerDescription, speakerImg} = {...req.body};
+    const {
+        name,
+        description,
+        startTime,
+        endTime,
+        address,
+        speakerName,
+        speakerDescription,
+        speakerImg
+    } = {
+        ...req.body
+    };
 
     const userId = req.user._id;
     const newConference = new Conference({
@@ -63,17 +72,15 @@ exports.postAddConference = (req, res, next) => {
         userId
     })
 
-    Conference.findOne({ name: name }).then(conf => {
+    Conference.findOne({name: name}).then(conf => {
 
         if (conf) {
             req.flash("error", "Conference name is already in use. Please choose different name.")
             res.redirect("/add-conference");
-        }
-        else if (newConference.startTime > newConference.endTime) {
+        } else if (newConference.startTime > newConference.endTime) {
             req.flash("error", "End time must be greated than start time.")
             res.redirect("/add-conference");
-        }
-        else {
+        } else {
             return newConference.save().then(() => {
                 return req.user.addToConfOwner(newConference)
             }).then(() => {
@@ -86,8 +93,10 @@ exports.postAddConference = (req, res, next) => {
 }
 
 exports.postAddNewSession = (req, res, next) => {
-    const { conferenceId, hallId, startTime, endTime } = {...req.body}
-    let sessionSeats; 
+    const {conferenceId, hallId, startTime, endTime} = {
+        ...req.body
+    }
+    let sessionSeats;
     Hall.findById(hallId).then(hall => {
         sessionSeats = hall.seats;
         const session = new Session({
@@ -99,15 +108,14 @@ exports.postAddNewSession = (req, res, next) => {
         });
         Conference.findById(conferenceId).populate("userId").then(conf => {
             if (conf.userId._id.toString() !== req.user._id.toString()) {
-    
+
                 req.flash("error", "You can only add session for a conference that you created.")
                 res.redirect("/myconferences");
-    
+
             } else if (session.startTime > session.endTime) {
                 req.flash("error", "Session end time must be greated then start time. Please try again.")
                 res.redirect("/myconferences");
-            }
-            else {
+            } else {
                 return session.save().then(() => {
                     res.redirect("/myconferences");
                     console.log("ADDED SESSION");
@@ -124,8 +132,7 @@ exports.getAddHall = (req, res, next) => {
         message = message[0]
     } else {
         message = null
-    }
-    Venue.find().then(venues => {
+    } Venue.find().then(venues => {
         res.render("add-hall", {
             venues: venues,
             pageTitle: 'Add Hall',
@@ -140,9 +147,9 @@ exports.postAddHall = (req, res, next) => {
     const name = req.body.name;
     const seats = req.body.seats;
     const venueId = req.body.venueId;
-    const halls = new Hall({ name, seats, venueId });
+    const halls = new Hall({name, seats, venueId});
 
-    Hall.findOne({ name: name }).then(hall => {
+    Hall.findOne({name: name}).then(hall => {
         if (!hall) {
             halls.save().then(() => {
                 res.redirect("/");
@@ -155,15 +162,21 @@ exports.postAddHall = (req, res, next) => {
     }).catch(err => console.log(err));
 }
 
-exports.postJoinSession = (req,res,next)=>{
+exports.postJoinSession = (req, res, next) => {
 
-    const userId = req.user._id;
-    const sessionId = req.body.sessionId
-    const seats = req.body.sessionId
-    User.findById(userId).then(ur=>{
-        Session.findById(sessionId).then(sn=>{
-            ur.addSession(sn);
-            res.redirect("/")
-        })
+    const sessionId = req.body.sessionId;
+    console.log(req.user.session.sessions)
+    Session.findById(sessionId).then(session => {
+        if (session.sessionSeats > 0) {
+            session.seatTaken()
+            return req.user.addSession(session).then(() => {
+                res.redirect("/allconferences")
+            }).catch(err => console.log(err))
+        } 
+        else {
+            req.flash('error', "No more seats available for this session. Please try to join other session or other conference.");
+            res.redirect("/allconferences")
+        }
     })
+
 }

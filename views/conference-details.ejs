@@ -699,11 +699,10 @@
     <div class="main1 filter allSessions past">
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
-        <h3><b class="sign2">Seats available: </b><%=session.hallId.seats%></h3>
+        <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
         <p><%=session.startTime%></p>
         <p><%=session.endTime%></p>
         <form class="product-form form1" action="/join-session" method="POST">
-          <input type="hidden" value="<%= session.hallId.seats%>" name="seatsLeft" />
           <input type="hidden" value="<%= session._id %>" name="sessionId" />
           <button class="submit btn btn-block" type="submit">Join session</button>
         </form>
@@ -725,8 +724,6 @@
       // for (let i=0; i<session.)
       if (session.classList[3] = 'past') {
         session.style.display = "none";
-
-
       }
     });
 

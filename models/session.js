@@ -28,4 +28,9 @@ const conferenceSessionSchema = new Schema({
     
 })
 
+conferenceSessionSchema.methods.seatTaken = function() {
+    this.sessionSeats = this.sessionSeats -1;
+    return this.save()
+}
+
 module.exports = mongoose.model("Session", conferenceSessionSchema); 

@@ -76,7 +76,12 @@
 
     <%- include('includes/navigation.ejs') %>
     <p align="center" class="sign head">All Conferences</p>
+    <% if(errorMessage) { %>
+        <div class="user-message--error">
+            <%= errorMessage %>
+        </div>
 
+    <% } %>
     <main>
         Past
         <div class="grid">
