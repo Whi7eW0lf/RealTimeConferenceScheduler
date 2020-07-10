@@ -26,12 +26,12 @@ const userSchema = new Schema({
         ]
     },
 
-    conferenceAttendee: {
-        conferences: [
+    Session: {
+        sessions: [
             {
                 conferenceId: {
                     type: Schema.Types.ObjectId,
-                    ref: 'Conference'
+                    ref: 'Session'
                 }
             }
         ]

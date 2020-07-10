@@ -13,7 +13,8 @@ exports.getIndex = (req, res, next) => {
             isLoggedIn: req.session.isLoggedIn,
             path: '/',
             conferences: formatDateTime.slice(0, 3),
-            isLoggedIn: req.session.isLoggedIn
+            isLoggedIn: req.session.isLoggedIn,
+            currentDate: req.date
         })
     }).catch(err => console.log(err))
 
