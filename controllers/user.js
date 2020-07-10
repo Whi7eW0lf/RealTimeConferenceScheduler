@@ -59,6 +59,7 @@ exports.getConferenceDetails = (req, res, next) => {
                     return {
                         _id: e._id,
                         venueId: e.venueId,
+                        sessionSeats: e.sessionSeats,
                         conferenceId: e.conferenceId,
                         hallId: e.hallId,
                         startTime: startTime,
