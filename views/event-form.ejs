@@ -82,7 +82,7 @@
             <% for (let conference of conferences) { %>
                 <%if(conference.endTime < currentDate) { %>
     
-            <article> Past
+            <article>
                 <img src="https://picsum.photos/600/400?image=1083" alt="Sample photo">
                 <div class="text">
                     <p class="sign conference-header" align="center"><%=conference.name%></p>
@@ -102,7 +102,7 @@
             <% for (let conference of conferences) { %>
                 <%if(conference.startTime < currentDate && conference.endTime > currentDate) { %>
     
-            <article> Past
+            <article>
                 <img src="https://picsum.photos/600/400?image=1083" alt="Sample photo">
                 <div class="text">
                     <p class="sign conference-header" align="center"><%=conference.name%></p>
@@ -122,7 +122,7 @@
             <% for (let conference of conferences) { %>
                 <%if(conference.startTime > currentDate) { %>
     
-            <article> Past
+            <article> 
                 <img src="https://picsum.photos/600/400?image=1083" alt="Sample photo">
                 <div class="text">
                     <p class="sign conference-header" align="center"><%=conference.name%></p>
