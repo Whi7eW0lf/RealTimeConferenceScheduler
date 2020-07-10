@@ -77,8 +77,8 @@
     <%- include('includes/navigation.ejs') %>
     <p align="center" class="sign head">All Conferences</p>
 
-    <main class="grid">
-        <div> Past
+    <main>
+        <div class="grid"> Past
             <% for (let conference of conferences) { %>
                 <%if(conference.endTime < currentDate) { %>
     
@@ -97,7 +97,7 @@
             <% } %>
             <% } %>
         </div>
-        <div>
+        <div class="grid">
             Active
             <% for (let conference of conferences) { %>
                 <%if(conference.startTime < currentDate && conference.endTime > currentDate) { %>
@@ -117,7 +117,7 @@
             <% } %>
             <% } %>
         </div>
-        <div>
+        <div class="grid">
             Future
             <% for (let conference of conferences) { %>
                 <%if(conference.startTime > currentDate) { %>
