@@ -47,7 +47,6 @@ exports.getConferenceDetails = (req, res, next) => {
                                     endTime: endTime
                                 }
                             })
-                            console.log(sessions)
                             res.render("conference-details", {
                                 halls: halls,
                                 pageTitle: conf.name,

@@ -159,12 +159,10 @@ exports.postJoinSession = (req,res,next)=>{
 
     const userId = req.user._id;
     const sessionId = req.body.sessionId
-    console.log(sessionId)
-    // User.findById(userId).then(ur=>{
-    //     Session.findById(sessionId).then(sn=>{
-    //         ur.addSession(sn);
-    //         res.redirect("/")
-    //     })
-    // })
+    User.findById(userId).then(ur=>{
+        Session.findById(sessionId).then(sn=>{
+            ur.addSession(sn);
+            res.redirect("/")
+        })
+    })
 }
-
