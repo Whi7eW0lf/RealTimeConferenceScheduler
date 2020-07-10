@@ -692,10 +692,12 @@
         <h3><b class="sign2">Seats available: </b><%=session.hallId.seats%></h3>
         <p><%=session.startTime%></p>
         <p><%=session.endTime%></p>
-        <form action="/join-session" method="post">
-          <input type="hidden" name="seatsLeft" value="<%=session.sessionSeats%>">
+        <p><%=session._id%></p>
+        <form class="product-form form1" action="/join-session" method="POST">
+          <input type="hidden" value="5f08615db4020c10bc10a1f7" name="sessionId" />
           <button class="submit btn btn-block type=" submit">Join session</button>
         </form>
+
       </article>
 
     </div>
