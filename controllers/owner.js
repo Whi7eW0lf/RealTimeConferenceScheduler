@@ -159,6 +159,7 @@ exports.postJoinSession = (req,res,next)=>{
 
     const userId = req.user._id;
     const sessionId = req.body.sessionId
+    const seats = req.body.sessionId
     User.findById(userId).then(ur=>{
         Session.findById(sessionId).then(sn=>{
             ur.addSession(sn);
