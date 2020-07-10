@@ -692,9 +692,8 @@
         <h3><b class="sign2">Seats available: </b><%=session.hallId.seats%></h3>
         <p><%=session.startTime%></p>
         <p><%=session.endTime%></p>
-        <p><%=session._id%></p>
         <form class="product-form form1" action="/join-session" method="POST">
-          <!-- <input type="hidden" value="<%= session.sessinSeats%>" name="seatsLeft" /> -->
+          <input type="hidden" value="<%= session.hallId.seats%>" name="seatsLeft" />
           <input type="hidden" value="<%= session._id %>" name="sessionId" />
           <button class="submit btn btn-block" type="submit">Join session</button>
         </form>
