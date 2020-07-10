@@ -655,11 +655,11 @@
 
   <script>
     const element = document.querySelectorAll(".allSessions");
-    const startTime = {};
-    const endTime = {};
-    window.startTime = getCurrentTime();
+    const startTime = "";
+    const endTime = "";
+    window.currentTime = getCurrentTime();
 
-    function getCurrentTime(){
+    function getCurrentTime() {
       return new Date().toString().slice(0, 21);
     }
 
@@ -678,7 +678,7 @@
       }
       console.log('start time: ', startTime);
       console.log('end time: ', endTime);
-      console.log('current time: ', getCurrentTime());
+      console.log('current time: ', window.currentTime);
       console.log('____________________________');
     }
 
@@ -687,7 +687,7 @@
 
 
 
-        if (endTime < window.startTime) {
+        if (endTime < window.currentTime) {
           element[i].classList.toggle("notHidden")
         } else {
           element[i].classList.toggle("hidden");
@@ -696,7 +696,7 @@
       }
       console.log('start time: ', startTime);
       console.log('end time: ', endTime);
-      console.log('current time: ', window.startTime);
+      console.log('current time: ', window.currentTime);
       console.log('____________________________');
 
     }
@@ -705,7 +705,7 @@
 
       for (let i = 0; i < element.length; i++) {
 
-        if (endTime === window.startTime) {
+        if (endTime > window.currentTime && startTime < window.currentTime) {
           element[i].classList.toggle("notHidden")
         } else {
           element[i].classList.toggle("hidden");
@@ -714,7 +714,7 @@
       }
       console.log('start time: ', startTime);
       console.log('end time: ', endTime);
-      console.log('current time: ', window.startTime);
+      console.log('current time: ', window.currentTime);
       console.log('____________________________');
 
     }
@@ -724,7 +724,7 @@
       for (let i = 0; i < element.length; i++) {
 
 
-        if (startTime>window.startTime) {
+        if (startTime > window.currentTime) {
           element[i].classList.toggle("notHidden")
         } else {
           element[i].classList.toggle("hidden");
@@ -733,7 +733,7 @@
       }
       console.log('start time: ', startTime);
       console.log('end time: ', endTime);
-      console.log('current time: ', window.startTime);
+      console.log('current time: ', window.currentTime);
       console.log('____________________________');
 
     }
