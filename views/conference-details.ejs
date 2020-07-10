@@ -80,6 +80,15 @@
 
     /*////////////end of product card details////////*/
 
+    .btn-session {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .buttons-data-filter {
+      display: flex;
+    }
+
     img {
       border-radius: 5em;
     }
@@ -303,6 +312,24 @@
       padding-top: 10px;
       font-family: 'Ubuntu', sans-serif;
       margin-left: 35%;
+      font-size: 13px;
+      margin: auto;
+      box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+      text-align: center;
+
+    }
+
+    .submit1 {
+      display: flex;
+      cursor: pointer;
+      border-radius: 5em;
+      color: #fff;
+      background: #0082e6;
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      font-family: 'Ubuntu', sans-serif;
       font-size: 13px;
       margin: auto;
       box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
@@ -635,23 +662,33 @@
   </div>
 
   <div class=sign1>
-    <label class="sign">All Sessions</label>
+    <label class="sign">Sessions</label>
   </div>
+
+  <div class="buttons-data-filter">
+    <button class="submit1 btn btn-session" type="submit" data-filter="all">ALL</button>
+    <button class="submit1 btn btn-session" type="submit" data-filter="past">PAST</button>
+    <button class="submit1 btn btn-session" type="submit" data-filter="active">ACTIVE</button>
+    <button class="submit1 btn btn-session" type="submit" data-filter="upcoming">UPCOMING</button>
+  </div>
+
 
   <div class="grid">
     <% for(let session of sessions) { %>
-    <div class="main1">
+    <div class="main1 filter past">
 
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.hallId.seats%></h3>
         <p><%=session.startTime%></p>
         <p><%=session.endTime%></p>
-        <button class="submit btn btn-block type=" submit">Join session</button>
+        <button class="submit btn btn-block" type="submit">Join session</button>
       </article>
 
     </div>
     <% } %>
   </div>
+
+
 
   <%- include('includes/end.ejs') %>
