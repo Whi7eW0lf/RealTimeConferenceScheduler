@@ -311,7 +311,7 @@ a {
   color: white;
 }
 
-.navbar {
+nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -342,8 +342,7 @@ nav ul li {
   list-style-type: none;
 }
 
-nav ul li a,
-.textt {
+nav ul li a {
   color: #f2f2f2;
   font-weight: 500;
   font-size: 2vh;
@@ -353,7 +352,6 @@ nav ul li a,
   /* text-transform: uppercase; */
 
   font-family: "Poppins", sans-serif;
-  clear: none;
 }
 
 a.active,
@@ -399,10 +397,6 @@ a.active {
 
 .footer-copyright {
   text-align: center;
-}
-
-.active {
-  display: flex;
 }
 
 @media only screen and (max-width: 953px) {

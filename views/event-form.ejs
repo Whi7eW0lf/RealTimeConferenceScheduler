@@ -80,8 +80,8 @@
     <main>
         <div class="grid"> Past
             <% for (let conference of conferences) { %>
-                <%if(conference.endTime < currentDate) { %>
-    
+            <%if(conference.endTime < currentDate) { %>
+
             <article>
                 <img src="https://picsum.photos/600/400?image=1083" alt="Sample photo">
                 <div class="text">
@@ -100,8 +100,8 @@
         <div class="grid">
             Active
             <% for (let conference of conferences) { %>
-                <%if(conference.startTime < currentDate && conference.endTime > currentDate) { %>
-    
+            <%if(conference.startTime < currentDate && conference.endTime > currentDate) { %>
+
             <article>
                 <img src="https://picsum.photos/600/400?image=1083" alt="Sample photo">
                 <div class="text">
@@ -120,9 +120,9 @@
         <div class="grid">
             Future
             <% for (let conference of conferences) { %>
-                <%if(conference.startTime > currentDate) { %>
-    
-            <article> 
+            <%if(conference.startTime > currentDate) { %>
+
+            <article>
                 <img src="https://picsum.photos/600/400?image=1083" alt="Sample photo">
                 <div class="text">
                     <p class="sign conference-header" align="center"><%=conference.name%></p>
@@ -137,7 +137,7 @@
             <% } %>
             <% } %>
         </div>
-    
+
     </main>
 
 

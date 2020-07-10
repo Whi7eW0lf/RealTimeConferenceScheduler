@@ -4,7 +4,7 @@
 
 <body class="body">
 
-   
+
 
     <%- include('includes/navigation.ejs') %>
 
@@ -13,25 +13,26 @@
         <p align="center" class="sign head">Welcome to Conferences site</p>
         <h3 align="center">Testing slogan :) </h3>
         <main class="grid">
-            
-                <% for (let conference of conferences) { %>
-                 
-                        <article class="article">
-                            <img src="https://picsum.photos/600/400?image=1083" alt="Sample photo">
-                            <div class="text">
-                                <p class="sign conference-header" align="center"><%=conference.name%></p>
-                                <p><b>Start time: </b><%=conference.startTime%></p>
-                                <p><b>End time: </b><%=conference.endTime%></p>
-                                <p maxlength="20"><b>Description: </b><%=conference.description%></p>
-                                <p><b>Address: </b><%=conference.address.adress%></p>
-                                <a href="/allconferences/<%= conference._id %>" name="conferenceId" align="center" class="submit button btn-block">Details</a>
-                            </div>
-                        </article>
-                        
-                   
-                    <% } %>
-           
-        <!-- <script> var sass = require('node-sass'); </script> -->
+
+            <% for (let conference of conferences) { %>
+
+            <article class="article">
+                <img src="https://picsum.photos/600/400?image=1083" alt="Sample photo">
+                <div class="text">
+                    <p class="sign conference-header" align="center"><%=conference.name%></p>
+                    <p><b>Start time: </b><%=conference.startTime%></p>
+                    <p><b>End time: </b><%=conference.endTime%></p>
+                    <p maxlength="20"><b>Description: </b><%=conference.description%></p>
+                    <p><b>Address: </b><%=conference.address.adress%></p>
+                    <a href="/allconferences/<%= conference._id %>" name="conferenceId" align="center"
+                        class="submit button btn-block">Details</a>
+                </div>
+            </article>
+
+
+            <% } %>
+
+            <!-- <script> var sass = require('node-sass'); </script> -->
         </main>
     </div>
     </a>
