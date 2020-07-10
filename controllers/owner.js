@@ -154,3 +154,7 @@ exports.postAddHall = (req, res, next) => {
         }
     }).catch(err => console.log(err));
 }
+
+exports.postJoinSession = (req,res,next)=>{
+    console.log("JOIN SESSION")
+}

@@ -21,4 +21,6 @@ router.get("/allconferences/:conferenceId", userController.getConferenceDetails)
 
 router.get("/myconferences", ownerController.getMyConferences);
 
+router.post("/join-session", ownerController.postJoinSession);
+
 module.exports = router;
