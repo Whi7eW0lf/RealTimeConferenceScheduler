@@ -48,7 +48,7 @@ exports.getAddConference = (req, res, next) => {
 
 exports.postAddConference = (req, res, next) => {
     const {name, description, startTime, endTime, address, speakerName, speakerDescription, speakerImg} = {...req.body};
-    
+
     const userId = req.user._id;
     const newConference = new Conference({
         name,
@@ -85,12 +85,11 @@ exports.postAddConference = (req, res, next) => {
 }
 
 exports.postAddNewSession = (req, res, next) => {
-    const conferenceId = req.body.conferenceId
-    const hallId = req.body.hall
-    const startTime = req.body.startTime;
-    const endTime = req.body.endTime;
+    const { conferenceId, hallId, startTime, endTime } = {...req.body}
+    const sessionSeats = 100; // smeni go
     const session = new ConferenceSession({
         conferenceId,
+        sessionSeats,
         hallId,
         startTime,
         endTime
