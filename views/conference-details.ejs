@@ -355,6 +355,17 @@
       text-decoration: none
     }
 
+    .logout {
+      color: #f2f2f2;
+      font-weight: 500;
+      font-size: 2vh;
+      letter-spacing: 1.099px;
+      padding: 2vh;
+      border-radius: 3px;
+      /* text-transform: uppercase; */
+      font-family: "Poppins", sans-serif;
+    }
+
     label {
       display: inline-flex;
     }
@@ -685,7 +696,7 @@
 
   <div class="grid">
     <% for(let session of sessions) { %>
-    <div class="main1 filter past"> 
+    <div class="main1 filter past">
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.hallId.seats%></h3>
