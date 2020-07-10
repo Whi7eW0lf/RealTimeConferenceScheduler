@@ -626,6 +626,7 @@
         <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
         <% } %>
       </select>
+      <input type="hidden" name="sessionSeats" value="<%=hall.seats">
       <label class="sign2" align="center" for="startTime">Choose start end date and time</label>
       <input class="name" type="datetime-local" name="startTime" id="startTime">
       <label class="sign2" align="center" for="endTime">Choose start end date and time</label>
@@ -647,7 +648,10 @@
         <h3><b class="sign2">Seats available: </b><%=session.hallId.seats%></h3>
         <p><%=session.startTime%></p>
         <p><%=session.endTime%></p>
-        <button class="submit btn btn-block type=" submit">Join session</button>
+        <form action="/join-session" method="post">
+          <input type="hidden" name="seatsLeft" value="<%=sessionSeats">
+          <button class="submit btn btn-block type=" submit">Join session</button>
+        </form>
       </article>
 
     </div>

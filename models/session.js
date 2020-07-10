@@ -13,6 +13,10 @@ const conferenceSessionSchema = new Schema({
         ref: 'Hall',
         required: true
     },
+    sessionSeats: {
+        type: Number,
+        required: true
+    },
     startTime: {
         type: Date,
         required: true
