@@ -48,7 +48,7 @@ exports.getAddConference = (req, res, next) => {
 
 
 exports.postAddConference = (req, res, next) => {
-    const { name, description, startTime, endTime, address, speakerName, speakerDescription, speakerImg } = { ...req.body };
+    const {name, description, startTime, endTime, address, speakerName, speakerDescription, speakerImg} = {...req.body};
 
     const userId = req.user._id;
     const newConference = new Conference({
@@ -86,11 +86,11 @@ exports.postAddConference = (req, res, next) => {
 }
 
 exports.postAddNewSession = (req, res, next) => {
-    const { conferenceId, hallId, startTime, endTime } = { ...req.body }
-    let sessionSeats;
+    const { conferenceId, hallId, startTime, endTime } = {...req.body}
+    let sessionSeats; 
     Hall.findById(hallId).then(hall => {
         sessionSeats = hall.seats;
-        const session = new ConferenceSession({
+        const session = new Session({
             conferenceId,
             sessionSeats,
             hallId,
@@ -99,10 +99,10 @@ exports.postAddNewSession = (req, res, next) => {
         });
         Conference.findById(conferenceId).populate("userId").then(conf => {
             if (conf.userId._id.toString() !== req.user._id.toString()) {
-
+    
                 req.flash("error", "You can only add session for a conference that you created.")
                 res.redirect("/myconferences");
-
+    
             } else if (session.startTime > session.endTime) {
                 req.flash("error", "Session end time must be greated then start time. Please try again.")
                 res.redirect("/myconferences");
@@ -155,14 +155,13 @@ exports.postAddHall = (req, res, next) => {
     }).catch(err => console.log(err));
 }
 
-exports.postJoinSession = (req, res, next) => {
+exports.postJoinSession = (req,res,next)=>{
 
     const userId = req.user._id;
-
     const sessionId = req.body.sessionId
-    User.findById(userId).then(ur => {
-        Session.findById(sessionId).then(sn => {
-
+    const seats = req.body.sessionId
+    User.findById(userId).then(ur=>{
+        Session.findById(sessionId).then(sn=>{
             ur.addSession(sn);
             res.redirect("/")
         })

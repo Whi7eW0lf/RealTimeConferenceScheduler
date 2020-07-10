@@ -144,7 +144,7 @@
     }
 
     .main1 {
-      display: none;
+      display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 18px;
@@ -502,10 +502,6 @@
       text-align: center;
     }
 
-    .active {
-      display: flex;
-    }
-
     @media only screen and (max-width: 953px) {
       .labell {
         display: block;
@@ -642,6 +638,10 @@
 
 
 
+
+
+
+
   <div class=sign1>
     <label class="sign">Adding sessions</label>
   </div>
@@ -676,96 +676,30 @@
   </div>
 
   <div class="buttons-data-filter">
-    <button class="submit1 btn btn-session filterButtonAll" type="submit">ALL</button>
-    <button class="submit1 btn btn-session filterButtonPast" type="submit">PAST</button>
-    <button class="submit1 btn btn-session filterButtonActive" type="submit">ACTIVE</button>
-    <button class="submit1 btn btn-session filterButtonUpcoming" type="submit">UPCOMING</button>
+    <button class="submit1 btn btn-session" type="submit" data-filter="all">ALL</button>
+    <button class="submit1 btn btn-session" type="submit" data-filter="past">PAST</button>
+    <button class="submit1 btn btn-session" type="submit" data-filter="active">ACTIVE</button>
+    <button class="submit1 btn btn-session" type="submit" data-filter="upcoming">UPCOMING</button>
   </div>
 
 
   <div class="grid">
     <% for(let session of sessions) { %>
-    <div class="main1 filter all">
-
+    <div class="main1 filter past"> 
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.hallId.seats%></h3>
         <p><%=session.startTime%></p>
         <p><%=session.endTime%></p>
         <form class="product-form form1" action="/join-session" method="POST">
-          <!-- <input type="hidden" value="<%= session.sessinSeats%>" name="seatsLeft" /> -->
+          <input type="hidden" value="<%= session.hallId.seats%>" name="seatsLeft" />
           <input type="hidden" value="<%= session._id %>" name="sessionId" />
           <button class="submit btn btn-block" type="submit">Join session</button>
         </form>
-
       </article>
-
     </div>
     <% } %>
   </div>
-
-
-
-
-  <script>
-
-    document.querySelector('.filterButtonAll').addEventListener("click", () => {
-      let filter = document.querySelectorAll('.filter');
-      console.log(filter);
-      // if (filter.classList[2] === 'all') {
-      //   filter[0].classList.toggle('active');
-      // } else if (filter.classList[2] === 'past') {
-      //   filter[0].style.display = "none";
-      // } else if (filter.classList[2] === 'activ') {
-      //   filter[0].style.display = "none";
-      // } else if (filter.classList[2] === 'upcoming') {
-      //   filter[0].style.display = "none";
-      // }
-
-    });
-
-    // document.querySelector('.filterButtonPast').addEventListener("click", () => {
-    //   let filter = document.querySelectorAll('.filter');
-    //   console.log(filter);
-    //   if (filter.classList[2] === 'all') {
-    //     filter[0].classList.toggle('active');
-    //   } else if (filter.classList[2] === 'past') {
-    //     filter[0].classList.toggle('active');
-    //   } else if (filter.classList[2] === 'activ') {
-    //     filter[0].classList.toggle('active')
-    //   }
-
-    // });
-
-    // // document.querySelector('.filterButtonActive').addEventListener("click", () => {
-    // //   let filter = document.querySelectorAll('.filter');
-    // //   console.log(filter);
-    // //   if (filter.classList[2] === 'all') {
-    // //     filter[0].classList.toggle('active');
-    // //   } else if (filter.classList[2] === 'past') {
-    // //     filter[0].classList.toggle('active');
-    // //   } else if (filter.classList[2] === 'activ') {
-    // //     filter[0].classList.toggle('active')
-    // //   }
-
-    // // });
-
-    // // document.querySelector('.filterButtonUpcoming').addEventListener("click", () => {
-    // //   let filter = document.querySelectorAll('.filter');
-    // //   console.log(filter);
-    // //   if (filter.classList[2] === 'all') {
-    // //     filter[0].classList.toggle('active');
-    // //   } else if (filter.classList[2] === 'past') {
-    // //     filter[0].classList.toggle('active');
-    // //   } else if (filter.classList[2] === 'activ') {
-    // //     filter[0].classList.toggle('active')
-    // //   }
-
-    // // });
-
-
-
-  </script>
 
 
 
