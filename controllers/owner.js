@@ -1,4 +1,4 @@
-const ConferenceSession = require("../models/session");
+const Session = require("../models/session");
 const User = require("../models/user");
 const Hall = require("../models/hall");
 const Conference = require("../models/conference");
@@ -153,4 +153,17 @@ exports.postAddHall = (req, res, next) => {
             res.redirect("/add-hall");
         }
     }).catch(err => console.log(err));
+}
+
+exports.postJoinSession = (req, res, next) => {
+
+    const userId = req.user._id;
+    const sessionId = req.body.sessionId;
+
+    User.findById(userId).then(ur => {
+        Session.findById(sessionId).then(sn => {
+            ur.addSession(sn);
+            res.redirect("/")
+        })
+    })
 }

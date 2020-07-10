@@ -26,12 +26,12 @@ const userSchema = new Schema({
         ]
     },
 
-    conferenceAttendee: {
-        conferences: [
+    session: {
+        sessions: [
             {
-                conferenceId: {
+                sessionId: {
                     type: Schema.Types.ObjectId,
-                    ref: 'Conference'
+                    ref: 'Session'
                 }
             }
         ]
@@ -41,6 +41,11 @@ const userSchema = new Schema({
 
 userSchema.methods.addToConfOwner = function (conference) {
     this.conferenceOwner.conferences.push(conference);
+    return this.save()
+}
+
+userSchema.methods.addSession = function (session) {
+    this.session.sessions.push(session);
     return this.save()
 }
 

@@ -28,4 +28,4 @@ const conferenceSessionSchema = new Schema({
     
 })
 
-module.exports = mongoose.model("ConferenceSession", conferenceSessionSchema); 
+module.exports = mongoose.model("Session", conferenceSessionSchema); 
