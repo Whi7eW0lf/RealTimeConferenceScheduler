@@ -686,7 +686,6 @@
   <div class="grid">
     <% for(let session of sessions) { %>
     <div class="main1 filter past">
-
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.hallId.seats%></h3>
@@ -697,9 +696,7 @@
           <input type="hidden" value="<%= session._id %>" name="sessionId" />
           <button class="submit btn btn-block" type="submit">Join session</button>
         </form>
-
       </article>
-
     </div>
     <% } %>
   </div>
