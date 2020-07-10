@@ -650,7 +650,7 @@
 
       <p class="sign2">Choose speaker</p>
 
-      <select class="role name form-control" name="hall" id="hall">
+      <select class="role name form-control" name="hallId" id="hall">
         <% for (let hall of halls) { %>
         <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
         <% } %>
@@ -685,7 +685,7 @@
         <p><%=session.startTime%></p>
         <p><%=session.endTime%></p>
         <form action="/join-session" method="post">
-          <input type="hidden" name="seatsLeft" value="<%=sessionSeats%>">
+          <input type="hidden" name="seatsLeft" value="<%=session.sessionSeats%>">
           <button class="submit btn btn-block type=" submit">Join session</button>
         </form>
       </article>

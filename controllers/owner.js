@@ -85,6 +85,7 @@ exports.postAddConference = (req, res, next) => {
 }
 
 exports.postAddNewSession = (req, res, next) => {
+    console.log(req.body)
     const { conferenceId, hallId, startTime, endTime } = {...req.body}
     const sessionSeats = 100; // smeni go
     const session = new ConferenceSession({
