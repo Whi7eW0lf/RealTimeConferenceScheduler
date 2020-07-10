@@ -655,9 +655,13 @@
 
   <script>
     const element = document.querySelectorAll(".allSessions");
-    var currentTime = new Date().toString().slice(0, 15);
     const startTime = {};
     const endTime = {};
+    window.startTime = getCurrentTime();
+
+    function getCurrentTime(){
+      return new Date().toString().slice(0, 21);
+    }
 
     for (let i = 0; i < element.length; i++) {
       startTime[i] = document.querySelector('.pStartTime').innerHTML;
@@ -667,21 +671,23 @@
 
 
     function allBtn() {
+
       for (let i = 0; i < element.length; i++) {
         element[i].classList.toggle("notHidden");
         element[i].classList.toggle("hidden");
       }
       console.log('start time: ', startTime);
       console.log('end time: ', endTime);
-      console.log('current time: ', currentTime);
+      console.log('current time: ', getCurrentTime());
       console.log('____________________________');
     }
 
-    function pastBtn(currentTime) {
+    function pastBtn() {
       for (let i = 0; i < element.length; i++) {
 
 
-        if (endTime < currentTime) {
+
+        if (endTime < window.startTime) {
           element[i].classList.toggle("notHidden")
         } else {
           element[i].classList.toggle("hidden");
@@ -690,16 +696,16 @@
       }
       console.log('start time: ', startTime);
       console.log('end time: ', endTime);
-      console.log('current time: ', currentTime);
+      console.log('current time: ', window.startTime);
       console.log('____________________________');
 
     }
 
-    function activeBtn(currentTime) {
+    function activeBtn(getCurrentTime) {
+
       for (let i = 0; i < element.length; i++) {
 
-
-        if (endTime === currentTime) {
+        if (endTime === window.startTime) {
           element[i].classList.toggle("notHidden")
         } else {
           element[i].classList.toggle("hidden");
@@ -708,26 +714,27 @@
       }
       console.log('start time: ', startTime);
       console.log('end time: ', endTime);
-      console.log('current time: ', currentTime);
+      console.log('current time: ', window.startTime);
       console.log('____________________________');
 
     }
 
-    function upcomingBtn(currentTime) {
+    function upcomingBtn(getCurrentTime) {
+
       for (let i = 0; i < element.length; i++) {
 
 
-        if (endTime > startTime) {
+        if (startTime>window.startTime) {
           element[i].classList.toggle("notHidden")
         } else {
           element[i].classList.toggle("hidden");
         }
 
       }
-      // console.log('start time: ', startTime);
-      // console.log('end time: ', endTime);
-      // console.log('current time: ', currentTime);
-      // console.log('____________________________');
+      console.log('start time: ', startTime);
+      console.log('end time: ', endTime);
+      console.log('current time: ', window.startTime);
+      console.log('____________________________');
 
     }
 
