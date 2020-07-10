@@ -3,6 +3,7 @@ const User = require("../models/user");
 const Hall = require("../models/hall");
 const Conference = require("../models/conference");
 const Venue = require("../models/venues");
+const session = require("express-session");
 
 
 exports.getMyConferences = (req, res, next) => {
@@ -85,33 +86,35 @@ exports.postAddConference = (req, res, next) => {
 }
 
 exports.postAddNewSession = (req, res, next) => {
-    console.log(req.body)
     const { conferenceId, hallId, startTime, endTime } = {...req.body}
-    const sessionSeats = 100; // smeni go
-    const session = new ConferenceSession({
-        conferenceId,
-        sessionSeats,
-        hallId,
-        startTime,
-        endTime
-    });
-    Conference.findById(conferenceId).populate("userId").then(conf => {
-        if (conf.userId._id.toString() !== req.user._id.toString()) {
+    let sessionSeats; 
+    Hall.findById(hallId).then(hall => {
+        sessionSeats = hall.seats
+    }).catch(err => console.log(err))
+    // const session = new ConferenceSession({
+    //     conferenceId,
+    //     sessionSeats,
+    //     hallId,
+    //     startTime,
+    //     endTime
+    // });
+    // Conference.findById(conferenceId).populate("userId").then(conf => {
+    //     if (conf.userId._id.toString() !== req.user._id.toString()) {
 
-            req.flash("error", "You can only add session for a conference that you created.")
-            res.redirect("/myconferences");
+    //         req.flash("error", "You can only add session for a conference that you created.")
+    //         res.redirect("/myconferences");
 
-        } else if (session.startTime > session.endTime) {
-            req.flash("error", "Session end time must be greated then start time. Please try again.")
-            res.redirect("/myconferences");
-        }
-        else {
-            return session.save().then(() => {
-                res.redirect("/myconferences");
-                console.log("ADDED SESSION");
-            })
-        }
-    })
+    //     } else if (session.startTime > session.endTime) {
+    //         req.flash("error", "Session end time must be greated then start time. Please try again.")
+    //         res.redirect("/myconferences");
+    //     }
+    //     else {
+    //         return session.save().then(() => {
+    //             res.redirect("/myconferences");
+    //             console.log("ADDED SESSION");
+    //         })
+    //     }
+    // })
 
 }
 exports.getAddHall = (req, res, next) => {
