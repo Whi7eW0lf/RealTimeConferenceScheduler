@@ -644,6 +644,7 @@
         <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
         <form class="product-form form1" action="/join-session" method="POST">
           <input type="hidden" value="<%= session._id %>" name="sessionId" />
+          <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
           <button class="submit btn btn-block" type="submit">Join session</button>
         </form>
       </article>
@@ -670,7 +671,10 @@
         element[i].classList.toggle("notHidden");
         element[i].classList.toggle("hidden");
       }
-
+      console.log('start time: ', startTime);
+      console.log('end time: ', endTime);
+      console.log('current time: ', currentTime);
+      console.log('____________________________');
     }
 
     function pastBtn(currentTime) {
@@ -688,6 +692,42 @@
       console.log('end time: ', endTime);
       console.log('current time: ', currentTime);
       console.log('____________________________');
+
+    }
+
+    function activeBtn(currentTime) {
+      for (let i = 0; i < element.length; i++) {
+
+
+        if (endTime === currentTime) {
+          element[i].classList.toggle("notHidden")
+        } else {
+          element[i].classList.toggle("hidden");
+        }
+
+      }
+      console.log('start time: ', startTime);
+      console.log('end time: ', endTime);
+      console.log('current time: ', currentTime);
+      console.log('____________________________');
+
+    }
+
+    function upcomingBtn(currentTime) {
+      for (let i = 0; i < element.length; i++) {
+
+
+        if (endTime > startTime) {
+          element[i].classList.toggle("notHidden")
+        } else {
+          element[i].classList.toggle("hidden");
+        }
+
+      }
+      // console.log('start time: ', startTime);
+      // console.log('end time: ', endTime);
+      // console.log('current time: ', currentTime);
+      // console.log('____________________________');
 
     }
 

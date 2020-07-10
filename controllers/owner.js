@@ -165,11 +165,12 @@ exports.postAddHall = (req, res, next) => {
 exports.postJoinSession = (req, res, next) => {
 
     const sessionId = req.body.sessionId;
+    const conferenceId = req.body.conferenceId;
     // console.log(req.user.session.sessions)
     Session.findById(sessionId).then(session => {
         if(checkExistingSession(req.user.session.sessions, session) === true) {
             req.flash("error", "You have already joined this session.")
-            res.redirect("/allconferences")
+            res.redirect("/allconferences/")
 
         }
         else if (session.sessionSeats === 0) {
@@ -191,6 +192,7 @@ function checkExistingSession(userSessions,session) {
     let isExisting = false;
 
     for(let row of userSessions) {
+
         if(row._id.toString() === session._id.toString()) {
             isExisting = true;
         }
