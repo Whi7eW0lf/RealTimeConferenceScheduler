@@ -4,82 +4,6 @@
 <body>
 
   <style>
-    /*//////////product card details/////////////*/
-
-    .card-detailss {
-      display: inline;
-      border-radius: 5em;
-      box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-      margin: 0 auto;
-    }
-
-    .lib-panel {
-      margin-bottom: 20Px;
-    }
-
-    .lib-panel img {
-      width: 100%;
-      background-color: transparent;
-    }
-
-    .lib-panel .row,
-    .lib-panel .col-md-6 {
-      padding: 0;
-      background-color: #FFFFFF;
-    }
-
-
-    .lib-panel .lib-row {
-      padding: 0 20px 0 20px;
-    }
-
-    .lib-panel .lib-row.lib-header {
-      background-color: #FFFFFF;
-      font-size: 20px;
-      padding: 10px 20px 0 20px;
-    }
-
-    .lib-panel .lib-row.lib-header .lib-header-seperator {
-      height: 2px;
-      width: 26px;
-      background-color: #d9d9d9;
-      margin: 7px 0 7px 0;
-    }
-
-    .lib-panel .lib-row.lib-desc {
-      position: relative;
-      height: 100%;
-      display: block;
-      font-size: 13px;
-    }
-
-    .lib-panel .lib-row.lib-desc a {
-      position: absolute;
-      width: 100%;
-      bottom: 10px;
-      left: 20px;
-    }
-
-    .row-margin-bottom {
-      margin-bottom: 20px;
-    }
-
-    .box-shadow {
-      -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .10);
-      box-shadow: 0 0 10px 0 rgba(0, 0, 0, .10);
-      height: 210px;
-      width: 350px;
-      border-radius: 5em;
-    }
-
-    .no-padding {
-      padding: 0;
-    }
-
-
-
-    /*////////////end of product card details////////*/
-
     .btn-session {
       margin-left: 0;
       margin-right: 0;
@@ -513,6 +437,7 @@
       text-align: center;
     }
 
+
     @media only screen and (max-width: 953px) {
       .labell {
         display: block;
@@ -629,6 +554,21 @@
         align-self: flex-start;
       }
     }*/
+
+
+    /* ACTIVE PAST UPCOMING BUTTONS STYLE END */
+
+    .hidden {
+      display: none;
+    }
+
+    .notHidden {
+      display: flex;
+    }
+
+
+
+    /* ACTIVE PAST UPCOMING BUTTONS STYLE END */
   </style>
 
 
@@ -687,10 +627,10 @@
   </div>
 
   <div class="buttons-data-filter">
-    <button class="submit1 btn btn-session allBtn" type="submit">ALL</button>
-    <button class="submit1 btn btn-session pastBtn" type="submit">PAST</button>
-    <button class="submit1 btn btn-session activeBtn" type="submit">ACTIVE</button>
-    <button class="submit1 btn btn-session upcomingBtn" type="submit">UPCOMING</button>
+    <button class="submit1 btn btn-session" onclick="allBtn()" type="submit">ALL</button>
+    <button class="submit1 btn btn-session" onclick="pastBtn()" type="submit">PAST</button>
+    <button class="submit1 btn btn-session" onclick="activeBtn()" type="submit">ACTIVE</button>
+    <button class="submit1 btn btn-session" onclick="upcomingBtn()" type="submit">UPCOMING</button>
   </div>
 
 
@@ -700,8 +640,8 @@
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.hallId.seats%></h3>
-        <p><%=session.startTime%></p>
-        <p><%=session.endTime%></p>
+        <p class="pStartTime"><%=session.startTime%></p>
+        <p class="pEndTime"><%=session.endTime%></p>
         <form class="product-form form1" action="/join-session" method="POST">
           <input type="hidden" value="<%= session.hallId.seats%>" name="seatsLeft" />
           <input type="hidden" value="<%= session._id %>" name="sessionId" />
@@ -714,21 +654,53 @@
 
 
   <script>
-    document.querySelector('.allBtn').addEventListener('click', () => {
-      let session = document.querySelector('.allSessions');
-      session.style.display = "flex";
-    });
+    const element = document.querySelectorAll(".allSessions");
+    const startTime = document.querySelector('pStartTime').innerHTML;
+    const endTime = document.querySelector('pEndTime').innerHTML;
+    const currentTime = new Data();
 
-    document.querySelector('.pastBtn').addEventListener('click', () => {
-      let session = document.querySelector('.allSessions');
-      console.log(session);
-      // for (let i=0; i<session.)
-      if (session.classList[3] = 'past') {
-        session.style.display = "none";
+    function allBtn() {
+      for (let i = 0; i < element.length; i++) {
+        element[i].classList.add("notHidden");
+      }
 
+    }
+
+    function pastBtn() {
+      for (let i = 0; i < element.length; i++) {
+        console.log('start time: ', startTime);
+        console.log('end time: ', endTime);
+        console.log('current time: ', currentTime);
+
+        if (endTime < currentTime) {
+          element[i].classList.add("notHidden")
+        } else {
+          element[i].classList.add("hidden");
+        }
 
       }
-    });
+
+    }
+
+
+    // document.querySelector('.allBtn').addEventListener('click', () => {
+    //   document.getElementsByClassName("allSessions").style.display = "none";
+    // });
+
+    // document.querySelector('.pastBtn').addEventListener('click', () => {
+    //   sessions = document.querySelectorAll('.allSessions');
+    //   console.log(session);
+      // for (let i=0; i<session.)
+      // for (sessions) {
+      //   if (conference.endTime < currentDate) {
+      //     sessions.classList[3] = "past";
+      //   }
+      // }
+
+
+
+
+    // });
 
     // document.querySelector('.allBtn').addEventListener('click', () => { }
 
