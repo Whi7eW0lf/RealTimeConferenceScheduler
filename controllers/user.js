@@ -50,8 +50,8 @@ exports.getConferences = (req, res, next) => {
 exports.getConferenceDetails = (req, res, next) => {
 
     const confId = req.params.conferenceId;
-    Conference.findOne({_id: confId}).populate("address").then(conf => {
-        ConferenceSession.find({conferenceId: conf._id}).populate("hallId").then(sessions => {
+    Conference.findOne({ _id: confId }).populate("address").then(conf => {
+        ConferenceSession.find({ conferenceId: conf._id }).populate("hallId").then(sessions => {
             Hall.find().then(halls => {
                 sessions = sessions.map(e => {
                     const startTime = e.startTime.toString().substring(0, 21);
@@ -59,7 +59,6 @@ exports.getConferenceDetails = (req, res, next) => {
                     return {
                         _id: e._id,
                         venueId: e.venueId,
-                        sessionSeats: e.sessionSeats,
                         conferenceId: e.conferenceId,
                         hallId: e.hallId,
                         startTime: startTime,
