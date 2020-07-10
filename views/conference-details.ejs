@@ -687,16 +687,16 @@
   </div>
 
   <div class="buttons-data-filter">
-    <button class="submit1 btn btn-session" type="submit" data-filter="all">ALL</button>
-    <button class="submit1 btn btn-session" type="submit" data-filter="past">PAST</button>
-    <button class="submit1 btn btn-session" type="submit" data-filter="active">ACTIVE</button>
-    <button class="submit1 btn btn-session" type="submit" data-filter="upcoming">UPCOMING</button>
+    <button class="submit1 btn btn-session allBtn" type="submit">ALL</button>
+    <button class="submit1 btn btn-session pastBtn" type="submit">PAST</button>
+    <button class="submit1 btn btn-session activeBtn" type="submit">ACTIVE</button>
+    <button class="submit1 btn btn-session upcomingBtn" type="submit">UPCOMING</button>
   </div>
 
 
   <div class="grid">
     <% for(let session of sessions) { %>
-    <div class="main1 filter past">
+    <div class="main1 filter allSessions past">
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.hallId.seats%></h3>
@@ -712,6 +712,32 @@
     <% } %>
   </div>
 
+
+  <script>
+    document.querySelector('.allBtn').addEventListener('click', () => {
+      let session = document.querySelector('.allSessions');
+      session.style.display = "flex";
+    });
+
+    document.querySelector('.pastBtn').addEventListener('click', () => {
+      let session = document.querySelector('.allSessions');
+      console.log(session);
+      // for (let i=0; i<session.)
+      if (session.classList[3] = 'past') {
+        session.style.display = "none";
+
+
+      }
+    });
+
+    // document.querySelector('.allBtn').addEventListener('click', () => { }
+
+    // document.querySelector('.allBtn').addEventListener('click', () => { }
+
+
+
+
+  </script>
 
 
   <%- include('includes/end.ejs') %>
