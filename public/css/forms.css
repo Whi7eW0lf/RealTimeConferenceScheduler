@@ -332,7 +332,7 @@ label.logo {
 
 nav ul {
   margin-right: 60px;
-  display: block;
+  display: flex;
 }
 
 nav ul li {
