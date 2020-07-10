@@ -640,8 +640,8 @@
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.hallId.seats%></h3>
-        <p class="pStartTime"><%=session.startTime%></p>
-        <p class="pEndTime"><%=session.endTime%></p>
+        <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
+        <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
         <form class="product-form form1" action="/join-session" method="POST">
           <input type="hidden" value="<%= session.hallId.seats%>" name="seatsLeft" />
           <input type="hidden" value="<%= session._id %>" name="sessionId" />
@@ -655,9 +655,14 @@
 
   <script>
     const element = document.querySelectorAll(".allSessions");
-    const startTime = document.querySelector('pStartTime').innerHTML;
-    const endTime = document.querySelector('pEndTime').innerHTML;
+    const startTime = document.querySelector('pStartTime');
+    const endTime = document.querySelector('pEndTime');
     const currentTime = new Data();
+
+    console.log(element);
+    console.log(startTime);
+    console.log(endTime);
+    console.log(currentTime);
 
     function allBtn() {
       for (let i = 0; i < element.length; i++) {
@@ -671,6 +676,7 @@
         console.log('start time: ', startTime);
         console.log('end time: ', endTime);
         console.log('current time: ', currentTime);
+        console.log('____________________________');
 
         if (endTime < currentTime) {
           element[i].classList.add("notHidden")
