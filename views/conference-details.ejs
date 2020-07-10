@@ -626,7 +626,7 @@
         <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
         <% } %>
       </select>
-      <input type="hidden" name="sessionSeats" value="<%=hall.seats">
+      <input type="hidden" name="sessionSeats" value="<%=hall.seats%>">
       <label class="sign2" align="center" for="startTime">Choose start end date and time</label>
       <input class="name" type="datetime-local" name="startTime" id="startTime">
       <label class="sign2" align="center" for="endTime">Choose start end date and time</label>
