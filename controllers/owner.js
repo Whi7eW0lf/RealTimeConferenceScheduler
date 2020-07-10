@@ -4,7 +4,7 @@ const Hall = require("../models/hall");
 const Conference = require("../models/conference");
 const Venue = require("../models/venues");
 const session = require("express-session");
-
+const mongodb = require("mongodb")
 
 exports.getMyConferences = (req, res, next) => {
     let message = req.flash("error");
@@ -158,10 +158,11 @@ exports.postAddHall = (req, res, next) => {
 exports.postJoinSession = (req, res, next) => {
 
     const userId = req.user._id;
-    const sessionId = req.body.sessionId;
 
+    const sessionId = req.body.sessionId
     User.findById(userId).then(ur => {
         Session.findById(sessionId).then(sn => {
+
             ur.addSession(sn);
             res.redirect("/")
         })

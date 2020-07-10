@@ -39,6 +39,7 @@ exports.getConferenceDetails = (req, res, next) => {
                                 const startTime = e.startTime.toString().substring(0, 21);
                                 const endTime = e.endTime.toString().substring(0, 21);
                                 return {
+                                    _id: e._id,
                                     venueId: e.venueId,
                                     conferenceId: e.conferenceId,
                                     hallId: e.hallId,
