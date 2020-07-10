@@ -654,36 +654,40 @@
 
   <script>
     const element = document.querySelectorAll(".allSessions");
-    const startTime = document.querySelector('pStartTime');
-    const endTime = document.querySelector('pEndTime');
-    const currentTime = new Date();
+    var currentTime = new Date().toString().slice(0, 15);
+    const startTime = {};
+    const endTime = {};
 
-    console.log(element);
-    console.log(startTime);
-    console.log(endTime);
-    console.log(currentTime);
+    for (let i = 0; i < element.length; i++) {
+      startTime[i] = document.querySelector('.pStartTime').innerHTML;
+      endTime[i] = document.querySelector('.pEndTime').innerHTML;
+    }
+
+
 
     function allBtn() {
       for (let i = 0; i < element.length; i++) {
-        element[i].classList.add("notHidden");
+        element[i].classList.toggle("notHidden");
+        element[i].classList.toggle("hidden");
       }
 
     }
 
-    function pastBtn() {
+    function pastBtn(currentTime) {
       for (let i = 0; i < element.length; i++) {
-        console.log('start time: ', startTime);
-        console.log('end time: ', endTime);
-        console.log('current time: ', currentTime);
-        console.log('____________________________');
+
 
         if (endTime < currentTime) {
-          element[i].classList.add("notHidden")
+          element[i].classList.toggle("notHidden")
         } else {
-          element[i].classList.add("hidden");
+          element[i].classList.toggle("hidden");
         }
 
       }
+      console.log('start time: ', startTime);
+      console.log('end time: ', endTime);
+      console.log('current time: ', currentTime);
+      console.log('____________________________');
 
     }
 
