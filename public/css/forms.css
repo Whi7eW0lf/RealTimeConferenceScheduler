@@ -401,7 +401,7 @@ a.active {
   text-align: center;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 953px) {
   .labell {
     display: block;
     cursor: pointer;
@@ -486,6 +486,13 @@ a.active {
     display: none;
     text-align: center;
   }
+
+  .grid > article img {
+    width: 100%;
+}
+
+.grid > article img {
+    width: 100%;
 }
 
 /*
