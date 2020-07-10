@@ -649,7 +649,7 @@
         <p><%=session.startTime%></p>
         <p><%=session.endTime%></p>
         <form action="/join-session" method="post">
-          <input type="hidden" name="seatsLeft" value="<%=sessionSeats">
+          <input type="hidden" name="seatsLeft" value="<%=sessionSeats%>">
           <button class="submit btn btn-block type=" submit">Join session</button>
         </form>
       </article>
