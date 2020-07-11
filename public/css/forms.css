@@ -59,7 +59,7 @@ body {
   padding-top: 18px;
   padding-bottom: 18px;
   background-color: #ffffff;
-  width: 400px;
+  width: 50vh;
   height: fit-content;
   margin: auto;
   border-radius: 1.5em;
@@ -120,11 +120,15 @@ p {
 }
 
 .head {
-  font-size: 32px;
+  font-size: 4vh;
   padding-block-start: 40px;
 }
 
-/*Conference add signup/in speaker add....*/
+h3 {
+  font-size: 3vh;
+}
+
+/* Conference add signup/in speaker add.... */
 
 .main {
   padding: 18px;
@@ -186,10 +190,6 @@ p {
 .name.textarea {
   resize: none;
 }
-
-/*form.form1 {
-  padding-top: 40px;
-}*/
 
 .seats,
 .description,
@@ -261,21 +261,9 @@ a {
   letter-spacing: 1.099px;
   padding: 2vh;
   border-radius: 3px;
-  /* text-transform: uppercase; */
   font-family: "Poppins", sans-serif;
 }
 
-/*a:link {
-  color: #0082e6;
-}*/
-/*
-@media (max-width: 600px) {
-  .main {
-    border-radius: 0px;
-  }
-}
-
-*/
 /* CSS for login */
 .un {
   width: 76%;
@@ -382,7 +370,6 @@ nav ul li a {
   letter-spacing: 1.099px;
   padding: 2vh;
   border-radius: 3px;
-  /* text-transform: uppercase; */
 
   font-family: "Poppins", sans-serif;
 }
@@ -460,6 +447,9 @@ a.active {
   body {
     padding: 0;
   }
+  .body {
+    padding: 0;
+  }
 
   .form1 {
     width: fit-content;
@@ -487,7 +477,9 @@ a.active {
   }
 
   .main1 {
-    display: grid;
+    display: flex;
+    margin-bottom: 28px;
+    text-align: left;
   }
 
   p {
@@ -525,36 +517,8 @@ a.active {
   .grid > article img {
     width: 100%;
   }
+
+  .img {
+    width: 100%;
+  }
 }
-/*
-@media only screen and (max-width: 500px) {
-    nav ul {
-        flex-direction: column;
-    }
-
-    nav ul li {
-        margin: 0;
-    }
-
-    nav ul li a {
-        display: block;
-    }
-}
-
-
-@media only screen and (max-width: 500px) {
-    .button-nav {
-        display: block;
-
-        padding: 2vw;
-        font-size: 3vh;
-        background-color: #AFE0FF;
-        border: none;
-
-        outline: none;
-
-        cursor: pointer;
-        align-self: flex-start;
-    }
-}
-*/

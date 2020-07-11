@@ -337,6 +337,24 @@
       color: white;
     }
 
+    .img {
+      z-index: 5;
+      position: relative;
+      top: 2vh;
+      left: 10vh;
+      max-width: 83vh;
+
+    }
+
+    .article {
+      z-index: 1000;
+      position: relative;
+      bottom: 2vh;
+      right: 10vh;
+      height: 30vh;
+
+    }
+
     @media (max-width: 600px) {
       .main {
         border-radius: 0px;
@@ -438,6 +456,7 @@
     }
 
 
+
     @media only screen and (max-width: 953px) {
       .labell {
         display: block;
@@ -484,6 +503,8 @@
         color: black;
         font-size: 16px;
         font-weight: bold;
+        text-align: center;
+        margin: 0 auto;
       }
 
       .grid {
@@ -496,6 +517,7 @@
 
       .main1 {
         display: grid;
+        margin-bottom: 28px;
       }
 
       p {
@@ -514,46 +536,29 @@
       .grid>article img {
         width: 100%;
       }
+
+      .img {
+        padding-top: 3vh;
+
+        z-index: 5;
+        position: staic;
+        top: 0;
+        left: 0;
+        max-width: webkit-fill-available;
+
+      }
+
+      .article {
+        z-index: 1000;
+        position: static;
+        bottom: 0;
+        right: 0;
+        height: 30vh;
+
+      }
+
     }
 
-
-
-
-    /*
-    @media only screen and (max-width: 500px) {
-      nav ul {
-        flex-direction: column;
-      }
-
-      nav ul li {
-        margin: 0;
-      }
-
-      nav ul li a {
-        display: block;
-      }
-    }
-
-    .button-nav {
-      display: none;
-    }
-
-
-    @media only screen and (max-width: 500px) {
-      .button-nav {
-        display: block;
-
-        padding: 2vw;
-        font-size: 3vh;
-        background-color: #AFE0FF;
-        border: none;
-
-        outline: none;
-
-        cursor: pointer;
-        align-self: flex-start;
-      }
-    }*/
 
 
     /* ACTIVE PAST UPCOMING BUTTONS STYLE END */
@@ -566,9 +571,84 @@
       display: flex;
     }
 
+    /* ACTIVE PAST UPCOMING BUTTONS STYLE END  /|\  */
 
 
-    /* ACTIVE PAST UPCOMING BUTTONS STYLE END */
+
+
+    /* POP UP NOTIFICATION CONFERNCE DETAILS PAGE \|/  */
+
+    /* Popup container - can be anything you want */
+    .popup {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* The actual popup */
+    .popup .popuptext {
+      visibility: hidden;
+      width: 160px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 0;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -80px;
+    }
+
+    /* Popup arrow */
+    .popup .popuptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+    }
+
+    /* Toggle this class - hide and show the popup */
+    .popup .show {
+      visibility: visible;
+      -webkit-animation: fadeIn 1s;
+      animation: fadeIn 1s;
+    }
+
+    .toggle {
+      background-color: rgba(0, 0, 0, 0.5);
+
+    }
+
+    /* Add animation (fade in the popup) */
+    @-webkit-keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
   </style>
 
 
@@ -576,11 +656,22 @@
 
 
 
-  <div class="container">
+  <div>
 
-    <div class="imagee main textt grid2">
-      <p>Name: <br><%=conference.name%></p>
-      <p>Description: <br><%=conference.description%></p>
+    <div class="main grid2">
+      <div class="grid2">
+        <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+      </div>
+      <div class="article main popup" onclick="popUp()">
+        <p>Name: <%=conference.name%></p>
+        <p>Description: <%=conference.description%></p>
+        <span class="popuptext" id="myPopup">
+          <p>Name: <%=conference.name%></p>
+          <p>Description: <%=conference.description%></p>
+        </span>
+
+      </div>
+
 
     </div>
 
@@ -739,30 +830,17 @@
     }
 
 
-    // document.querySelector('.allBtn').addEventListener('click', () => {
-    //   document.getElementsByClassName("allSessions").style.display = "none";
-    // });
+    // //////////    Pop up     //////////
+    function popUp() {
+      var popup = document.getElementById("myPopup");
+      popup.classList.toggle("show");
+    }
 
-    // document.querySelector('.pastBtn').addEventListener('click', () => {
-    //   sessions = document.querySelectorAll('.allSessions');
-    //   console.log(session);
-      // for (let i=0; i<session.)
-      // for (sessions) {
-      //   if (conference.endTime < currentDate) {
-      //     sessions.classList[3] = "past";
-      //   }
-      // }
-
-
-
-
-    // });
-
-    // document.querySelector('.allBtn').addEventListener('click', () => { }
-
-    // document.querySelector('.allBtn').addEventListener('click', () => { }
-
-
+    () => {
+      var popUp = document.querySelector('.popup').addEventListener('mouseover', () => {
+        popUp.classList.toggle("toggle");
+      })
+    }
 
 
   </script>

@@ -90,18 +90,21 @@
     <% } %>
     <main class="grid">
         <% for (let conference of conferences) { %>
-        <article>
-            <img src="https://picsum.photos/600/400?image=1083" alt="Sample photo">
-            <div class="text">
-                <p class="sign conference-header"><%=conference.name%></p>
-                <p><b>Start time: </b><%=conference.startTime%></p>
-                <p><b>End time: </b><%=conference.endTime%></p>
-                <p maxlength="20"><b>Description: </b><%=conference.description%></p>
-                <p><b>Address: </b><%=conference.address.adress%></p>
-                <a href="/allconferences/<%= conference._id %>" name="conferenceId"
-                    class="submit button btn-block">Details</a>
-            </div>
-        </article>
+        <div class="main1">
+            <article class="active">
+                <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+                <div class="text">
+                    <p class="sign conference-header"><%=conference.name%></p>
+                    <p><b>Start time: </b><%=conference.startTime%></p>
+                    <p><b>End time: </b><%=conference.endTime%></p>
+                    <p maxlength="20"><b>Description: </b><%=conference.description%></p>
+                    <p><b>Address: </b><%=conference.address.adress%></p>
+                    <a href="/allconferences/<%= conference._id %>" name="conferenceId"
+                        class="submit button btn-block">Details</a>
+                </div>
+            </article>
+        </div>
+
         <% } %>
         <!--<script> var sass = require('node-sass'); </script>-->
     </main>

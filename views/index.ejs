@@ -8,7 +8,7 @@
 
     <%- include('includes/navigation.ejs') %>
 
-    <div class="container">
+    <div>
 
         <p align="center" class="sign head">Welcome to Conferences site</p>
         <h3 align="center">Testing slogan :) </h3>
@@ -16,7 +16,7 @@
 
             <% for (let conference of conferences) { %>
             <div class="main1">
-                <article class="article">
+                <article class="active">
                     <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
                     <div class="text">
                         <p class="sign conference-header" align="center"><%=conference.name%></p>
@@ -29,9 +29,6 @@
                     </div>
                 </article>
             </div>
-
-
-
 
             <% } %>
 

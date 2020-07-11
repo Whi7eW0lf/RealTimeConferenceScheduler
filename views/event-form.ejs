@@ -82,83 +82,82 @@
     </div>
 
     <% } %>
-    <main>
-        Past
-        <div class="grid">
+    <h3 align="center">Past</h3>
+    <div class="grid">
 
-            <% for (let conference of conferences) { %>
-            <%if(conference.endTime < currentDate) { %>
-            <div class="main1">
-                <article class="past ">
-                    <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
-                    <div class="text">
-                        <p class="sign conference-header" align="center"><%=conference.name%></p>
-                        <p><b>Start time: </b><%=conference.startTime%></p>
-                        <p><b>End time: </b><%=conference.endTime%></p>
-                        <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
-                        <p><b>Address: </b><%=conference.address.adress%></p>
-                        <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"
-                            class="submit button btn-block">Details</a>
-                    </div>
-                </article>
-            </div>
-            <% } %>
-            <% } %>
-
-
+        <% for (let conference of conferences) { %>
+        <%if(conference.endTime < currentDate) { %>
+        <div class="main1">
+            <article class="past ">
+                <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+                <div class="text">
+                    <p class="sign conference-header" align="center"><%=conference.name%></p>
+                    <p><b>Start time: </b><%=conference.startTime%></p>
+                    <p><b>End time: </b><%=conference.endTime%></p>
+                    <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
+                    <p><b>Address: </b><%=conference.address.adress%></p>
+                    <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"
+                        class="submit button btn-block">Details</a>
+                </div>
+            </article>
         </div>
-        Active
-        <div class="grid">
+        <% } %>
+        <% } %>
 
-            <% for (let conference of conferences) { %>
-            <%if(conference.startTime < currentDate && conference.endTime > currentDate) { %>
-            <div class="main1">
-                <article class="active">
-                    <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
-                    <div class="text">
-                        <p class="sign conference-header" align="center"><%=conference.name%></p>
-                        <p><b>Start time: </b><%=conference.startTime%></p>
-                        <p><b>End time: </b><%=conference.endTime%></p>
-                        <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
-                        <p><b>Address: </b><%=conference.address.adress%></p>
-                        <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"
-                            class="submit button btn-block">Details</a>
-                    </div>
-                </article>
-            </div>
-            <% } %>
-            <% } %>
+
+    </div>
+    <h3 align="center">Active</h3>
+    <div class="grid">
+
+        <% for (let conference of conferences) { %>
+        <%if(conference.startTime < currentDate && conference.endTime > currentDate) { %>
+        <div class="main1">
+            <article class="active">
+                <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+                <div class="text">
+                    <p class="sign conference-header" align="center"><%=conference.name%></p>
+                    <p><b>Start time: </b><%=conference.startTime%></p>
+                    <p><b>End time: </b><%=conference.endTime%></p>
+                    <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
+                    <p><b>Address: </b><%=conference.address.adress%></p>
+                    <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"
+                        class="submit button btn-block">Details</a>
+                </div>
+            </article>
         </div>
+        <% } %>
+        <% } %>
+    </div>
 
 
+    </div>
+    <h3 align="center">Future</h3>
+    <div class="grid">
+
+        <% for (let conference of conferences) { %>
+        <%if(conference.startTime > currentDate) { %>
+        <div class="main1">
+            <article class="future">
+                <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+                <div class="text">
+                    <p class="sign conference-header" align="center"><%=conference.name%></p>
+                    <p><b>Start time: </b><%=conference.startTime%></p>
+                    <p><b>End time: </b><%=conference.endTime%></p>
+                    <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
+                    <p><b>Address: </b><%=conference.address.adress%></p>
+                    <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"
+                        class="submit button btn-block">Details</a>
+                </div>
+            </article>
         </div>
-        Future
-        <div class="grid">
-
-            <% for (let conference of conferences) { %>
-            <%if(conference.startTime > currentDate) { %>
-            <div class="main1">
-                <article class="future">
-                    <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
-                    <div class="text">
-                        <p class="sign conference-header" align="center"><%=conference.name%></p>
-                        <p><b>Start time: </b><%=conference.startTime%></p>
-                        <p><b>End time: </b><%=conference.endTime%></p>
-                        <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
-                        <p><b>Address: </b><%=conference.address.adress%></p>
-                        <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"
-                            class="submit button btn-block">Details</a>
-                    </div>
-                </article>
-            </div>
-            <% } %>
-            <% } %>
-        </div>
+        <% } %>
+        <% } %>
+    </div>
 
 
-        </div>
+    </div>
 
-    </main>
+
 
 
 
