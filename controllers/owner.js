@@ -149,7 +149,7 @@ exports.postAddHall = (req, res, next) => {
     const seats = req.body.seats;
     const venueId = req.body.venueId;
     const hall = new Hall({name, seats, venueId});
-    Venue.findById(venueId).then(venue => {
+    Venue.findById(venueId).populate("venueHalls.halls.hallId").then(venue => {
         console.log(venue)
         if (!venue.venueHalls.halls.includes(name)) {
             venue.addHall(hall._id)
