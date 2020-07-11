@@ -108,13 +108,14 @@ exports.postAddNewSession = (req, res, next) => {
         });
         Conference.findById(conferenceId).populate("userId").then(conf => {
             if (conf.userId._id.toString() !== req.user._id.toString()) {
-
                 req.flash("error", "You can only add session for a conference that you created.")
-                res.redirect("/myconferences");
-
+                res.redirect("/allconferences");
+            } else if (!(session.startTime > conf.startTime && session.endTime < conf.endTime) ) {
+                req.flash("error", "Session start time and end time must be between conference start time and end time")
+                res.redirect("/allconferences");
             } else if (session.startTime > session.endTime) {
                 req.flash("error", "Session end time must be greated then start time. Please try again.")
-                res.redirect("/myconferences");
+                res.redirect("/allconferences");
             } else {
                 hall.addSession(session)
                 return session.save().then(() => {

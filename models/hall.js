@@ -25,7 +25,6 @@ const hallSchema = new Schema({
 
 hallSchema.methods.addSession = function (session) {
     this.hallSession.sessions.push(session);
-
     return this.save()
 }
 
