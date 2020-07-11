@@ -844,15 +844,15 @@
 
   <script>
     const element = document.querySelectorAll(".allSessions");
-    const startTime = [];
-    const endTime = [];
+    const startTime = {};
+    const endTime = {};
     window.currentTime = getCurrentTime();
-    const allSes = [];
-    const pastSes = [];
-    const activeSes = [];
-    const upcomingSes = [];
+    const allSes = {};
+    const pastSes = {};
+    const activeSes = {};
+    const upcomingSes = {};
 
-    const sessionId = [];
+    const sessionId = {};
 
 
     function getCurrentTime() {
@@ -862,7 +862,6 @@
     for (let i = 0; i < element.length; i++) {
       startTime[i] = document.querySelector('.pStartTime').innerHTML.slice(37, 55);
       endTime[i] = document.querySelector('.pEndTime').innerHTML.slice(34, 55);
-      allSes[i] = startTime[i];
 
     }
 
