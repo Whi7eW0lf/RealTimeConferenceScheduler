@@ -518,6 +518,7 @@
       .main1 {
         display: grid;
         margin-bottom: 28px;
+        max-width: fit-content;
       }
 
       p {
@@ -656,7 +657,7 @@
 
 
 
-  <div>
+  <div class="main">
 
     <div class="main grid2">
       <div class="grid2">
@@ -746,8 +747,8 @@
 
   <script>
     const element = document.querySelectorAll(".allSessions");
-    const startTime = "";
-    const endTime = "";
+    const startTime = [];
+    const endTime = [];
     window.currentTime = getCurrentTime();
 
     function getCurrentTime() {
