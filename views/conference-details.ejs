@@ -132,7 +132,7 @@
 
 
     .sign {
-      padding-top: 20px;
+      padding-top: 12vh;
       padding-bottom: 30px;
       color: #0082e6;
       font-family: 'Ubuntu', sans-serif;
@@ -596,50 +596,57 @@
     /* POP UP NOTIFICATION CONFERNCE DETAILS PAGE \|/  */
 
     /* Popup container - can be anything you want */
-    .popup {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    /* The actual popup */
-    .popup .popuptext {
-      visibility: hidden;
-      width: 160px;
-      background-color: #555;
-      color: #fff;
-      text-align: center;
-      border-radius: 6px;
-      padding: 8px 0;
-      position: absolute;
+    /* The Modal (background) */
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
       z-index: 1;
-      bottom: 125%;
-      left: 50%;
-      margin-left: -80px;
+      /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
     }
 
-    /* Popup arrow */
-    .popup .popuptext::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: #555 transparent transparent transparent;
+    /* Modal Content/Box */
+    .modal-content {
+      background-color: #3a3f45;
+      margin: 15% auto;
+      /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #3a3f45ab;
+      width: 80%;
+      border-radius: 1.5em;
+      /* Could be more or less, depending on screen size */
     }
 
-    /* Toggle this class - hide and show the popup */
-    .popup .show {
-      visibility: visible;
-      -webkit-animation: fadeIn 1s;
-      animation: fadeIn 1s;
+    /* The Close Button */
+    .close {
+      color: rgba(255, 255, 255, 0.582);
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
     }
+
+    .close:hover,
+    .close:focus {
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+
+    /* /////     end of popUp    ////// */
 
     .toggle {
       background-color: rgba(0, 0, 0, 0.5);
@@ -663,14 +670,27 @@
     .textCard {
       width: 50%;
       color: #fff;
-      background-color: rgba(61, 61, 61, 0.767);
+      background-color: #1a1e1c75;
       max-height: 50vh;
       flex-wrap: wrap;
       flex-direction: row;
+      cursor: pointer;
     }
 
+    .popUpTxt {
+      white-space: normal;
+      overflow: unset;
+      text-overflow: unset;
+      display: block;
+      width: auto;
+      flex-wrap: wrap;
+
+    }
+
+
+    /* 
     /* Add animation (fade in the popup) */
-    @-webkit-keyframes fadeIn {
+    /* @-webkit-keyframes fadeIn {
       from {
         opacity: 0;
       }
@@ -688,7 +708,7 @@
       to {
         opacity: 1;
       }
-    }
+    } */
   </style>
 
 
@@ -710,21 +730,30 @@
 
   <div class="flex-box">
     <div class="imageCard">
-      <img src="https://picsum.photos/600/400?image=1083" alt="">
+      <img src="https://picsum.photos/600/400?image=1083" class="imagee" alt="">
     </div>
-    <div class="mainCardDetails textCard" onclick="popUp()">
+    <div class="mainCardDetails textCard popup" id="myDiv" onmouseover="this.style.backgroundColor ='#1a1e1c91'"
+      onmouseout="this.style.backgroundColor = '#1a1e1c75'">
       <p>Name: <%=conference.name%></p>
       <p>Description: <%=conference.description%></p>
       <p>Description: <%=conference.description%></p>
       <p>Description: <%=conference.description%></p>
       <p>Description: <%=conference.description%></p>
-      <span class="popuptext" id="myPopup">
-        <p>Name: <%=conference.name%></p>
-        <p>Description: <%=conference.description%></p>
-        <p>Description: <%=conference.description%></p>
-        <p>Description: <%=conference.description%></p>
-        <p>Description: <%=conference.description%></p>
-      </span>
+
+
+      <!--//////      popUp     ////// -->
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close"
+            onclick="() => {document.getElementsByClassName('close').style.display = 'none';}">&times;</span>
+          <p class="popUpTxt"><b class="sign1">Name: </b><%=conference.name%></p>
+          <p class="popUpTxt"><b class="sign1">Description: </b><%=conference.description%></p>
+          <p class="popUpTxt"><b class="sign1">Description: </b><%=conference.description%></p>
+          <p class="popUpTxt"><b class="sign1">Description: </b><%=conference.description%></p>
+          <p class="popUpTxt"><b class="sign1">Description: </b><%=conference.description%></p>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -823,8 +852,8 @@
     }
 
     for (let i = 0; i < element.length; i++) {
-      startTime[i] = document.querySelector('.pStartTime').innerHTML;
-      endTime[i] = document.querySelector('.pEndTime').innerHTML;
+      startTime[i] = document.querySelector('.pStartTime').innerHTML.slice(37, 55);
+      endTime[i] = document.querySelector('.pEndTime').innerHTML.slice(34, 55);
     }
 
 
@@ -899,16 +928,27 @@
 
 
     // //////////    Pop up     //////////
-    function popUp() {
-      var popup = document.getElementById("myPopup");
-      popup.classList.toggle("show");
+    var modal = document.getElementById("myModal");
+    var divv = document.getElementById("myDiv");
+    var span = document.getElementsByClassName('close')[0];
+
+    divv.onclick = function () {
+      modal.style.display = "block";
+      console.log(span);
     }
 
-    () => {
-      var popUp = document.querySelector('.popup').addEventListener('mouseover', () => {
-        popUp.classList.toggle("toggle");
-      })
+    span.onclick = function () {
+      modal.style.display = "none";
     }
+
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+
+
 
 
   </script>
