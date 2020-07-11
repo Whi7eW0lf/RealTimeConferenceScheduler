@@ -18,9 +18,24 @@ const venueSchema = new Schema({
     phone: {
         type: String,
         required: true
+    },
+    venueHalls: {
+        halls: [
+            {
+                hallId: {
+                    type: Schema.Types.ObjectId,
+                    ref: "Hall",
+                }
+            }
+        ]
     }
-    
+
 
 })
+
+venueSchema.methods.addHall = function (hall) {
+    this.venueHalls.halls.push(hall);
+    return this.save()
+}
 
 module.exports = mongoose.model("Venue", venueSchema);
