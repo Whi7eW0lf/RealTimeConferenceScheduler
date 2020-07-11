@@ -736,9 +736,9 @@
       onmouseout="this.style.backgroundColor = '#1a1e1c75'">
       <p>Name: <%=conference.name%></p>
       <p>Description: <%=conference.description%></p>
-      <p>Description: <%=conference.description%></p>
-      <p>Description: <%=conference.description%></p>
-      <p>Description: <%=conference.description%></p>
+      <p>Speaker name: <%=conference.speakerName%></p>
+      <p>Start time: <%=conference.startTime%></p>
+      <p>End time: <%=conference.endTime%></p>
 
 
       <!--//////      popUp     ////// -->
@@ -748,9 +748,10 @@
             onclick="() => {document.getElementsByClassName('close').style.display = 'none';}">&times;</span>
           <p class="popUpTxt"><b class="sign1">Name: </b><%=conference.name%></p>
           <p class="popUpTxt"><b class="sign1">Description: </b><%=conference.description%></p>
-          <p class="popUpTxt"><b class="sign1">Description: </b><%=conference.description%></p>
-          <p class="popUpTxt"><b class="sign1">Description: </b><%=conference.description%></p>
-          <p class="popUpTxt"><b class="sign1">Description: </b><%=conference.description%></p>
+          <p class="popUpTxt"><b class="sign1">Speaker Name: </b><%=conference.speakerName%></p>
+          </p>
+          <p class="popUpTxt"><b class="sign1">Start time: </b><%=conference.startTime%></p>
+          <p class="popUpTxt"><b class="sign1">End time: </b><%=conference.endTime%></p>
         </div>
       </div>
 
@@ -846,6 +847,13 @@
     const startTime = [];
     const endTime = [];
     window.currentTime = getCurrentTime();
+    const allSes = [];
+    const pastSes = [];
+    const activeSes = [];
+    const upcomingSes = [];
+
+    const sessionId = [];
+
 
     function getCurrentTime() {
       return new Date().toString().slice(0, 21);
@@ -854,6 +862,8 @@
     for (let i = 0; i < element.length; i++) {
       startTime[i] = document.querySelector('.pStartTime').innerHTML.slice(37, 55);
       endTime[i] = document.querySelector('.pEndTime').innerHTML.slice(34, 55);
+      allSes[i] = startTime[i];
+
     }
 
 
@@ -875,7 +885,7 @@
 
 
 
-        if (endTime < window.currentTime) {
+        if (endTime[i] < window.currentTime) {
           element[i].classList.toggle("notHidden")
         } else {
           element[i].classList.toggle("hidden");
@@ -893,7 +903,7 @@
 
       for (let i = 0; i < element.length; i++) {
 
-        if (endTime > window.currentTime && startTime < window.currentTime) {
+        if (endTime[i] > window.currentTime && startTime[i] < window.currentTime) {
           element[i].classList.toggle("notHidden")
         } else {
           element[i].classList.toggle("hidden");
@@ -912,7 +922,7 @@
       for (let i = 0; i < element.length; i++) {
 
 
-        if (startTime > window.currentTime) {
+        if (startTime[i] > window.currentTime) {
           element[i].classList.toggle("notHidden")
         } else {
           element[i].classList.toggle("hidden");
