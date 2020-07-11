@@ -116,6 +116,7 @@ exports.postAddNewSession = (req, res, next) => {
                 req.flash("error", "Session end time must be greated then start time. Please try again.")
                 res.redirect("/myconferences");
             } else {
+                hall.addSession(session)
                 return session.save().then(() => {
                     res.redirect("/myconferences");
                     console.log("ADDED SESSION");
