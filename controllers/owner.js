@@ -1,10 +1,10 @@
 const Session = require("../models/session");
-const User = require("../models/user");
 const Hall = require("../models/hall");
 const Conference = require("../models/conference");
 const Venue = require("../models/venues");
 const session = require("express-session");
-const mongodb = require("mongodb")
+const checkExistingSession = require("../util/checkExistingSession");
+
 
 exports.getMyConferences = (req, res, next) => {
     let message = req.flash("error");
@@ -166,11 +166,10 @@ exports.postJoinSession = (req, res, next) => {
 
     const sessionId = req.body.sessionId;
     const conferenceId = req.body.conferenceId;
-    // console.log(req.user.session.sessions)
     Session.findById(sessionId).then(session => {
         if(checkExistingSession(req.user.session.sessions, session) === true) {
             req.flash("error", "You have already joined this session.")
-            res.redirect("/allconferences/")
+            res.redirect("/allconferences")
 
         }
         else if (session.sessionSeats === 0) {
@@ -188,14 +187,3 @@ exports.postJoinSession = (req, res, next) => {
 
 }
 
-function checkExistingSession(userSessions,session) {
-    let isExisting = false;
-
-    for(let row of userSessions) {
-
-        if(row._id.toString() === session._id.toString()) {
-            isExisting = true;
-        }
-    }
-    return isExisting;
-}

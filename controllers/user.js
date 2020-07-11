@@ -67,7 +67,7 @@ exports.getConferenceDetails = (req, res, next) => {
                     }
                 })
                 res.render("conference-details", {
-                    halls: halls,
+                    halls: halls || [],
                     pageTitle: conf.name,
                     isLoggedIn: req.session.isLoggedIn,
                     path: "/",
