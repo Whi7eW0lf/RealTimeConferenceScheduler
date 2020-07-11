@@ -99,34 +99,33 @@ exports.postAddNewSession = (req, res, next) => {
     let sessionSeats;
     Hall.findById(hallId).then(hall => {
         sessionSeats = hall.seats;
-        const session = new Session({
-            conferenceId,
-            sessionSeats,
-            hallId,
-            startTime,
-            endTime
-        });
-        Conference.findById(conferenceId).populate("userId").then(conf => {
-            if (conf.userId._id.toString() !== req.user._id.toString()) {
-                req.flash("error", "You can only add session for a conference that you created.")
-                res.redirect("/allconferences");
-            } else if (!(session.startTime > conf.startTime && session.endTime < conf.endTime) ) {
-                req.flash("error", "Session start time and end time must be between conference start time and end time")
-                res.redirect("/allconferences");
-            } else if (session.startTime > session.endTime) {
-                req.flash("error", "Session end time must be greated then start time. Please try again.")
-                res.redirect("/allconferences");
-            } else {
-                hall.addSession(session)
-                return session.save().then(() => {
-                    res.redirect("/myconferences");
-                    console.log("ADDED SESSION");
-                })
-            }
-        })
-    }).catch(err => console.log(err))
-
-}
+            const session = new Session({
+                conferenceId,
+                sessionSeats,
+                hallId,
+                startTime,
+                endTime
+            });
+            Conference.findById(conferenceId).populate("userId").then(conf => {
+                if (conf.userId._id.toString() !== req.user._id.toString()) {
+                        req.flash("error", "You can only add session for a conference that you created.")
+                        res.redirect("/allconferences");
+                } else if (!(session.startTime > conf.startTime && session.endTime<conf.endTime) ) {
+                        req.flash("error", "Session start time and end time must be between conference start time and end time")
+                        res.redirect("/allconferences");
+                } else if (session.startTime>session.endTime) {
+                        req.flash("error", "Session end time must be greated then start time. Please try again.");
+                        res.redirect("/allconferences");
+                } else {
+                        hall.addSession(session)
+                        return session.save().then(() => {
+                            res.redirect("/myconferences");
+                            console.log("ADDED SESSION");
+                        })
+                    }
+                }
+            )}
+    ).catch(err => console.log(err))}
 exports.getAddHall = (req, res, next) => {
     let message = req.flash("error");
 
@@ -149,11 +148,12 @@ exports.postAddHall = (req, res, next) => {
     const name = req.body.name;
     const seats = req.body.seats;
     const venueId = req.body.venueId;
-    const halls = new Hall({name, seats, venueId});
-
-    Hall.findOne({name: name}).then(hall => {
-        if (!hall) {
-            halls.save().then(() => {
+    const hall = new Hall({name, seats, venueId});
+    Venue.findById(venueId).populate("venueHalls.halls.hallId").then(venue => {
+        console.log(venue)
+        if (!venue.venueHalls.halls.includes(name)) {
+            venue.addHall(hall._id)
+            return hall.save().then(() => {
                 res.redirect("/");
                 console.log("Hall added successful!");
             }).catch(err => console.log(err))
@@ -161,7 +161,18 @@ exports.postAddHall = (req, res, next) => {
             req.flash("error", "This hall already exists.")
             res.redirect("/add-hall");
         }
-    }).catch(err => console.log(err));
+        // Hall.findOne({name: name}).then(hall => {
+        //     if (!hall) {
+        //         halls.save().then(() => {
+        //             res.redirect("/");
+        //             console.log("Hall added successful!");
+        //         }).catch(err => console.log(err))
+        //     } else {
+        //         req.flash("error", "This hall already exists.")
+        //         res.redirect("/add-hall");
+        //     }
+        // }).catch(err => console.log(err));
+    }).catch(err => console.log(err))
 }
 
 exports.postJoinSession = (req, res, next) => {
@@ -169,23 +180,20 @@ exports.postJoinSession = (req, res, next) => {
     const sessionId = req.body.sessionId;
     const conferenceId = req.body.conferenceId;
     Session.findById(sessionId).then(session => {
-        if(checkExistingSession(req.user.session.sessions, session) === true) {
+        if (checkExistingSession(req.user.session.sessions, session) === true) {
             req.flash("error", "You have already joined this session.")
             res.redirect("/allconferences")
 
-        }
-        else if (session.sessionSeats === 0) {
+        } else if (session.sessionSeats === 0) {
             req.flash('error', "No more seats available for this session. Please try to join other session or other conference.");
             res.redirect("/allconferences")
-        }
-        else {
+        } else {
             session.seatTaken()
             return req.user.addSession(session).then(() => {
                 res.redirect("/allconferences")
             }).catch(err => console.log(err))
         }
-       
-    }).catch(err =>console.log(err))
+
+    }).catch(err => console.log(err))
 
 }
-
