@@ -98,11 +98,11 @@
     }
 
     .mainCardDetails {
-      display: flex;
+      display: block;
       flex-direction: column;
       justify-content: center;
       padding: 18px;
-      background-color: transparent;
+      background-color: rgba(61, 61, 61, 0.171);
       width: 400px;
       height: fit-content;
       margin: 7em auto;
@@ -540,7 +540,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        display: inline-grid;
+        display: inline-block;
         width: -webkit-fill-available;
 
       }
@@ -646,6 +646,29 @@
 
     }
 
+    .flex-box {
+      display: flex;
+      flex-direction: row;
+      border-radius: 1.5em;
+      width: 75%;
+      margin: 0 auto;
+      padding-top: 8vh;
+    }
+
+    .imageCard {
+      width: 50%;
+
+    }
+
+    .textCard {
+      width: 50%;
+      color: #fff;
+      background-color: rgba(61, 61, 61, 0.767);
+      max-height: 50vh;
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
+
     /* Add animation (fade in the popup) */
     @-webkit-keyframes fadeIn {
       from {
@@ -671,7 +694,7 @@
 
   <%- include('includes/navigation.ejs') %>
 
-<!-- 
+  <!-- 
   <div flex = row = border-radius = width: 80%, sredaya>
     <div width 50>
       <img width/>
@@ -684,6 +707,27 @@
       <p></p>
     </div>
   </div> -->
+
+  <div class="flex-box">
+    <div class="imageCard">
+      <img src="https://picsum.photos/600/400?image=1083" alt="">
+    </div>
+    <div class="mainCardDetails textCard" onclick="popUp()">
+      <p>Name: <%=conference.name%></p>
+      <p>Description: <%=conference.description%></p>
+      <p>Description: <%=conference.description%></p>
+      <p>Description: <%=conference.description%></p>
+      <p>Description: <%=conference.description%></p>
+      <span class="popuptext" id="myPopup">
+        <p>Name: <%=conference.name%></p>
+        <p>Description: <%=conference.description%></p>
+        <p>Description: <%=conference.description%></p>
+        <p>Description: <%=conference.description%></p>
+        <p>Description: <%=conference.description%></p>
+      </span>
+    </div>
+  </div>
+
 
 
   <div class="main">
@@ -725,9 +769,9 @@
 
       <select class="role name form-control" name="hallId" id="hall">
         <% for (let hall of halls) { %>
-          <% if(hall.venueId.toString() === conference.address._id.toString()) { %>
-            <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
-          <% } %>
+        <% if(hall.venueId.toString() === conference.address._id.toString()) { %>
+        <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
+        <% } %>
         <% } %>
       </select>
       <label class="sign2" align="center" for="startTime">Choose start end date and time</label>
