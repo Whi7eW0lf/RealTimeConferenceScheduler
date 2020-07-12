@@ -4,7 +4,7 @@ const Conference = require("../models/conference");
 const Venue = require("../models/venues");
 const session = require("express-session");
 const checkExistingSession = require("../util/checkExistingSession");
-
+const checkExistingHall = require("../util/checkExistingHall")
 
 exports.getMyConferences = (req, res, next) => {
     let message = req.flash("error");
@@ -110,13 +110,13 @@ exports.postAddNewSession = (req, res, next) => {
                 if (conf.userId._id.toString() !== req.user._id.toString()) {
                         req.flash("error", "You can only add session for a conference that you created.")
                         res.redirect("/allconferences");
-                } else if (!(session.startTime > conf.startTime && session.endTime<conf.endTime) ) {
+                    } else if (!(session.startTime > conf.startTime && session.endTime<conf.endTime) ) {
                         req.flash("error", "Session start time and end time must be between conference start time and end time")
                         res.redirect("/allconferences");
                 } else if (session.startTime>session.endTime) {
                         req.flash("error", "Session end time must be greated then start time. Please try again.");
                         res.redirect("/allconferences");
-                } else {
+                    } else {
                         hall.addSession(session)
                         return session.save().then(() => {
                             res.redirect("/myconferences");
@@ -148,32 +148,30 @@ exports.postAddHall = (req, res, next) => {
     const name = req.body.name;
     const seats = req.body.seats;
     const venueId = req.body.venueId;
-    const hall = new Hall({name, seats, venueId});
-    Venue.findById(venueId).populate("venueHalls.halls.hallId").then(venue => {
-        console.log(venue)
-        if (!venue.venueHalls.halls.includes(name)) {
-            venue.addHall(hall._id)
-            return hall.save().then(() => {
-                res.redirect("/");
-                console.log("Hall added successful!");
-            }).catch(err => console.log(err))
-        } else {
-            req.flash("error", "This hall already exists.")
-            res.redirect("/add-hall");
-        }
-        // Hall.findOne({name: name}).then(hall => {
-        //     if (!hall) {
-        //         halls.save().then(() => {
-        //             res.redirect("/");
-        //             console.log("Hall added successful!");
-        //         }).catch(err => console.log(err))
-        //     } else {
-        //         req.flash("error", "This hall already exists.")
-        //         res.redirect("/add-hall");
-        //     }
-        // }).catch(err => console.log(err));
-    }).catch(err => console.log(err))
+    const newHall = new Hall({name, seats, venueId});
+    Venue.findById(venueId).then(venue => {
+        Hall.find().then(halls => {
+            let isExisting = false;
+            for (hall of halls) {
+                if ((hall.name === newHall.name && hall.venueId.toString() === newHall.venueId.toString())) {
+                    isExisting = true;
+                } 
+            }
+            if (isExisting) {
+                req.flash("error", "This hall already exists.")
+                res.redirect("/add-hall");
+            } else {
+                venue.addHall(newHall._id)
+                return newHall.save().then(() => {
+                    res.redirect("/");
+                    console.log("Hall added successful!");
+                }).catch(err => console.log(err))
+            }
+        })
+
+    })
 }
+
 
 exports.postJoinSession = (req, res, next) => {
 
@@ -195,5 +193,4 @@ exports.postJoinSession = (req, res, next) => {
         }
 
     }).catch(err => console.log(err))
-
 }

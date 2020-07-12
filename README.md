@@ -110,3 +110,33 @@ Zadachi:
 // })
 
 // }
+
+        Venue.findById(venueId).then(venue => {
+            let isExisting = async function (venueId, name) {
+                let isExisting = false;
+                let resp = await Hall.find({venueId: venueId}).then(halls => {
+                    return halls
+                });
+                for (let hall of resp) {
+                    if (hall.name === name) {
+                        isExisting = true;
+                    }
+                }
+                return isExisting
+            }
+
+            if (isExisting(venueId, name).then(data => {
+                return data
+            }) === false) {
+                console.log("inside")
+                venue.addHall(hall._id)
+                return hall.save().then(() => {
+                    res.redirect("/");
+                    console.log("Hall added successful!");
+                }).catch(err => console.log(err))
+            } else {
+                console.log("outside")
+                req.flash("error", "This hall already exists.")
+                res.redirect("/add-hall");
+            }
+        })
