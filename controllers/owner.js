@@ -13,15 +13,21 @@ exports.getMyConferences = (req, res, next) => {
         message = message[0]
     } else {
         message = null
-    } Conference.find({userId: req.user._id}).populate("userId").populate("address").then(conf => {
-        res.render("my-conferences", {
-            pageTitle: "My Conferences",
-            isLoggedIn: req.session.isLoggedIn,
-            path: "/myconferences",
-            conferences: conf,
-            errorMessage: message
+    } 
+    
+    try{
+        Conference.find({userId: req.user._id}).populate("userId").populate("address").then(conf => {
+            res.render("my-conferences", {
+                pageTitle: "My Conferences",
+                isLoggedIn: req.session.isLoggedIn,
+                path: "/myconferences",
+                conferences: conf,
+                errorMessage: message
+            })
         })
-    })
+    }catch{
+        res.redirect("/login")
+    }
 
 }
 
