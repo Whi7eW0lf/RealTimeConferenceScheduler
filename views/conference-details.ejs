@@ -588,6 +588,21 @@
       display: flex;
     }
 
+    .filterDiv {
+      display: none;
+    }
+
+    .show {
+      display: block;
+    }
+
+    .btn.active {
+      background: transparent;
+      color: #0082e6;
+      border: 1px solid #0082e6;
+      border-color: #0082e6;
+    }
+
     /* ACTIVE PAST UPCOMING BUTTONS STYLE END  /|\  */
 
 
@@ -815,17 +830,17 @@
     <label class="sign">Sessions</label>
   </div>
 
-  <div class="buttons-data-filter">
-    <button class="submit1 btn btn-session" onclick="allBtn()" type="submit">ALL</button>
-    <button class="submit1 btn btn-session" onclick="pastBtn()" type="submit">PAST</button>
-    <button class="submit1 btn btn-session" onclick="activeBtn()" type="submit">ACTIVE</button>
-    <button class="submit1 btn btn-session" onclick="upcomingBtn()" type="submit">UPCOMING</button>
+  <div class="buttons-data-filter" id="myBtnContainer">
+    <button class="submit1 btn btn-session active" onclick="filterSelection('all')" type="submit">ALL</button>
+    <button class="submit1 btn btn-session" onclick="filterSelection('past')" type="submit">PAST</button>
+    <button class="submit1 btn btn-session" onclick="filterSelection('active')" type="submit">ACTIVE</button>
+    <button class="submit1 btn btn-session" onclick="filterSelection('upcoming')" type="submit">UPCOMING</button>
   </div>
 
 
   <div class="grid">
     <% for(let session of sessions) { %>
-    <div class="main1 filter allSessions past">
+    <div class="main1 filterDiv allSessions">
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -844,18 +859,16 @@
 
   <script>
     const element = document.querySelectorAll(".allSessions");
-    const startTime = {};
-    const endTime = {};
+    const startTime = [];
+    const endTime = [];
     window.currentTime = getCurrentTime();
-    const allSes = {};
-    const pastSes = {};
-    const activeSes = {};
-    const upcomingSes = {};
-
-    const sessionId = {};
+    const past = 'past';
+    const active = 'active';
+    const upcoming = 'upcoming';
 
 
-    function getCurrentTime() {
+
+    function getCurrentTime(element) {
       return new Date().toString().slice(0, 21);
     }
 
@@ -867,73 +880,135 @@
 
 
 
-    function allBtn() {
+    filterSelection("all")
+
+    function filterSelection(c) {
 
       for (let i = 0; i < element.length; i++) {
-        element[i].classList.toggle("notHidden");
-        element[i].classList.toggle("hidden");
-      }
-      console.log('start time: ', startTime);
-      console.log('end time: ', endTime);
-      console.log('current time: ', window.currentTime);
-      console.log('____________________________');
-    }
-
-    function pastBtn() {
-      for (let i = 0; i < element.length; i++) {
-
-
-
-        if (endTime[i] < window.currentTime) {
-          element[i].classList.toggle("notHidden")
-        } else {
-          element[i].classList.toggle("hidden");
+        if (endTime[i] < currentTime) {
+          element[i].classList.add('past');
+        } else if (startTime[i] < currentTime && endTime[i] > currentTime) {
+          element[i].classList.add('active');
+        }
+        else {
+          element[i].classList.add('upcoming');
         }
 
-      }
-      console.log('start time: ', startTime);
-      console.log('end time: ', endTime);
-      console.log('current time: ', window.currentTime);
-      console.log('____________________________');
+        console.log('start time: ', startTime);
+        console.log('end time: ', endTime);
+        console.log('current time: ', window.currentTime);
+        console.log(element);
+        console.log('____________________________');
 
-    }
+        // element[i].classList.toggle("notHidden");
+        // element[i].classList.toggle("hidden");
 
-    function activeBtn(getCurrentTime) {
 
-      for (let i = 0; i < element.length; i++) {
-
-        if (endTime[i] > window.currentTime && startTime[i] < window.currentTime) {
-          element[i].classList.toggle("notHidden")
-        } else {
-          element[i].classList.toggle("hidden");
+        var x;
+        x = document.getElementsByClassName("filterDiv");
+        if (c == "all") c = "";
+        // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+        for (i = 0; i < x.length; i++) {
+          w3RemoveClass(x[i], "show");
+          if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
         }
-
       }
-      console.log('start time: ', startTime);
-      console.log('end time: ', endTime);
-      console.log('current time: ', window.currentTime);
-      console.log('____________________________');
 
-    }
-
-    function upcomingBtn(getCurrentTime) {
-
-      for (let i = 0; i < element.length; i++) {
-
-
-        if (startTime[i] > window.currentTime) {
-          element[i].classList.toggle("notHidden")
-        } else {
-          element[i].classList.toggle("hidden");
+      // Show filtered elements
+      function w3AddClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+          if (arr1.indexOf(arr2[i]) == -1) {
+            element.className += " " + arr2[i];
+          }
         }
-
       }
-      console.log('start time: ', startTime);
-      console.log('end time: ', endTime);
-      console.log('current time: ', window.currentTime);
-      console.log('____________________________');
 
-    }
+      // Hide elements that are not selected
+      function w3RemoveClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+          while (arr1.indexOf(arr2[i]) > -1) {
+            arr1.splice(arr1.indexOf(arr2[i]), 1);
+          }
+        }
+        element.className = arr1.join(" ");
+      }
+
+      // Add active class to the current control button (highlight it)
+      var btnContainer = document.getElementById("myBtnContainer");
+      var btns = btnContainer.getElementsByClassName("btn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+          var current = document.getElementsByClassName("active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+        });
+      }
+
+
+    };
+
+
+    // function pastBtn() {
+    //   for (let i = 0; i < element.length; i++) {
+
+
+
+    //     if (endTime[i] < window.currentTime) {
+    //       element[i].classList.toggle("notHidden")
+    //     } else {
+    //       element[i].classList.toggle("hidden");
+    //     }
+
+    //   }
+    //   console.log('start time: ', startTime);
+    //   console.log('end time: ', endTime);
+    //   console.log('current time: ', window.currentTime);
+    //   console.log('____________________________');
+
+    // }
+
+    // function activeBtn(getCurrentTime) {
+
+    //   for (let i = 0; i < element.length; i++) {
+
+    //     if (endTime[i] > window.currentTime && startTime[i] < window.currentTime) {
+    //       element[i].classList.toggle("notHidden")
+    //     } else {
+    //       element[i].classList.toggle("hidden");
+    //     }
+
+    //   }
+    //   console.log('start time: ', startTime);
+    //   console.log('end time: ', endTime);
+    //   console.log('current time: ', window.currentTime);
+    //   console.log('____________________________');
+
+    // }
+
+    // function upcomingBtn(getCurrentTime) {
+
+    //   for (let i = 0; i < element.length; i++) {
+
+
+    //     if (startTime[i] > window.currentTime) {
+    //       element[i].classList.toggle("notHidden")
+    //     } else {
+    //       element[i].classList.toggle("hidden");
+    //     }
+
+    //   }
+    //   console.log('start time: ', startTime);
+    //   console.log('end time: ', endTime);
+    //   console.log('current time: ', window.currentTime);
+    //   console.log('____________________________');
+
+    // }
 
 
     // //////////    Pop up     //////////
