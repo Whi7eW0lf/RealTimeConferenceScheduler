@@ -1,1 +1,1 @@
-exports.speakerName = /([A-Z]{1,1}[A-Za-z]+) ([A-Z]{1,1}[A-Za-z]+)+/gm
+exports.speakerName = /([A-Z]{1,1}[A-Za-z]+)/gm

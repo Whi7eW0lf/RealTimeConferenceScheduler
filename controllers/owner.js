@@ -91,7 +91,11 @@ exports.postAddConference = (req, res, next) => {
 
         const speakerName2 = speakerName.trim();
 
-        const speakerNameFound = speakerName2.match(speakerNameRegex);
+        console.log(speakerName2);
+
+        const speakerNameFound = speakerName2.match(/([A-Z]{1,1}[A-Za-z]+) ([A-Z]{1,1}[A-Za-z]+)/gm);
+
+        console.log(speakerNameFound);
 
         if (newConference.startTime < nowTime && newConference.endTime < nowTime) {
             req.flash("error", "Cannot add conference in past!")
@@ -99,8 +103,10 @@ exports.postAddConference = (req, res, next) => {
         }else if (speakerName2 === ''){
             req.flash("error","Speaker name cannot be empty string!")
             res.redirect("/add-conference");
-        }else if(speakerNameFound===null|| speakerNameFound[0]!==speakerName){
+        }else if(speakerNameFound===null|| speakerNameFound[0]!==speakerName2){
             req.flash("error","First name and last name, on speaker must be starting with capital letter!")
+            console.log(speakerNameFound);
+            res.redirect("/add-conference");
         }
         else {
 
@@ -215,6 +221,7 @@ exports.postJoinSession = (req, res, next) => {
 
     const sessionId = req.body.sessionId;
     const conferenceId = req.body.conferenceId;
+
     Session.findById(sessionId).then(session => {
         if (checkExistingSession(req.user.session.sessions, session) === true) {
             req.flash("error", "You have already joined this session.")
