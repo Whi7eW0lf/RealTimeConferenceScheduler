@@ -91,11 +91,8 @@ exports.postAddConference = (req, res, next) => {
 
         const speakerName2 = speakerName.trim();
 
-        console.log(speakerName2);
-
         const speakerNameFound = speakerName2.match(/([A-Z]{1,1}[A-Za-z]+) ([A-Z]{1,1}[A-Za-z]+)/gm);
 
-        console.log(speakerNameFound);
 
         if (newConference.startTime < nowTime && newConference.endTime < nowTime) {
             req.flash("error", "Cannot add conference in past!")
@@ -105,7 +102,7 @@ exports.postAddConference = (req, res, next) => {
             res.redirect("/add-conference");
         }else if(speakerNameFound===null|| speakerNameFound[0]!==speakerName2){
             req.flash("error","First name and last name, on speaker must be starting with capital letter!")
-            console.log(speakerNameFound);
+            
             res.redirect("/add-conference");
         }
         else {
