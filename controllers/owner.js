@@ -88,7 +88,7 @@ exports.postAddConference = (req, res, next) => {
             userId
         })
 
-        // const speakerName2 = speakerName.trim();
+        const speakerName2 = speakerName.trim();
 
         const speakerNameFound = speakerName2.match(/([A-Z]{1,1}[A-Za-z]+) ([A-Z]{1,1}[A-Za-z]+)/gm);
 
@@ -235,6 +235,12 @@ exports.postJoinSession = (req, res, next) => {
         let noCollision = false;
         let minDifference = Number.MAX_SAFE_INTEGER;
         let sessionIndex;
+
+        if(sessions.length===0){
+            return true;
+        }
+
+
         for (let sessionEntry of sessions) {
             let diff = session.startTime - sessionEntry.endTime;
             if (diff < minDifference && diff >= 0) {
@@ -242,6 +248,26 @@ exports.postJoinSession = (req, res, next) => {
                 sessionIndex = sessions.indexOf(sessionEntry)
             }
         }
+
+        if(sessions.length===1){
+
+            if(sessionIndex===sessions.length-1){
+                return false;
+            }
+
+            let diff = sessions[0].startTime - session.endTime
+
+            if(diff < minDifference && diff >= 0){
+                console.log(false)
+                return false;
+
+            }else{
+                console.log(true)
+                return true;
+
+            }
+        }
+
         if (sessions[sessionIndex].endTime <= session.startTime &&
             sessions[sessionIndex + 1].startTime >= session.endTime) {
             noCollision = true;

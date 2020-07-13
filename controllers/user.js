@@ -4,6 +4,7 @@ const Conference = require("../models/conference");
 const Venue = require("../models/venues");
 const dateFormater = require("../util/dateFormater");
 const formatDateTimeConferences = require("../util/dateFormater");
+const e = require("express");
 
 exports.getIndex = (req, res, next) => {
     Conference.find().populate("address").then(conferences => {
@@ -53,29 +54,46 @@ exports.getConferenceDetails = (req, res, next) => {
     Conference.findOne({ _id: confId }).populate("address").then(conf => {
         ConferenceSession.find({ conferenceId: conf._id }).populate("hallId").then(sessions => {
             Hall.find().then(halls => {
-                sessions = sessions.map(e => {
-                    const startTime = e.startTime.toString().substring(0, 21);
-                    const endTime = e.endTime.toString().substring(0, 21);
-                    return {
-                        _id: e._id,
-                        venueId: e.venueId,
-                        sessionSeats: e.sessionSeats,
-                        conferenceId: e.conferenceId,
-                        hallId: e.hallId,
-                        startTime: startTime,
-                        endTime: endTime
+
+                let pastSessions;
+
+                const nowDate = new Date();
+
+                sessions.forEach(s=>{
+                    console.log(s);
+                    if(e.endTime-nowDate>0){
+                        pastSessions.push(s);
+                        console.log(true);
                     }
                 })
+
+                console.log(pastSessions);
+
                 res.render("conference-details", {
                     halls: halls || [],
                     pageTitle: conf.name,
                     isLoggedIn: req.session.isLoggedIn,
                     path: "/",
                     conference: conf,
-                    sessions: sessions || []
+                    allSessions: sessions || []
+
                 })
             })
         })
 
     }).catch(err => console.log(err))
 }
+
+    //sessions = sessions.map(e => {
+    //     const startTime = e.startTime.toString().substring(0, 21);
+    //     const endTime = e.endTime.toString().substring(0, 21);
+    //     return {
+    //         _id: e._id,
+    //         venueId: e.venueId,
+    //         sessionSeats: e.sessionSeats,
+    //         conferenceId: e.conferenceId,
+    //         hallId: e.hallId,
+    //         startTime: startTime,
+    //         endTime: endTime
+    //     }
+    // })
