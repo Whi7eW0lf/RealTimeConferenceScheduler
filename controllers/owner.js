@@ -124,7 +124,7 @@ exports.postAddConference = (req, res, next) => {
             }
         })
     }
-    // }
+    }
 }
 
 exports.postAddNewSession = (req, res, next) => {
@@ -159,9 +159,6 @@ exports.postAddNewSession = (req, res, next) => {
             startTime,
             endTime
         });
-
-
-
         Conference.findById(conferenceId).populate("userId").then(conf => {
             if (conf.userId._id.toString() !== req.user._id.toString()) {
                 req.flash("error", "You can only add session for a conference that you created.")
@@ -184,6 +181,7 @@ exports.postAddNewSession = (req, res, next) => {
     }
     ).catch(err => console.log(err))
 }
+
 exports.getAddHall = (req, res, next) => {
     let message = req.flash("error");
 
@@ -229,7 +227,6 @@ exports.postAddHall = (req, res, next) => {
 
     })
 }
-
 
 exports.postJoinSession = (req, res, next) => {
     const sessionId = req.body.sessionId;
@@ -284,5 +281,5 @@ exports.postJoinSession = (req, res, next) => {
         })
 
     }).catch(err => console.log(err))
-    }
 }
+
