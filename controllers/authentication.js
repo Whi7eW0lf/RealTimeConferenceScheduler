@@ -79,42 +79,43 @@ exports.postSignup = (req, res, next) => {
 
     let emailCheck = email.trim()
     const found = emailCheck.match(emailRegex)
-    console.log(found);
-    if (emailCheck !== found[0]) {
-        req.flas("error", "Email can only be in format: email@email.provider")
+    if (found === null || emailCheck !== found[0]) {
+        req.flash("error", "Email can only be in format: email@email.provider")
         res.redirect("/signup")
+    } else {
+        User.findOne({ email: email }).then(userDoc => {
+            if (userDoc) {
+                req.flash("error", "This email has already been used to create registration.");
+                return res.redirect("/signup");
+            }
+
+            if (password !== confirmPassword) {
+                req.flash("error", "Different passwords");
+                return res.redirect("/signup");
+            }
+            return bcrypt.hash(password, 12).then(hashedPassword => {
+
+                const user = new User({
+                    email: email,
+                    password: hashedPassword,
+                    role: role,
+                    conferenceOwner: {
+                        conferences: []
+                    },
+                    conferenceAttendee: {
+                        conferences: []
+                    }
+                });
+                return user.save();
+            }).then(result => {
+                req.flash("success", "You have successfully signed in. Please login to continue...")
+                res.redirect("/login");
+            });
+
+        }).catch(err => console.log(err));
     }
 
-    User.findOne({ email: email }).then(userDoc => {
-        if (userDoc) {
-            req.flash("error", "This email has already been used to create registration.");
-            return res.redirect("/signup");
-        }
 
-        if (password !== confirmPassword) {
-            req.flash("error", "Different passwords");
-            return res.redirect("/signup");
-        }
-        return bcrypt.hash(password, 12).then(hashedPassword => {
-
-            const user = new User({
-                email: email,
-                password: hashedPassword,
-                role: role,
-                conferenceOwner: {
-                    conferences: []
-                },
-                conferenceAttendee: {
-                    conferences: []
-                }
-            });
-            return user.save();
-        }).then(result => {
-            req.flash("success", "You have successfully signed in. Please login to continue...")
-            res.redirect("/login");
-        });
-
-    }).catch(err => console.log(err));
 };
 
 exports.logout = (req, res, next) => {
