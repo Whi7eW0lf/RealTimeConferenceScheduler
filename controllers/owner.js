@@ -132,23 +132,33 @@ exports.postAddNewSession = (req, res, next) => {
         ...req.body
     }
     let sessionSeats;
-    function collisionCheck(hall, halls) {
+
+    function collisionCheck(session, sessions) {
         let noCollision = false;
         let minDifference = Number.MAX_SAFE_INTEGER;
-        let hallIndex;
-        for (let hallEntry of halls) {
-            let diff = hall.startTime - hallEntry.endTime;
+        let sessionIndex;
+        if(sessions.length === 0){
+            noCollision = true;
+        }
+        for (let sessionEntry of sessions) {
+            let diff = session.startTime - sessionEntry.endTime;
             if (diff < minDifference && diff >= 0) {
-                minDifference = hall.startTime - hallEntry.endTime;
-                hallIndex = halls.indexOf(hallEntry)
+                minDifference = session.startTime - sessionEntry.endTime;
+                sessionIndex = sessions.indexOf(sessionEntry)
             }
         }
-        if (halls[hallIndex].endTime<hall.startTime &&
-            halls[hallIndex + 1].startTime>hall.endTime) {
+        
+            if(sessionIndex === undefined && sessions[0].startTime > session.endTime) {
+                noCollision = true;
+            } else if(sessionIndex === 0 && sessions[0].endTime < session.startTime) {
+                noCollision = true;
+            } else if (sessions[sessionIndex].endTime <= session.startTime &&
+            sessions[sessionIndex + 1].startTime >= session.endTime) {
             noCollision = true;
         }
         return noCollision;
     }
+
     Hall.find().then(halls => {
         const hall = halls.filter(h => h._id.toString() === hallId.toString())[0];
         sessionSeats = hall.seats;
@@ -171,8 +181,8 @@ exports.postAddNewSession = (req, res, next) => {
             existingSessions.sort((a,b) => a.startTime - b.startTime);
            
             Conference.findById(conferenceId).populate("userId").then(conf => {
-                if (conf.userId._id.toString() !== req.user._id.toString()) {
-                    req.flash("error", "You can only add session for a conference that you created.")
+                if (collisionCheck(session, existingSessions) === false ) {
+                    req.flash("error", "Coliision detected.")
                     res.redirect("/allconferences");
                 } else if (!(session.startTime > conf.startTime && session.endTime < conf.endTime)) {
                     req.flash("error", "Session start time and end time must be between conference start time and end time")
@@ -180,8 +190,8 @@ exports.postAddNewSession = (req, res, next) => {
                 } else if (session.startTime > session.endTime) {
                     req.flash("error", "Session end time must be greated then start time. Please try again.");
                     res.redirect("/allconferences");
-                } else if (collisionCheck(hall, existingSessions) === false) {
-                    req.flash("error", "Session end time must be greated then start time. Please try again.");
+                } else if (conf.userId._id.toString() !== req.user._id.toString()) {
+                    req.flash("error", "You can only add session for a conference that you created.");
                     res.redirect("/allconferences");
                 }else {
                     hall.addSession(session)
@@ -248,6 +258,9 @@ exports.postJoinSession = (req, res, next) => {
         let noCollision = false;
         let minDifference = Number.MAX_SAFE_INTEGER;
         let sessionIndex;
+        if(sessions.length === 0){
+            noCollision = true;
+        }
         for (let sessionEntry of sessions) {
             let diff = session.startTime - sessionEntry.endTime;
             if (diff < minDifference && diff >= 0) {
@@ -255,7 +268,12 @@ exports.postJoinSession = (req, res, next) => {
                 sessionIndex = sessions.indexOf(sessionEntry)
             }
         }
-        if (sessions[sessionIndex].endTime <= session.startTime &&
+        
+            if(sessionIndex === undefined && sessions[0].startTime > session.endTime) {
+                noCollision = true;
+            } else if(sessionIndex === 0 && sessions[0].endTime < session.startTime) {
+                noCollision = true;
+            } else if (sessions[sessionIndex].endTime <= session.startTime &&
             sessions[sessionIndex + 1].startTime >= session.endTime) {
             noCollision = true;
         }
