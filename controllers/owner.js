@@ -4,7 +4,8 @@ const Conference = require("../models/conference");
 const Venue = require("../models/venues");
 const session = require("express-session");
 const checkExistingSession = require("../util/checkExistingSession");
-const { nameRegex } = require("../util/nameRegex");
+const {nameRegex} = require("../util/nameRegex");
+const User = require("../models/user");
 const { speakerNameRegex } = require("../util/speakerNamesRegex");
 
 
@@ -50,9 +51,7 @@ exports.getAddConference = (req, res, next) => {
             errorMessage: message
         })
     }).catch(err => console.log(err))
-
 }
-
 
 exports.postAddConference = (req, res, next) => {
     let {
@@ -89,7 +88,7 @@ exports.postAddConference = (req, res, next) => {
             userId
         })
 
-        const speakerName2 = speakerName.trim();
+        // const speakerName2 = speakerName.trim();
 
         const speakerNameFound = speakerName2.match(/([A-Z]{1,1}[A-Za-z]+) ([A-Z]{1,1}[A-Za-z]+)/gm);
 
@@ -107,25 +106,25 @@ exports.postAddConference = (req, res, next) => {
         }
         else {
 
-            Conference.findOne({ name: name }).then(conf => {
+        Conference.findOne({name: name}).then(conf => {
 
-                if (conf) {
-                    req.flash("error", "Conference name is already in use. Please choose different name.")
-                    res.redirect("/add-conference");
-                } else if (newConference.startTime > newConference.endTime) {
-                    req.flash("error", "End time must be greated than start time.")
-                    res.redirect("/add-conference");
-                } else {
-                    return newConference.save().then(() => {
-                        return req.user.addToConfOwner(newConference)
-                    }).then(() => {
-                        res.redirect("/allconferences");
-                        console.log("Conference added successful")
-                    }).catch(err => console.log(err))
-                }
-            })
-        }
+            if (conf) {
+                req.flash("error", "Conference name is already in use. Please choose different name.")
+                res.redirect("/add-conference");
+            } else if (newConference.startTime > newConference.endTime) {
+                req.flash("error", "End time must be greated than start time.")
+                res.redirect("/add-conference");
+            } else {
+                return newConference.save().then(() => {
+                    return req.user.addToConfOwner(newConference)
+                }).then(() => {
+                    res.redirect("/allconferences");
+                    console.log("Conference added successful")
+                }).catch(err => console.log(err))
+            }
+        })
     }
+    // }
 }
 
 exports.postAddNewSession = (req, res, next) => {
@@ -133,6 +132,23 @@ exports.postAddNewSession = (req, res, next) => {
         ...req.body
     }
     let sessionSeats;
+    function collisionCheck(hall, halls) {
+        let noCollision = false;
+        let minDifference = Number.MAX_SAFE_INTEGER;
+        let hallIndex;
+        for (let hallEntry of halls) {
+            let diff = hall.startTime - hallEntry.endTime;
+            if (diff < minDifference && diff >= 0) {
+                minDifference = hall.startTime - hallEntry.endTime;
+                hallIndex = halls.indexOf(hallEntry)
+            }
+        }
+        if (halls[hallIndex].endTime<hall.startTime &&
+            halls[hallIndex + 1].startTime>hall.endTime) {
+            noCollision = true;
+        }
+        return noCollision;
+    }
     Hall.findById(hallId).then(hall => {
         sessionSeats = hall.seats;
         const session = new Session({
@@ -215,24 +231,57 @@ exports.postAddHall = (req, res, next) => {
 
 
 exports.postJoinSession = (req, res, next) => {
-
     const sessionId = req.body.sessionId;
     const conferenceId = req.body.conferenceId;
-
-    Session.findById(sessionId).then(session => {
-        if (checkExistingSession(req.user.session.sessions, session) === true) {
-            req.flash("error", "You have already joined this session.")
-            res.redirect("/allconferences")
-
-        } else if (session.sessionSeats === 0) {
-            req.flash('error', "No more seats available for this session. Please try to join other session or other conference.");
-            res.redirect("/allconferences")
-        } else {
-            session.seatTaken()
-            return req.user.addSession(session).then(() => {
-                res.redirect("/allconferences")
-            }).catch(err => console.log(err))
+    function collisionCheck(session, sessions) {
+        let noCollision = false;
+        let minDifference = Number.MAX_SAFE_INTEGER;
+        let sessionIndex;
+        for (let sessionEntry of sessions) {
+            let diff = session.startTime - sessionEntry.endTime;
+            if (diff < minDifference && diff >= 0) {
+                minDifference = session.startTime - sessionEntry.endTime;
+                sessionIndex = sessions.indexOf(sessionEntry)
+            }
         }
+        if (sessions[sessionIndex].endTime <= session.startTime &&
+            sessions[sessionIndex + 1].startTime >= session.endTime) {
+            noCollision = true;
+        }
+        return noCollision;
+    }
+    Session.find().then(sessions => {
+        let session = sessions.filter(session => session._id.toString() === sessionId.toString())[0];
+        User.findById(req.user._id).populate("session.sessions.sessionId").then(user => {
+            let existingSessions = []
+            user.session.sessions.forEach(s => {
+                sessions.forEach(session => {
+                    if (session._id.toString() === s._id.toString()) {
+                        existingSessions.push(session)
+                    }
+                })
+            })
+            existingSessions.sort((a, b) => a.startTime - b.startTime);
+
+            if (checkExistingSession(req.user.session.sessions, session) === true) {
+                req.flash("error", "You have already joined this session.")
+                res.redirect("/allconferences")
+    
+            } else if (session.sessionSeats === 0) {
+                req.flash('error', "No more seats available for this session. Please try to join other session or other conference.");
+                res.redirect("/allconferences")
+            } else if (collisionCheck(session, existingSessions) === false) {
+                req.flash('error', "You cannot join this session because it is in collision with another session you have already joined.");
+                res.redirect("/allconferences")
+            }
+            else {
+                session.seatTaken()
+                return req.user.addSession(session).then(() => {
+                    res.redirect("/allconferences")
+                }).catch(err => console.log(err))
+            }
+        })
 
     }).catch(err => console.log(err))
+    }
 }
