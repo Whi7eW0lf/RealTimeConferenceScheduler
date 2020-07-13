@@ -74,6 +74,7 @@ exports.postSignup = (req, res, next) => {
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
     const role = req.body.role;
+    
     User.findOne({email: email}).then(userDoc => {
         if (userDoc) {
             req.flash("error", "This email has already been used to create registration.");
