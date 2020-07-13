@@ -5,6 +5,9 @@ const Venue = require("../models/venues");
 const session = require("express-session");
 const checkExistingSession = require("../util/checkExistingSession");
 const { nameRegex } = require("../util/nameRegex");
+const { speakerNameRegex } = require("../util/speakerNamesRegex");
+
+
 
 exports.getMyConferences = (req, res, next) => {
     let message = req.flash("error");
@@ -68,9 +71,6 @@ exports.postAddConference = (req, res, next) => {
     const found = name.match(nameRegex)
     const nowTime = new Date();
 
-    console.log(startTime);
-    console.log(endTime);
-
     if (found === null || name !== found[0]) {
         req.flash("error", "Conference name is not valid. It has to start with Capital letter and only contain letters,numbers and whitespaces.")
         res.redirect("/add-conference");
@@ -89,11 +89,24 @@ exports.postAddConference = (req, res, next) => {
             userId
         })
 
+        const speakerName2 = speakerName.trim();
+
+        const speakerNameFound = speakerName2.match(speakerNameRegex);
+
+        console.log(speakerName2);
+
         if (newConference.startTime < nowTime && newConference.endTime < nowTime) {
             req.flash("error", "Cannot add conference in past!")
             console.log("Cannot add conference in past!")
             res.redirect("/add-conference")
-        } else {
+        }else if (speakerName2 === ''){
+            req.flash("error","Speaker name cannot be empty string!")
+            res.redirect("/add-conference");
+        }else if(speakerNameFound===null|| speakerNameFound[0]!==speakerName){
+            req.flash("error","First name and last name, on speaker must be starting with capital letter!")
+        }
+        else {
+
 
             Conference.findOne({ name: name }).then(conf => {
 
@@ -130,6 +143,9 @@ exports.postAddNewSession = (req, res, next) => {
             startTime,
             endTime
         });
+
+
+
         Conference.findById(conferenceId).populate("userId").then(conf => {
             if (conf.userId._id.toString() !== req.user._id.toString()) {
                 req.flash("error", "You can only add session for a conference that you created.")
@@ -140,10 +156,7 @@ exports.postAddNewSession = (req, res, next) => {
             } else if (session.startTime > session.endTime) {
                 req.flash("error", "Session end time must be greated then start time. Please try again.");
                 res.redirect("/allconferences");
-            } else if (hall === null) {
-                console.log("asd")
-            }
-            else {
+            } else {
                 hall.addSession(session)
                 return session.save().then(() => {
                     res.redirect("/myconferences");
