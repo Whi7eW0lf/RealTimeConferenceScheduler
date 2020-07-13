@@ -4,7 +4,7 @@ const Conference = require("../models/conference");
 const Venue = require("../models/venues");
 const session = require("express-session");
 const checkExistingSession = require("../util/checkExistingSession");
-const checkExistingHall = require("../util/checkExistingHall")
+const { nameRegex } = require("../util/nameRegex");
 
 exports.getMyConferences = (req, res, next) => {
     let message = req.flash("error");
@@ -52,7 +52,7 @@ exports.getAddConference = (req, res, next) => {
 
 
 exports.postAddConference = (req, res, next) => {
-    const {
+    let {
         name,
         description,
         startTime,
@@ -64,6 +64,11 @@ exports.postAddConference = (req, res, next) => {
     } = {
         ...req.body
     };
+    name = name.trim()
+    const found = name.match(nameRegex) 
+    if(name !== found[0]) {
+        req.flash("error", "Conference name is not valid. It has to start with Capital letter and only contain letters,numbers and whitespaces.")
+        res.redirect("/add-conference");    } 
 
     const userId = req.user._id;
     const newConference = new Conference({
@@ -79,7 +84,6 @@ exports.postAddConference = (req, res, next) => {
     })
 
     Conference.findOne({name: name}).then(conf => {
-
         if (conf) {
             req.flash("error", "Conference name is already in use. Please choose different name.")
             res.redirect("/add-conference");
