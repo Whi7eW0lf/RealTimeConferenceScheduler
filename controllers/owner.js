@@ -6,8 +6,7 @@ const session = require("express-session");
 const checkExistingSession = require("../util/checkExistingSession");
 const {nameRegex} = require("../util/nameRegex");
 const User = require("../models/user");
-const { speakerNameRegex } = require("../util/speakerNamesRegex");
-
+const collisionCheck = require("../util/collisionCheck")
 
 
 exports.getMyConferences = (req, res, next) => {
@@ -133,31 +132,6 @@ exports.postAddNewSession = (req, res, next) => {
     }
     let sessionSeats;
 
-    function collisionCheck(session, sessions) {
-        let noCollision = false;
-        let minDifference = Number.MAX_SAFE_INTEGER;
-        let sessionIndex;
-        if(sessions.length === 0){
-            noCollision = true;
-        }
-        for (let sessionEntry of sessions) {
-            let diff = session.startTime - sessionEntry.endTime;
-            if (diff < minDifference && diff >= 0) {
-                minDifference = session.startTime - sessionEntry.endTime;
-                sessionIndex = sessions.indexOf(sessionEntry)
-            }
-        }
-        
-            if(sessionIndex === undefined && sessions[0].startTime > session.endTime) {
-                noCollision = true;
-            } else if(sessionIndex === 0 && sessions[0].endTime < session.startTime) {
-                noCollision = true;
-            } else if (sessions[sessionIndex].endTime <= session.startTime &&
-            sessions[sessionIndex + 1].startTime >= session.endTime) {
-            noCollision = true;
-        }
-        return noCollision;
-    }
 
     Hall.find().then(halls => {
         const hall = halls.filter(h => h._id.toString() === hallId.toString())[0];
@@ -254,31 +228,7 @@ exports.postAddHall = (req, res, next) => {
 exports.postJoinSession = (req, res, next) => {
     const sessionId = req.body.sessionId;
     const conferenceId = req.body.conferenceId;
-    function collisionCheck(session, sessions) {
-        let noCollision = false;
-        let minDifference = Number.MAX_SAFE_INTEGER;
-        let sessionIndex;
-        if(sessions.length === 0){
-            noCollision = true;
-        }
-        for (let sessionEntry of sessions) {
-            let diff = session.startTime - sessionEntry.endTime;
-            if (diff < minDifference && diff >= 0) {
-                minDifference = session.startTime - sessionEntry.endTime;
-                sessionIndex = sessions.indexOf(sessionEntry)
-            }
-        }
-        
-            if(sessionIndex === undefined && sessions[0].startTime > session.endTime) {
-                noCollision = true;
-            } else if(sessionIndex === 0 && sessions[0].endTime < session.startTime) {
-                noCollision = true;
-            } else if (sessions[sessionIndex].endTime <= session.startTime &&
-            sessions[sessionIndex + 1].startTime >= session.endTime) {
-            noCollision = true;
-        }
-        return noCollision;
-    }
+   
     Session.find().then(sessions => {
         let session = sessions.filter(session => session._id.toString() === sessionId.toString())[0];
         User.findById(req.user._id).populate("session.sessions.sessionId").then(user => {
