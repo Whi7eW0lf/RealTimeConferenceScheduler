@@ -93,11 +93,8 @@ exports.postAddConference = (req, res, next) => {
 
         const speakerNameFound = speakerName2.match(speakerNameRegex);
 
-        console.log(speakerName2);
-
         if (newConference.startTime < nowTime && newConference.endTime < nowTime) {
             req.flash("error", "Cannot add conference in past!")
-            console.log("Cannot add conference in past!")
             res.redirect("/add-conference")
         }else if (speakerName2 === ''){
             req.flash("error","Speaker name cannot be empty string!")
@@ -106,7 +103,6 @@ exports.postAddConference = (req, res, next) => {
             req.flash("error","First name and last name, on speaker must be starting with capital letter!")
         }
         else {
-
 
             Conference.findOne({ name: name }).then(conf => {
 
@@ -191,37 +187,27 @@ exports.postAddHall = (req, res, next) => {
     const seats = req.body.seats;
     const venueId = req.body.venueId;
     const newHall = new Hall({ name, seats, venueId });
-
-    let hallName = newHall.name.trim();
-    const found = hallName.match(nameRegex);
-    if (found === null || hallName !== found[0]) {
-        req.flash("error", "Name can only contain capital (CC), small(cc) letters, numbers(777) and white space")
-        res.redirect("/add-hall")
-    } else {
-        Venue.findById(venueId).then(venue => {
-            Hall.find().then(halls => {
-                let isExisting = false;
-                for (hall of halls) {
-                    if ((hall.name === newHall.name && hall.venueId.toString() === newHall.venueId.toString())) {
-                        isExisting = true;
-                    }
+    Venue.findById(venueId).then(venue => {
+        Hall.find().then(halls => {
+            let isExisting = false;
+            for (hall of halls) {
+                if ((hall.name === newHall.name && hall.venueId.toString() === newHall.venueId.toString())) {
+                    isExisting = true;
                 }
-                if (isExisting) {
-                    req.flash("error", "This hall already exists.")
-                    res.redirect("/add-hall");
-                } else {
-                    venue.addHall(newHall._id)
-                    return newHall.save().then(() => {
-                        res.redirect("/");
-                        console.log("Hall added successful!");
-                    }).catch(err => console.log(err))
-                }
-            })
-
+            }
+            if (isExisting) {
+                req.flash("error", "This hall already exists.")
+                res.redirect("/add-hall");
+            } else {
+                venue.addHall(newHall._id)
+                return newHall.save().then(() => {
+                    res.redirect("/");
+                    console.log("Hall added successful!");
+                }).catch(err => console.log(err))
+            }
         })
-    }
 
-
+    })
 }
 
 
