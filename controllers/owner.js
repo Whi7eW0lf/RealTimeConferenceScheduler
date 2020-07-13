@@ -66,6 +66,10 @@ exports.postAddConference = (req, res, next) => {
     };
     name = name.trim()
     const found = name.match(nameRegex)
+    const nowTime = new Date();
+
+    console.log(startTime);
+    console.log(endTime);
 
     if (found === null || name !== found[0]) {
         req.flash("error", "Conference name is not valid. It has to start with Capital letter and only contain letters,numbers and whitespaces.")
@@ -85,22 +89,30 @@ exports.postAddConference = (req, res, next) => {
             userId
         })
 
-        Conference.findOne({ name: name }).then(conf => {
-            if (conf) {
-                req.flash("error", "Conference name is already in use. Please choose different name.")
-                res.redirect("/add-conference");
-            } else if (newConference.startTime > newConference.endTime) {
-                req.flash("error", "End time must be greated than start time.")
-                res.redirect("/add-conference");
-            } else {
-                return newConference.save().then(() => {
-                    return req.user.addToConfOwner(newConference)
-                }).then(() => {
-                    res.redirect("/allconferences");
-                    console.log("Conference added successful")
-                }).catch(err => console.log(err))
-            }
-        })
+        if (newConference.startTime < nowTime && newConference.endTime < nowTime) {
+            req.flash("error", "Cannot add conference in past!")
+            console.log("Cannot add conference in past!")
+            res.redirect("/add-conference")
+        } else {
+
+            Conference.findOne({ name: name }).then(conf => {
+
+                if (conf) {
+                    req.flash("error", "Conference name is already in use. Please choose different name.")
+                    res.redirect("/add-conference");
+                } else if (newConference.startTime > newConference.endTime) {
+                    req.flash("error", "End time must be greated than start time.")
+                    res.redirect("/add-conference");
+                } else {
+                    return newConference.save().then(() => {
+                        return req.user.addToConfOwner(newConference)
+                    }).then(() => {
+                        res.redirect("/allconferences");
+                        console.log("Conference added successful")
+                    }).catch(err => console.log(err))
+                }
+            })
+        }
     }
 }
 
