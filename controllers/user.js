@@ -4,7 +4,7 @@ const Conference = require("../models/conference");
 const Venue = require("../models/venues");
 const dateFormater = require("../util/dateFormater");
 const formatDateTimeConferences = require("../util/dateFormater");
-const collisionCheck = require("../util/collisionCheck");
+const sessionSorter = require("../util/sessionsSorter")
 const e = require("express");
 
 exports.getIndex = (req, res, next) => {
@@ -56,34 +56,11 @@ exports.getConferenceDetails = (req, res, next) => {
         ConferenceSession.find({ conferenceId: conf._id }).populate("hallId").then(sessions => {
             Hall.find().then(halls => {
 
-                let pastSessions = [];
+                let pastSessions = sessionSorter(sessions,"pastSessions");
                 
-                const nowDate = new Date();
+                let activeSessions = sessionSorter(sessions,"activeSessions");
                 
-                for (var i = 0; i < sessions.length-1; i++) {
-                    if(sessions[i].startTime-nowDate<0&&sessions[i].endTime-nowDate<0){
-                        pastSessions.push(sessions[i]);
-                    }
-                }
-
-                let activeSessions = [];
-
-                for (var i = 0; i < sessions.length-1; i++) {
-                    if(sessions[i].startTime-nowDate<0&&sessions[i].endTime-nowDate>0){
-                        activeSessions.push(sessions[i]);
-                    }
- 
-                 }
-                
-                let upcommingSessions = [];
-                
-                for (var i = 0; i < sessions.length-1; i++) {
-                   if(sessions[i].startTime-nowDate>0){
-                    upcommingSessions.push(sessions[i]);
-                   }
-                }
-
-                console.log(pastSessions);
+                let upcommingSessions = sessionSorter(sessions,"upcommingSessions");
 
                 res.render("conference-details", {
                     halls: halls || [],
