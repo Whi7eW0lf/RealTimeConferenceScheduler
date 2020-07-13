@@ -97,12 +97,8 @@ exports.postAddConference = (req, res, next) => {
         if (newConference.startTime < nowTime && newConference.endTime < nowTime) {
             req.flash("error", "Cannot add conference in past!")
             res.redirect("/add-conference")
-        }else if (speakerName2 === ''){
-            req.flash("error","Speaker name cannot be empty string!")
-            res.redirect("/add-conference");
         }else if(speakerNameFound===null|| speakerNameFound[0]!==speakerName2){
             req.flash("error","First name and last name, on speaker must be starting with capital letter!")
-            
             res.redirect("/add-conference");
         }
         else {
