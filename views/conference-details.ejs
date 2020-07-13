@@ -881,27 +881,36 @@
 
     }
 
-    for (let i = 0; i < session.length; i++) {
-      if (endTime[i] < currentTime) {
-        document.querySelectorAll('filterDiv').classList.push('past');
-      } else if (startTime[i] < currentTime && endTime[i] > currentTime) {
-        document.querySelectorAll('filterDiv').classList.push('active');
-      }
-      else {
-        document.querySelectorAll('filterDiv').classList.push('upcoming');
-      }
+    function allSessionss() {
+      let allSes = document.querySelectorAll('.main1').classList;
+      return storeData = function (allSess) {
+        for (let i = 0; i < session.length; i++) {
 
-      console.log('start time: ', startTime);
-      console.log('end time: ', endTime);
-      console.log('current time: ', window.currentTime);
-      console.log(element);
-      console.log('____________________________');
-    };
+          if (endTime[i] < currentTime) {
+            console.log(allSess);
+            allSess.style.display = "flex";
+          } else if (startTime[i] < currentTime && endTime[i] > currentTime) {
+            document.querySelectorAll('filterDiv').style.display = "flex";
+          }
+          else {
+            document.querySelectorAll('filterDiv').style.display = "flex";
+          }
+
+          console.log('start time: ', startTime);
+          console.log('end time: ', endTime);
+          console.log('current time: ', window.currentTime);
+          console.log(element);
+          console.log('____________________________');
+        }
+      };
+    }
+
+    allSessionss(storeData(allSes));
 
 
 
 
-    filterSelection("all")
+    filterSelection('all');
 
     function filterSelection(c) {
 
@@ -959,64 +968,6 @@
     };
 
 
-
-
-
-    // function pastBtn() {
-    //   for (let i = 0; i < element.length; i++) {
-
-
-
-    //     if (endTime[i] < window.currentTime) {
-    //       element[i].classList.toggle("notHidden")
-    //     } else {
-    //       element[i].classList.toggle("hidden");
-    //     }
-
-    //   }
-    //   console.log('start time: ', startTime);
-    //   console.log('end time: ', endTime);
-    //   console.log('current time: ', window.currentTime);
-    //   console.log('____________________________');
-
-    // }
-
-    // function activeBtn(getCurrentTime) {
-
-    //   for (let i = 0; i < element.length; i++) {
-
-    //     if (endTime[i] > window.currentTime && startTime[i] < window.currentTime) {
-    //       element[i].classList.toggle("notHidden")
-    //     } else {
-    //       element[i].classList.toggle("hidden");
-    //     }
-
-    //   }
-    //   console.log('start time: ', startTime);
-    //   console.log('end time: ', endTime);
-    //   console.log('current time: ', window.currentTime);
-    //   console.log('____________________________');
-
-    // }
-
-    // function upcomingBtn(getCurrentTime) {
-
-    //   for (let i = 0; i < element.length; i++) {
-
-
-    //     if (startTime[i] > window.currentTime) {
-    //       element[i].classList.toggle("notHidden")
-    //     } else {
-    //       element[i].classList.toggle("hidden");
-    //     }
-
-    //   }
-    //   console.log('start time: ', startTime);
-    //   console.log('end time: ', endTime);
-    //   console.log('current time: ', window.currentTime);
-    //   console.log('____________________________');
-
-    // }
 
 
     // //////////    Pop up     //////////
