@@ -130,6 +130,7 @@ exports.postAddNewSession = (req, res, next) => {
     const { conferenceId, hallId, startTime, endTime } = {
         ...req.body
     }
+    
     let sessionSeats;
 
 
