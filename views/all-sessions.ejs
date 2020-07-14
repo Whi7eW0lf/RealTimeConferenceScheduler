@@ -75,32 +75,11 @@
     </style>
 
     <%- include('includes/navigation.ejs') %>
-
-    <p align="center" class="sign head">All Session</p>
-    <main class="grid">
-    <% for (let conference of conferences) { %>
-    <div class="main1">
-        <article class="active">
-            <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
-            <div class="text">
-                <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
-                <p><b>Start time: </b><%=conference.startTime%></p>
-                <p><b>End time: </b><%=conference.endTime%></p>
-                <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
-                <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"
-                    class="submit button btn-block">Details</a>
-            </div>
-        </article>
-    </div>
-    <% } %>
-</main>
-
-    <h3 align="center">Past</h3>
+  
+    <h3 align="center" class="sign head">Past</h3>
     <div class="grid">
-
         <% for (let conference of conferences) { %>
             <% if(conference.startTime<currentDate){ %>
-
             <div class="main1">
                 <article class="active">
                     <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
@@ -109,14 +88,11 @@
                         <p><b>Start time: </b><%=conference.startTime%></p>
                         <p><b>End time: </b><%=conference.endTime%></p>
                         <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
-                        <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"
-                            class="submit button btn-block">Details</a>
                     </div>
                 </article>
             </div>
-
             <% } %>
-            <% } %>
+        <% } %>
 
     </div>
     <h3 align="center">Active</h3>
@@ -133,8 +109,6 @@
                         <p><b>Start time: </b><%=conference.startTime%></p>
                         <p><b>End time: </b><%=conference.endTime%></p>
                         <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
-                        <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"
-                            class="submit button btn-block">Details</a>
                     </div>
                 </article>
             </div>
@@ -160,8 +134,11 @@
                         <p><b>Start time: </b><%=conference.startTime%></p>
                         <p><b>End time: </b><%=conference.endTime%></p>
                         <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
-                        <a href="/join-session" align="center" name="sessionId" value = "conference._id"
-                            class="submit button btn-block">Join Session</a>
+                        <form class="product-form form1" action="/join-session" method="POST">
+                            <input type="hidden" value="<%= conference._id %>" name="sessionId" />
+                            <input type="hidden" value="<%= conference.conferenceId._id %>" name="conferenceId" />
+                            <button class="submit btn btn-block" type="submit">Join session</button>
+                        </form>
                     </div>
                 </article>
             </div>

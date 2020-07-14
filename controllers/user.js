@@ -82,7 +82,7 @@ exports.getConferenceDetails = (req, res, next) => {
 
 exports.getAllSessions = (req,res,next)=>{
     ConferenceSession.find().populate("conferenceId").then(conf=>{
-
+        console.log(conf)
         res.render("all-sessions",{
             conferences : conf,
             pageTitle : 'All Sessions',
