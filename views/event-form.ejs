@@ -31,8 +31,8 @@
                 <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
                 <div class="text">
                     <p class="sign conference-header" align="center"><%=conference.name%></p>
-                    <p><b>Start time: </b><%=conference.startTime%></p>
-                    <p><b>End time: </b><%=conference.endTime%></p>
+                    <p><b>Start time: </b><%=conference.startTime.toString().substring(0, 21)%></p>
+                    <p><b>End time: </b><%=conference.endTime.toString().substring(0, 21)%></p>
                     <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
                     <p><b>Address: </b><%=conference.address.adress%></p>
                     <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"
@@ -55,8 +55,8 @@
                 <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
                 <div class="text">
                     <p class="sign conference-header" align="center"><%=conference.name%></p>
-                    <p><b>Start time: </b><%=conference.startTime%></p>
-                    <p><b>End time: </b><%=conference.endTime%></p>
+                    <p><b>Start time: </b><%=conference.startTime.toString().substring(0, 21)%></p>
+                    <p><b>End time: </b><%=conference.endTime.toString().substring(0, 21)%></p>
                     <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
                     <p><b>Address: </b><%=conference.address.adress%></p>
                     <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"
@@ -80,8 +80,8 @@
                 <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
                 <div class="text">
                     <p class="sign conference-header" align="center"><%=conference.name%></p>
-                    <p><b>Start time: </b><%=conference.startTime%></p>
-                    <p><b>End time: </b><%=conference.endTime%></p>
+                    <p><b>Start time: </b><%=conference.startTime.toString().substring(0, 21)%></p>
+                    <p><b>End time: </b><%=conference.endTime.toString().substring(0, 21)%></p>
                     <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
                     <p><b>Address: </b><%=conference.address.adress%></p>
                     <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"

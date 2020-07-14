@@ -22,7 +22,8 @@ exports.getIndex = (req, res, next) => {
             path: '/',
             conferences: active,
             isLoggedIn: req.session.isLoggedIn,
-            currentDate: req.date
+            currentDate: req.date,
+
         })
     }).catch(err => console.log(err))
 
