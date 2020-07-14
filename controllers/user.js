@@ -80,6 +80,20 @@ exports.getConferenceDetails = (req, res, next) => {
     }).catch(err => console.log(err))
 }
 
+exports.getAllSessions = (req,res,next)=>{
+    ConferenceSession.find().populate("conferenceId").then(conf=>{
+        res.render("all-sessions",{
+            conferences : conf,
+            pageTitle : 'All Sessions',
+            path: "/all-sessions",
+            isLoggedIn: req.session.isLoggedIn
+        })
+    }
+
+    );
+
+}
+
     //sessions = sessions.map(e => {
     //     const startTime = e.startTime.toString().substring(0, 21);
     //     const endTime = e.endTime.toString().substring(0, 21);
