@@ -745,7 +745,7 @@
 
   <div class="flex-box">
     <div class="imageCard">
-      <img src="https://picsum.photos/600/400?image=1083" class="imagee" alt="">
+      <img src="<%=conference.speakerImg%>" class="imagee" alt="">
     </div>
     <div class="mainCardDetails textCard popup" id="myDiv" onmouseover="this.style.backgroundColor ='#1a1e1c91'"
       onmouseout="this.style.backgroundColor = '#1a1e1c75'">
@@ -853,7 +853,6 @@
 
 
   <div class="grid">
-    <% for(let session of sessions) { %> <div class="filterDiv main1 allSessions collapse multi-collapse">
       <% for(let session of allSessions) { %>
       <div class="main1 filterDiv allSessions">
         <article class="sessions">
