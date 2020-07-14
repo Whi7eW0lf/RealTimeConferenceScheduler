@@ -833,33 +833,29 @@
   </div>
 
   <div class="buttons-data-filter" id="myBtnContainer">
-    <<<<<<< HEAD <button class="submit1 btn btn-session active" data-toggle="collapse" data-target=".multi-collapse"
+    <button class="submit1 btn btn-session active" data-toggle="collapse" data-target=".multi-collapse"
       aria-expanded="false" aria-controls="multiCollapsePast multiCollapseActive multiCollapseUpcoming" type="button">
       ALL</button>
 
-      <button class="submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapsePast"
-        aria-expanded="false" aria-controls="multiCollapsePast" onclick="addClass()">PAST</button>
+    <button class="submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapsePast"
+      aria-expanded="false" aria-controls="multiCollapsePast" onclick="addClass()">PAST</button>
 
-      <button class="submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapseActive"
-        aria-expanded="false" aria-controls="multiCollapseActive" onclick="addClass()">ACTIVE</button>
+    <button class="submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapseActive"
+      aria-expanded="false" aria-controls="multiCollapseActive" onclick="addClass()">ACTIVE</button>
 
-      <button class=" submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapseUpcoming"
-        aria-expanded="false" aria-controls="multiCollapseUpcoming" onclick="addClass()">UPCOMING</button>
-      =======
-      <button class="submit1 btn btn-session active" onclick="filterSelection('all')" type="submit">ALL</button>
-      <button class="submit1 btn btn-session" onclick="filterSelection('past')" type="submit">PAST</button>
-      <button class="submit1 btn btn-session" onclick="filterSelection('active')" type="submit">ACTIVE</button>
-      <button class="submit1 btn btn-session" onclick="filterSelection('upcoming')" type="submit">UPCOMING</button>
-      >>>>>>> 282e91aaf8498abb5dfa1ecb90080de40d8410cc
+    <button class=" submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapseUpcoming"
+      aria-expanded="false" aria-controls="multiCollapseUpcoming" onclick="addClass()">UPCOMING</button>
+    <button class="submit1 btn btn-session active" onclick="filterSelection('all')" type="submit">ALL</button>
+    <button class="submit1 btn btn-session" onclick="filterSelection('past')" type="submit">PAST</button>
+    <button class="submit1 btn btn-session" onclick="filterSelection('active')" type="submit">ACTIVE</button>
+    <button class="submit1 btn btn-session" onclick="filterSelection('upcoming')" type="submit">UPCOMING</button>
   </div>
 
 
   <div class="grid">
-    <<<<<<< HEAD <% for(let session of sessions) { %> <div class="filterDiv main1 allSessions collapse multi-collapse">
-      =======
+    <% for(let session of sessions) { %> <div class="filterDiv main1 allSessions collapse multi-collapse">
       <% for(let session of allSessions) { %>
       <div class="main1 filterDiv allSessions">
-        >>>>>>> 282e91aaf8498abb5dfa1ecb90080de40d8410cc
         <article class="sessions">
           <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
           <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -873,128 +869,128 @@
         </article>
       </div>
       <% } %>
-  </div>
+    </div>
 
 
-  <script>
-    const session = document.querySelectorAll(".allSessions");
-    const startTime = [];
-    const endTime = [];
-    window.currentTime = getCurrentTime();
-    const allSes = document.querySelectorAll('.main1');
-    const start = [];
-    const end = [];
+    <script>
+      const session = document.querySelectorAll(".allSessions");
+      const startTime = [];
+      const endTime = [];
+      window.currentTime = getCurrentTime();
+      const allSes = document.querySelectorAll('.main1');
+      const start = [];
+      const end = [];
 
 
-    function getCurrentTime(session) {
-      return new Date().toString().slice(0, 21);
-    }
-
-
-    function allSessionss() {
-      for (let i = 0; i < allSes.length; i++) {
-        startTime[i] = document.querySelector('.pStartTime') //    startTime.innerHTML.slice(37, 55);
-        endTime[i] = document.querySelector('.pEndTime')     //    endTime.innerHTML.slice(34, 55);
-        start[i] = startTime[i].innerHTML.slice(37, 55);
-        end[i] = endTime[i].innerHTML.slice(34, 55);
-
-        return start, end;
+      function getCurrentTime(session) {
+        return new Date().toString().slice(0, 21);
       }
 
 
-    };
+      function allSessionss() {
+        for (let i = 0; i < allSes.length; i++) {
+          startTime[i] = document.querySelector('.pStartTime') //    startTime.innerHTML.slice(37, 55);
+          endTime[i] = document.querySelector('.pEndTime')     //    endTime.innerHTML.slice(34, 55);
+          start[i] = startTime[i].innerHTML.slice(37, 55);
+          end[i] = endTime[i].innerHTML.slice(34, 55);
 
-    allSessionss();
-
-    function addClass() {
-      for (let i = 0; i < allSes.length; i++) {
-        console.log(start[i])
-        if (end[i] < currentTime) {
-          if (!allSes[i].classList.contains('multiCollapsePast')) {
-            allSes[i].className += ", multiCollapsePast ";
-            for (i = 0; i < allSes.length; i++) {
-              allSes[i].classList.remove('multiCollapseActive');
-              allSes[i].classList.remove('multiCollapseUpcoming');
-              allSes[i].classList.remove('filterDiv');
-
-            }
-          }
+          return start, end;
         }
 
-        else if (start[i] < currentTime) {
-          if (end[i] > currentTime) {
-            if (!allSes[i].classList.contains('multiCollapseActive')) {
-              allSes[i].className += ", multiCollapseActive ";
 
+      };
+
+      allSessionss();
+
+      function addClass() {
+        for (let i = 0; i < allSes.length; i++) {
+          console.log(start[i])
+          if (end[i] < currentTime) {
+            if (!allSes[i].classList.contains('multiCollapsePast')) {
+              allSes[i].className += ", multiCollapsePast ";
               for (i = 0; i < allSes.length; i++) {
-                allSes[i].classList.remove('multiCollapsePast');
+                allSes[i].classList.remove('multiCollapseActive');
                 allSes[i].classList.remove('multiCollapseUpcoming');
+                allSes[i].classList.remove('filterDiv');
 
               }
             }
           }
 
-        }
-        else if (start[i] > currentTime) {
-          if (!allSes[i].classList.contains('multiCollapseUpcoming')) {
-            allSes[i].classList += ", multiCollapseUpcoming ";
-            for (i = 0; i < allSes.length; i++) {
-              allSes[i].classList.remove('multiCollapsePast');
-              allSes[i].classList.remove('multiCollapseActive');
+          else if (start[i] < currentTime) {
+            if (end[i] > currentTime) {
+              if (!allSes[i].classList.contains('multiCollapseActive')) {
+                allSes[i].className += ", multiCollapseActive ";
+
+                for (i = 0; i < allSes.length; i++) {
+                  allSes[i].classList.remove('multiCollapsePast');
+                  allSes[i].classList.remove('multiCollapseUpcoming');
+
+                }
+              }
             }
 
           }
+          else if (start[i] > currentTime) {
+            if (!allSes[i].classList.contains('multiCollapseUpcoming')) {
+              allSes[i].classList += ", multiCollapseUpcoming ";
+              for (i = 0; i < allSes.length; i++) {
+                allSes[i].classList.remove('multiCollapsePast');
+                allSes[i].classList.remove('multiCollapseActive');
+              }
 
+            }
+
+          }
         }
       }
-    }
 
 
 
 
 
-    // Add active class to the current control button (highlight it)
-    var btnContainer = document.getElementById("myBtnContainer");
-    var btns = btnContainer.getElementsByClassName("btn");
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener("click", function () {
-        var current = document.getElementsByClassName("active");
-        current[1].className = current[1].className.replace(" active", "");
-        this.className += " active";
-      });
-    };
+      // Add active class to the current control button (highlight it)
+      var btnContainer = document.getElementById("myBtnContainer");
+      var btns = btnContainer.getElementsByClassName("btn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+          var current = document.getElementsByClassName("active");
+          current[1].className = current[1].className.replace(" active", "");
+          this.className += " active";
+        });
+      };
 
 
 
 
-    // //////////    Pop up     //////////
-    var modal = document.getElementById("myModal");
-    var divv = document.getElementById("myDiv");
-    var close = document.querySelector("#close");
-    // console.log(modal);
+      // //////////    Pop up     //////////
+      var modal = document.getElementById("myModal");
+      var divv = document.getElementById("myDiv");
+      var close = document.querySelector("#close");
+      // console.log(modal);
 
-    divv.onclick = function () {
-      modal.style.display = "block";
-      console.log(close);
-    }
-
-    close.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
+      divv.onclick = function () {
+        modal.style.display = "block";
+        console.log(close);
       }
-    }
 
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
+      close.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
       }
-    }
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
 
 
 
 
 
-  </script>
+    </script>
 
 
-  <%- include('includes/end.ejs') %>
+    <%- include('includes/end.ejs') %>
