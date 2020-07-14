@@ -431,7 +431,7 @@ a.active {
     display: none;
   }
   .menuu a {
-    display: block;
+    display: grid;
     border-bottom: solid #d6d6d6;
     margin: 0;
   }
@@ -495,7 +495,7 @@ a.active {
   }
 
   .media500 {
-    margin-top: 0px;
+    margin-top: 50px;
     margin-bottom: 50px;
     width: 90%;
   }
