@@ -80,8 +80,16 @@
     <%- include('includes/navigation.ejs') %>
 
 
+
+    <div id="mySidenav" class="sidenav">
+        <a href="#myconf" id="pastBtn">Confs</a>
+        <a href="#attendee" id="activeBtn">Attedees</a>
+    </div>
+
+
+
     <% if (userRole === "conferenceOwner") { %>
-    <p align="center" class="sign head">My Conferences</p>
+    <p align="center" class="sign head" id="myconf">My Conferences</p>
     <% } %>
 
     <% if(errorMessage) { %>
@@ -113,7 +121,7 @@
         <% } %>
 
     </main>
-    <p align="center" class="sign head">My sessions to attend:</p>
+    <p align="center" class="sign head" id="attendee">My sessions to attend:</p>
     <main class="grid">
 
 
