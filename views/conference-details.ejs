@@ -356,6 +356,12 @@
       border-radius: 50%;
     }
 
+    .circular--landscape img {
+      width: auto;
+      height: 100%;
+      margin-left: -50px;
+    }
+
     .article {
       z-index: 1000;
       position: relative;
@@ -499,6 +505,7 @@
 
       body {
         padding-top: 0;
+        display: inline-block;
       }
 
       .form1 {
@@ -529,7 +536,7 @@
         display: grid;
         margin-bottom: 28px;
         max-width: fit-content;
-        width: 90vh;
+        width: 70vh;
       }
 
       p {
@@ -569,6 +576,22 @@
         height: 30vh;
 
       }
+
+      .circular--landscape {
+        display: inline-block;
+        position: relative;
+        width: 300px;
+        height: 300px;
+        overflow: hidden;
+        border-radius: 50%;
+      }
+
+      .circular--landscape img {
+        width: auto;
+        height: 100%;
+        margin-left: -50px;
+      }
+
 
     }
 
@@ -702,6 +725,15 @@
       margin-bottom: 60px;
     }
 
+    .circular--landscape {
+      display: inline-block;
+      position: relative;
+      width: 300px;
+      height: 300px;
+      overflow: hidden;
+      border-radius: 50%;
+    }
+
 
     /* 
     /* Add animation (fade in the popup) */
@@ -747,7 +779,9 @@
 
   <div class="main1">
     <article class="active">
-      <img src="<%=conference.speakerImg%>" class="img" alt="Speaker Photo">
+      <div class="circular--landscape">
+        <img src="<%=conference.speakerImg%>" class="img" alt="Speaker Photo">
+      </div>
       <div class="text">
         <p class="sign conference-header" align="center"><%=conference.name%></p>
         <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
