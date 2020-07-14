@@ -49,6 +49,7 @@
       background-color: #fff;
       font-family: 'Ubuntu', sans-serif;
       padding: 40px 0;
+      line-height: 1.2;
 
     }
 
@@ -74,12 +75,14 @@
       padding: 18px;
       padding-top: 18px;
       padding-bottom: 18px;
-      background-color: #FFFFFF;
-      width: 400px;
+      background-color: #ffffff;
+      width: 100vh;
       height: fit-content;
       margin: auto;
       border-radius: 1.5em;
       box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+      text-align: center;
+      margin-top: 5vh;
     }
 
     .main2 {
@@ -130,14 +133,19 @@
       padding: 40px;
     }
 
+    .head {
+      font-size: 4vh;
+      padding-block-start: 40px;
+    }
 
     .sign {
-      padding-top: 12vh;
-      padding-bottom: 30px;
+      padding-top: 5vh;
+      padding-bottom: 5vh;
       color: #0082e6;
       font-family: 'Ubuntu', sans-serif;
       font-weight: bold;
       font-size: 23px;
+      margin-bottom: 0px;
     }
 
     .sign1 {
@@ -313,12 +321,6 @@
       display: block;
     }
 
-    p {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
     .btn:hover {
       background: transparent;
       color: #0082e6;
@@ -353,12 +355,8 @@
     }
 
     .img {
-      z-index: 5;
-      position: relative;
-      top: 2vh;
-      left: 10vh;
-      max-width: 83vh;
-
+      width: 100%;
+      border-radius: 1.5em;
     }
 
     .article {
@@ -534,10 +532,11 @@
         display: grid;
         margin-bottom: 28px;
         max-width: fit-content;
+        width: 90vh;
       }
 
       p {
-        white-space: nowrap;
+        white-space: none;
         overflow: hidden;
         text-overflow: ellipsis;
         display: inline-block;
@@ -742,61 +741,27 @@
       <p></p>
     </div>
   </div> -->
-
-  <div class="flex-box">
-    <div class="imageCard">
-      <img src="<%=conference.speakerImg%>" class="imagee" alt="">
-    </div>
-    <div class="mainCardDetails textCard popup" id="myDiv" onmouseover="this.style.backgroundColor ='#1a1e1c91'"
-      onmouseout="this.style.backgroundColor = '#1a1e1c75'">
-      <p>Name: <%=conference.name%></p>
-      <p>Description: <%=conference.description%></p>
-      <p>Description: <%=conference.speakerName%></p>
-      <p>Description: <%=conference.description%></p>
-      <p>Description: <%=conference.description%></p>
-      <p>Speaker name: <%=conference.speakerName%></p>
-      <p>Start time: <%=conference.startTime%></p>
-      <p>End time: <%=conference.endTime%></p>
+  <p align="center" class="sign head">Session details</p>
 
 
-      <!--//////      popUp     ////// -->
-      <div id="myModal" class="modal">
-        <div class="modal-content">
-          <span class="close" id="close">&times;</span>
-          <p class="popUpTxt"><b class="sign1">Name: </b><%=conference.name%></p>
-          <p class="popUpTxt"><b class="sign1">Description: </b><%=conference.description%></p>
-          <p class="popUpTxt"><b class="sign1">Speaker Name: </b><%=conference.speakerName%></p>
-          </p>
-          <p class="popUpTxt"><b class="sign1">Start time: </b><%=conference.startTime%></p>
-          <p class="popUpTxt"><b class="sign1">End time: </b><%=conference.endTime%></p>
-        </div>
+  <div class="main1">
+    <article class="active">
+      <img src="<%=conference.speakerImg%>" class="img" alt="Speaker Photo">
+      <div class="text">
+        <p class="sign conference-header" align="center"><%=conference.name%></p>
+        <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
+        <p><b>Start time: </b><%=conference.startTime%></p>
+        <p><b>End time: </b><%=conference.endTime%></p>
+        <p><b>Address: </b><%=conference.address.adress%></p>
+        <p><b> Speaker name: </b><%=conference.speakerName%></p>
+
       </div>
-
-    </div>
+    </article>
   </div>
 
 
 
-  <!-- <div class="main">
 
-    <div class="mainCardDetails grid2">
-      <div class="grid2">
-        <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
-      </div>
-      <div class="article main popup" onclick="popUp()">
-        <p>Name: <%=conference.name%></p>
-        <p>Description: <%=conference.description%></p>
-        <span class="popuptext" id="myPopup">
-          <p>Name: <%=conference.name%></p>
-          <p>Description: <%=conference.description%></p>
-        </span>
-
-      </div>
-
-
-    </div>
-
-  </div> -->
 
   <div class=sign1>
     <label class="sign">Adding sessions</label>
@@ -833,163 +798,124 @@
   </div>
 
   <div class="buttons-data-filter" id="myBtnContainer">
-    <button class="submit1 btn btn-session active" data-toggle="collapse" data-target=".multi-collapse"
-      aria-expanded="false" aria-controls="multiCollapsePast multiCollapseActive multiCollapseUpcoming" type="button">
-      ALL</button>
-
-    <button class="submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapsePast"
-      aria-expanded="false" aria-controls="multiCollapsePast" onclick="addClass()">PAST</button>
-
-    <button class="submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapseActive"
-      aria-expanded="false" aria-controls="multiCollapseActive" onclick="addClass()">ACTIVE</button>
-
-    <button class=" submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapseUpcoming"
-      aria-expanded="false" aria-controls="multiCollapseUpcoming" onclick="addClass()">UPCOMING</button>
-    <button class="submit1 btn btn-session active" onclick="filterSelection('all')" type="submit">ALL</button>
-    <button class="submit1 btn btn-session" onclick="filterSelection('past')" type="submit">PAST</button>
-    <button class="submit1 btn btn-session" onclick="filterSelection('active')" type="submit">ACTIVE</button>
-    <button class="submit1 btn btn-session" onclick="filterSelection('upcoming')" type="submit">UPCOMING</button>
+    <button class="submit1 btn btn-session active" type="submit">ALL</button>
+    <button class="submit1 btn btn-session" type="submit">PAST</button>
+    <button class="submit1 btn btn-session" type="submit">ACTIVE</button>
+    <button class="submit1 btn btn-session" type="submit">UPCOMING</button>
   </div>
 
 
   <div class="grid">
-      <% for(let session of allSessions) { %>
-      <div class="main1 filterDiv allSessions">
-        <article class="sessions">
-          <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
-          <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
-          <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
-          <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
-          <form class="product-form form1" action="/join-session" method="POST">
-            <input type="hidden" value="<%= session._id %>" name="sessionId" />
-            <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
-            <button class="submit btn btn-block" type="submit">Join session</button>
-          </form>
-        </article>
-      </div>
-      <% } %>
+    <% for(let session of allSessions) { %>
+    <div class="main1 filterDiv allSessions">
+      <article class="sessions">
+        <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
+        <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
+        <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
+        <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
+        <form class="product-form form1" action="/join-session" method="POST">
+          <input type="hidden" value="<%= session._id %>" name="sessionId" />
+          <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
+          <button class="submit btn btn-block" type="submit">Join session</button>
+        </form>
+      </article>
     </div>
+    <% } %>
+  </div>
 
 
-    <script>
-      const session = document.querySelectorAll(".allSessions");
-      const startTime = [];
-      const endTime = [];
-      window.currentTime = getCurrentTime();
-      const allSes = document.querySelectorAll('.main1');
-      const start = [];
-      const end = [];
+  <script>
+    const session = document.querySelectorAll(".allSessions");
+    const startTime = [];
+    const endTime = [];
+    window.currentTime = getCurrentTime();
+    const allSes = document.querySelectorAll('.main1');
+    const start = [];
+    const end = [];
 
 
-      function getCurrentTime(session) {
-        return new Date().toString().slice(0, 21);
+    function getCurrentTime(session) {
+      return new Date().toString().slice(0, 21);
+    }
+
+
+    function allSessionss() {
+      for (let i = 0; i < allSes.length; i++) {
+        startTime[i] = document.querySelector('.pStartTime') //    startTime.innerHTML.slice(37, 55);
+        endTime[i] = document.querySelector('.pEndTime')     //    endTime.innerHTML.slice(34, 55);
+        start[i] = startTime[i].innerHTML.slice(37, 55);
+        end[i] = endTime[i].innerHTML.slice(34, 55);
+
+        return start, end;
       }
 
 
-      function allSessionss() {
-        for (let i = 0; i < allSes.length; i++) {
-          startTime[i] = document.querySelector('.pStartTime') //    startTime.innerHTML.slice(37, 55);
-          endTime[i] = document.querySelector('.pEndTime')     //    endTime.innerHTML.slice(34, 55);
-          start[i] = startTime[i].innerHTML.slice(37, 55);
-          end[i] = endTime[i].innerHTML.slice(34, 55);
+    };
 
-          return start, end;
+    allSessionss();
+
+    function addClass() {
+      for (let i = 0; i < allSes.length; i++) {
+        console.log(start[i])
+        if (end[i] < currentTime) {
+          if (!allSes[i].classList.contains('multiCollapsePast')) {
+            allSes[i].className += ", multiCollapsePast ";
+            for (i = 0; i < allSes.length; i++) {
+              allSes[i].classList.remove('multiCollapseActive');
+              allSes[i].classList.remove('multiCollapseUpcoming');
+              allSes[i].classList.remove('filterDiv');
+
+            }
+          }
         }
 
+        else if (start[i] < currentTime) {
+          if (end[i] > currentTime) {
+            if (!allSes[i].classList.contains('multiCollapseActive')) {
+              allSes[i].className += ", multiCollapseActive ";
 
-      };
-
-      allSessionss();
-
-      function addClass() {
-        for (let i = 0; i < allSes.length; i++) {
-          console.log(start[i])
-          if (end[i] < currentTime) {
-            if (!allSes[i].classList.contains('multiCollapsePast')) {
-              allSes[i].className += ", multiCollapsePast ";
-              for (i = 0; i < allSes.length; i++) {
-                allSes[i].classList.remove('multiCollapseActive');
-                allSes[i].classList.remove('multiCollapseUpcoming');
-                allSes[i].classList.remove('filterDiv');
-
-              }
-            }
-          }
-
-          else if (start[i] < currentTime) {
-            if (end[i] > currentTime) {
-              if (!allSes[i].classList.contains('multiCollapseActive')) {
-                allSes[i].className += ", multiCollapseActive ";
-
-                for (i = 0; i < allSes.length; i++) {
-                  allSes[i].classList.remove('multiCollapsePast');
-                  allSes[i].classList.remove('multiCollapseUpcoming');
-
-                }
-              }
-            }
-
-          }
-          else if (start[i] > currentTime) {
-            if (!allSes[i].classList.contains('multiCollapseUpcoming')) {
-              allSes[i].classList += ", multiCollapseUpcoming ";
               for (i = 0; i < allSes.length; i++) {
                 allSes[i].classList.remove('multiCollapsePast');
-                allSes[i].classList.remove('multiCollapseActive');
-              }
+                allSes[i].classList.remove('multiCollapseUpcoming');
 
+              }
+            }
+          }
+
+        }
+        else if (start[i] > currentTime) {
+          if (!allSes[i].classList.contains('multiCollapseUpcoming')) {
+            allSes[i].classList += ", multiCollapseUpcoming ";
+            for (i = 0; i < allSes.length; i++) {
+              allSes[i].classList.remove('multiCollapsePast');
+              allSes[i].classList.remove('multiCollapseActive');
             }
 
           }
+
         }
       }
+    }
 
 
 
 
 
-      // Add active class to the current control button (highlight it)
-      var btnContainer = document.getElementById("myBtnContainer");
-      var btns = btnContainer.getElementsByClassName("btn");
-      for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function () {
-          var current = document.getElementsByClassName("active");
-          current[1].className = current[1].className.replace(" active", "");
-          this.className += " active";
-        });
-      };
+    // Add active class to the current control button (highlight it)
+    var btnContainer = document.getElementById("myBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function () {
+        var current = document.getElementsByClassName("active");
+        current[1].className = current[1].className.replace(" active", "");
+        this.className += " active";
+      });
+    };
 
 
 
 
-      // //////////    Pop up     //////////
-      var modal = document.getElementById("myModal");
-      var divv = document.getElementById("myDiv");
-      var close = document.querySelector("#close");
-      // console.log(modal);
-
-      divv.onclick = function () {
-        modal.style.display = "block";
-        console.log(close);
-      }
-
-      close.onclick = function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
-
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
+  </script>
 
 
-
-
-
-    </script>
-
-
-    <%- include('includes/end.ejs') %>
+  <%- include('includes/end.ejs') %>
