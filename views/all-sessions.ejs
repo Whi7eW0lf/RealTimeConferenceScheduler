@@ -79,19 +79,19 @@
     <h3 align="center" class="sign head">Past</h3>
     <div class="grid">
         <% for (let conference of conferences) { %>
-        <% if(conference.startTime<currentDate){ %>
-        <div class="main1">
-            <article class="active">
-                <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
-                <div class="text">
-                    <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
-                    <p><b>Start time: </b><%=conference.startTime%></p>
-                    <p><b>End time: </b><%=conference.endTime%></p>
-                    <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
-                </div>
-            </article>
-        </div>
-        <% } %>
+            <% if(conference.startTime<currentDate){ %>
+            <div class="main1">
+                <article class="active">
+                    <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+                    <div class="text">
+                        <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
+                        <p><b>Start time: </b><%=conference.startTime%></p>
+                        <p><b>End time: </b><%=conference.endTime%></p>
+                        <p maxlenght="20"><b>Description: </b><%=conference.conferenceId.description%></p>
+                    </div>
+                </article>
+            </div>
+            <% } %>
         <% } %>
 
     </div>
@@ -99,22 +99,22 @@
     <div class="grid">
 
         <% for (let conference of conferences) { %>
-        <% if(conference.startTime < currentDate && conference.endTime > currentDate){ %>
+            <% if(conference.startTime < currentDate && conference.endTime > currentDate){ %>
 
-        <div class="main1">
-            <article class="active">
-                <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
-                <div class="text">
-                    <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
-                    <p><b>Start time: </b><%=conference.startTime%></p>
-                    <p><b>End time: </b><%=conference.endTime%></p>
-                    <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
-                </div>
-            </article>
-        </div>
+            <div class="main1">
+                <article class="active">
+                    <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+                    <div class="text">
+                        <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
+                        <p><b>Start time: </b><%=conference.startTime%></p>
+                        <p><b>End time: </b><%=conference.endTime%></p>
+                        <p maxlenght="20"><b>Description: </b><%=conference.conferenceId.description%></p>
+                    </div>
+                </article>
+            </div>
 
-        <% } %>
-        <% } %>
+            <% } %>
+            <% } %>
 
     </div>
 
@@ -124,27 +124,27 @@
     <div class="grid">
 
         <% for (let conference of conferences) { %>
-        <% if(conference.startTime > currentDate){ %>
+            <% if(conference.startTime > currentDate){ %>
 
-        <div class="main1">
-            <article class="active">
-                <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
-                <div class="text">
-                    <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
-                    <p><b>Start time: </b><%=conference.startTime%></p>
-                    <p><b>End time: </b><%=conference.endTime%></p>
-                    <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
-                    <form class="product-form form1" action="/join-session" method="POST">
-                        <input type="hidden" value="<%= conference._id %>" name="sessionId" />
-                        <input type="hidden" value="<%= conference.conferenceId._id %>" name="conferenceId" />
-                        <button class="submit btn btn-block" type="submit">Join session</button>
-                    </form>
-                </div>
-            </article>
-        </div>
+            <div class="main1">
+                <article class="active">
+                    <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+                    <div class="text">
+                        <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
+                        <p><b>Start time: </b><%=conference.startTime%></p>
+                        <p><b>End time: </b><%=conference.endTime%></p>
+                        <p maxlenght="20"><b>Description: </b><%=conference.conferenceId.description%></p>
+                        <form class="product-form form1" action="/join-session" method="POST">
+                            <input type="hidden" value="<%= conference._id %>" name="sessionId" />
+                            <input type="hidden" value="<%= conference.conferenceId._id %>" name="conferenceId" />
+                            <button class="submit btn btn-block" type="submit">Join session</button>
+                        </form>
+                    </div>
+                </article>
+            </div>
 
-        <% } %>
-        <% } %>
+            <% } %>
+            <% } %>
 
     </div>
 
