@@ -592,9 +592,9 @@
       display: none;
     }
 
-    /* .show {
-      display: block;
-    } */
+    .show {
+      display: flex;
+    }
 
     .btn.active {
       background: transparent;
@@ -770,9 +770,7 @@
       <!--//////      popUp     ////// -->
       <div id="myModal" class="modal">
         <div class="modal-content">
-          <span class="close" id="close" onclick="() => {
-            document.querySelector('.modal').style.display = 'none'
-          };">&times;</span>
+          <span class="close" id="close">&times;</span>
           <p class="popUpTxt"><b class="sign1">Name: </b><%=conference.name%></p>
           <p class="popUpTxt"><b class="sign1">Description: </b><%=conference.description%></p>
           <p class="popUpTxt"><b class="sign1">Speaker Name: </b><%=conference.speakerName%></p>
@@ -848,19 +846,19 @@
       type="button">ALL</button>
 
     <button class="submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapsePast"
-      aria-expanded="false" aria-controls="multiCollapsePast">PAST</button>
+      aria-expanded="false" aria-controls="multiCollapsePast" onclick="addClass()">PAST</button>
 
     <button class="submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapseActive"
-      aria-expanded="false" aria-controls="multiCollapseActive">ACTIVE</button>
+      aria-expanded="false" aria-controls="multiCollapseActive" onclick="addClass()">ACTIVE</button>
 
     <button class=" submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapseUpcoming"
-      aria-expanded="false" aria-controls="multiCollapseUpcoming">UPCOMING</button>
+      aria-expanded="false" aria-controls="multiCollapseUpcoming" onclick="addClass()">UPCOMING</button>
   </div>
 
 
   <div class="grid">
     <% for(let session of sessions) { %>
-    <div class="main1 allSessions collapse multi-collapse multiCollapsePast">
+    <div class="filterDiv main1 allSessions collapse multi-collapse">
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -882,103 +880,77 @@
     const startTime = [];
     const endTime = [];
     window.currentTime = getCurrentTime();
-    const past = [];
-    const active = [];
-    const upcoming = [];
-
+    const allSes = document.querySelectorAll('.main1');
+    const start = [];
+    const end = [];
 
 
     function getCurrentTime(session) {
       return new Date().toString().slice(0, 21);
     }
 
-    for (let i = 0; i < session.length; i++) {
-      startTime[i] = document.querySelectorAll('.pStartTime').innerHTML.slice(37, 55);
-      endTime[i] = document.querySelectorAll('.pEndTime').innerHTML.slice(34, 55);
-      console.log(startTime);
-      console.log(endTime);
-    }
 
     function allSessionss() {
-      let allSes = document.querySelectorAll('.main1');
-
       for (let i = 0; i < allSes.length; i++) {
+        startTime[i] = document.querySelector('.pStartTime') //    startTime.innerHTML.slice(37, 55);
+        endTime[i] = document.querySelector('.pEndTime')     //    endTime.innerHTML.slice(34, 55);
+        start[i] = startTime[i].innerHTML.slice(37, 55);
+        end[i] = endTime[i].innerHTML.slice(34, 55);
 
-        if (endTime[i] < currentTime) {
-          console.log(allSess);
-          allSess.style.display = "flex";
-        } else if (startTime[i] < currentTime && endTime[i] > currentTime) {
-          document.querySelectorAll('filterDiv').style.display = "flex";
-        }
-        else {
-          document.querySelectorAll('filterDiv').style.display = "flex";
-        }
-
-        console.log('start time: ', startTime);
-        console.log('end time: ', endTime);
-        console.log('current time: ', window.currentTime);
-        console.log(element);
-        console.log('____________________________');
+        return start, end;
       }
 
-      console.log(allSes);
 
     };
 
-
-
-
     allSessionss();
 
+    function addClass() {
+      for (let i = 0; i < allSes.length; i++) {
+        console.log(start[i])
+        if (end[i] < currentTime) {
+          if (!allSes[i].classList.contains('multiCollapsePast')) {
+            allSes[i].className += ", multiCollapsePast ";
+            for (i = 0; i < allSes.length; i++) {
+              allSes[i].classList.remove('multiCollapseActive');
+              allSes[i].classList.remove('multiCollapseUpcoming');
+              allSes[i].classList.remove('filterDiv');
+
+            }
+          }
+        }
+
+        else if (start[i] < currentTime) {
+          if (end[i] > currentTime) {
+            if (!allSes[i].classList.contains('multiCollapseActive')) {
+              allSes[i].className += ", multiCollapseActive ";
+
+              for (i = 0; i < allSes.length; i++) {
+                allSes[i].classList.remove('multiCollapsePast');
+                allSes[i].classList.remove('multiCollapseUpcoming');
+
+              }
+            }
+          }
+
+        }
+        else if (start[i] > currentTime) {
+          if (!allSes[i].classList.contains('multiCollapseUpcoming')) {
+            allSes[i].classList += ", multiCollapseUpcoming ";
+            for (i = 0; i < allSes.length; i++) {
+              allSes[i].classList.remove('multiCollapsePast');
+              allSes[i].classList.remove('multiCollapseActive');
+            }
+
+          }
+
+        }
+      }
+    }
 
 
 
 
-    // filterSelection("all");
-
-    // function filterSelection(c) {
-
-
-
-    //   // element[i].classList.toggle("notHidden");
-    //   // element[i].classList.toggle("hidden");
-
-
-    //   var x;
-    //   x = document.getElementsByClassName("filterDiv");
-    //   if (c == "all") c = "";
-    //   // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
-    //   for (i = 0; i < x.length; i++) {
-    //     removeClass(x[i], "show");
-    //     if (x[i].className.indexOf(c) > -1) addClass(x[i], "show");
-    //   }
-    // }
-
-
-    // // Show filtered elements
-    // function addClass(element, name) {
-    //   var i, arr1, arr2;
-    //   arr1 = element.className.split(" ");
-    //   arr2 = name.split(" ");
-    //   for (i = 0; i < arr2.length; i++) {
-    //     if (arr1.indexOf(arr2[i]) == -1) {
-    //       element.className += " " + arr2[i];
-    //     }
-    //   }
-    // }
-
-    // // Hide elements that are not selected
-    // function removeClass(element, name) {
-    //   var i, arr1, arr2;
-    //   arr1 = element.className.split(" ");
-    //   arr2 = name.split(" ");
-    //   for (i = 0; i < arr2.length; i++) {
-    //     while (arr1.indexOf(arr2[i]) > -1) {
-    //       arr1.splice(arr1.indexOf(arr2[i]), 1);
-    //     }
-    //   }
-    //   element.className = arr1.join(" ");
-    // }
 
     // Add active class to the current control button (highlight it)
     var btnContainer = document.getElementById("myBtnContainer");
@@ -997,7 +969,7 @@
     // //////////    Pop up     //////////
     var modal = document.getElementById("myModal");
     var divv = document.getElementById("myDiv");
-    var close = document.getElementsByClassName('close')[0];
+    var close = document.querySelector("#close");
     // console.log(modal);
 
     divv.onclick = function () {
