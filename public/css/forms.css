@@ -26,7 +26,7 @@ body {
   color: #0082e6;
   font-family: "Ubuntu", sans-serif;
   font-weight: bold;
-  font-size: 23px;
+  font-size: 3vh;
 }
 
 .container {
@@ -257,7 +257,7 @@ a {
 .logout {
   color: #f2f2f2;
   font-weight: 500;
-  font-size: 2vh;
+  font-size: 14px;
   letter-spacing: 1.099px;
   padding: 2vh;
   border-radius: 3px;
@@ -366,7 +366,7 @@ nav ul li {
 nav ul li a {
   color: #f2f2f2;
   font-weight: 500;
-  font-size: 2vh;
+  font-size: 14px;
   letter-spacing: 1.099px;
   padding: 2vh;
   border-radius: 3px;
