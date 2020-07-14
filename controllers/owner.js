@@ -6,8 +6,7 @@ const session = require("express-session");
 const checkExistingSession = require("../util/checkExistingSession");
 const {nameRegex} = require("../util/nameRegex");
 const User = require("../models/user");
-const { speakerNameRegex } = require("../util/speakerNamesRegex");
-
+const collisionCheck = require("../util/collisionCheck")
 
 
 exports.getMyConferences = (req, res, next) => {
@@ -88,7 +87,7 @@ exports.postAddConference = (req, res, next) => {
             userId
         })
 
-        // const speakerName2 = speakerName.trim();
+        const speakerName2 = speakerName.trim();
 
         const speakerNameFound = speakerName2.match(/([A-Z]{1,1}[A-Za-z]+) ([A-Z]{1,1}[A-Za-z]+)/gm);
 
@@ -131,25 +130,12 @@ exports.postAddNewSession = (req, res, next) => {
     const { conferenceId, hallId, startTime, endTime } = {
         ...req.body
     }
+    
     let sessionSeats;
-    function collisionCheck(hall, halls) {
-        let noCollision = false;
-        let minDifference = Number.MAX_SAFE_INTEGER;
-        let hallIndex;
-        for (let hallEntry of halls) {
-            let diff = hall.startTime - hallEntry.endTime;
-            if (diff < minDifference && diff >= 0) {
-                minDifference = hall.startTime - hallEntry.endTime;
-                hallIndex = halls.indexOf(hallEntry)
-            }
-        }
-        if (halls[hallIndex].endTime<hall.startTime &&
-            halls[hallIndex + 1].startTime>hall.endTime) {
-            noCollision = true;
-        }
-        return noCollision;
-    }
-    Hall.findById(hallId).then(hall => {
+
+
+    Hall.find().then(halls => {
+        const hall = halls.filter(h => h._id.toString() === hallId.toString())[0];
         sessionSeats = hall.seats;
         const session = new Session({
             conferenceId,
@@ -158,27 +144,40 @@ exports.postAddNewSession = (req, res, next) => {
             startTime,
             endTime
         });
-        Conference.findById(conferenceId).populate("userId").then(conf => {
-            if (conf.userId._id.toString() !== req.user._id.toString()) {
-                req.flash("error", "You can only add session for a conference that you created.")
-                res.redirect("/allconferences");
-            } else if (!(session.startTime > conf.startTime && session.endTime < conf.endTime)) {
-                req.flash("error", "Session start time and end time must be between conference start time and end time")
-                res.redirect("/allconferences");
-            } else if (session.startTime > session.endTime) {
-                req.flash("error", "Session end time must be greated then start time. Please try again.");
-                res.redirect("/allconferences");
-            } else {
-                hall.addSession(session)
-                return session.save().then(() => {
-                    res.redirect("/myconferences");
-                    console.log("ADDED SESSION");
+        let existingSessions = []
+        Session.find().then(sessions => {
+            hall.hallSession.sessions.forEach(session => {
+                sessions.forEach(s => {
+                    if(s._id.toString() === session._id.toString()) {
+                        existingSessions.push(s)
+                    }
                 })
-            }
-        }
-        )
-    }
-    ).catch(err => console.log(err))
+            })   
+            existingSessions.sort((a,b) => a.startTime - b.startTime);
+           
+            Conference.findById(conferenceId).populate("userId").then(conf => {
+                if (collisionCheck(session, existingSessions) === false ) {
+                    req.flash("error", "Coliision detected.")
+                    res.redirect("/allconferences");
+                } else if (session.startTime < conf.startTime || session.endTime > conf.endTime) {
+                    req.flash("error", "Session start time and end time must be between conference start time and end time")
+                    res.redirect("/allconferences");
+                } else if (session.startTime > session.endTime) {
+                    req.flash("error", "Session end time must be greated then start time. Please try again.");
+                    res.redirect("/allconferences");
+                } else if (conf.userId._id.toString() !== req.user._id.toString()) {
+                    req.flash("error", "You can only add session for a conference that you created.");
+                    res.redirect("/allconferences");
+                }else {
+                    hall.addSession(session)
+                    return session.save().then(() => {
+                        res.redirect("/myconferences");
+                        console.log("ADDED SESSION");
+                    })
+                }
+            })
+        })
+    }).catch(err => console.log(err))
 }
 
 exports.getAddHall = (req, res, next) => {
@@ -230,23 +229,7 @@ exports.postAddHall = (req, res, next) => {
 exports.postJoinSession = (req, res, next) => {
     const sessionId = req.body.sessionId;
     const conferenceId = req.body.conferenceId;
-    function collisionCheck(session, sessions) {
-        let noCollision = false;
-        let minDifference = Number.MAX_SAFE_INTEGER;
-        let sessionIndex;
-        for (let sessionEntry of sessions) {
-            let diff = session.startTime - sessionEntry.endTime;
-            if (diff < minDifference && diff >= 0) {
-                minDifference = session.startTime - sessionEntry.endTime;
-                sessionIndex = sessions.indexOf(sessionEntry)
-            }
-        }
-        if (sessions[sessionIndex].endTime <= session.startTime &&
-            sessions[sessionIndex + 1].startTime >= session.endTime) {
-            noCollision = true;
-        }
-        return noCollision;
-    }
+   
     Session.find().then(sessions => {
         let session = sessions.filter(session => session._id.toString() === sessionId.toString())[0];
         User.findById(req.user._id).populate("session.sessions.sessionId").then(user => {

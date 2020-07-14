@@ -593,7 +593,9 @@
     }
 
     .show {
-      display: flex;
+      <<<<<<< HEAD display: flex;
+      =======display: block;
+      >>>>>>>282e91aaf8498abb5dfa1ecb90080de40d8410cc
     }
 
     .btn.active {
@@ -604,16 +606,7 @@
     }
 
     /* ACTIVE PAST UPCOMING BUTTONS STYLE END  /|\  */
-    .btn.active.focus,
-    .btn.active:focus,
-    .btn.focus,
-    .btn:active.focus,
-    .btn:active:focus,
-    .btn:focus {
-      outline: thin dotted;
-      outline: none;
-      outline-offset: -2px;
-    }
+
 
 
 
@@ -841,37 +834,46 @@
   </div>
 
   <div class="buttons-data-filter" id="myBtnContainer">
-    <button class="submit1 btn btn-session active" data-toggle="collapse" data-target=".multi-collapse"
-      aria-expanded="false" aria-controls="multiCollapsePast multiCollapseActive multiCollapseUpcoming"
-      type="button">ALL</button>
+    <<<<<<< HEAD <button class="submit1 btn btn-session active" data-toggle="collapse" data-target=".multi-collapse"
+      aria-expanded="false" aria-controls="multiCollapsePast multiCollapseActive multiCollapseUpcoming" type="button">
+      ALL</button>
 
-    <button class="submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapsePast"
-      aria-expanded="false" aria-controls="multiCollapsePast" onclick="addClass()">PAST</button>
+      <button class="submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapsePast"
+        aria-expanded="false" aria-controls="multiCollapsePast" onclick="addClass()">PAST</button>
 
-    <button class="submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapseActive"
-      aria-expanded="false" aria-controls="multiCollapseActive" onclick="addClass()">ACTIVE</button>
+      <button class="submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapseActive"
+        aria-expanded="false" aria-controls="multiCollapseActive" onclick="addClass()">ACTIVE</button>
 
-    <button class=" submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapseUpcoming"
-      aria-expanded="false" aria-controls="multiCollapseUpcoming" onclick="addClass()">UPCOMING</button>
+      <button class=" submit1 btn btn-session" data-toggle="collapse" type="button" data-target=".multiCollapseUpcoming"
+        aria-expanded="false" aria-controls="multiCollapseUpcoming" onclick="addClass()">UPCOMING</button>
+      =======
+      <button class="submit1 btn btn-session active" onclick="filterSelection('all')" type="submit">ALL</button>
+      <button class="submit1 btn btn-session" onclick="filterSelection('past')" type="submit">PAST</button>
+      <button class="submit1 btn btn-session" onclick="filterSelection('active')" type="submit">ACTIVE</button>
+      <button class="submit1 btn btn-session" onclick="filterSelection('upcoming')" type="submit">UPCOMING</button>
+      >>>>>>> 282e91aaf8498abb5dfa1ecb90080de40d8410cc
   </div>
 
 
   <div class="grid">
-    <% for(let session of sessions) { %>
-    <div class="filterDiv main1 allSessions collapse multi-collapse">
-      <article class="sessions">
-        <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
-        <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
-        <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
-        <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
-        <form class="product-form form1" action="/join-session" method="POST">
-          <input type="hidden" value="<%= session._id %>" name="sessionId" />
-          <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
-          <button class="submit btn btn-block" type="submit">Join session</button>
-        </form>
-      </article>
-    </div>
-    <% } %>
+    <<<<<<< HEAD <% for(let session of sessions) { %> <div class="filterDiv main1 allSessions collapse multi-collapse">
+      =======
+      <% for(let session of allSessions) { %>
+      <div class="main1 filterDiv allSessions">
+        >>>>>>> 282e91aaf8498abb5dfa1ecb90080de40d8410cc
+        <article class="sessions">
+          <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
+          <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
+          <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
+          <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
+          <form class="product-form form1" action="/join-session" method="POST">
+            <input type="hidden" value="<%= session._id %>" name="sessionId" />
+            <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
+            <button class="submit btn btn-block" type="submit">Join session</button>
+          </form>
+        </article>
+      </div>
+      <% } %>
   </div>
 
 
@@ -974,7 +976,7 @@
 
     divv.onclick = function () {
       modal.style.display = "block";
-      // console.log(close);
+      console.log(close);
     }
 
     close.onclick = function (event) {
@@ -994,14 +996,6 @@
 
 
   </script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+
 
   <%- include('includes/end.ejs') %>
