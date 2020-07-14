@@ -11,10 +11,12 @@
     <div>
 
         <p align="center" class="sign head">Welcome to Conferences site</p>
-        <h3 align="center">Testing slogan :) </h3>
-        <main class="grid">
+        <h3 align="center" style="margin-bottom: 20px">Testing slogan :) </h3>
 
+        <p align="center" class="sign head">Join on of the active conferences:</p>
+        <main class="grid">
             <% for (let conference of conferences) { %>
+                <% if(conference.startTime < currentDate && conference.endTime > currentDate) {%>
             <div class="main1">
                 <article class="active">
                     <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
@@ -29,11 +31,13 @@
                     </div>
                 </article>
             </div>
+                <% } %>
 
             <% } %>
-
             <!-- <script> var sass = require('node-sass'); </script> -->
         </main>
+        <a href="/allconferences">All conferences</a>
+
     </div>
     </a>
     </article>

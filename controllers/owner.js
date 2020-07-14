@@ -36,8 +36,9 @@ exports.getMyConferences = (req, res, next) => {
                     path: "/myconferences",
                     conferences: conf,
                     errorMessage: message,
-                    userRole: conf[0].userId.role,
-                    attendingSessions: existingSessions || []
+                    userRole: req.user.role,
+                    attendingSessions: existingSessions || [],
+                    currentDate: req.date
                 })
             })
         }).catch(err => console.log(err))
