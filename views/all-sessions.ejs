@@ -87,7 +87,7 @@
                         <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
                         <p><b>Start time: </b><%=conference.startTime%></p>
                         <p><b>End time: </b><%=conference.endTime%></p>
-                        <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
+                        <p maxlenght="20"><b>Description: </b><%=conference.conferenceId.description%></p>
                     </div>
                 </article>
             </div>
@@ -108,7 +108,7 @@
                         <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
                         <p><b>Start time: </b><%=conference.startTime%></p>
                         <p><b>End time: </b><%=conference.endTime%></p>
-                        <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
+                        <p maxlenght="20"><b>Description: </b><%=conference.conferenceId.description%></p>
                     </div>
                 </article>
             </div>
@@ -133,7 +133,7 @@
                         <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
                         <p><b>Start time: </b><%=conference.startTime%></p>
                         <p><b>End time: </b><%=conference.endTime%></p>
-                        <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
+                        <p maxlenght="20"><b>Description: </b><%=conference.conferenceId.description%></p>
                         <form class="product-form form1" action="/join-session" method="POST">
                             <input type="hidden" value="<%= conference._id %>" name="sessionId" />
                             <input type="hidden" value="<%= conference.conferenceId._id %>" name="conferenceId" />
