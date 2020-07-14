@@ -1,0 +1,181 @@
+<%- include('includes/head.ejs') %>
+</head>
+
+<body class="body">
+
+    <style>
+        /*
+        body {
+            padding: 40px 0;
+            background-color: #f3ebf6;
+            font-size: 8px;
+            line-height: 1.2;
+        }
+
+        .sign {
+            color: #0082e6;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: bold;
+            font-size: 23px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-gap: 20px;
+            align-items: stretch;
+            padding: 40px;
+        }
+
+        .grid>article {
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+            border-radius: 5em;
+            
+        }
+
+        .grid>article img {
+            max-width: 100%;
+            border-top-left-radius: 5em;
+            border-top-right-radius: 5em;
+        }
+
+        .grid .text {
+            padding: 20px;
+        }
+
+        .btn {
+            background: #0082e6;
+            border: 1px solid #0082e6;
+            border-radius: 5em;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: #0082e6;
+            border: 1px solid #0082e6;
+            border-color: #0082e6;
+        }
+
+        .conference-header {
+            color: #0082e6;
+        }
+
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+
+        .head{
+            font-size: 32px;
+            padding-block-start: 40px;
+        }*/
+    </style>
+
+    <%- include('includes/navigation.ejs') %>
+
+    <p align="center" class="sign head">All Session</p>
+    <main class="grid">
+    <% for (let conference of conferences) { %>
+    <div class="main1">
+        <article class="active">
+            <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+            <div class="text">
+                <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
+                <p><b>Start time: </b><%=conference.startTime%></p>
+                <p><b>End time: </b><%=conference.endTime%></p>
+                <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
+                <a href="/join-session" align="center" name="sessionId" value = "conference._id"
+                            class="submit button btn-block">Join Session</a>
+            </div>
+        </article>
+    </div>
+    <% } %>
+</main>
+
+    <h3 align="center">Past</h3>
+    <div class="grid">
+
+        <% for (let conference of conferences) { %>
+            <% if(conference.startTime<currentDate){ %>
+
+            <div class="main1">
+                <article class="active">
+                    <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+                    <div class="text">
+                        <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
+                        <p><b>Start time: </b><%=conference.startTime%></p>
+                        <p><b>End time: </b><%=conference.endTime%></p>
+                        <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
+                        <a href="/join-session" align="center" name="sessionId" value = "conference._id"
+                            class="submit button btn-block">Join Session</a>
+                    </div>
+                </article>
+            </div>
+
+            <% } %>
+            <% } %>
+
+    </div>
+    <h3 align="center">Active</h3>
+    <div class="grid">
+
+        <% for (let conference of conferences) { %>
+            <% if(conference.startTime < currentDate && conference.endTime > currentDate){ %>
+
+            <div class="main1">
+                <article class="active">
+                    <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+                    <div class="text">
+                        <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
+                        <p><b>Start time: </b><%=conference.startTime%></p>
+                        <p><b>End time: </b><%=conference.endTime%></p>
+                        <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
+                        <a href="/join-session" align="center" name="sessionId" value = "conference._id"
+                            class="submit button btn-block">Join Session</a>
+                    </div>
+                </article>
+            </div>
+
+            <% } %>
+            <% } %>
+
+    </div>
+
+
+    </div>
+    <h3 align="center">Future</h3>
+    <div class="grid">
+
+        <% for (let conference of conferences) { %>
+            <% if(conference.startTime > currentDate){ %>
+
+            <div class="main1">
+                <article class="active">
+                    <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+                    <div class="text">
+                        <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
+                        <p><b>Start time: </b><%=conference.startTime%></p>
+                        <p><b>End time: </b><%=conference.endTime%></p>
+                        <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
+                        <a href="/join-session" align="center" name="sessionId" value = "conference._id"
+                            class="submit button btn-block">Join Session</a>
+                    </div>
+                </article>
+            </div>
+
+            <% } %>
+            <% } %>
+
+    </div>
+
+
+    </div>
+
+
+
+
+
+    <%- include('includes/end.ejs') %>
