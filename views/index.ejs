@@ -9,8 +9,38 @@
     <%- include('includes/navigation.ejs') %>
 
     <div>
-        <p align="center" class="sign head">Welcome to Conferences Scheduler </p>
-        <h3 align="center">Dinamyc Web Application </h3>
+
+        <p align="center" class="sign head">Join on of the active conferences:</p>
+        <main class="grid">
+            <% for (let conference of conferences) { %>
+            <% if(conference.startTime < currentDate && conference.endTime > currentDate) {%>
+            <div class="main1">
+                <article class="active">
+                    <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+                    <div class="text">
+                        <p class="sign conference-header" align="center"><%=conference.name%></p>
+                        <p><b>Start time: </b><%=conference.startTime%></p>
+                        <p><b>End time: </b><%=conference.endTime%></p>
+                        <p maxlength="20"><b>Description: </b><%=conference.description%></p>
+                        <p><b>Address: </b><%=conference.address.adress%></p>
+                        <a href="/allconferences/<%= conference._id %>" name="conferenceId" align="center"
+                            class="submit button btn-block">Details</a>
+                    </div>
+                </article>
+            </div>
+            <% } %>
+
+            <% } %>
+            <!-- <script> var sass = require('node-sass'); </script> -->
+        </main>
+        <div style="text-align: center; margin: 30px 0;">
+            <a style="text-decoration: none; padding: 10px 15px; background: #0082e6
+            ; color: white; border-radius: 5em; font-size: 14px;" href="/allconferences">View all conferences</a>
+        </div>
+
+    </div>
+    </a>
+    </article>
     </div>
 
     <main class="grid">
