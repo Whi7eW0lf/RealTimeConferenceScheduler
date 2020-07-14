@@ -526,6 +526,11 @@ a.active {
   .sidenav {
     display: none;
   }
+
+  .head,
+  h3 {
+    font-size: 3vh !important;
+  }
 }
 
 /* ///////  Side navigation panel  /////////// */
