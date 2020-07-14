@@ -468,7 +468,7 @@ a.active {
   }
 
   .grid {
-    display: inline;
+    display: contents;
   }
 
   .container {
@@ -497,6 +497,7 @@ a.active {
   .media500 {
     margin-top: 0px;
     margin-bottom: 50px;
+    width: 90%;
   }
 
   nav ul li a,
