@@ -17,22 +17,33 @@ exports.getMyConferences = (req, res, next) => {
     } else {
         message = null
     }
-
-    try {
         Conference.find({ userId: req.user._id }).populate("userId").populate("address").then(conf => {
-            res.render("my-conferences", {
-                pageTitle: "My Conferences",
-                isLoggedIn: req.session.isLoggedIn,
-                path: "/myconferences",
-                conferences: conf,
-                errorMessage: message
+            Session.find()
+            .populate("conferenceId")
+            .populate("hallId")
+            .then(sessions => {
+                let existingSessions = []
+                req.user.session.sessions.forEach(s => {
+                    sessions.forEach(session => {
+                        if (session._id.toString() === s._id.toString()) {
+                            existingSessions.push(session)
+                        }
+                    })
+                })
+                    res.render("my-conferences", {
+                    pageTitle: "My Conferences",
+                    isLoggedIn: req.session.isLoggedIn,
+                    path: "/myconferences",
+                    conferences: conf,
+                    errorMessage: message,
+                    userRole: conf[0].userId.role,
+                    attendingSessions: existingSessions || []
+                })
             })
-        })
-    } catch{
-        res.redirect("/login")
+        }).catch(err => console.log(err))
     }
 
-}
+
 
 exports.getAddConference = (req, res, next) => {
     let message = req.flash("error");
@@ -130,10 +141,7 @@ exports.postAddNewSession = (req, res, next) => {
     const { conferenceId, hallId, startTime, endTime } = {
         ...req.body
     }
-    
     let sessionSeats;
-
-
     Hall.find().then(halls => {
         const hall = halls.filter(h => h._id.toString() === hallId.toString())[0];
         sessionSeats = hall.seats;
