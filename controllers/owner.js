@@ -158,7 +158,7 @@ exports.postAddNewSession = (req, res, next) => {
                 if (collisionCheck(session, existingSessions) === false ) {
                     req.flash("error", "Coliision detected.")
                     res.redirect("/allconferences");
-                } else if (!(session.startTime > conf.startTime && session.endTime < conf.endTime)) {
+                } else if (session.startTime < conf.startTime || session.endTime > conf.endTime) {
                     req.flash("error", "Session start time and end time must be between conference start time and end time")
                     res.redirect("/allconferences");
                 } else if (session.startTime > session.endTime) {
