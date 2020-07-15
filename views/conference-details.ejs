@@ -961,75 +961,75 @@
 
 
   <script>
-    const allBtn = document.querySelector('.allSessionsDisplayBtn');
-    const pastBtn = document.querySelector('.pastSessionsDisplayBtn');
-    const activeBtn = document.querySelector('.activeSessionsDisplayBtn');
-    const upcommingBtn = document.querySelector('.upcommingSessionsDisplayBtn');
+    // const allBtn = document.querySelector('.allSessionsDisplayBtn');
+    // const pastBtn = document.querySelector('.pastSessionsDisplayBtn');
+    // const activeBtn = document.querySelector('.activeSessionsDisplayBtn');
+    // const upcommingBtn = document.querySelector('.upcommingSessionsDisplayBtn');
 
-    const allSess = document.querySelector('.allSessionsDisplay');
-    const pastSess = document.querySelector('.pastSessionsDisplay');
-    const activeSess = document.querySelector('.activeSessionsDisplay');
-    const upcommingSess = document.querySelector('.upcommingSessionsDisplay');
+    // const allSess = document.querySelector('.allSessionsDisplay');
+    // const pastSess = document.querySelector('.pastSessionsDisplay');
+    // const activeSess = document.querySelector('.activeSessionsDisplay');
+    // const upcommingSess = document.querySelector('.upcommingSessionsDisplay');
 
-    function allFunct() {
-      allBtn.addEventListener('click', function allFunctF() {
-        if (allSess.style.display = "none") {
-          allSess.style.display = "grid";
-          pastSess.style.display = "none";
-          activeSess.style.display = "none";
-          upcommingSess.style.display = "none";
-        } else {
-          pastSess.style.display = "none";
-          activeSess.style.display = "none";
-          upcommingSess.style.display = "none";
-        }
-      })
-    }
+    // function allFunct() {
+    //   allBtn.addEventListener('click', function allFunctF() {
+    //     if (allSess.style.display = "none") {
+    //       allSess.style.display = "grid";
+    //       pastSess.style.display = "none";
+    //       activeSess.style.display = "none";
+    //       upcommingSess.style.display = "none";
+    //     } else {
+    //       pastSess.style.display = "none";
+    //       activeSess.style.display = "none";
+    //       upcommingSess.style.display = "none";
+    //     }
+    //   })
+    // }
 
-    function pastFunct() {
-      pastBtn.addEventListener('click', function pastFunctF() {
-        if (pastSess.style.display = "none") {
-          pastSess.style.display = "grid";
-          allSess.style.display = "none";
-          activeSess.style.display = "none";
-          upcommingSess.style.display = "none";
-        } else {
-          allSess.style.display = "none";
-          activeSess.style.display = "none";
-          upcommingSess.style.display = "none";
-        }
-      })
-    }
+    // function pastFunct() {
+    //   pastBtn.addEventListener('click', function pastFunctF() {
+    //     if (pastSess.style.display = "none") {
+    //       pastSess.style.display = "grid";
+    //       allSess.style.display = "none";
+    //       activeSess.style.display = "none";
+    //       upcommingSess.style.display = "none";
+    //     } else {
+    //       allSess.style.display = "none";
+    //       activeSess.style.display = "none";
+    //       upcommingSess.style.display = "none";
+    //     }
+    //   })
+    // }
 
-    function activeFunct() {
-      activeBtn.addEventListener('click', function activeFunctF() {
-        if (activeSess.style.display = "none") {
-          activeSess.style.display = "grid";
-          allSess.style.display = "none";
-          pastSess.style.display = "none";
-          upcommingSess.style.display = "none";
-        } else {
-          allSess.style.display = "none";
-          pastSess.style.display = "none";
-          upcommingSess.style.display = "none";
-        }
-      })
-    }
+    // function activeFunct() {
+    //   activeBtn.addEventListener('click', function activeFunctF() {
+    //     if (activeSess.style.display = "none") {
+    //       activeSess.style.display = "grid";
+    //       allSess.style.display = "none";
+    //       pastSess.style.display = "none";
+    //       upcommingSess.style.display = "none";
+    //     } else {
+    //       allSess.style.display = "none";
+    //       pastSess.style.display = "none";
+    //       upcommingSess.style.display = "none";
+    //     }
+    //   })
+    // }
 
-    function upcommignFunct() {
-      upcommingBtn.addEventListener('click', function upcommingFunctF() {
-        if (upcommingSess.style.display = "none") {
-          upcommingSess.style.display = "grid";
-          allSess.style.display = "none";
-          pastSess.style.display = "none";
-          activeSess.style.display = "none";
-        } else {
-          allSess.style.display = "none";
-          pastSess.style.display = "none";
-          activeSess.style.display = "none";
-        }
-      })
-    }
+    // function upcommignFunct() {
+    //   upcommingBtn.addEventListener('click', function upcommingFunctF() {
+    //     if (upcommingSess.style.display = "none") {
+    //       upcommingSess.style.display = "grid";
+    //       allSess.style.display = "none";
+    //       pastSess.style.display = "none";
+    //       activeSess.style.display = "none";
+    //     } else {
+    //       allSess.style.display = "none";
+    //       pastSess.style.display = "none";
+    //       activeSess.style.display = "none";
+    //     }
+    //   })
+    // }
 
 
 
@@ -1039,8 +1039,10 @@
     // for (var i = 0; i < btns.length; i++) {
     //   btns[i].addEventListener("click", function () {
     //     var current = document.getElementsByClassName("active");
+    //     console.log(current);
     //     current[1].className = current[1].className.replace(" active", "");
-    //     this.className += " active";
+    //     this.classList.add("active");
+    //     // this.className += " active";
     //   });
     // };
 
