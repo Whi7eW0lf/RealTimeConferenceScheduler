@@ -6,7 +6,8 @@ const session = require("express-session");
 const checkExistingSession = require("../util/checkExistingSession");
 const {nameRegex} = require("../util/nameRegex");
 const User = require("../models/user");
-const collisionCheck = require("../util/collisionCheck")
+const collisionCheck = require("../util/collisionCheck");
+const maximumProgramme = require("../util/maximumProgrammeAlgorithm");
 
 
 exports.getMyConferences = (req, res, next) => {
@@ -275,5 +276,6 @@ exports.postJoinSession = (req, res, next) => {
 }
 
 exports.maximumProgramme = (req,res,next)=>{
-    console.log("asd");
+    let a = req.body.conferenceIdMax;
+    console.log(a);
 }
