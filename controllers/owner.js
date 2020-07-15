@@ -274,3 +274,6 @@ exports.postJoinSession = (req, res, next) => {
     }).catch(err => console.log(err))
 }
 
+exports.maximumProgramme = (req,res,next)=>{
+    console.log("asd");
+}
