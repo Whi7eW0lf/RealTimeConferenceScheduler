@@ -898,9 +898,9 @@
   </div>
 
 
-  <div class="grid collapse allSessionsDisplay" id="allSessionsDisplay">
+  <div class="grid">
     <% for(let session of allSessions) { %>
-    <div class="main allSessions">
+    <div class=" main allSessions collapse allSessionsDisplay" id="allSessionsDisplay">
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -914,47 +914,41 @@
       </article>
     </div>
     <% } %>
-  </div>
 
-  <div class="grid collapse pastSessionsDisplay" id="pastSessionsDisplay">
     <% for(let session of pastSessions) { %>
-    <div class="main1 filterDiv allSessions">
-      <article class="sessions">
-        <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
-        <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
-        <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
-        <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
-        <form class="product-form form1" action="/join-session" method="POST">
-          <input type="hidden" value="<%= session._id %>" name="sessionId" />
-          <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
-          <button class="submit btn btn-block" type="submit">Join session</button>
-        </form>
+    <div class="main1 filterDiv allSessions collapse pastSessionsDisplay" id="pastSessionsDisplay>
+      <article class=" sessions">
+      <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
+      <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
+      <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
+      <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
+      <form class="product-form form1" action="/join-session" method="POST">
+        <input type="hidden" value="<%= session._id %>" name="sessionId" />
+        <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
+        <button class="submit btn btn-block" type="submit">Join session</button>
+      </form>
       </article>
     </div>
     <% } %>
-  </div>
 
-  <div class="grid collapse activeSessionsDisplay" id="activeSessionsDisplay">
     <% for(let session of activeSessions) { %>
-    <div class="main1 filterDiv allSessions">
-      <article class="sessions">
-        <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
-        <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
-        <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
-        <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
-        <form class="product-form form1" action="/join-session" method="POST">
-          <input type="hidden" value="<%= session._id %>" name="sessionId" />
-          <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
-          <button class="submit btn btn-block" type="submit">Join session</button>
-        </form>
+    <div class="main1 filterDiv allSessions collapse activeSessionsDisplay" id="activeSessionsDisplay>
+      <article class=" sessions">
+      <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
+      <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
+      <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
+      <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
+      <form class="product-form form1" action="/join-session" method="POST">
+        <input type="hidden" value="<%= session._id %>" name="sessionId" />
+        <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
+        <button class="submit btn btn-block" type="submit">Join session</button>
+      </form>
       </article>
     </div>
     <% } %>
-  </div>
 
-  <div class="grid collapse upcommingSessionsDisplay" id="upcommingSessionsDisplay">
     <% for(let session of upcommingSessions) { %>
-    <div class="main1 filterDiv allSessions">
+    <div class="main1 filterDiv allSessions collapse upcommingSessionsDisplay" id="upcommingSessionsDisplay">
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -968,6 +962,7 @@
       </article>
     </div>
     <% } %>
+
   </div>
 
   <form class="product-form form1" action="/maximum-programme" method="POST">
@@ -976,6 +971,7 @@
     <button align="center" class="submit button" type="submit">Maximum Programme</button>
         
   </form>
+
 
 
   <script>
