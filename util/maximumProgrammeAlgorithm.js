@@ -1,23 +1,37 @@
+
+
 function startAlgorithm(conferenceSessions,userSessions){
 
     let posibleSessions = [];
 
-    console.log(isBefore(new Date(),new Date()));
-
-    for(session of conferenceSessions){
+    for(const session of conferenceSessions){
         posibleSessions = checkForFreeTimeSpacesInUser(session,userSessions,posibleSessions);
+        
     }
+
+    return posibleSessions;
 }
 
 function checkForFreeTimeSpacesInUser(session,userSessions,posibleSessions){
+
+    let date = new Date();
+    let date2 = new Date('1996-10-17T03:24:00');
+
+    isBefore(date,date2);
+    isAfter(date,date2)
 
 }
 
 function isBefore(dateA,dateB){
 
-    let date = new Date();
+   
 
-    console.log(date);
+    return false;
+}
+
+function isAfter(dateA,dateB){
+
+    
 
     return false;
 }

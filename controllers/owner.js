@@ -281,16 +281,23 @@ exports.maximumProgramme = (req,res,next)=>{
     // .populate("conferenceId")
     // .populate("hallId")
     .then(sessions => {
-        let existingSessions = []
+
+        let userSessions = []
+
         req.user.session.sessions.forEach(s => {
             sessions.forEach(session => {
                 if (session._id.toString() === s._id.toString()) {
-                    existingSessions.push(session)
+                    userSessions.push(session)
                 }
             })
         })
-        const conf = sessions.filter(s => s.conferenceId.toString() === conferenceId.toString())
-        console.log(conf)
+        let conferenceSessions = sessions.filter(s => s.conferenceId.toString() === conferenceId.toString())
+
+        const posibleSessions = maximumProgramme(conferenceSessions,userSessions);
+
+        console.log(posibleSessions);
+
+
             // res.render("my-conferences", {
             // pageTitle: "My Conferences",
             // isLoggedIn: req.session.isLoggedIn,
