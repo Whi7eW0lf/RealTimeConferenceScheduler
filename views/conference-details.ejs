@@ -908,20 +908,20 @@
     }
 
 
-    function allSessionss() {
-      for (let i = 0; i < allSes.length; i++) {
-        startTime[i] = document.querySelector('.pStartTime') //    startTime.innerHTML.slice(37, 55);
-        endTime[i] = document.querySelector('.pEndTime')     //    endTime.innerHTML.slice(34, 55);
-        start[i] = startTime[i].innerHTML.slice(37, 55);
-        end[i] = endTime[i].innerHTML.slice(34, 55);
+    // function allSessionss() {
+    //   for (let i = 0; i < allSes.length; i++) {
+    //     startTime[i] = document.querySelector('.pStartTime') //    startTime.innerHTML.slice(37, 55);
+    //     endTime[i] = document.querySelector('.pEndTime')     //    endTime.innerHTML.slice(34, 55);
+    //     start[i] = startTime[i].innerHTML.slice(37, 55);
+    //     end[i] = endTime[i].innerHTML.slice(34, 55);
 
-        return start, end;
-      }
+    //     return start, end;
+    //   }
 
 
-    };
+    // };
 
-    allSessionss();
+    // allSessionss();
 
     function addClass() {
       for (let i = 0; i < allSes.length; i++) {
@@ -981,7 +981,11 @@
       });
     };
 
+    //Test acsess variables
 
+    var a = JSON.parse(htmlDecode("<%= JSON.stringify(pastSessions) %>"));
+
+    console.log(a)
 
 
   </script>
