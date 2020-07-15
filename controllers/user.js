@@ -9,14 +9,21 @@ const e = require("express");
 
 exports.getIndex = (req, res, next) => {
     Conference.find().populate("address").then(conferences => {
+        conferences.sort((a,b) => a.startTime - b.startTime);
+        let active = conferences.filter(conf => {
+            if(conf.startTime < req.date &&  conf.endTime > req.date) {
+                return conf
+            }
+        })
         const formatDateTime = dateFormater(conferences);
         res.render("index", {
             pageTitle: "Welcome to conferences",
             isLoggedIn: req.session.isLoggedIn,
             path: '/',
-            conferences: conferences,
+            conferences: active,
             isLoggedIn: req.session.isLoggedIn,
-            currentDate: req.date
+            currentDate: req.date,
+
         })
     }).catch(err => console.log(err))
 
@@ -82,7 +89,6 @@ exports.getConferenceDetails = (req, res, next) => {
 
 exports.getAllSessions = (req,res,next)=>{
     ConferenceSession.find().populate("conferenceId").then(conf=>{
-        console.log(conf)
         res.render("all-sessions",{
             conferences : conf,
             pageTitle : 'All Sessions',

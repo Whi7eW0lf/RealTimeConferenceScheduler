@@ -482,7 +482,7 @@
 
 
 
-    @media only screen and (max-width: 953px) {
+    @media only screen and (max-width: 1025px) {
       .labell {
         display: block;
         cursor: pointer;
@@ -568,7 +568,6 @@
 
       .img {
         max-width: webkit-fill-available;
-        max-height: 40vh;
 
       }
 
@@ -624,6 +623,17 @@
 
       .sidenav {
         display: none;
+      }
+
+      nav ul li a {
+        color: #f2f2f2;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 1.099px;
+        padding: none !important;
+        border-radius: 3px;
+        /* text-transform: uppercase; */
+        font-family: 'Poppins', sans-serif;
       }
     }
 
@@ -809,8 +819,8 @@
       <div class="text">
         <p class="sign conference-header" align="center"><%=conference.name%></p>
         <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
-        <p><b>Start time: </b><%=conference.startTime%></p>
-        <p><b>End time: </b><%=conference.endTime%></p>
+        <p><b>Start time: </b><%=conference.startTime.toString().substring(0, 21)%></p>
+        <p><b>End time: </b><%=conference.endTime.toString().substring(0, 21) %></p>
         <p><b>Address: </b><%=conference.address.adress%></p>
         <p><b> Speaker name: </b><%=conference.speakerName%></p>
 

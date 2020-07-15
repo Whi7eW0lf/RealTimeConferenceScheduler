@@ -59,7 +59,7 @@ body {
   padding-top: 18px;
   padding-bottom: 18px;
   background-color: #ffffff;
-  width: 40vh;
+  width: 50vh;
   height: fit-content;
   margin: 0 auto;
   border-radius: 1.5em;
@@ -431,7 +431,7 @@ a.active {
     display: none;
   }
   .menuu a {
-    display: block;
+    display: grid;
     border-bottom: solid #d6d6d6;
     margin: 0;
   }
@@ -468,7 +468,7 @@ a.active {
   }
 
   .grid {
-    display: inline;
+    display: contents;
   }
 
   .container {
@@ -495,8 +495,9 @@ a.active {
   }
 
   .media500 {
-    margin-top: 0px;
+    margin-top: 50px;
     margin-bottom: 50px;
+    width: 90%;
   }
 
   nav ul li a,
@@ -525,6 +526,11 @@ a.active {
   .sidenav {
     display: none;
   }
+
+  .head,
+  h3 {
+    font-size: 3vh !important;
+  }
 }
 
 /* ///////  Side navigation panel  /////////// */
@@ -532,14 +538,15 @@ a.active {
 /* Style the links inside the sidenav */
 #mySidenav a {
   position: fixed; /* Position them relative to the browser window */
-  left: -80px; /* Position them outside of the screen */
+  left: -60px; /* Position them outside of the screen */
   transition: 0.3s; /* Add transition on hover */
-  padding: 15px; /* 15px padding */
-  width: 100px; /* Set a specific width */
+  padding: 10px; /* 15px padding */
+  width: 70px; /* Set a specific width */
   text-decoration: none; /* Remove underline */
-  font-size: 14px; /* Increase font size */
+  font-size: 12px; /* Increase font size */
   color: white; /* White text color */
   border-radius: 0 1.5em 1.5em 0; /* Rounded corners on the top right and bottom right side */
+  background-color: #0082e6;
 }
 
 #mySidenav a:hover {
@@ -563,4 +570,6 @@ a.active {
 #upcomingBtn {
   top: 350px;
   background-color: #0082e6; /* Red */
+  padding: 10px 10px 10px 5px !important;
 }
+
