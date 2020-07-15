@@ -196,6 +196,7 @@
       text-align: center;
       margin-bottom: 27px;
       font-family: "Ubuntu", sans-serif;
+      height: auto;
     }
 
     .form1 {
@@ -300,7 +301,7 @@
     }
 
     .submit:hover {
-      border-radius: 2px #0082e6;
+      border-radius: 2px #0082e6 !important;
       background: transparent;
       color: #0082e6;
     }
@@ -862,7 +863,7 @@
 
       <p class="sign2">Choose hall</p>
 
-      <select class="role description form-control" name="hallId" id="hall">
+      <select class="role name form-control" name="hallId" id="hall">
         <% for (let hall of halls) { %>
         <% if(hall.venueId.toString() === conference.address._id.toString()) { %>
         <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
@@ -884,7 +885,7 @@
   <div class="buttons-data-filter" id="myBtnContainer">
 
     <button class="submit1 btn btn-session allSessionsDisplayBtn active" type="button" data-toggle="collapse"
-      data-target="#allSessionsDisplay" aria-expanded="false" aria-controls="allSessionsDisplay">ALL</button>
+      data-target="#allSessionsDisplay" aria-expanded="true" aria-controls="allSessionsDisplay">ALL</button>
 
     <button class="submit1 btn btn-session pastSessionsDisplayBtn" type="button" data-toggle="collapse"
       data-target="#pastSessionsDisplay" aria-expanded="false" aria-controls="pastSessionsDisplay">PAST</button>
@@ -892,7 +893,7 @@
     <button class="submit1 btn btn-session activeSessionsDisplayBtn" type="button" data-toggle="collapse"
       data-target="#activeSessionsDisplay" aria-expanded="false" aria-controls="activeSessionsDisplay">ACTIVE</button>
 
-    <button class="submit1 btn btn-session upcommingSessionsDisplayBtn" type="button" data-toggle="collapse"
+    <button class="submit1 btn btn-session upcommingSessionsDisplayBtn" type="button" data-toggle="collapseupcomming"
       data-target="#upcommingSessionsDisplay" aria-expanded="false"
       aria-controls="upcommingSessionsDisplay">UPCOMING</button>
   </div>
@@ -916,7 +917,7 @@
     <% } %>
 
     <% for(let session of pastSessions) { %>
-    <div class="main1 filterDiv allSessions collapse pastSessionsDisplay" id="pastSessionsDisplay>
+    <div class="main1 filterDiv allSessions collapsepast pastSessionsDisplay" id="pastSessionsDisplay>
       <article class=" sessions">
       <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
       <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -932,7 +933,7 @@
     <% } %>
 
     <% for(let session of activeSessions) { %>
-    <div class="main1 filterDiv allSessions collapse activeSessionsDisplay" id="activeSessionsDisplay>
+    <div class="main1 filterDiv allSessions collapseactive activeSessionsDisplay" id="activeSessionsDisplay>
       <article class=" sessions">
       <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
       <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -948,7 +949,7 @@
     <% } %>
 
     <% for(let session of upcommingSessions) { %>
-    <div class="main1 filterDiv allSessions collapse upcommingSessionsDisplay" id="upcommingSessionsDisplay">
+    <div class="main1 filterDiv allSessions collapseupcomming upcommingSessionsDisplay" id="upcommingSessionsDisplay">
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -967,9 +968,9 @@
 
   <form class="product-form form1" action="/maximum-programme" method="POST">
 
-    <input type="hidden" value="<%=conference._id%>" name="conferenceId" />  
-    <button align="center" class="submit button" type="submit">Maximum Programme</button>
-        
+    <input type="hidden" value="<%=conference._id%>" name="conferenceId" />
+    <button align="center" class="submit1 btn btn-session" type="submit">Maximum Programme</button>
+
   </form>
 
 
