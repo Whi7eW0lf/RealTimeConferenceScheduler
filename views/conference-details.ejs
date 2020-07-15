@@ -1,9 +1,27 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <%- include('includes/head.ejs') %>
 </head>
 
 <body>
 
   <style>
+    .allSessionsDisplay {
+      display: grid;
+    }
+
+    .pastSessionsDisplay {
+      display: none;
+    }
+
+    .activeSessionsDisplay {
+      display: none;
+    }
+
+    .upcommingSessionsDisplay {
+      display: none;
+    }
+
     .btn-session {
       margin-left: 0;
       margin-right: 0;
@@ -653,7 +671,7 @@
     }
 
     .show {
-      display: flex;
+      display: grid;
 
     }
 
@@ -767,6 +785,11 @@
     }
 
 
+    .form-control {
+      border-radius: 1.5em;
+    }
+
+
 
 
     /* 
@@ -795,19 +818,7 @@
 
   <%- include('includes/navigation.ejs') %>
 
-  <!-- 
-  <div flex = row = border-radius = width: 80%, sredaya>
-    <div width 50>
-      <img width/>
-    </div>
-    <div 50%>
-      <p>asd</p>
-      <p></p>
-      <p></p>
-      <p></p>
-      <p></p>
-    </div>
-  </div> -->
+
   <p align="center" class="sign head headings">Session details</p>
 
 
@@ -847,7 +858,7 @@
 
       <p class="sign2">Choose hall</p>
 
-      <select class="role name form-control" name="hallId" id="hall">
+      <select class="role description form-control" name="hallId" id="hall">
         <% for (let hall of halls) { %>
         <% if(hall.venueId.toString() === conference.address._id.toString()) { %>
         <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
@@ -866,15 +877,24 @@
     <label class="sign head headings">Sessions</label>
   </div>
 
-  <!-- <div class="buttons-data-filter" id="myBtnContainer">
-    <button class="submit1 btn btn-session active" onclick="addClass()" type="submit">ALL</button>
-    <button class="submit1 btn btn-session" onclick="addClass()" type="submit">PAST</button>
-    <button class="submit1 btn btn-session" onclick="addClass()" type="submit">ACTIVE</button>
-    <button class="submit1 btn btn-session" onclick="addClass()" type="submit">UPCOMING</button>
-  </div> -->
+  <div class="buttons-data-filter" id="myBtnContainer">
+
+    <button class="submit1 btn btn-session allSessionsDisplayBtn active" type="button" data-toggle="collapse"
+      data-target="#allSessionsDisplay" aria-expanded="false" aria-controls="allSessionsDisplay">ALL</button>
+
+    <button class="submit1 btn btn-session pastSessionsDisplayBtn" type="button" data-toggle="collapse"
+      data-target="#pastSessionsDisplay" aria-expanded="false" aria-controls="pastSessionsDisplay">PAST</button>
+
+    <button class="submit1 btn btn-session activeSessionsDisplayBtn" type="button" data-toggle="collapse"
+      data-target="#activeSessionsDisplay" aria-expanded="false" aria-controls="activeSessionsDisplay">ACTIVE</button>
+
+    <button class="submit1 btn btn-session upcommingSessionsDisplayBtn" type="button" data-toggle="collapse"
+      data-target="#upcommingSessionsDisplay" aria-expanded="false"
+      aria-controls="upcommingSessionsDisplay">UPCOMING</button>
+  </div>
 
 
-  <div class="grid allSessionsDisplay">
+  <div class="grid collapse allSessionsDisplay" id="allSessionsDisplay">
     <% for(let session of allSessions) { %>
     <div class="main allSessions">
       <article class="sessions">
@@ -892,7 +912,7 @@
     <% } %>
   </div>
 
-  <div class="grid pastSessionsDisplay">
+  <div class="grid collapse pastSessionsDisplay" id="pastSessionsDisplay">
     <% for(let session of pastSessions) { %>
     <div class="main1 filterDiv allSessions">
       <article class="sessions">
@@ -910,7 +930,7 @@
     <% } %>
   </div>
 
-  <div class="grid activeSessionsDisplay">
+  <div class="grid collapse activeSessionsDisplay" id="activeSessionsDisplay">
     <% for(let session of activeSessions) { %>
     <div class="main1 filterDiv allSessions">
       <article class="sessions">
@@ -928,7 +948,7 @@
     <% } %>
   </div>
 
-  <div class="grid upcommingSessionsDisplay">
+  <div class="grid collapse upcommingSessionsDisplay" id="upcommingSessionsDisplay">
     <% for(let session of upcommingSessions) { %>
     <div class="main1 filterDiv allSessions">
       <article class="sessions">
@@ -948,106 +968,104 @@
 
 
   <script>
-    const session = document.querySelectorAll(".allSessions");
-    const startTime = [];
-    const endTime = [];
-    window.currentTime = getCurrentTime();
-    const allSes = document.querySelectorAll('.main1');
-    const start = [];
-    const end = [];
+    // const allBtn = document.querySelector('.allSessionsDisplayBtn');
+    // const pastBtn = document.querySelector('.pastSessionsDisplayBtn');
+    // const activeBtn = document.querySelector('.activeSessionsDisplayBtn');
+    // const upcommingBtn = document.querySelector('.upcommingSessionsDisplayBtn');
+
+    // const allSess = document.querySelector('.allSessionsDisplay');
+    // const pastSess = document.querySelector('.pastSessionsDisplay');
+    // const activeSess = document.querySelector('.activeSessionsDisplay');
+    // const upcommingSess = document.querySelector('.upcommingSessionsDisplay');
+
+    // function allFunct() {
+    //   allBtn.addEventListener('click', function allFunctF() {
+    //     if (allSess.style.display = "none") {
+    //       allSess.style.display = "grid";
+    //       pastSess.style.display = "none";
+    //       activeSess.style.display = "none";
+    //       upcommingSess.style.display = "none";
+    //     } else {
+    //       pastSess.style.display = "none";
+    //       activeSess.style.display = "none";
+    //       upcommingSess.style.display = "none";
+    //     }
+    //   })
+    // }
+
+    // function pastFunct() {
+    //   pastBtn.addEventListener('click', function pastFunctF() {
+    //     if (pastSess.style.display = "none") {
+    //       pastSess.style.display = "grid";
+    //       allSess.style.display = "none";
+    //       activeSess.style.display = "none";
+    //       upcommingSess.style.display = "none";
+    //     } else {
+    //       allSess.style.display = "none";
+    //       activeSess.style.display = "none";
+    //       upcommingSess.style.display = "none";
+    //     }
+    //   })
+    // }
+
+    // function activeFunct() {
+    //   activeBtn.addEventListener('click', function activeFunctF() {
+    //     if (activeSess.style.display = "none") {
+    //       activeSess.style.display = "grid";
+    //       allSess.style.display = "none";
+    //       pastSess.style.display = "none";
+    //       upcommingSess.style.display = "none";
+    //     } else {
+    //       allSess.style.display = "none";
+    //       pastSess.style.display = "none";
+    //       upcommingSess.style.display = "none";
+    //     }
+    //   })
+    // }
+
+    // function upcommignFunct() {
+    //   upcommingBtn.addEventListener('click', function upcommingFunctF() {
+    //     if (upcommingSess.style.display = "none") {
+    //       upcommingSess.style.display = "grid";
+    //       allSess.style.display = "none";
+    //       pastSess.style.display = "none";
+    //       activeSess.style.display = "none";
+    //     } else {
+    //       allSess.style.display = "none";
+    //       pastSess.style.display = "none";
+    //       activeSess.style.display = "none";
+    //     }
+    //   })
+    // }
 
 
-    function getCurrentTime(session) {
-      return new Date().toString().slice(0, 21);
-    }
 
-
-    // function allSessionss() {
-    //   for (let i = 0; i < allSes.length; i++) {
-    //     startTime[i] = document.querySelector('.pStartTime') //    startTime.innerHTML.slice(37, 55);
-    //     endTime[i] = document.querySelector('.pEndTime')     //    endTime.innerHTML.slice(34, 55);
-    //     start[i] = startTime[i].innerHTML.slice(37, 55);
-    //     end[i] = endTime[i].innerHTML.slice(34, 55);
-
-    //     return start, end;
-    //   }
-
-
+    // // Add active class to the current control button (highlight it)
+    // var btnContainer = document.getElementById("myBtnContainer");
+    // var btns = btnContainer.getElementsByClassName("btn");
+    // for (var i = 0; i < btns.length; i++) {
+    //   btns[i].addEventListener("click", function () {
+    //     var current = document.getElementsByClassName("active");
+    //     console.log(current);
+    //     current[1].className = current[1].className.replace(" active", "");
+    //     this.classList.add("active");
+    //     // this.className += " active";
+    //   });
     // };
 
-    // allSessionss();
-
-
-
-
-    function addClass() {
-      for (let i = 0; i < allSes.length; i++) {
-        console.log(start[i])
-        if (end[i] < currentTime) {
-          if (!allSes[i].classList.contains('multiCollapsePast')) {
-            allSes[i].className += " multiCollapsePast ";
-            for (i = 0; i < allSes.length; i++) {
-              allSes[i].classList.remove('multiCollapseActive');
-              allSes[i].classList.remove('multiCollapseUpcoming');
-              allSes[i].classList.remove('filterDiv');
-
-            }
-          }
-        }
-
-        else if (start[i] < currentTime) {
-          if (end[i] > currentTime) {
-            if (!allSes[i].classList.contains('multiCollapseActive')) {
-              allSes[i].className += " multiCollapseActive ";
-
-              for (i = 0; i < allSes.length; i++) {
-                allSes[i].classList.remove('multiCollapsePast');
-                allSes[i].classList.remove('multiCollapseUpcoming');
-                allSes[i].classList.remove('filterDiv');
-
-              }
-            }
-          }
-
-        }
-        else if (start[i] > currentTime) {
-          if (!allSes[i].classList.contains('multiCollapseUpcoming')) {
-            allSes[i].classList += " multiCollapseUpcoming ";
-            for (i = 0; i < allSes.length; i++) {
-              allSes[i].classList.remove('multiCollapsePast');
-              allSes[i].classList.remove('multiCollapseActive');
-              allSes[i].classList.remove('filterDiv');
-            }
-
-          }
-
-        }
-      }
-    }
-
-
-
-
-
-    // Add active class to the current control button (highlight it)
-    var btnContainer = document.getElementById("myBtnContainer");
-    var btns = btnContainer.getElementsByClassName("btn");
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener("click", function () {
-        var current = document.getElementsByClassName("active");
-        current[1].className = current[1].className.replace(" active", "");
-        this.className += " active";
-      });
-    };
-
-    //Test acsess variables
-
-    var a = JSON.parse(htmlDecode("<%= JSON.stringify(pastSessions) %>"));
-
-    console.log(a)
 
 
   </script>
 
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 
   <%- include('includes/end.ejs') %>
