@@ -60,7 +60,17 @@
                     <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
                     <p><b>Address: </b><%=conference.address.adress%></p>
                     <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"
-                        class="submit button btn-block">Details</a>
+                        class="submit button btn-block">Details</a>        
+
+                        <form class="product-form form1" action="/maximum-programme" method="GET">
+
+                            <input type="hidden" value="asd" name="conferenceId" />
+                            
+                            <a href="/maximum-programme" align="center" name="maximum-programme"
+                                class="submit button btn-block">Maximum Programme</a>
+                                
+                          </form>
+        
                 </div>
             </article>
         </div>
@@ -86,6 +96,8 @@
                     <p><b>Address: </b><%=conference.address.adress%></p>
                     <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"
                         class="submit button btn-block">Details</a>
+                        <a href="/maximum-programme" align="center" name="conferenceId"
+                            class="submit button btn-block">Maximum Programme</a>
                 </div>
             </article>
         </div>
