@@ -25,6 +25,6 @@ router.post("/join-session", ownerController.postJoinSession);
 
 router.get("/allsessions", userController.getAllSessions);
 
-router.get("/maximum-programme", ownerController.maximumProgramme);
+router.post("/maximum-programme", isAuthenticated, ownerController.maximumProgramme);
 
 module.exports = router;

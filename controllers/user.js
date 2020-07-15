@@ -12,7 +12,6 @@ exports.getIndex = (req, res, next) => {
                 return conf
             }
         })
-        console.log(active)
         res.render("index", {
             pageTitle: "Welcome to conferences",
             isLoggedIn: req.session.isLoggedIn,
