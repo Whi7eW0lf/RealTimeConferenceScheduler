@@ -867,10 +867,10 @@
   </div>
 
   <div class="buttons-data-filter" id="myBtnContainer">
-    <button class="submit1 btn btn-session active" type="submit">ALL</button>
-    <button class="submit1 btn btn-session" type="submit">PAST</button>
-    <button class="submit1 btn btn-session" type="submit">ACTIVE</button>
-    <button class="submit1 btn btn-session" type="submit">UPCOMING</button>
+    <button class="submit1 btn btn-session active" onclick="addClass()" type="submit">ALL</button>
+    <button class="submit1 btn btn-session" onclick="addClass()" type="submit">PAST</button>
+    <button class="submit1 btn btn-session" onclick="addClass()" type="submit">ACTIVE</button>
+    <button class="submit1 btn btn-session" onclick="addClass()" type="submit">UPCOMING</button>
   </div>
 
 
@@ -923,12 +923,15 @@
 
     // allSessionss();
 
+
+
+
     function addClass() {
       for (let i = 0; i < allSes.length; i++) {
         console.log(start[i])
         if (end[i] < currentTime) {
           if (!allSes[i].classList.contains('multiCollapsePast')) {
-            allSes[i].className += ", multiCollapsePast ";
+            allSes[i].className += " multiCollapsePast ";
             for (i = 0; i < allSes.length; i++) {
               allSes[i].classList.remove('multiCollapseActive');
               allSes[i].classList.remove('multiCollapseUpcoming');
@@ -941,7 +944,7 @@
         else if (start[i] < currentTime) {
           if (end[i] > currentTime) {
             if (!allSes[i].classList.contains('multiCollapseActive')) {
-              allSes[i].className += ", multiCollapseActive ";
+              allSes[i].className += " multiCollapseActive ";
 
               for (i = 0; i < allSes.length; i++) {
                 allSes[i].classList.remove('multiCollapsePast');
@@ -954,7 +957,7 @@
         }
         else if (start[i] > currentTime) {
           if (!allSes[i].classList.contains('multiCollapseUpcoming')) {
-            allSes[i].classList += ", multiCollapseUpcoming ";
+            allSes[i].classList += " multiCollapseUpcoming ";
             for (i = 0; i < allSes.length; i++) {
               allSes[i].classList.remove('multiCollapsePast');
               allSes[i].classList.remove('multiCollapseActive');
