@@ -866,16 +866,70 @@
     <label class="sign head headings">Sessions</label>
   </div>
 
-  <div class="buttons-data-filter" id="myBtnContainer">
-    <button class="submit1 btn btn-session active" type="submit">ALL</button>
-    <button class="submit1 btn btn-session" type="submit">PAST</button>
-    <button class="submit1 btn btn-session" type="submit">ACTIVE</button>
-    <button class="submit1 btn btn-session" type="submit">UPCOMING</button>
-  </div>
+  <!-- <div class="buttons-data-filter" id="myBtnContainer">
+    <button class="submit1 btn btn-session active" onclick="addClass()" type="submit">ALL</button>
+    <button class="submit1 btn btn-session" onclick="addClass()" type="submit">PAST</button>
+    <button class="submit1 btn btn-session" onclick="addClass()" type="submit">ACTIVE</button>
+    <button class="submit1 btn btn-session" onclick="addClass()" type="submit">UPCOMING</button>
+  </div> -->
 
 
   <div class="grid">
     <% for(let session of allSessions) { %>
+    <div class="main allSessions">
+      <article class="sessions">
+        <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
+        <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
+        <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
+        <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
+        <form class="product-form form1" action="/join-session" method="POST">
+          <input type="hidden" value="<%= session._id %>" name="sessionId" />
+          <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
+          <button class="submit btn btn-block" type="submit">Join session</button>
+        </form>
+      </article>
+    </div>
+    <% } %>
+  </div>
+
+  <div class="grid">
+    <% for(let session of pastSessions) { %>
+    <div class="main1 filterDiv allSessions">
+      <article class="sessions">
+        <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
+        <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
+        <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
+        <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
+        <form class="product-form form1" action="/join-session" method="POST">
+          <input type="hidden" value="<%= session._id %>" name="sessionId" />
+          <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
+          <button class="submit btn btn-block" type="submit">Join session</button>
+        </form>
+      </article>
+    </div>
+    <% } %>
+  </div>
+
+  <div class="grid">
+    <% for(let session of activeSessions) { %>
+    <div class="main1 filterDiv allSessions">
+      <article class="sessions">
+        <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
+        <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
+        <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
+        <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
+        <form class="product-form form1" action="/join-session" method="POST">
+          <input type="hidden" value="<%= session._id %>" name="sessionId" />
+          <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
+          <button class="submit btn btn-block" type="submit">Join session</button>
+        </form>
+      </article>
+    </div>
+    <% } %>
+  </div>
+
+  <div class="grid">
+    <% for(let session of upcommingSessions) { %>
     <div class="main1 filterDiv allSessions">
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
@@ -908,27 +962,30 @@
     }
 
 
-    function allSessionss() {
-      for (let i = 0; i < allSes.length; i++) {
-        startTime[i] = document.querySelector('.pStartTime') //    startTime.innerHTML.slice(37, 55);
-        endTime[i] = document.querySelector('.pEndTime')     //    endTime.innerHTML.slice(34, 55);
-        start[i] = startTime[i].innerHTML.slice(37, 55);
-        end[i] = endTime[i].innerHTML.slice(34, 55);
+    // function allSessionss() {
+    //   for (let i = 0; i < allSes.length; i++) {
+    //     startTime[i] = document.querySelector('.pStartTime') //    startTime.innerHTML.slice(37, 55);
+    //     endTime[i] = document.querySelector('.pEndTime')     //    endTime.innerHTML.slice(34, 55);
+    //     start[i] = startTime[i].innerHTML.slice(37, 55);
+    //     end[i] = endTime[i].innerHTML.slice(34, 55);
 
-        return start, end;
-      }
+    //     return start, end;
+    //   }
 
 
-    };
+    // };
 
-    allSessionss();
+    // allSessionss();
+
+
+
 
     function addClass() {
       for (let i = 0; i < allSes.length; i++) {
         console.log(start[i])
         if (end[i] < currentTime) {
           if (!allSes[i].classList.contains('multiCollapsePast')) {
-            allSes[i].className += ", multiCollapsePast ";
+            allSes[i].className += " multiCollapsePast ";
             for (i = 0; i < allSes.length; i++) {
               allSes[i].classList.remove('multiCollapseActive');
               allSes[i].classList.remove('multiCollapseUpcoming');
@@ -941,11 +998,12 @@
         else if (start[i] < currentTime) {
           if (end[i] > currentTime) {
             if (!allSes[i].classList.contains('multiCollapseActive')) {
-              allSes[i].className += ", multiCollapseActive ";
+              allSes[i].className += " multiCollapseActive ";
 
               for (i = 0; i < allSes.length; i++) {
                 allSes[i].classList.remove('multiCollapsePast');
                 allSes[i].classList.remove('multiCollapseUpcoming');
+                allSes[i].classList.remove('filterDiv');
 
               }
             }
@@ -954,10 +1012,11 @@
         }
         else if (start[i] > currentTime) {
           if (!allSes[i].classList.contains('multiCollapseUpcoming')) {
-            allSes[i].classList += ", multiCollapseUpcoming ";
+            allSes[i].classList += " multiCollapseUpcoming ";
             for (i = 0; i < allSes.length; i++) {
               allSes[i].classList.remove('multiCollapsePast');
               allSes[i].classList.remove('multiCollapseActive');
+              allSes[i].classList.remove('filterDiv');
             }
 
           }
@@ -981,7 +1040,11 @@
       });
     };
 
+    //Test acsess variables
 
+    var a = JSON.parse(htmlDecode("<%= JSON.stringify(pastSessions) %>"));
+
+    console.log(a)
 
 
   </script>
