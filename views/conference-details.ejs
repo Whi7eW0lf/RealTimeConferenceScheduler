@@ -4,6 +4,22 @@
 <body>
 
   <style>
+    .allSessionsDisplay {
+      display: grid;
+    }
+
+    .pastSessionsDisplay {
+      display: none;
+    }
+
+    .activeSessionsDisplay {
+      display: none;
+    }
+
+    .upcommingSessionsDisplay {
+      display: none;
+    }
+
     .btn-session {
       margin-left: 0;
       margin-right: 0;
@@ -856,17 +872,18 @@
 
   <div class="buttons-data-filter" id="myBtnContainer">
 
-    <button class="submit1 btn btn-session active" type="button" data-toggle="collapse"
+    <button class="submit1 btn btn-session allSessionsDisplayBtn active" type="button" data-toggle="collapse"
       data-target="#allSessionsDisplay" aria-expanded="false" aria-controls="allSessionsDisplay">ALL</button>
 
-    <button class="submit1 btn btn-session" type="button" data-toggle="collapse" data-target="#pastSessionsDisplay"
-      aria-expanded="false" aria-controls="pastSessionsDisplay">PAST</button>
+    <button class="submit1 btn btn-session pastSessionsDisplayBtn" type="button" data-toggle="collapse"
+      data-target="#pastSessionsDisplay" aria-expanded="false" aria-controls="pastSessionsDisplay">PAST</button>
 
-    <button class="submit1 btn btn-session" type="button" data-toggle="collapse" data-target="#activeSessionsDisplay"
-      aria-expanded="false" aria-controls="activeSessionsDisplay">ACTIVE</button>
+    <button class="submit1 btn btn-session activeSessionsDisplayBtn" type="button" data-toggle="collapse"
+      data-target="#activeSessionsDisplay" aria-expanded="false" aria-controls="activeSessionsDisplay">ACTIVE</button>
 
-    <button class="submit1 btn btn-session" type="button" data-toggle="collapse" data-target="#upcommingSessionsDisplay"
-      aria-expanded="false" aria-controls="upcommingSessionsDisplay">UPCOMING</button>
+    <button class="submit1 btn btn-session upcommingSessionsDisplayBtn" type="button" data-toggle="collapse"
+      data-target="#upcommingSessionsDisplay" aria-expanded="false"
+      aria-controls="upcommingSessionsDisplay">UPCOMING</button>
   </div>
 
 
@@ -944,12 +961,75 @@
 
 
   <script>
+    const allBtn = document.querySelector('.allSessionsDisplayBtn');
+    const pastBtn = document.querySelector('.pastSessionsDisplayBtn');
+    const activeBtn = document.querySelector('.activeSessionsDisplayBtn');
+    const upcommingBtn = document.querySelector('.upcommingSessionsDisplayBtn');
 
+    const allSess = document.querySelector('.allSessionsDisplay');
+    const pastSess = document.querySelector('.pastSessionsDisplay');
+    const activeSess = document.querySelector('.activeSessionsDisplay');
+    const upcommingSess = document.querySelector('.upcommingSessionsDisplay');
 
+    function allFunct() {
+      allBtn.addEventListener('click', function allFunctF() {
+        if (allSess.style.display = "none") {
+          allSess.style.display = "grid";
+          pastSess.style.display = "none";
+          activeSess.style.display = "none";
+          upcommingSess.style.display = "none";
+        } else {
+          pastSess.style.display = "none";
+          activeSess.style.display = "none";
+          upcommingSess.style.display = "none";
+        }
+      })
+    }
 
+    function pastFunct() {
+      pastBtn.addEventListener('click', function pastFunctF() {
+        if (pastSess.style.display = "none") {
+          pastSess.style.display = "grid";
+          allSess.style.display = "none";
+          activeSess.style.display = "none";
+          upcommingSess.style.display = "none";
+        } else {
+          allSess.style.display = "none";
+          activeSess.style.display = "none";
+          upcommingSess.style.display = "none";
+        }
+      })
+    }
 
+    function activeFunct() {
+      activeBtn.addEventListener('click', function activeFunctF() {
+        if (activeSess.style.display = "none") {
+          activeSess.style.display = "grid";
+          allSess.style.display = "none";
+          pastSess.style.display = "none";
+          upcommingSess.style.display = "none";
+        } else {
+          allSess.style.display = "none";
+          pastSess.style.display = "none";
+          upcommingSess.style.display = "none";
+        }
+      })
+    }
 
-
+    function upcommignFunct() {
+      upcommingBtn.addEventListener('click', function upcommingFunctF() {
+        if (upcommingSess.style.display = "none") {
+          upcommingSess.style.display = "grid";
+          allSess.style.display = "none";
+          pastSess.style.display = "none";
+          activeSess.style.display = "none";
+        } else {
+          allSess.style.display = "none";
+          pastSess.style.display = "none";
+          activeSess.style.display = "none";
+        }
+      })
+    }
 
 
 
