@@ -1,28 +1,24 @@
 const ConferenceSession = require("../models/session");
 const Hall = require("../models/hall");
 const Conference = require("../models/conference");
-const Venue = require("../models/venues");
-const dateFormater = require("../util/dateFormater");
-const formatDateTimeConferences = require("../util/dateFormater");
 const sessionSorter = require("../util/sessionsSorter")
-const e = require("express");
 
 exports.getIndex = (req, res, next) => {
     Conference.find().populate("address").then(conferences => {
         conferences.sort((a,b) => a.startTime - b.startTime);
+        const date = new Date()
         let active = conferences.filter(conf => {
-            if(conf.startTime < req.date &&  conf.endTime > req.date) {
+            if(conf.startTime < date &&  conf.endTime > date) {
                 return conf
             }
         })
-        const formatDateTime = dateFormater(conferences);
         res.render("index", {
             pageTitle: "Welcome to conferences",
             isLoggedIn: req.session.isLoggedIn,
             path: '/',
             conferences: active,
             isLoggedIn: req.session.isLoggedIn,
-            currentDate: req.date,
+            currentDate: req.data || date,
 
         })
     }).catch(err => console.log(err))
@@ -36,6 +32,7 @@ exports.getConferences = (req, res, next) => {
     } else {
         errMessage = null
     }
+    const date = new Date()
     // let successMessage = req.flash("success");
 
     // if (successMessage.length > 0) {
@@ -50,7 +47,7 @@ exports.getConferences = (req, res, next) => {
             isLoggedIn: req.session.isLoggedIn,
             path: '/all-conferences',
             conferences: conferences,
-            currentDate: req.date,
+            currentDate: req.date || date,
             errorMessage: errMessage
         })
     }).catch(err => console.log(err))
@@ -101,17 +98,3 @@ exports.getAllSessions = (req,res,next)=>{
     );
 
 }
-
-    //sessions = sessions.map(e => {
-    //     const startTime = e.startTime.toString().substring(0, 21);
-    //     const endTime = e.endTime.toString().substring(0, 21);
-    //     return {
-    //         _id: e._id,
-    //         venueId: e.venueId,
-    //         sessionSeats: e.sessionSeats,
-    //         conferenceId: e.conferenceId,
-    //         hallId: e.hallId,
-    //         startTime: startTime,
-    //         endTime: endTime
-    //     }
-    // })
