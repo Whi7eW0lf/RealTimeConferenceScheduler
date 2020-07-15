@@ -795,19 +795,7 @@
 
   <%- include('includes/navigation.ejs') %>
 
-  <!-- 
-  <div flex = row = border-radius = width: 80%, sredaya>
-    <div width 50>
-      <img width/>
-    </div>
-    <div 50%>
-      <p>asd</p>
-      <p></p>
-      <p></p>
-      <p></p>
-      <p></p>
-    </div>
-  </div> -->
+
   <p align="center" class="sign head headings">Session details</p>
 
 
@@ -866,15 +854,23 @@
     <label class="sign head headings">Sessions</label>
   </div>
 
-  <!-- <div class="buttons-data-filter" id="myBtnContainer">
-    <button class="submit1 btn btn-session active" onclick="addClass()" type="submit">ALL</button>
-    <button class="submit1 btn btn-session" onclick="addClass()" type="submit">PAST</button>
-    <button class="submit1 btn btn-session" onclick="addClass()" type="submit">ACTIVE</button>
-    <button class="submit1 btn btn-session" onclick="addClass()" type="submit">UPCOMING</button>
-  </div> -->
+  <div class="buttons-data-filter" id="myBtnContainer">
+
+    <button class="submit1 btn btn-session active" type="button" data-toggle="collapse"
+      data-target="#allSessionsDisplay" aria-expanded="false" aria-controls="allSessionsDisplay">ALL</button>
+
+    <button class="submit1 btn btn-session" type="button" data-toggle="collapse" data-target="#pastSessionsDisplay"
+      aria-expanded="false" aria-controls="pastSessionsDisplay">PAST</button>
+
+    <button class="submit1 btn btn-session" type="button" data-toggle="collapse" data-target="#activeSessionsDisplay"
+      aria-expanded="false" aria-controls="activeSessionsDisplay">ACTIVE</button>
+
+    <button class="submit1 btn btn-session" type="button" data-toggle="collapse" data-target="#upcommingSessionsDisplay"
+      aria-expanded="false" aria-controls="upcommingSessionsDisplay">UPCOMING</button>
+  </div>
 
 
-  <div class="grid allSessionsDisplay">
+  <div class="grid collapse allSessionsDisplay" id="allSessionsDisplay">
     <% for(let session of allSessions) { %>
     <div class="main allSessions">
       <article class="sessions">
@@ -892,7 +888,7 @@
     <% } %>
   </div>
 
-  <div class="grid pastSessionsDisplay">
+  <div class="grid collapse pastSessionsDisplay" id="pastSessionsDisplay">
     <% for(let session of pastSessions) { %>
     <div class="main1 filterDiv allSessions">
       <article class="sessions">
@@ -910,7 +906,7 @@
     <% } %>
   </div>
 
-  <div class="grid activeSessionsDisplay">
+  <div class="grid collapse activeSessionsDisplay" id="activeSessionsDisplay">
     <% for(let session of activeSessions) { %>
     <div class="main1 filterDiv allSessions">
       <article class="sessions">
@@ -928,7 +924,7 @@
     <% } %>
   </div>
 
-  <div class="grid upcommingSessionsDisplay">
+  <div class="grid collapse upcommingSessionsDisplay" id="upcommingSessionsDisplay">
     <% for(let session of upcommingSessions) { %>
     <div class="main1 filterDiv allSessions">
       <article class="sessions">
@@ -948,103 +944,26 @@
 
 
   <script>
-    const session = document.querySelectorAll(".allSessions");
-    const startTime = [];
-    const endTime = [];
-    window.currentTime = getCurrentTime();
-    const allSes = document.querySelectorAll('.main1');
-    const start = [];
-    const end = [];
 
 
-    function getCurrentTime(session) {
-      return new Date().toString().slice(0, 21);
-    }
 
 
-    // function allSessionss() {
-    //   for (let i = 0; i < allSes.length; i++) {
-    //     startTime[i] = document.querySelector('.pStartTime') //    startTime.innerHTML.slice(37, 55);
-    //     endTime[i] = document.querySelector('.pEndTime')     //    endTime.innerHTML.slice(34, 55);
-    //     start[i] = startTime[i].innerHTML.slice(37, 55);
-    //     end[i] = endTime[i].innerHTML.slice(34, 55);
-
-    //     return start, end;
-    //   }
 
 
+
+
+
+    // // Add active class to the current control button (highlight it)
+    // var btnContainer = document.getElementById("myBtnContainer");
+    // var btns = btnContainer.getElementsByClassName("btn");
+    // for (var i = 0; i < btns.length; i++) {
+    //   btns[i].addEventListener("click", function () {
+    //     var current = document.getElementsByClassName("active");
+    //     current[1].className = current[1].className.replace(" active", "");
+    //     this.className += " active";
+    //   });
     // };
 
-    // allSessionss();
-
-
-
-
-    function addClass() {
-      for (let i = 0; i < allSes.length; i++) {
-        console.log(start[i])
-        if (end[i] < currentTime) {
-          if (!allSes[i].classList.contains('multiCollapsePast')) {
-            allSes[i].className += " multiCollapsePast ";
-            for (i = 0; i < allSes.length; i++) {
-              allSes[i].classList.remove('multiCollapseActive');
-              allSes[i].classList.remove('multiCollapseUpcoming');
-              allSes[i].classList.remove('filterDiv');
-
-            }
-          }
-        }
-
-        else if (start[i] < currentTime) {
-          if (end[i] > currentTime) {
-            if (!allSes[i].classList.contains('multiCollapseActive')) {
-              allSes[i].className += " multiCollapseActive ";
-
-              for (i = 0; i < allSes.length; i++) {
-                allSes[i].classList.remove('multiCollapsePast');
-                allSes[i].classList.remove('multiCollapseUpcoming');
-                allSes[i].classList.remove('filterDiv');
-
-              }
-            }
-          }
-
-        }
-        else if (start[i] > currentTime) {
-          if (!allSes[i].classList.contains('multiCollapseUpcoming')) {
-            allSes[i].classList += " multiCollapseUpcoming ";
-            for (i = 0; i < allSes.length; i++) {
-              allSes[i].classList.remove('multiCollapsePast');
-              allSes[i].classList.remove('multiCollapseActive');
-              allSes[i].classList.remove('filterDiv');
-            }
-
-          }
-
-        }
-      }
-    }
-
-
-
-
-
-    // Add active class to the current control button (highlight it)
-    var btnContainer = document.getElementById("myBtnContainer");
-    var btns = btnContainer.getElementsByClassName("btn");
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener("click", function () {
-        var current = document.getElementsByClassName("active");
-        current[1].className = current[1].className.replace(" active", "");
-        this.className += " active";
-      });
-    };
-
-    //Test acsess variables
-
-    var a = JSON.parse(htmlDecode("<%= JSON.stringify(pastSessions) %>"));
-
-    console.log(a)
 
 
   </script>
