@@ -876,7 +876,7 @@
 
   <div class="grid">
     <% for(let session of allSessions) { %>
-    <div class="main1 filterDiv allSessions">
+    <div class="main allSessions">
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -1003,6 +1003,7 @@
               for (i = 0; i < allSes.length; i++) {
                 allSes[i].classList.remove('multiCollapsePast');
                 allSes[i].classList.remove('multiCollapseUpcoming');
+                allSes[i].classList.remove('filterDiv');
 
               }
             }
@@ -1015,6 +1016,7 @@
             for (i = 0; i < allSes.length; i++) {
               allSes[i].classList.remove('multiCollapsePast');
               allSes[i].classList.remove('multiCollapseActive');
+              allSes[i].classList.remove('filterDiv');
             }
 
           }
