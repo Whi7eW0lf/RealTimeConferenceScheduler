@@ -66,8 +66,6 @@ exports.getConferenceDetails = (req, res, next) => {
                 
                 let upcommingSessions = sessionSorter(sessions,"upcommingSessions");
 
-                console.log(activeSessions);
-
                 res.render("conference-details", {
                     halls: halls || [],
                     pageTitle: conf.name,

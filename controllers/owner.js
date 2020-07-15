@@ -2,7 +2,6 @@ const Session = require("../models/session");
 const Hall = require("../models/hall");
 const Conference = require("../models/conference");
 const Venue = require("../models/venues");
-const session = require("express-session");
 const checkExistingSession = require("../util/checkExistingSession");
 const {nameRegex} = require("../util/nameRegex");
 const User = require("../models/user");
