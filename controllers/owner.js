@@ -277,7 +277,29 @@ exports.postJoinSession = (req, res, next) => {
 
 exports.maximumProgramme = (req,res,next)=>{
     const conferenceId = req.body.conferenceId;
-    console.log(conferenceId)
-    console.log(req.user._id)
-
+    Session.find()
+    .populate("conferenceId")
+    .populate("hallId")
+    .then(sessions => {
+        let existingSessions = []
+        req.user.session.sessions.forEach(s => {
+            sessions.forEach(session => {
+                if (session._id.toString() === s._id.toString()) {
+                    existingSessions.push(session)
+                }
+            })
+        })
+        const conf = sessions.filter(s => s.conferenceId._id.toString() === conferenceId.toString())
+        console.log(conf)
+            // res.render("my-conferences", {
+            // pageTitle: "My Conferences",
+            // isLoggedIn: req.session.isLoggedIn,
+            // path: "/myconferences",
+            // conferences: conf,
+            // errorMessage: message,
+            // userRole: req.user.role,
+            // attendingSessions: existingSessions || [],
+            // currentDate: req.date
+        // })
+    })
 }
