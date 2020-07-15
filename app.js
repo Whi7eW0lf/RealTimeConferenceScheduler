@@ -42,6 +42,8 @@ app.use((req, res, next) => {
 app.use(userRoutes)
 app.use(authRoutes)
 
+//test
+
 mongoose.connect(MONDODB_URI, {
     useUnifiedTopology: true,
     useNewUrlParser: true
