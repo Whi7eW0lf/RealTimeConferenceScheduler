@@ -276,6 +276,8 @@ exports.postJoinSession = (req, res, next) => {
 }
 
 exports.maximumProgramme = (req,res,next)=>{
-    let a = req.body.conferenceIdMax;
-    console.log(a);
+    const conferenceId = req.body.conferenceId;
+    console.log(conferenceId)
+    console.log(req.user._id)
+
 }
