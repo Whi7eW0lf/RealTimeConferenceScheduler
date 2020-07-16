@@ -33,13 +33,13 @@ exports.getConferences = (req, res, next) => {
         errMessage = null
     }
     const date = new Date()
-    // let successMessage = req.flash("success");
+    let successMessage = req.flash("success");
 
-    // if (successMessage.length > 0) {
-    //     successMessage = successMessage[0]
-    // } else {
-    //     successMessage = null
-    // }
+    if (successMessage.length > 0) {
+        successMessage = successMessage[0]
+    } else {
+        successMessage = null
+    }
     Conference.find().populate("address").then(conferences => {
 
         res.render("event-form", {
@@ -48,7 +48,8 @@ exports.getConferences = (req, res, next) => {
             path: '/all-conferences',
             conferences: conferences,
             currentDate: req.date || date,
-            errorMessage: errMessage
+            errorMessage: errMessage,
+            successMessage: successMessage
         })
     }).catch(err => console.log(err))
 
@@ -70,7 +71,7 @@ exports.getConferenceDetails = (req, res, next) => {
                     halls: halls || [],
                     pageTitle: conf.name,
                     isLoggedIn: req.session.isLoggedIn,
-                    path: "/",
+                    path: "/all-conferences",
                     conference: conf,
                     allSessions: sessions || [],
                     pastSessions: pastSessions,

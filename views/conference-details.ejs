@@ -1,833 +1,20 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/conf-details.css">
 <%- include('includes/head.ejs') %>
 </head>
 
 <body>
 
-  <style>
-    .allSessionsDisplay {
-      display: grid;
-    }
-
-    .pastSessionsDisplay {
-      display: none;
-    }
-
-    .activeSessionsDisplay {
-      display: none;
-    }
-
-    .upcommingSessionsDisplay {
-      display: none;
-    }
-
-    .btn-session {
-      margin-left: 0;
-      margin-right: 0;
-    }
-
-    .buttons-data-filter {
-      display: flex;
-    }
-
-    img {
-      border-radius: 5em;
-    }
-
-
-    .imagee p {
-      position: relative;
-      top: 10px;
-      left: 10px;
-    }
-
-    .imagee {
-      background-color: black;
-      min-height: 500px;
-      min-width: 800px;
-      width: 100%;
-      height: 100%;
-      background: url("https://picsum.photos/600/400?image=1083") center no-repeat;
-
-    }
-
-    .textt {
-      font-family: 'Ubuntu', sans-serif;
-      color: #f2f2f2;
-      font-weight: 500;
-      font-size: 1vh;
-      letter-spacing: 1.099px;
-      padding: 2vh;
-      border-radius: 3px;
-    }
-
-
-    body {
-      background-color: #fff;
-      font-family: 'Ubuntu', sans-serif;
-      padding: 40px 0;
-      line-height: 1.2;
-
-    }
-
-    .main {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 18px;
-      background-color: #FFFFFF;
-      width: 400px;
-      height: fit-content;
-      margin: 7em auto;
-      border-radius: 1.5em;
-      box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .main1 {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 18px;
-      padding-top: 18px;
-      padding-bottom: 18px;
-      background-color: #ffffff;
-      width: 90vh;
-      height: fit-content;
-      margin: auto;
-      border-radius: 1.5em;
-      box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-      text-align: center;
-      margin-top: 5vh;
-    }
-
-    .main2 {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 18px;
-      background-color: #FFFFFF;
-      width: 800px;
-      height: fit-content;
-      margin: 7em auto;
-      border-radius: 1.5em;
-      box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .mainCardDetails {
-      display: block;
-      flex-direction: column;
-      justify-content: center;
-      padding: 18px;
-      background-color: rgba(61, 61, 61, 0.171);
-      width: 400px;
-      height: fit-content;
-      margin: 7em auto;
-      border-radius: 1.5em;
-      box-shadow: 0px;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr;
-      grid-gap: 20px;
-      align-items: stretch;
-      padding: 40px;
-    }
-
-    .grid2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr;
-      grid-gap: 0px;
-      align-items: stretch;
-      padding: 40px;
-    }
-
-    .sign {
-      color: #0082e6;
-      font-family: "Ubuntu", sans-serif;
-      font-weight: bold;
-      font-size: 3vh;
-    }
-
-    .head {
-      font-size: 4vh;
-      padding-block-start: 40px;
-    }
-
-    .sign1 {
-      color: #0082e6;
-      font-family: "Ubuntu", sans-serif;
-      font-weight: bold;
-      font-size: 18px;
-      text-align: center;
-    }
-
-    .sign2 {
-      color: #0082e6;
-      font-family: "Ubuntu", sans-serif;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-
-    .name {
-      width: 100%;
-      color: rgb(38, 50, 56);
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 1px;
-      background: #fafafa;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5em;
-      outline: none;
-      box-sizing: border-box;
-      border: 2px solid rgba(0, 0, 0, 0.02);
-      margin-bottom: 50px;
-      text-align: center;
-      margin-bottom: 27px;
-      font-family: "Ubuntu", sans-serif;
-      height: auto;
-    }
-
-    .form1 {
-      text-align: center;
-    }
-
-    h3,
-    h4,
-    p {
-      font-size: 14px;
-      font-family: 'Ubuntu', sans-serif;
-    }
-
-    .container {
-      padding-top: 40px;
-    }
-
-    .un {
-      width: 76%;
-      color: rgb(38, 50, 56);
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 1px;
-      background: rgba(136, 126, 126, 0.04);
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
-      outline: none;
-      box-sizing: border-box;
-      border: 2px solid rgba(0, 0, 0, 0.02);
-      margin-bottom: 50px;
-      margin-left: 46px;
-      text-align: center;
-      margin-bottom: 27px;
-      font-family: 'Ubuntu', sans-serif;
-    }
-
-    .pass,
-    .pass1 {
-      width: 76%;
-      color: rgb(38, 50, 56);
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 1px;
-      background: rgba(136, 126, 126, 0.04);
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
-      outline: none;
-      box-sizing: border-box;
-      border: 2px solid rgba(0, 0, 0, 0.02);
-      margin-bottom: 50px;
-      margin-left: 46px;
-      text-align: center;
-      margin-bottom: 27px;
-      font-family: 'Ubuntu', sans-serif;
-    }
-
-
-    .un:focus,
-    .pass:focus,
-    .pass1:focus {
-      border: 2px solid rgba(0, 0, 0, 0.18) !important;
-
-    }
-
-    .submit {
-      display: flex;
-      cursor: pointer;
-      border-radius: 5em;
-      color: #fff;
-      background: #0082e6;
-      padding-left: 40px;
-      padding-right: 40px;
-      padding-bottom: 10px;
-      padding-top: 10px;
-      font-family: 'Ubuntu', sans-serif;
-      margin-left: 35%;
-      font-size: 13px;
-      margin: auto;
-      box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-      text-align: center;
-
-    }
-
-    .submit1 {
-      display: flex;
-      cursor: pointer;
-      border-radius: 5em;
-      color: #fff;
-      background: #0082e6;
-      padding-left: 40px;
-      padding-right: 40px;
-      padding-bottom: 10px;
-      padding-top: 10px;
-      font-family: 'Ubuntu', sans-serif;
-      font-size: 13px;
-      margin: auto;
-      box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-      text-align: center;
-
-    }
-
-    .submit:hover {
-      border-radius: 2px #0082e6 !important;
-      background: transparent;
-      color: #0082e6;
-    }
-
-    .forgot {
-      text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-      color: black;
-      padding-top: 15px;
-    }
-
-    a {
-      text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-      color: black;
-      text-decoration: none
-    }
-
-    .logout {
-      color: #f2f2f2;
-      font-weight: 500;
-      font-size: 14px;
-      letter-spacing: 1.099px;
-      padding: 2vh;
-      border-radius: 3px;
-      /* text-transform: uppercase; */
-      font-family: "Poppins", sans-serif;
-    }
-
-    label {
-      display: inline-flex;
-    }
-
-    .btn {
-      display: block;
-    }
-
-    .btn:hover {
-      background: transparent;
-      color: #0082e6;
-      border: 1px solid #0082e6;
-      border-color: #0082e6;
-    }
-
-    a:link {
-      color: #0082e6;
-    }
-
-    .user-message {
-      margin: 20px auto;
-      width: 50%;
-      border: 1px solid green;
-      background-color: #47bb24;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      color: white;
-    }
-
-    .user-message--error {
-      margin: 20px auto;
-      width: 50%;
-      border: 1px solid red;
-      background-color: #f17272;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      color: white;
-    }
-
-    .img {
-      width: 70%;
-      border-radius: 50%;
-    }
-
-    .circular--landscape img {
-      width: auto;
-      height: 100%;
-      margin-left: -50px;
-    }
-
-    .circular--landscape {
-      display: inline-block;
-      position: relative;
-      width: 300px;
-      height: 300px;
-      overflow: hidden;
-      border-radius: 50%;
-    }
-
-    .article {
-      z-index: 1000;
-      position: relative;
-      bottom: 2vh;
-      right: 10vh;
-      height: 30vh;
-
-    }
-
-    @media (max-width: 600px) {
-      .main {
-        border-radius: 0px;
-        max-width: min-content;
-      }
-    }
-
-    /*/////////nav bar css/////*/
-
-
-    nav {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      background: #0082e6;
-      min-height: 8vh;
-      width: 100%;
-      text-align: center;
-    }
-
-    label.logo {
-      color: #0082e6;
-      font-size: 33px;
-      line-height: 80px;
-      padding: 0 140px;
-      font-weight: 600;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    nav ul {
-      margin-right: 60px;
-      display: block;
-    }
-
-    nav ul li {
-      display: inline;
-      line-height: 80px;
-      margin: 0 1vh;
-      list-style-type: none;
-
-    }
-
-    nav ul li a {
-      color: #f2f2f2;
-      font-weight: 500;
-      font-size: 14px;
-      letter-spacing: 1.099px;
-      padding: 2vh;
-      border-radius: 3px;
-      /* text-transform: uppercase; */
-
-
-      font-family: 'Poppins', sans-serif;
-    }
-
-    a.active,
-    a:hover {
-      transition: .5s;
-      border-radius: 5em;
-    }
-
-    a.active {
-      background: #1b9bff;
-    }
-
-    .checkbtn {
-      font-size: 30px;
-      color: white;
-      float: right;
-      line-height: 80px;
-      margin-right: 40px;
-      cursor: pointer;
-      display: none;
-    }
-
-    #check {
-      display: none;
-    }
-
-    .button-nav {
-      display: none;
-    }
-
-    .labell {
-      margin: 0 40px 0 0;
-      font-size: 26px;
-      line-height: 70px;
-      display: none;
-      width: 35px;
-      float: right;
-    }
-
-    #toggle {
-      display: none;
-    }
-
-    .footer-copyright {
-      text-align: center;
-    }
-
-
-
-    @media only screen and (max-width: 1025px) {
-      .labell {
-        display: block;
-        cursor: pointer;
-      }
-
-      .menuu {
-        text-align: center;
-        width: 100%;
-        display: none;
-      }
-
-      .menuu a {
-        display: block;
-        border-bottom: solid #d6d6d6;
-        margin: 0;
-      }
-
-      #toggle:checked+.menuu {
-        display: block;
-      }
-
-      .navbar {
-        display: block;
-      }
-
-      .logo {
-        display: none;
-      }
-
-      body {
-        padding-top: 0;
-        display: inline-block;
-        width: 100%;
-      }
-
-      .form1 {
-        width: fit-content;
-      }
-
-      .grid2 {
-        display: contents;
-        max-width: min-content;
-        text-align: left;
-        background-image: inherit;
-        color: black;
-        font-size: 16px;
-        font-weight: bold;
-        text-align: center;
-        margin: 0 auto;
-      }
-
-      .grid {
-        display: inline;
-      }
-
-      .container {
-        padding: 40px;
-      }
-
-      .main1 {
-        display: grid;
-        margin-bottom: 28px;
-        max-width: fit-content;
-        width: 70vh;
-      }
-
-      p {
-        white-space: none;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: inline-block;
-        width: -webkit-fill-available;
-
-      }
-
-      .grid>article img {
-        width: 100%;
-      }
-
-      .grid>article img {
-        width: 100%;
-      }
-
-      .img {
-        max-width: webkit-fill-available;
-
-      }
-
-      .article {
-        z-index: 1000;
-        position: static;
-        bottom: 0;
-        right: 0;
-        height: 30vh;
-
-      }
-
-      .circular--landscape {
-        display: inline-block;
-        position: relative;
-        width: 300px;
-        height: none !important;
-        overflow: hidden;
-        border-radius: 50%;
-      }
-
-      .circular--landscape img {
-        width: auto;
-        height: 100%;
-        margin-left: none;
-      }
-
-      .submit1 {
-        width: -webkit-fill-available;
-      }
-
-      .buttons-data-filter {
-        display: block;
-      }
-
-      .main1 {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 18px;
-        padding-top: 18px;
-        padding-bottom: 18px;
-        background-color: #ffffff;
-        width: 90vh;
-        height: fit-content;
-        margin: auto;
-        border-radius: 1.5em;
-        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-        text-align: center;
-        margin-top: none !important;
-
-      }
-
-      .sidenav {
-        display: none;
-      }
-
-      nav ul li a {
-        color: #f2f2f2;
-        font-weight: 500;
-        font-size: 14px;
-        letter-spacing: 1.099px;
-        padding: none !important;
-        border-radius: 3px;
-        /* text-transform: uppercase; */
-        font-family: 'Poppins', sans-serif;
-      }
-    }
-
-
-    /* ACTIVE PAST UPCOMING BUTTONS STYLE END */
-
-    .hidden {
-      display: none;
-    }
-
-    .notHidden {
-      display: flex;
-    }
-
-    .filterDiv {
-      display: none;
-    }
-
-    .show {
-      display: grid;
-
-    }
-
-    .btn.active {
-      background: transparent;
-      color: #0082e6;
-      border: 1px solid #0082e6;
-      border-color: #0082e6;
-    }
-
-    /* ACTIVE PAST UPCOMING BUTTONS STYLE END  /|\  */
-
-
-
-
-    /* POP UP NOTIFICATION CONFERNCE DETAILS PAGE \|/  */
-
-    /* Popup container - can be anything you want */
-    /* The Modal (background) */
-    .modal {
-      display: none;
-      /* Hidden by default */
-      position: fixed;
-      /* Stay in place */
-      z-index: 1;
-      /* Sit on top */
-      left: 0;
-      top: 0;
-      width: 100%;
-      /* Full width */
-      height: 100%;
-      /* Full height */
-      overflow: auto;
-      /* Enable scroll if needed */
-      background-color: rgb(0, 0, 0);
-      /* Fallback color */
-      background-color: rgba(0, 0, 0, 0.4);
-      /* Black w/ opacity */
-    }
-
-    /* Modal Content/Box */
-    .modal-content {
-      background-color: #3a3f45;
-      margin: 15% auto;
-      /* 15% from the top and centered */
-      padding: 20px;
-      border: 1px solid #3a3f45ab;
-      width: 80%;
-      border-radius: 1.5em;
-      /* Could be more or less, depending on screen size */
-    }
-
-    /* The Close Button */
-    .close {
-      color: rgba(255, 255, 255, 0.582);
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: #fff;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-
-    /* /////     end of popUp    ////// */
-
-    .toggle {
-      background-color: rgba(0, 0, 0, 0.5);
-
-    }
-
-    .flex-box {
-      display: flex;
-      flex-direction: row;
-      border-radius: 1.5em;
-      width: 75%;
-      margin: 0 auto;
-      padding-top: 8vh;
-    }
-
-    .imageCard {
-      width: 50%;
-
-    }
-
-    .textCard {
-      width: 50%;
-      color: #fff;
-      background-color: #1a1e1c75;
-      flex-wrap: wrap;
-      flex-direction: row;
-      cursor: pointer;
-    }
-
-    .popUpTxt {
-      white-space: normal;
-      overflow: unset;
-      text-overflow: unset;
-      display: block;
-      width: auto;
-      flex-wrap: wrap;
-
-    }
-
-    .headings {
-      margin-bottom: 60px;
-    }
-
-
-    .form-control {
-      border-radius: 1.5em;
-    }
-
-    .conference-header {
-      margin-top: 20px;
-    }
-
-
-
-
-    /* 
-    /* Add animation (fade in the popup) */
-    /* @-webkit-keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    } */
-  </style>
 
 
   <%- include('includes/navigation.ejs') %>
 
 
-  <p align="center" class="sign head headings">Session details</p>
+  <p align="center" class="sign head headings">Conference details</p>
 
 
-  <div class="main1">
+  <div class="main2">
     <article class="active">
       <div class="circular--landscape">
         <img src="<%=conference.speakerImg%>" class="img" alt="Speaker Photo">
@@ -849,7 +36,7 @@
 
 
   <div class=sign1>
-    <label class="sign head headings">Adding sessions</label>
+    <label class="sign head headings">Add sessions</label>
   </div>
 
 
@@ -874,7 +61,7 @@
       <input class="name" type="datetime-local" name="startTime" id="startTime">
       <label class="sign2" align="center" for="endTime">Choose start end date and time</label>
       <input class="name" type="datetime-local" name="endTime" id="endTime">
-      <button class="submit btn btn-block" type="submit">Add Session</button>
+      <button class="submit button btn-block" type="submit">Add Session</button>
     </form>
   </div>
 
@@ -884,72 +71,82 @@
 
   <div class="buttons-data-filter" id="myBtnContainer">
 
-    <button class="submit1 btn btn-session allSessionsDisplayBtn active" type="button" data-toggle="collapse"
+    <!-- <button class="submit1 button btn-session allSessionsDisplayBtn active" type="button" data-toggle="collapse"
       data-target="#allSessionsDisplay" aria-expanded="true" aria-controls="allSessionsDisplay">ALL</button>
 
-    <button class="submit1 btn btn-session pastSessionsDisplayBtn" type="button" data-toggle="collapse"
+    <button class="submit1 button btn-session pastSessionsDisplayBtn" type="button" data-toggle="collapse"
       data-target="#pastSessionsDisplay" aria-expanded="false" aria-controls="pastSessionsDisplay">PAST</button>
 
-    <button class="submit1 btn btn-session activeSessionsDisplayBtn" type="button" data-toggle="collapse"
+    <button class="submit1 button btn-session activeSessionsDisplayBtn" type="button" data-toggle="collapse"
       data-target="#activeSessionsDisplay" aria-expanded="false" aria-controls="activeSessionsDisplay">ACTIVE</button>
 
-    <button class="submit1 btn btn-session upcommingSessionsDisplayBtn" type="button" data-toggle="collapseupcomming"
+    <button class="submit1 button btn-session upcommingSessionsDisplayBtn" type="button" data-toggle="collapseupcomming"
       data-target="#upcommingSessionsDisplay" aria-expanded="false"
-      aria-controls="upcommingSessionsDisplay">UPCOMING</button>
+      aria-controls="upcommingSessionsDisplay">UPCOMING</button> -->
+
+    <button class="sibmit1 button btn-session allSessionsDisplayBtn active" type="button">ALL</button>
+    <button class="submit1 button btn-session pastSessionsDisplayBtn" type="button">PAST</button>
+    <button class="submit1 button btn-session activeSessionsDisplayBtn" type="button">ACTIVE</button>
+    <button class="submit1 button btn-session upcommingSessionsDisplayBtn" type="button">UPCOMING</button>
+
+
+
+
+
   </div>
 
 
   <div class="grid">
     <% for(let session of allSessions) { %>
-    <div class=" main allSessions collapse allSessionsDisplay" id="allSessionsDisplay">
+    <div class=" main1 allSessions collapse allSessionsDisplay" id="allSessionsDisplay">
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
-        <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
-        <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
+        <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime.toString().substring(0, 21)%></p>
+        <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime.toString().substring(0, 21)%></p>
         <form class="product-form form1" action="/join-session" method="POST">
           <input type="hidden" value="<%= session._id %>" name="sessionId" />
           <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
-          <button class="submit btn btn-block" type="submit">Join session</button>
+          <button class="submit button btn-block" type="submit">Join session</button>
         </form>
       </article>
     </div>
     <% } %>
 
     <% for(let session of pastSessions) { %>
-    <div class="main1 filterDiv allSessions collapsepast pastSessionsDisplay" id="pastSessionsDisplay>
+    <div class="main1  allSessions collapsepast pastSessionsDisplay" id="pastSessionsDisplay>
       <article class=" sessions">
       <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
       <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
-      <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
-      <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
+      <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime.toString().substring(0, 21)%></p>
+      <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime.toString().substring(0, 21)%></p>
       <form class="product-form form1" action="/join-session" method="POST">
         <input type="hidden" value="<%= session._id %>" name="sessionId" />
         <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
-        <button class="submit btn btn-block" type="submit">Join session</button>
+        <button class="submit button btn-block" type="submit">Join session</button>
       </form>
       </article>
     </div>
     <% } %>
 
     <% for(let session of activeSessions) { %>
-    <div class="main1 filterDiv allSessions collapseactive activeSessionsDisplay" id="activeSessionsDisplay>
+    <div class="main  allSessions collapseactive activeSessionsDisplay" id="activeSessionsDisplay>
       <article class=" sessions">
       <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
       <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
-      <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
-      <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
+      <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime.toString().substring(0, 21)%></p>
+      <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime.toString().substring(0, 21)%></p>
       <form class="product-form form1" action="/join-session" method="POST">
         <input type="hidden" value="<%= session._id %>" name="sessionId" />
         <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
-        <button class="submit btn btn-block" type="submit">Join session</button>
+        <button class="submit button btn-block" type="submit">Join session</button>
       </form>
       </article>
     </div>
     <% } %>
 
     <% for(let session of upcommingSessions) { %>
-    <div class="main1 filterDiv allSessions collapseupcomming upcommingSessionsDisplay" id="upcommingSessionsDisplay">
+    <div class="main  allSessions collapse upcomming upcommingSessionsDisplay" id="upcommingSessionsDisplay">
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -958,7 +155,7 @@
         <form class="product-form form1" action="/join-session" method="POST">
           <input type="hidden" value="<%= session._id %>" name="sessionId" />
           <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
-          <button class="submit btn btn-block" type="submit">Join session</button>
+          <button class="submit button btn-block" type="submit">Join session</button>
         </form>
       </article>
     </div>
@@ -969,97 +166,96 @@
   <form class="product-form form1" action="/maximum-programme" method="POST">
 
     <input type="hidden" value="<%=conference._id%>" name="conferenceId" />
-    <button align="center" class="submit1 btn btn-session" type="submit">Maximum Programme</button>
+    <button align="center" class="submit1 button btn-session" type="submit">Maximum Programme</button>
 
   </form>
 
 
 
   <script>
-    // const allBtn = document.querySelector('.allSessionsDisplayBtn');
-    // const pastBtn = document.querySelector('.pastSessionsDisplayBtn');
-    // const activeBtn = document.querySelector('.activeSessionsDisplayBtn');
-    // const upcommingBtn = document.querySelector('.upcommingSessionsDisplayBtn');
+    const allBtn = document.querySelector('.allSessionsDisplayBtn');
+    const pastBtn = document.querySelector('.pastSessionsDisplayBtn');
+    const activeBtn = document.querySelector('.activeSessionsDisplayBtn');
+    const upcommingBtn = document.querySelector('.upcommingSessionsDisplayBtn');
 
-    // const allSess = document.querySelector('.allSessionsDisplay');
-    // const pastSess = document.querySelector('.pastSessionsDisplay');
-    // const activeSess = document.querySelector('.activeSessionsDisplay');
-    // const upcommingSess = document.querySelector('.upcommingSessionsDisplay');
+    const allSess = document.querySelector('.allSessionsDisplay');
+    const pastSess = document.querySelector('.pastSessionsDisplay');
+    const activeSess = document.querySelector('.activeSessionsDisplay');
+    const upcommingSess = document.querySelector('.upcommingSessionsDisplay');
 
-    // function allFunct() {
-    //   allBtn.addEventListener('click', function allFunctF() {
-    //     if (allSess.style.display = "none") {
-    //       allSess.style.display = "grid";
-    //       pastSess.style.display = "none";
-    //       activeSess.style.display = "none";
-    //       upcommingSess.style.display = "none";
-    //     } else {
-    //       pastSess.style.display = "none";
-    //       activeSess.style.display = "none";
-    //       upcommingSess.style.display = "none";
-    //     }
-    //   })
-    // }
 
-    // function pastFunct() {
-    //   pastBtn.addEventListener('click', function pastFunctF() {
-    //     if (pastSess.style.display = "none") {
-    //       pastSess.style.display = "grid";
-    //       allSess.style.display = "none";
-    //       activeSess.style.display = "none";
-    //       upcommingSess.style.display = "none";
-    //     } else {
-    //       allSess.style.display = "none";
-    //       activeSess.style.display = "none";
-    //       upcommingSess.style.display = "none";
-    //     }
-    //   })
-    // }
+    allBtn.addEventListener('click', function allFunctF() {
+      if (allSess.style.display = "none !important") {
+        allSess.style.display = "grid !important";
+        pastSess.style.display = "none !important";
+        // activeSess.style.display = "none";
+        upcommingSess.style.display = "none !important";
+      } else {
+        pastSess.style.display = "none !important";
+        // activeSess.style.display = "none";
+        upcommingSess.style.display = "none !important";
+      }
+    })
 
-    // function activeFunct() {
-    //   activeBtn.addEventListener('click', function activeFunctF() {
-    //     if (activeSess.style.display = "none") {
-    //       activeSess.style.display = "grid";
-    //       allSess.style.display = "none";
-    //       pastSess.style.display = "none";
-    //       upcommingSess.style.display = "none";
-    //     } else {
-    //       allSess.style.display = "none";
-    //       pastSess.style.display = "none";
-    //       upcommingSess.style.display = "none";
-    //     }
-    //   })
-    // }
 
-    // function upcommignFunct() {
-    //   upcommingBtn.addEventListener('click', function upcommingFunctF() {
-    //     if (upcommingSess.style.display = "none") {
-    //       upcommingSess.style.display = "grid";
-    //       allSess.style.display = "none";
-    //       pastSess.style.display = "none";
-    //       activeSess.style.display = "none";
-    //     } else {
-    //       allSess.style.display = "none";
-    //       pastSess.style.display = "none";
-    //       activeSess.style.display = "none";
-    //     }
-    //   })
-    // }
+    pastBtn.addEventListener('click', function pastFunctF() {
+      if (pastSess.style.display = "none") {
+        pastSess.style.display = "grid !important";
+        allSess.style.display = "none !important";
+        // activeSess.style.display = "none";
+        upcommingSess.style.display = "none !important";
+      } else {
+        allSess.style.display = "none !important";
+        // activeSess.style.display = "none";
+        upcommingSess.style.display = "none !important";
+      }
+    })
 
 
 
-    // // Add active class to the current control button (highlight it)
-    // var btnContainer = document.getElementById("myBtnContainer");
-    // var btns = btnContainer.getElementsByClassName("btn");
-    // for (var i = 0; i < btns.length; i++) {
-    //   btns[i].addEventListener("click", function () {
-    //     var current = document.getElementsByClassName("active");
-    //     console.log(current);
-    //     current[1].className = current[1].className.replace(" active", "");
-    //     this.classList.add("active");
-    //     // this.className += " active";
-    //   });
-    // };
+    // activeBtn.addEventListener('click', function activeFunctF() {
+    //   if (activeSess.style.display = "none") {
+    //     activeSess.style.display = "grid";
+    //     allSess.style.display = "none";
+    //     pastSess.style.display = "none";
+    //     upcommingSess.style.display = "none";
+    //   } else {
+    //     allSess.style.display = "none";
+    //     pastSess.style.display = "none";
+    //     upcommingSess.style.display = "none";
+    //   }
+    // })
+
+
+
+    // upcommingBtn.addEventListener('click', function upcommingFunctF() {
+    //   if (upcommingSess.style.display = "none") {
+    //     upcommingSess.style.display = "grid";
+    //     allSess.style.display = "none";
+    //     pastSess.style.display = "none";
+    //     activeSess.style.display = "none";
+    //   } else {
+    //     allSess.style.display = "none";
+    //     pastSess.style.display = "none";
+    //     activeSess.style.display = "none";
+    //   }
+    // })
+
+
+
+
+    // Add active class to the current control button (highlight it)
+    var btnContainer = document.getElementById("myBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function () {
+        var current = document.getElementsByClassName("active");
+        console.log(current);
+        current[1].className = current[1].className.replace(" active", "");
+        this.classList.add("active");
+        // this.className += " active";
+      });
+    };
 
 
 

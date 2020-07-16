@@ -17,6 +17,13 @@ exports.getMyConferences = (req, res, next) => {
     } else {
         message = null
     }
+    let successMessage = req.flash("success");
+
+    if (successMessage.length > 0) {
+        successMessage = successMessage[0]
+    } else {
+        successMessage = null
+    }
         Conference.find({ userId: req.user._id }).populate("userId").populate("address").then(conf => {
             Session.find()
             .populate("conferenceId")
@@ -36,6 +43,7 @@ exports.getMyConferences = (req, res, next) => {
                     path: "/myconferences",
                     conferences: conf,
                     errorMessage: message,
+                    successMessage: successMessage,
                     userRole: req.user.role,
                     attendingSessions: existingSessions || [],
                     currentDate: req.date
@@ -43,8 +51,6 @@ exports.getMyConferences = (req, res, next) => {
             })
         }).catch(err => console.log(err))
     }
-
-
 
 exports.getAddConference = (req, res, next) => {
     let message = req.flash("error");
@@ -79,8 +85,6 @@ exports.postAddConference = (req, res, next) => {
     };
     name = name.trim()
     const found = name.match(nameRegex)
-    const nowTime = new Date();
-
     if (found === null || name !== found[0]) {
         req.flash("error", "Conference name is not valid. It has to start with Capital letter and only contain letters,numbers and whitespaces.")
         res.redirect("/add-conference");
@@ -104,8 +108,8 @@ exports.postAddConference = (req, res, next) => {
         const speakerNameFound = speakerName2.match(/([A-Z]{1,1}[A-Za-z]+) ([A-Z]{1,1}[A-Za-z]+)/gm);
 
 
-        if (newConference.startTime < nowTime && newConference.endTime < nowTime) {
-            req.flash("error", "Cannot add conference in past!")
+        if (newConference.startTime < req.date && newConference.endTime < req.date) {
+            req.flash("error", "Cannot add conference in the past!")
             res.redirect("/add-conference")
         } else if (speakerName2 === '') {
             req.flash("error", "Speaker name cannot be empty string!")
@@ -127,10 +131,10 @@ exports.postAddConference = (req, res, next) => {
                 res.redirect("/add-conference");
             } else {
                 return newConference.save().then(() => {
+                    req.flash("success", "Successfully added a new conference.")
                     return req.user.addToConfOwner(newConference)
                 }).then(() => {
-                    res.redirect("/allconferences");
-                    console.log("Conference added successful")
+                    res.redirect("/myconferences");
                 }).catch(err => console.log(err))
             }
         })
@@ -226,7 +230,8 @@ exports.postAddHall = (req, res, next) => {
             } else {
                 venue.addHall(newHall._id)
                 return newHall.save().then(() => {
-                    res.redirect("/");
+                    req.flash("success", "Successfully added new hall.")
+                    res.redirect("/allconferences");
                     console.log("Hall added successful!");
                 }).catch(err => console.log(err))
             }
@@ -266,7 +271,8 @@ exports.postJoinSession = (req, res, next) => {
             else {
                 session.seatTaken()
                 return req.user.addSession(session).then(() => {
-                    res.redirect("/allconferences")
+                    req.flash("success", "You have successfully this session.")
+                    res.redirect("/myconferences")
                 }).catch(err => console.log(err))
             }
         })
