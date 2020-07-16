@@ -291,20 +291,14 @@ exports.maximumProgramme = (req,res,next)=>{
         let conferenceSessions = sessions.filter(s => s.conferenceId.toString() === conferenceId.toString())
 
         const posibleSessions = maximumProgramme(conferenceSessions,userSessions);
-        posibleSessions.forEach(e=>console.log(e));
 
-        // console.log(posibleSessions);
+        posibleSessions.forEach(session=>req.user.addSession(session)) //Throwing exceptions ...
 
-
-            // res.render("my-conferences", {
-            // pageTitle: "My Conferences",
-            // isLoggedIn: req.session.isLoggedIn,
-            // path: "/myconferences",
-            // conferences: conf,
-            // errorMessage: message,
-            // userRole: req.user.role,
-            // attendingSessions: existingSessions || [],
-            // currentDate: req.date
-        // })
+            res.render("maximum-programme", {
+            pageTitle: "Maximum Programme",
+            isLoggedIn: req.session.isLoggedIn,
+            path: "/maximum-programme",
+            sessions: posibleSessions,
+        })
     })
 }
