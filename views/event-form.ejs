@@ -19,7 +19,11 @@
     <div class="user-message--error">
         <%= errorMessage %>
     </div>
-
+    <% } %>
+    <% if(successMessage) { %>
+        <div class="user-message">
+            <%= successMessage %>
+        </div>
     <% } %>
     <h3 align="center" id="past" class="sign head">Past</h3>
     <div class="grid">
