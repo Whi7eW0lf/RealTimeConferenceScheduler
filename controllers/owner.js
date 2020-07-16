@@ -280,10 +280,7 @@ exports.postJoinSession = (req, res, next) => {
 
 exports.maximumProgramme = (req,res,next)=>{
     const conferenceId = req.body.conferenceId;
-    Session.find()
-    // .populate("conferenceId")
-    // .populate("hallId")
-    .then(sessions => {
+    Session.find().then(sessions => {
 
         let userSessions = []
 
@@ -294,11 +291,13 @@ exports.maximumProgramme = (req,res,next)=>{
                 }
             })
         })
+
         let conferenceSessions = sessions.filter(s => s.conferenceId.toString() === conferenceId.toString())
 
         const posibleSessions = maximumProgramme(conferenceSessions,userSessions);
+        posibleSessions.forEach(e=>console.log(e));
 
-        console.log(posibleSessions);
+        // console.log(posibleSessions);
 
 
             // res.render("my-conferences", {
