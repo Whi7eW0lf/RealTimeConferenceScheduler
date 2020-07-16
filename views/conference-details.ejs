@@ -71,7 +71,7 @@
 
   <div class="buttons-data-filter" id="myBtnContainer">
 
-    <button class="submit1 button btn-session allSessionsDisplayBtn active" type="button" data-toggle="collapse"
+    <!-- <button class="submit1 button btn-session allSessionsDisplayBtn active" type="button" data-toggle="collapse"
       data-target="#allSessionsDisplay" aria-expanded="true" aria-controls="allSessionsDisplay">ALL</button>
 
     <button class="submit1 button btn-session pastSessionsDisplayBtn" type="button" data-toggle="collapse"
@@ -82,7 +82,17 @@
 
     <button class="submit1 button btn-session upcommingSessionsDisplayBtn" type="button" data-toggle="collapseupcomming"
       data-target="#upcommingSessionsDisplay" aria-expanded="false"
-      aria-controls="upcommingSessionsDisplay">UPCOMING</button>
+      aria-controls="upcommingSessionsDisplay">UPCOMING</button> -->
+
+    <button class="sibmit1 button btn-session allSessionsDisplayBtn active" type="button">ALL</button>
+    <button class="submit1 button btn-session pastSessionsDisplayBtn" type="button">PAST</button>
+    <button class="submit1 button btn-session activeSessionsDisplayBtn" type="button">ACTIVE</button>
+    <button class="submit1 button btn-session upcommingSessionsDisplayBtn" type="button">UPCOMING</button>
+
+
+
+
+
   </div>
 
 
@@ -104,7 +114,7 @@
     <% } %>
 
     <% for(let session of pastSessions) { %>
-    <div class="main1 filterDiv allSessions collapsepast pastSessionsDisplay" id="pastSessionsDisplay>
+    <div class="main1  allSessions collapsepast pastSessionsDisplay" id="pastSessionsDisplay>
       <article class=" sessions">
       <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
       <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -120,7 +130,7 @@
     <% } %>
 
     <% for(let session of activeSessions) { %>
-    <div class="main filterDiv allSessions collapseactive activeSessionsDisplay" id="activeSessionsDisplay>
+    <div class="main  allSessions collapseactive activeSessionsDisplay" id="activeSessionsDisplay>
       <article class=" sessions">
       <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
       <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -136,7 +146,7 @@
     <% } %>
 
     <% for(let session of upcommingSessions) { %>
-    <div class="main filterDiv allSessions collapse upcomming upcommingSessionsDisplay" id="upcommingSessionsDisplay">
+    <div class="main  allSessions collapse upcomming upcommingSessionsDisplay" id="upcommingSessionsDisplay">
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -163,90 +173,89 @@
 
 
   <script>
-    // const allBtn = document.querySelector('.allSessionsDisplayBtn');
-    // const pastBtn = document.querySelector('.pastSessionsDisplayBtn');
-    // const activeBtn = document.querySelector('.activeSessionsDisplayBtn');
-    // const upcommingBtn = document.querySelector('.upcommingSessionsDisplayBtn');
+    const allBtn = document.querySelector('.allSessionsDisplayBtn');
+    const pastBtn = document.querySelector('.pastSessionsDisplayBtn');
+    const activeBtn = document.querySelector('.activeSessionsDisplayBtn');
+    const upcommingBtn = document.querySelector('.upcommingSessionsDisplayBtn');
 
-    // const allSess = document.querySelector('.allSessionsDisplay');
-    // const pastSess = document.querySelector('.pastSessionsDisplay');
-    // const activeSess = document.querySelector('.activeSessionsDisplay');
-    // const upcommingSess = document.querySelector('.upcommingSessionsDisplay');
+    const allSess = document.querySelector('.allSessionsDisplay');
+    const pastSess = document.querySelector('.pastSessionsDisplay');
+    const activeSess = document.querySelector('.activeSessionsDisplay');
+    const upcommingSess = document.querySelector('.upcommingSessionsDisplay');
 
-    // function allFunct() {
-    //   allBtn.addEventListener('click', function allFunctF() {
-    //     if (allSess.style.display = "none") {
-    //       allSess.style.display = "grid";
-    //       pastSess.style.display = "none";
-    //       activeSess.style.display = "none";
-    //       upcommingSess.style.display = "none";
-    //     } else {
-    //       pastSess.style.display = "none";
-    //       activeSess.style.display = "none";
-    //       upcommingSess.style.display = "none";
-    //     }
-    //   })
-    // }
 
-    // function pastFunct() {
-    //   pastBtn.addEventListener('click', function pastFunctF() {
-    //     if (pastSess.style.display = "none") {
-    //       pastSess.style.display = "grid";
-    //       allSess.style.display = "none";
-    //       activeSess.style.display = "none";
-    //       upcommingSess.style.display = "none";
-    //     } else {
-    //       allSess.style.display = "none";
-    //       activeSess.style.display = "none";
-    //       upcommingSess.style.display = "none";
-    //     }
-    //   })
-    // }
+    allBtn.addEventListener('click', function allFunctF() {
+      if (allSess.style.display = "none !important") {
+        allSess.style.display = "grid !important";
+        pastSess.style.display = "none !important";
+        // activeSess.style.display = "none";
+        upcommingSess.style.display = "none !important";
+      } else {
+        pastSess.style.display = "none !important";
+        // activeSess.style.display = "none";
+        upcommingSess.style.display = "none !important";
+      }
+    })
 
-    // function activeFunct() {
-    //   activeBtn.addEventListener('click', function activeFunctF() {
-    //     if (activeSess.style.display = "none") {
-    //       activeSess.style.display = "grid";
-    //       allSess.style.display = "none";
-    //       pastSess.style.display = "none";
-    //       upcommingSess.style.display = "none";
-    //     } else {
-    //       allSess.style.display = "none";
-    //       pastSess.style.display = "none";
-    //       upcommingSess.style.display = "none";
-    //     }
-    //   })
-    // }
 
-    // function upcommignFunct() {
-    //   upcommingBtn.addEventListener('click', function upcommingFunctF() {
-    //     if (upcommingSess.style.display = "none") {
-    //       upcommingSess.style.display = "grid";
-    //       allSess.style.display = "none";
-    //       pastSess.style.display = "none";
-    //       activeSess.style.display = "none";
-    //     } else {
-    //       allSess.style.display = "none";
-    //       pastSess.style.display = "none";
-    //       activeSess.style.display = "none";
-    //     }
-    //   })
-    // }
+    pastBtn.addEventListener('click', function pastFunctF() {
+      if (pastSess.style.display = "none") {
+        pastSess.style.display = "grid !important";
+        allSess.style.display = "none !important";
+        // activeSess.style.display = "none";
+        upcommingSess.style.display = "none !important";
+      } else {
+        allSess.style.display = "none !important";
+        // activeSess.style.display = "none";
+        upcommingSess.style.display = "none !important";
+      }
+    })
 
 
 
-    // // Add active class to the current control button (highlight it)
-    // var btnContainer = document.getElementById("myBtnContainer");
-    // var btns = btnContainer.getElementsByClassName("btn");
-    // for (var i = 0; i < btns.length; i++) {
-    //   btns[i].addEventListener("click", function () {
-    //     var current = document.getElementsByClassName("active");
-    //     console.log(current);
-    //     current[1].className = current[1].className.replace(" active", "");
-    //     this.classList.add("active");
-    //     // this.className += " active";
-    //   });
-    // };
+    // activeBtn.addEventListener('click', function activeFunctF() {
+    //   if (activeSess.style.display = "none") {
+    //     activeSess.style.display = "grid";
+    //     allSess.style.display = "none";
+    //     pastSess.style.display = "none";
+    //     upcommingSess.style.display = "none";
+    //   } else {
+    //     allSess.style.display = "none";
+    //     pastSess.style.display = "none";
+    //     upcommingSess.style.display = "none";
+    //   }
+    // })
+
+
+
+    // upcommingBtn.addEventListener('click', function upcommingFunctF() {
+    //   if (upcommingSess.style.display = "none") {
+    //     upcommingSess.style.display = "grid";
+    //     allSess.style.display = "none";
+    //     pastSess.style.display = "none";
+    //     activeSess.style.display = "none";
+    //   } else {
+    //     allSess.style.display = "none";
+    //     pastSess.style.display = "none";
+    //     activeSess.style.display = "none";
+    //   }
+    // })
+
+
+
+
+    // Add active class to the current control button (highlight it)
+    var btnContainer = document.getElementById("myBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function () {
+        var current = document.getElementsByClassName("active");
+        console.log(current);
+        current[1].className = current[1].className.replace(" active", "");
+        this.classList.add("active");
+        // this.className += " active";
+      });
+    };
 
 
 
