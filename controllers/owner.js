@@ -230,7 +230,8 @@ exports.postAddHall = (req, res, next) => {
             } else {
                 venue.addHall(newHall._id)
                 return newHall.save().then(() => {
-                    res.redirect("/");
+                    req.flash("success", "Successfully added new hall.")
+                    res.redirect("/allconferences");
                     console.log("Hall added successful!");
                 }).catch(err => console.log(err))
             }
@@ -270,7 +271,8 @@ exports.postJoinSession = (req, res, next) => {
             else {
                 session.seatTaken()
                 return req.user.addSession(session).then(() => {
-                    res.redirect("/allconferences")
+                    req.flash("success", "You have successfully this session.")
+                    res.redirect("/myconferences")
                 }).catch(err => console.log(err))
             }
         })
