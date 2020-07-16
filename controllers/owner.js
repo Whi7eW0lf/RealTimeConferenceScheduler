@@ -287,10 +287,11 @@ exports.maximumProgramme = (req,res,next)=>{
                 }
             })
         })
-        
+
         let conferenceSessions = sessions.filter(s => s.conferenceId.toString() === conferenceId.toString())
 
         const posibleSessions = maximumProgramme(conferenceSessions,userSessions);
+        posibleSessions.forEach(e=>console.log(e));
 
         // console.log(posibleSessions);
 

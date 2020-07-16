@@ -18,10 +18,7 @@ function startAlgorithm(conferenceSessions, userSessions) {
 
         }
         
-
     }
-
-    console.log(posibleSessions);
 
     return posibleSessions;
 }
@@ -43,18 +40,20 @@ function checkForFreeTimeSpacesInUser(session, userSessions) {
         
         if (isAfter(session.startTime, userSessions[i].endTime) && isBefore(session.endTime, userSessions[i].startTime)) {
             return true;
-            break
+            break;
         } else if (isBefore(session.startTime, userSessions[i].startTime) && i === 0) {
             return true;
-            break
+            break;
         } else if (isAfter(session.startTime, userSessions[i].startTime && i === userSessions.lenght - 1)) {
             if (isAfter(session.startTime, userSessions[i].endTime)) {
                 return true;
-                break
+                break;
             }
+        }else if(isEquals(session.endTime,userSessions[i].startTime)||isEquals(session.startTime,userSessions.endTime)){
+            return true;
+            break;
         }
-        //checks for equals start time with end time of sessions...
-       //checks for equals end time with start time of sessions...
+        
 
     }
 
