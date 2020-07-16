@@ -70,7 +70,7 @@ exports.getConferenceDetails = (req, res, next) => {
                     halls: halls || [],
                     pageTitle: conf.name,
                     isLoggedIn: req.session.isLoggedIn,
-                    path: "/",
+                    path: "/all-conferences",
                     conference: conf,
                     allSessions: sessions || [],
                     pastSessions: pastSessions,

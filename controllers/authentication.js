@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
-const { emailRegex } = require("../util/emailRegex")
+const {emailRegex} = require("../util/emailRegex")
 
 
 exports.getLogin = (req, res, next) => {
@@ -47,27 +47,26 @@ exports.getSignup = (req, res, next) => {
 exports.postLogin = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
-    User.findOne({ email: email })
-        .then(user => {
-            if (!user) {
-                req.flash("error", "Invalid email or password...");
-                return res.redirect("/login");
+    User.findOne({email: email}).then(user => {
+        if (!user) {
+            req.flash("error", "Invalid email or password...");
+            return res.redirect("/login");
+        }
+        bcrypt.compare(password, user.password).then(doMatch => {
+            if (doMatch) {
+                req.session.isLoggedIn = true;
+                req.session.user = user;
+                return req.session.save(err => {
+                    res.redirect("/");
+                });
             }
-            bcrypt.compare(password, user.password).then(doMatch => {
-                if (doMatch) {
-                    req.session.isLoggedIn = true;
-                    req.session.user = user;
-                    return req.session.save(err => {
-                        res.redirect("/");
-                    });
-                }
-                req.flash("error", "Invalid credentials...");
-                res.redirect("/login");
-            }).catch(err => {
-                console.log(err);
-                res.redirect("/login");
-            });
-        }).catch(err => console.log("postLogin error"));
+            req.flash("error", "Invalid credentials...");
+            res.redirect("/login");
+        }).catch(err => {
+            console.log(err);
+            res.redirect("/login");
+        });
+    }).catch(err => console.log("postLogin error"));
 };
 
 
@@ -77,13 +76,15 @@ exports.postSignup = (req, res, next) => {
     const confirmPassword = req.body.confirmPassword;
     const role = req.body.role;
 
-    let emailCheck = email.trim()
-    const found = emailCheck.match(emailRegex)
+    // let emailCheck = email.trim()
+    const found = email.match(emailRegex)
+
     if (found === null || emailCheck !== found[0]) {
         req.flash("error", "Email can only be in format: email@email.provider")
         res.redirect("/signup")
-    } else {
-        User.findOne({ email: email }).then(userDoc => {
+    }
+     else {
+        User.findOne({email: email}).then(userDoc => {
             if (userDoc) {
                 req.flash("error", "This email has already been used to create registration.");
                 return res.redirect("/signup");

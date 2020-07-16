@@ -824,7 +824,7 @@
   <%- include('includes/navigation.ejs') %>
 
 
-  <p align="center" class="sign head headings">Session details</p>
+  <p align="center" class="sign head headings">Conference details</p>
 
 
   <div class="main1">
@@ -849,7 +849,7 @@
 
 
   <div class=sign1>
-    <label class="sign head headings">Adding sessions</label>
+    <label class="sign head headings">Add sessions</label>
   </div>
 
 
@@ -905,8 +905,8 @@
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
-        <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
-        <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
+        <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime.toString().substring(0, 21)%></p>
+        <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime.toString().substring(0, 21)%></p>
         <form class="product-form form1" action="/join-session" method="POST">
           <input type="hidden" value="<%= session._id %>" name="sessionId" />
           <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
@@ -921,8 +921,8 @@
       <article class=" sessions">
       <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
       <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
-      <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
-      <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
+      <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime.toString().substring(0, 21)%></p>
+      <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime.toString().substring(0, 21)%></p>
       <form class="product-form form1" action="/join-session" method="POST">
         <input type="hidden" value="<%= session._id %>" name="sessionId" />
         <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
@@ -937,8 +937,8 @@
       <article class=" sessions">
       <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
       <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
-      <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime%></p>
-      <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime%></p>
+      <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime.toString().substring(0, 21)%></p>
+      <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime.toString().substring(0, 21)%></p>
       <form class="product-form form1" action="/join-session" method="POST">
         <input type="hidden" value="<%= session._id %>" name="sessionId" />
         <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
