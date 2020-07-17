@@ -145,7 +145,6 @@ exports.postAddNewSession = (req, res, next) => {
     
             hall.hallSession.sessions.forEach(session => {
                 sessions.forEach(s => {
-<<<<<<< HEAD
                     if(s._id.toString() === session._id.toString()) {
                         existingHallSessions.push(s)
                     }
@@ -179,31 +178,6 @@ exports.postAddNewSession = (req, res, next) => {
         
                     if (collisionCheck(session, existingHallSessions) === false ) {
                         req.flash("error", "This hall is not available in selected time frame.")
-=======
-                    if (s._id.toString() === session._id.toString()) {
-                        existingSessions.push(s)
-                    }
-                })
-            })
-            existingSessions.sort((a, b) => a.startTime - b.startTime);
-
-            Conference.findById(conferenceId).populate("userId").then(conf => {
-                if (collisionCheck(session, existingSessions) === false) {
-                    req.flash("error", "Coliision detected.")
-                    res.redirect("/allconferences");
-                } else if (session.startTime < conf.startTime || session.endTime > conf.endTime) {
-                    req.flash("error", "Session start time and end time must be between conference start time and end time")
-                    res.redirect("/allconferences");
-                } else if (session.startTime > session.endTime) {
-                    req.flash("error", "Session end time must be greated then start time. Please try again.");
-                    res.redirect("/allconferences");
-                } else if (conf.userId._id.toString() !== req.user._id.toString()) {
-                    req.flash("error", "You can only add session for a conference that you created.");
-                    res.redirect("/allconferences");
-                } else {
-                    hall.addSession(session)
-                    return session.save().then(() => {
->>>>>>> b03f1d1bec13e4fef6a23e7887d82fbece7dbc3c
                         res.redirect("/myconferences");
                     } else if (collisionCheck(session, existingSpeakerSessions) === false) {
                         req.flash("error", "This speaker is not available in selected time frame.")
