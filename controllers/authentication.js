@@ -76,7 +76,7 @@ exports.postSignup = (req, res, next) => {
     const confirmPassword = req.body.confirmPassword;
     const role = req.body.role;
 
-    // let emailCheck = email.trim()
+    let emailCheck = email.trim()
     const found = email.match(emailRegex)
 
     if (found === null || emailCheck !== found[0]) {

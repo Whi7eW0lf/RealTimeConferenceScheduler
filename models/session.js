@@ -13,6 +13,11 @@ const conferenceSessionSchema = new Schema({
         ref: 'Hall',
         required: true
     },
+    speakerId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Speaker',
+        required: true
+    },
     sessionSeats: {
         type: Number,
         required: true

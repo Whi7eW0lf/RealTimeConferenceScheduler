@@ -134,18 +134,31 @@
         }*/
     </style>
     <%- include('includes/navigation.ejs') %>
+    <% if(errorMessage) { %>
+        <div class="user-message--error">
+            <%= errorMessage %>
+        </div>
 
+    <% } %>
     <div class="container">
         <main>
 
             <div class="main">
                 <p class="signature" align="center">Add Speaker</p>
                 <form class="product-form form1" action="/add-speaker" method="POST">
-                    <input type="text" class="name product-form" align="center" name="name" id="name"
+                    <p class="sign1" align="center">Choose conference</p>
+
+                    <select class="name form-control" name="conferenceId" id="conferenceId">
+
+                        <% for (let conference of conferences) { %>
+                        <option value="<%=conference._id%>"><%= conference.name %></option>
+                        <% } %>
+                    </select>
+                    <input type="text" class="name product-form" align="center" name="speakerName" id="speakerName"
                         placeholder="Speaker name">
-                    <input type="text" class="name" name="description" align="center" id="description"
+                    <input type="text" class="name" name="speakerDescription" align="center" id="speakerDescription"
                         placeholder="Description">
-                    <input type="link" class="name " name="profileImg" align="center" id="profileImg"
+                    <input type="link" class="name " name="speakerImg" align="center" id="speakerImg"
                         placeholder="Profile image">
                     <button class="submit button btn-block" align="center" type="submit">Add Speaker</button>
                 </form>

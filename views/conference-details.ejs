@@ -17,7 +17,7 @@
   <div class="main2 marginn ">
     <article class="active">
       <div class="circular--landscape">
-        <img src="<%=conference.speakerImg%>" class="img" alt="Speaker Photo">
+        <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Speaker Photo">
       </div>
       <div class="text">
         <p class="sign conference-header" align="center"><%=conference.name%></p>
@@ -25,8 +25,6 @@
         <p><b>Start time: </b><%=conference.startTime.toString().substring(0, 21)%></p>
         <p><b>End time: </b><%=conference.endTime.toString().substring(0, 21) %></p>
         <p><b>Address: </b><%=conference.address.adress%></p>
-        <p><b> Speaker name: </b><%=conference.speakerName%></p>
-
       </div>
     </article>
   </div>
@@ -54,6 +52,15 @@
         <% for (let hall of halls) { %>
         <% if(hall.venueId.toString() === conference.address._id.toString()) { %>
         <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
+        <% } %>
+        <% } %>
+      </select>
+      <p class="sign2">Choose speaker</p>
+
+      <select class="role name form-control" name="speakerId" id="speaker">
+        <% for (let speaker of speakers) { %>
+        <% if(speaker.conferenceId.toString() === conference._id.toString()) { %>
+        <option value="<%=speaker._id%>"><%= speaker.speakerName %></option>
         <% } %>
         <% } %>
       </select>
@@ -101,8 +108,29 @@
 
   <div class="grid">
     <% for(let session of allSessions) { %>
-    <div class=" main1 allSessions collapse allSessionsDisplay" id="allSessionsDisp">
-      <article class="sessions">
+
+    <article class="sessions">
+      <div class="circular--landscape">
+        <img src="<%=session.speakerId.speakerImg%>" class="img" alt="Speaker Photo">
+      </div>
+      <p class="sign2"><b class="sign2">Speaker name: </b><%=session.speakerId.speakerName%></p>
+      <p class="sign2"><b class="sign2">Speaker description: </b><%=session.speakerId.speakerDescription%></p>
+      <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
+      <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
+      <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime.toString().substring(0, 21)%></p>
+      <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime.toString().substring(0, 21)%></p>
+      <form class="product-form form1" action="/join-session" method="POST">
+        <input type="hidden" value="<%= session._id %>" name="sessionId" />
+        <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
+        <button class="submit button btn-block" type="submit">Join session</button>
+      </form>
+    </article>
+
+    <% } %>
+
+    <% for(let session of pastSessions) { %>
+    <div class="main1  allSessions collapsepast pastSessionsDisplay" id="pastSessionsDisplay">
+      <article class=" sessions">
         <p><b class="sign2">Hall: </b><%=session.hallId.name%></p>
         <p><b class="sign2">Seats available: </b><%=session.sessionSeats%></p>
         <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime.toString().substring(0, 21)%></p>
@@ -116,34 +144,18 @@
     </div>
     <% } %>
 
-    <% for(let session of pastSessions) { %>
-    <div class="main1  allSessions collapse multi-collapse pastSessionsDisplay" id="pastSessionsDisp>
-      <article class=" sessions">
-      <p><b class="sign2">Hall: </b><%=session.hallId.name%></p>
-      <p><b class="sign2">Seats available: </b><%=session.sessionSeats%></p>
-      <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime.toString().substring(0, 21)%></p>
-      <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime.toString().substring(0, 21)%></p>
-      <form class="product-form form1" action="/join-session" method="POST">
-        <input type="hidden" value="<%= session._id %>" name="sessionId" />
-        <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
-        <button class="submit button btn-block" type="submit">Join session</button>
-      </form>
-      </article>
-    </div>
-    <% } %>
-
     <% for(let session of activeSessions) { %>
-    <div class="main1  allSessions collapse multi-collapse activeSessionsDisplay" id="activeSessionsDisp>
+    <div class="main  allSessions collapseactive activeSessionsDisplay" id="activeSessionsDisplay">
       <article class=" sessions">
-      <p><b class="sign2">Hall: </b><%=session.hallId.name%></p>
-      <p><b class="sign2">Seats available: </b><%=session.sessionSeats%></p>
-      <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime.toString().substring(0, 21)%></p>
-      <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime.toString().substring(0, 21)%></p>
-      <form class="product-form form1" action="/join-session" method="POST">
-        <input type="hidden" value="<%= session._id %>" name="sessionId" />
-        <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
-        <button class="submit button btn-block" type="submit">Join session</button>
-      </form>
+        <p><b class="sign2">Hall: </b><%=session.hallId.name%></p>
+        <p><b class="sign2">Seats available: </b><%=session.sessionSeats%></p>
+        <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime.toString().substring(0, 21)%></p>
+        <p class="pEndTime"><b class="sign2">End time: </b><%=session.endTime.toString().substring(0, 21)%></p>
+        <form class="product-form form1" action="/join-session" method="POST">
+          <input type="hidden" value="<%= session._id %>" name="sessionId" />
+          <input type="hidden" value="<%= conference._id %>" name="conferenceId" />
+          <button class="submit button btn-block" type="submit">Join session</button>
+        </form>
       </article>
     </div>
     <% } %>
