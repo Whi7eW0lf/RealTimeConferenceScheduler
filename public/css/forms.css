@@ -582,7 +582,16 @@ a.active {
   text-align: center;
 }
 
+.form2 {
+  width: fit-content;
+  margin: 0 auto;
+}
+
 @media only screen and (max-width: 1024px) {
+  .buttons-data-filter2 {
+    display: flow-root !important;
+  }
+
   .labell {
     display: block;
     cursor: pointer;
@@ -591,7 +600,7 @@ a.active {
   .menuu {
     text-align: center;
     width: 100%;
-    display: none;
+    display: contents;
   }
   .menuu a {
     display: grid;
@@ -616,6 +625,11 @@ a.active {
 
   .form1 {
     width: fit-content;
+  }
+
+  .form2 {
+    width: fit-content;
+    display: contents;
   }
 
   .grid2 {
