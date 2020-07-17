@@ -14,7 +14,7 @@
   <p align="center" class="sign head headings">Conference details</p>
 
 
-  <div class="main2">
+  <div class="main2 marginn ">
     <article class="active">
       <div class="circular--landscape">
         <img src="<%=conference.speakerImg%>" class="img" alt="Speaker Photo">
@@ -69,10 +69,10 @@
     <label class="sign head headings">Sessions</label>
   </div>
 
-  <div class="buttons-data-filter" id="myBtnContainer">
+  <div class="buttons-data-filter2" id="myBtnContainer">
 
-    <!-- <button class="submit1 button btn-session allSessionsDisplayBtn active" type="button" data-toggle="collapse"
-      data-target="#allSessionsDisplay" aria-expanded="true" aria-controls="allSessionsDisplay">ALL</button>
+    <button class="submit1 button btn-session allSessionsDisplayBtn active" type="button" data-toggle="collapse"
+      data-target=".multi-collapse" aria-expanded="true" aria-controls="allSessionsDisplay">ALL</button>
 
     <button class="submit1 button btn-session pastSessionsDisplayBtn" type="button" data-toggle="collapse"
       data-target="#pastSessionsDisplay" aria-expanded="false" aria-controls="pastSessionsDisplay">PAST</button>
@@ -80,14 +80,17 @@
     <button class="submit1 button btn-session activeSessionsDisplayBtn" type="button" data-toggle="collapse"
       data-target="#activeSessionsDisplay" aria-expanded="false" aria-controls="activeSessionsDisplay">ACTIVE</button>
 
-    <button class="submit1 button btn-session upcommingSessionsDisplayBtn" type="button" data-toggle="collapseupcomming"
+    <button class="submit1 button btn-session upcommingSessionsDisplayBtn" type="button" data-toggle="collapse"
       data-target="#upcommingSessionsDisplay" aria-expanded="false"
-      aria-controls="upcommingSessionsDisplay">UPCOMING</button> -->
+      aria-controls="upcommingSessionsDisplay">UPCOMING</button>
 
-    <button class="sibmit1 button btn-session allSessionsDisplayBtn active" type="button">ALL</button>
-    <button class="submit1 button btn-session pastSessionsDisplayBtn" type="button">PAST</button>
-    <button class="submit1 button btn-session activeSessionsDisplayBtn" type="button">ACTIVE</button>
-    <button class="submit1 button btn-session upcommingSessionsDisplayBtn" type="button">UPCOMING</button>
+    <!-- <div class="buttons-data-filter2 ">
+      <button class="sibmit button btn-session allSessionsDisplayBtn active" type="button">ALL</button>
+      <button class="submit button btn-session pastSessionsDisplayBtn" type="button">PAST</button>
+      <button class="submit button btn-session activeSessionsDisplayBtn" type="button">ACTIVE</button>
+      <button class="submit button btn-session upcommingSessionsDisplayBtn" type="button">UPCOMING</button>
+    </div> -->
+
 
 
 
@@ -114,7 +117,7 @@
     <% } %>
 
     <% for(let session of pastSessions) { %>
-    <div class="main1  allSessions collapsepast pastSessionsDisplay" id="pastSessionsDisplay>
+    <div class="main1  allSessions collapse multi-collapse pastSessionsDisplay" id="pastSessionsDisplay>
       <article class=" sessions">
       <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
       <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -130,7 +133,7 @@
     <% } %>
 
     <% for(let session of activeSessions) { %>
-    <div class="main  allSessions collapseactive activeSessionsDisplay" id="activeSessionsDisplay>
+    <div class="main1  allSessions collapse multi-collapse activeSessionsDisplay" id="activeSessionsDisplay>
       <article class=" sessions">
       <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
       <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -146,7 +149,7 @@
     <% } %>
 
     <% for(let session of upcommingSessions) { %>
-    <div class="main  allSessions collapse upcomming upcommingSessionsDisplay" id="upcommingSessionsDisplay">
+    <div class="main1  allSessions collapse multi-collapse upcommingSessionsDisplay" id="upcommingSessionsDisplay">
       <article class="sessions">
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -166,50 +169,50 @@
   <form class="product-form form1" action="/maximum-programme" method="POST">
 
     <input type="hidden" value="<%=conference._id%>" name="conferenceId" />
-    <button align="center" class="submit1 button btn-session" type="submit">Maximum Programme</button>
+    <button align="center" class="submit1 button" type="submit">Maximum Programme</button>
 
   </form>
 
 
 
   <script>
-    const allBtn = document.querySelector('.allSessionsDisplayBtn');
-    const pastBtn = document.querySelector('.pastSessionsDisplayBtn');
-    const activeBtn = document.querySelector('.activeSessionsDisplayBtn');
-    const upcommingBtn = document.querySelector('.upcommingSessionsDisplayBtn');
+    // const allBtn = document.querySelector('.allSessionsDisplayBtn');
+    // const pastBtn = document.querySelector('.pastSessionsDisplayBtn');
+    // const activeBtn = document.querySelector('.activeSessionsDisplayBtn');
+    // const upcommingBtn = document.querySelector('.upcommingSessionsDisplayBtn');
 
-    const allSess = document.querySelector('.allSessionsDisplay');
-    const pastSess = document.querySelector('.pastSessionsDisplay');
-    const activeSess = document.querySelector('.activeSessionsDisplay');
-    const upcommingSess = document.querySelector('.upcommingSessionsDisplay');
-
-
-    allBtn.addEventListener('click', function allFunctF() {
-      if (allSess.style.display = "none !important") {
-        allSess.style.display = "grid !important";
-        pastSess.style.display = "none !important";
-        // activeSess.style.display = "none";
-        upcommingSess.style.display = "none !important";
-      } else {
-        pastSess.style.display = "none !important";
-        // activeSess.style.display = "none";
-        upcommingSess.style.display = "none !important";
-      }
-    })
+    // const allSess = document.querySelector('.allSessionsDisplay');
+    // const pastSess = document.querySelector('.pastSessionsDisplay');
+    // const activeSess = document.querySelector('.activeSessionsDisplay');
+    // const upcommingSess = document.querySelector('.upcommingSessionsDisplay');
 
 
-    pastBtn.addEventListener('click', function pastFunctF() {
-      if (pastSess.style.display = "none") {
-        pastSess.style.display = "grid !important";
-        allSess.style.display = "none !important";
-        // activeSess.style.display = "none";
-        upcommingSess.style.display = "none !important";
-      } else {
-        allSess.style.display = "none !important";
-        // activeSess.style.display = "none";
-        upcommingSess.style.display = "none !important";
-      }
-    })
+    // allBtn.addEventListener('click', function allFunctF() {
+    //   if (allSess.style.display = "none !important") {
+    //     allSess.style.display = "grid !important";
+    //     pastSess.style.display = "none !important";
+    //     // activeSess.style.display = "none";
+    //     upcommingSess.style.display = "none !important";
+    //   } else {
+    //     pastSess.style.display = "none !important";
+    //     // activeSess.style.display = "none";
+    //     upcommingSess.style.display = "none !important";
+    //   }
+    // })
+
+
+    // pastBtn.addEventListener('click', function pastFunctF() {
+    //   if (pastSess.style.display = "none") {
+    //     pastSess.style.display = "grid !important";
+    //     allSess.style.display = "none !important";
+    //     // activeSess.style.display = "none";
+    //     upcommingSess.style.display = "none !important";
+    //   } else {
+    //     allSess.style.display = "none !important";
+    //     // activeSess.style.display = "none";
+    //     upcommingSess.style.display = "none !important";
+    //   }
+    // })
 
 
 

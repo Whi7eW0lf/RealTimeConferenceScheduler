@@ -15,12 +15,18 @@
 }
 
 .btn-session {
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: 5px !important;
+  margin-right: 5px !important;
 }
 
 .buttons-data-filter {
   display: flex;
+}
+
+.buttons-data-filter2 {
+  display: flex !important;
+  width: fit-content !important;
+  margin: 0 auto !important;
 }
 
 .imagee p {
@@ -347,7 +353,7 @@ p {
   display: flex;
   cursor: pointer;
   border-radius: 5em;
-  color: #fff;
+  color: #fff !important;
   background: #0082e6;
   padding-left: 40px;
   padding-right: 40px;
@@ -385,7 +391,7 @@ p {
 .submit:hover {
   border-radius: 2px #0082e6 !important;
   background: transparent;
-  color: #0082e6;
+  color: #0082e6 !important;
 }
 
 .forgot {
@@ -808,4 +814,8 @@ a.active {
 
 .conference-header {
   margin-top: 20px;
+}
+
+.marginn {
+  margin-top: 0 !important;
 }
