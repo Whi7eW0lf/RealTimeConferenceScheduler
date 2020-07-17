@@ -1,3 +1,11 @@
+.collapse {
+  display: flex !important;
+}
+
+.collapse:not(.show) {
+  display: none !important;
+}
+
 .submit1 {
   display: flex;
   cursor: pointer;
