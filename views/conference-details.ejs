@@ -17,7 +17,7 @@
   <div class="main2">
     <article class="active">
       <div class="circular--landscape">
-        <img src="<%=conference.speakerImg%>" class="img" alt="Speaker Photo">
+        <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Speaker Photo">
       </div>
       <div class="text">
         <p class="sign conference-header" align="center"><%=conference.name%></p>
@@ -25,8 +25,6 @@
         <p><b>Start time: </b><%=conference.startTime.toString().substring(0, 21)%></p>
         <p><b>End time: </b><%=conference.endTime.toString().substring(0, 21) %></p>
         <p><b>Address: </b><%=conference.address.adress%></p>
-        <p><b> Speaker name: </b><%=conference.speakerName%></p>
-
       </div>
     </article>
   </div>
@@ -54,6 +52,15 @@
         <% for (let hall of halls) { %>
         <% if(hall.venueId.toString() === conference.address._id.toString()) { %>
         <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
+        <% } %>
+        <% } %>
+      </select>
+      <p class="sign2">Choose speaker</p>
+
+      <select class="role name form-control" name="speakerId" id="speaker">
+        <% for (let speaker of speakers) { %>
+        <% if(speaker.conferenceId.toString() === conference._id.toString()) { %>
+        <option value="<%=speaker._id%>"><%= speaker.speakerName %></option>
         <% } %>
         <% } %>
       </select>
@@ -100,6 +107,11 @@
     <% for(let session of allSessions) { %>
     <div class=" main1 allSessions collapse allSessionsDisplay" id="allSessionsDisplay">
       <article class="sessions">
+        <div class="circular--landscape">
+          <img src="<%=session.speakerId.speakerImg%>" class="img" alt="Speaker Photo">
+        </div>
+        <p class="sign2"><b class="sign2">Speaker name: </b><%=session.speakerId.speakerName%></p>
+        <p class="sign2"><b class="sign2">Speaker description: </b><%=session.speakerId.speakerDesc%></p>
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
         <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime.toString().substring(0, 21)%></p>
@@ -114,7 +126,7 @@
     <% } %>
 
     <% for(let session of pastSessions) { %>
-    <div class="main1  allSessions collapsepast pastSessionsDisplay" id="pastSessionsDisplay>
+    <div class="main1  allSessions collapsepast pastSessionsDisplay" id="pastSessionsDisplay">
       <article class=" sessions">
       <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
       <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
@@ -130,7 +142,7 @@
     <% } %>
 
     <% for(let session of activeSessions) { %>
-    <div class="main  allSessions collapseactive activeSessionsDisplay" id="activeSessionsDisplay>
+    <div class="main  allSessions collapseactive activeSessionsDisplay" id="activeSessionsDisplay">
       <article class=" sessions">
       <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
       <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>

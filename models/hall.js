@@ -5,6 +5,11 @@ const Schema = mongoose.Schema;
 const hallSchema = new Schema({
     name : {type: String, required: true},
     seats: {type: Number, required: true},
+    venueId: {
+        type: Schema.Types.ObjectId,
+        ref: "Venue",
+        required: true
+    },
     hallSession: {
         sessions: [
             {
@@ -14,11 +19,6 @@ const hallSchema = new Schema({
                 }
             }
         ]
-    },
-    venueId: {
-        type: Schema.Types.ObjectId,
-        ref: "Venue",
-        required: true
     }
 });
 

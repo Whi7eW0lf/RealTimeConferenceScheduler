@@ -1,7 +1,8 @@
 const ConferenceSession = require("../models/session");
 const Hall = require("../models/hall");
 const Conference = require("../models/conference");
-const sessionSorter = require("../util/sessionsSorter")
+const sessionSorter = require("../util/sessionsSorter");
+const Speaker = require("../models/speaker");
 
 exports.getIndex = (req, res, next) => {
     Conference.find().populate("address").then(conferences => {
@@ -58,26 +59,30 @@ exports.getConferenceDetails = (req, res, next) => {
 
     const confId = req.params.conferenceId;
     Conference.findOne({ _id: confId }).populate("address").then(conf => {
-        ConferenceSession.find({ conferenceId: conf._id }).populate("hallId").then(sessions => {
-            Hall.find().then(halls => {
+        ConferenceSession.find({ conferenceId: conf._id }).populate("hallId").populate("speakerId").then(sessions => {
+            Speaker.find().then(speakers => {
 
-                let pastSessions = sessionSorter(sessions,"pastSessions");
-                
-                let activeSessions = sessionSorter(sessions,"activeSessions");
-                
-                let upcommingSessions = sessionSorter(sessions,"upcommingSessions");
-
-                res.render("conference-details", {
-                    halls: halls || [],
-                    pageTitle: conf.name,
-                    isLoggedIn: req.session.isLoggedIn,
-                    path: "/all-conferences",
-                    conference: conf,
-                    allSessions: sessions || [],
-                    pastSessions: pastSessions,
-                    activeSessions:activeSessions,
-                    upcommingSessions : upcommingSessions
-
+                Hall.find().then(halls => {
+    
+                    let pastSessions = sessionSorter(sessions,"pastSessions");
+                    
+                    let activeSessions = sessionSorter(sessions,"activeSessions");
+                    
+                    let upcommingSessions = sessionSorter(sessions,"upcommingSessions");
+                    console.log(sessions)
+                    res.render("conference-details", {
+                        halls: halls || [],
+                        speakers: speakers || [],
+                        pageTitle: conf.name,
+                        isLoggedIn: req.session.isLoggedIn,
+                        path: "/all-conferences",
+                        conference: conf,
+                        allSessions: sessions || [],
+                        pastSessions: pastSessions,
+                        activeSessions:activeSessions,
+                        upcommingSessions : upcommingSessions
+    
+                    })
                 })
             })
         })
@@ -99,3 +104,4 @@ exports.getAllSessions = (req,res,next)=>{
     );
 
 }
+
