@@ -1,12 +1,12 @@
 <%- include('includes/head.ejs') %>
 <style>
     p {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
-  width: -webkit-fill-available;
-}
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        width: -webkit-fill-available;
+    }
 </style>
 </head>
 
@@ -30,16 +30,16 @@
     </div>
     <% } %>
     <% if(successMessage) { %>
-        <div class="user-message">
-            <%= successMessage %>
-        </div>
+    <div class="user-message">
+        <%= successMessage %>
+    </div>
     <% } %>
     <h3 align="center" id="past" class="sign head">Past</h3>
     <div class="grid">
 
         <% for (let conference of conferences) { %>
         <%if(conference.endTime < currentDate) { %>
-        <div class="main1">
+        <div class="mainGrid">
             <article class="past ">
                 <img src="<%=conference.conferenceImg%>" class="img" alt="Sample photo">
                 <div class="text">
@@ -63,7 +63,7 @@
 
         <% for (let conference of conferences) { %>
         <%if(conference.startTime < currentDate && conference.endTime > currentDate) { %>
-        <div class="main1">
+        <div class="mainGrid">
             <article class="active">
                 <img src="<%=conference.conferenceImg%>" class="img" alt="Sample photo">
                 <div class="text">
@@ -73,7 +73,7 @@
                     <p maxlenght="20"><b>Description: </b><%=conference.description%></p>
                     <p><b>Address: </b><%=conference.address.adress%></p>
                     <a href="/allconferences/<%= conference._id %>" align="center" name="conferenceId"
-                        class="submit button btn-block">Details</a>                             
+                        class="submit button btn-block">Details</a>
                 </div>
             </article>
         </div>
@@ -88,7 +88,7 @@
 
         <% for (let conference of conferences) { %>
         <%if(conference.startTime > currentDate) { %>
-        <div class="main1">
+        <div class="mainGrid">
             <article class="future">
                 <img src="<%=conference.conferenceImg%>" class="img" alt="Sample photo">
                 <div class="text">

@@ -37,7 +37,7 @@
         <% for (let conference of conferences) { %>
         <% if (userRole === "conferenceOwner") { %>
 
-        <div class="main1">
+        <div class="mainGrid">
             <article class="active">
                 <img src="<%=conference.conferenceImg%>" class="img" alt="Sample photo">
                 <div class="text">
@@ -61,7 +61,7 @@
 
 
         <% for (let session of attendingSessions) { %>
-        <div class="main1">
+        <div class="mainGrid">
             <article class="active">
                 <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
                 <div class="text">
