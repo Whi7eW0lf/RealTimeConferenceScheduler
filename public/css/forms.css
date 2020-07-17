@@ -241,13 +241,13 @@ body {
   size: 50px;
 }
 
-p {
+/* p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
   width: -webkit-fill-available;
-}
+} */
 
 .head {
   font-size: 4vh;
@@ -676,13 +676,13 @@ a.active {
     display: flow-root;
     padding: 40px;
   }
-
+/* 
   p {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: -webkit-fill-available;
-  }
+  } */
 
   .main {
     max-width: min-content;
