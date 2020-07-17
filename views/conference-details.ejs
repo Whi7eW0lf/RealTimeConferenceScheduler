@@ -72,16 +72,16 @@
   <div class="buttons-data-filter2" id="myBtnContainer">
 
     <button class="submit1 button btn-session allSessionsDisplayBtn active" type="button" data-toggle="collapse"
-      data-target=".multi-collapse" aria-expanded="true" aria-controls="allSessionsDisplay">ALL</button>
+      data-target="#allSessionsDisplay" aria-expanded="true" aria-controls="allSessionsDisplay">ALL</button>
 
     <button class="submit1 button btn-session pastSessionsDisplayBtn" type="button" data-toggle="collapse"
-      data-target="#pastSessionsDisplay" aria-expanded="false" aria-controls="pastSessionsDisplay">PAST</button>
+      data-target="#pastSessionsDisp" aria-expanded="false" aria-controls="pastSessionsDisplay">PAST</button>
 
     <button class="submit1 button btn-session activeSessionsDisplayBtn" type="button" data-toggle="collapse"
-      data-target="#activeSessionsDisplay" aria-expanded="false" aria-controls="activeSessionsDisplay">ACTIVE</button>
+      data-target="#activeSessionsDisp" aria-expanded="false" aria-controls="activeSessionsDisplay">ACTIVE</button>
 
     <button class="submit1 button btn-session upcommingSessionsDisplayBtn" type="button" data-toggle="collapse"
-      data-target="#upcommingSessionsDisplay" aria-expanded="false"
+      data-target="#upcommingSessionsDisp" aria-expanded="false"
       aria-controls="upcommingSessionsDisplay">UPCOMING</button>
 
     <!-- <div class="buttons-data-filter2 ">
@@ -101,7 +101,7 @@
 
   <div class="grid">
     <% for(let session of allSessions) { %>
-    <div class=" main1 allSessions collapse allSessionsDisplay" id="allSessionsDisplay">
+    <div class=" main1 allSessions collapse allSessionsDisplay" id="allSessionsDisp">
       <article class="sessions">
         <p><b class="sign2">Hall: </b><%=session.hallId.name%></p>
         <p><b class="sign2">Seats available: </b><%=session.sessionSeats%></p>
@@ -117,7 +117,7 @@
     <% } %>
 
     <% for(let session of pastSessions) { %>
-    <div class="main1  allSessions collapse multi-collapse pastSessionsDisplay" id="pastSessionsDisplay>
+    <div class="main1  allSessions collapse multi-collapse pastSessionsDisplay" id="pastSessionsDisp>
       <article class=" sessions">
       <p><b class="sign2">Hall: </b><%=session.hallId.name%></p>
       <p><b class="sign2">Seats available: </b><%=session.sessionSeats%></p>
@@ -133,7 +133,7 @@
     <% } %>
 
     <% for(let session of activeSessions) { %>
-    <div class="main1  allSessions collapse multi-collapse activeSessionsDisplay" id="activeSessionsDisplay>
+    <div class="main1  allSessions collapse multi-collapse activeSessionsDisplay" id="activeSessionsDisp>
       <article class=" sessions">
       <p><b class="sign2">Hall: </b><%=session.hallId.name%></p>
       <p><b class="sign2">Seats available: </b><%=session.sessionSeats%></p>
@@ -149,7 +149,7 @@
     <% } %>
 
     <% for(let session of upcommingSessions) { %>
-    <div class="main1  allSessions collapse multi-collapse upcommingSessionsDisplay" id="upcommingSessionsDisplay">
+    <div class="main1  allSessions collapse multi-collapse upcommingSessionsDisplay" id="upcommingSessionsDisp">
       <article class="sessions">
         <p><b class="sign2">Hall: </b><%=session.hallId.name%></p>
         <p><b class="sign2">Seats available: </b><%=session.sessionSeats%></p>
@@ -166,7 +166,7 @@
 
   </div>
 
-  <form class="product-form form1" action="/maximum-programme" method="POST">
+  <form class="product-form form2" action="/maximum-programme" method="POST">
 
     <input type="hidden" value="<%=conference._id%>" name="conferenceId" />
     <button align="center" class="submit1 button" type="submit">Maximum Programme</button>
