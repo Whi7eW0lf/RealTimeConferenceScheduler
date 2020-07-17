@@ -24,6 +24,10 @@ const conferenceSchema = new Schema({
         ref: "Venue",
         required: true
     },
+    conferenceImg: {
+        type: String,
+        required: true
+    },
     userId: {
         type: Schema.Types.ObjectId,
         ref: "User",
