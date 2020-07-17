@@ -79,18 +79,9 @@
 
   <div class="buttons-data-filter2" id="myBtnContainer">
 
-    <button class="submit1 button btn-session allSessionsDisplayBtn active" type="button" data-toggle="collapse"
-      data-target="#allSessionsDisplay" aria-expanded="true" aria-controls="allSessionsDisplay">ALL</button>
+    <button class="submit1 button btn-session allSessionsDisplayBtn active" type="button">ALL</button>
 
-    <button class="submit1 button btn-session pastSessionsDisplayBtn" type="button" data-toggle="collapse"
-      data-target="#pastSessionsDisp" aria-expanded="false" aria-controls="pastSessionsDisplay">PAST</button>
-
-    <button class="submit1 button btn-session activeSessionsDisplayBtn" type="button" data-toggle="collapse"
-      data-target="#activeSessionsDisp" aria-expanded="false" aria-controls="activeSessionsDisplay">ACTIVE</button>
-
-    <button class="submit1 button btn-session upcommingSessionsDisplayBtn" type="button" data-toggle="collapse"
-      data-target="#upcommingSessionsDisp" aria-expanded="false"
-      aria-controls="upcommingSessionsDisplay">UPCOMING</button>
+    <button class="submit1 button btn-session upcommingSessionsDisplayBtn" type="button">UPCOMING</button>
 
     <!-- <div class="buttons-data-filter2 ">
       <button class="sibmit button btn-session allSessionsDisplayBtn active" type="button">ALL</button>
@@ -109,7 +100,7 @@
 
   <div class="grid4">
     <% for(let session of allSessions) { %>
-    <div class="main4  allSessions collapsepast allSessionsDisplay" id="allSessionsDisplay">
+    <div class="main4  allSessions allSessionsDisplay" id="allSessionsDisplay">
       <article class="sessions">
         <div class="circular--landscape">
           <img src="<%=session.speakerId.speakerImg%>" class="img" alt="Speaker Photo">
@@ -129,7 +120,7 @@
     </div>
     <% } %>
 
-    <% for(let session of pastSessions) { %>
+    <!-- <% for(let session of pastSessions) { %>
     <div class="main  allSessions collapsepast pastSessionsDisplay" id="pastSessionsDisplay">
       <article class=" sessions">
         <p><b class="sign2">Hall: </b><%=session.hallId.name%></p>
@@ -160,9 +151,9 @@
       </article>
     </div>
     <% } %>
-
+-->
     <% for(let session of upcommingSessions) { %>
-    <div class="main1  allSessions collapse multi-collapse upcommingSessionsDisplay" id="upcommingSessionsDisp">
+    <div class="main4  allSessions upcommingSessionsDisplay">
       <article class="sessions">
         <p><b class="sign2">Hall: </b><%=session.hallId.name%></p>
         <p><b class="sign2">Seats available: </b><%=session.sessionSeats%></p>
@@ -189,15 +180,21 @@
 
 
   <script>
-    // const allBtn = document.querySelector('.allSessionsDisplayBtn');
-    // const pastBtn = document.querySelector('.pastSessionsDisplayBtn');
-    // const activeBtn = document.querySelector('.activeSessionsDisplayBtn');
-    // const upcommingBtn = document.querySelector('.upcommingSessionsDisplayBtn');
+    const allBtn = document.querySelector('.allSessionsDisplayBtn');
+    const upcommingBtn = document.querySelector('.upcommingSessionsDisplayBtn');
 
-    // const allSess = document.querySelector('.allSessionsDisplay');
-    // const pastSess = document.querySelector('.pastSessionsDisplay');
-    // const activeSess = document.querySelector('.activeSessionsDisplay');
-    // const upcommingSess = document.querySelector('.upcommingSessionsDisplay');
+    const allSess = document.querySelector('.allSessionsDisplay');
+    const upcommingSess = document.querySelector('.upcommingSessionsDisplay');
+
+    allBtn.addEventListener('click', function () {
+      allSess.classList.toggle(' collapse');
+      upcommingSess.classList.toggle(' collapse');
+    })
+
+    upcommingBtn.addEventListener('click', function () {
+      allSess.classList.toggle(' collapse');
+      upcommingSess.classList.toggle(' collapse');
+    })
 
 
     // allBtn.addEventListener('click', function allFunctF() {
