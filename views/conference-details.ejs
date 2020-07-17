@@ -15,8 +15,8 @@
 
   <div class="main2 marginn ">
     <article class="active">
-        <img src="<%=conference.conferenceImg%>" class="img" alt="Conference Photo">
-       <div class="text">
+      <img src="<%=conference.conferenceImg%>" class="img" alt="Conference Photo">
+      <div class="text">
         <p class="sign conference-header" align="center"><%=conference.name%></p>
         <p><b>Description: </b><%=conference.description%></p>
         <p><b>Start time: </b><%=conference.startTime.toString().substring(0, 21)%></p>
@@ -48,20 +48,20 @@
       <p class="sign2">Choose hall</p>
 
       <select class="role name form-control" name="hallId" id="hall">
-      <% for (let hall of halls) { %>
+        <% for (let hall of halls) { %>
         <% if(hall.venueId.toString() === conference.address._id.toString()) { %>
         <option value="<%=hall._id%>"><%= hall.name %> - Seats capacity: <%= hall.seats %> </option>
         <% } %>
-      <% } %>
+        <% } %>
       </select>
       <p class="sign2">Choose speaker</p>
 
       <select class="role name form-control" name="speakerId" id="speaker">
-      <% for (let speaker of speakers) { %>
+        <% for (let speaker of speakers) { %>
         <% if(speaker.conferenceId.toString() === conference._id.toString()) { %>
         <option value="<%=speaker._id%>"><%= speaker.speakerName %></option>
         <% } %>
-      <% } %>
+        <% } %>
       </select>
       <label class="sign2" align="center" for="startTime">Choose start end date and time</label>
       <input class="name" type="datetime-local" name="startTime" id="startTime">
