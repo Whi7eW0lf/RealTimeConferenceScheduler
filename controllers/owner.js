@@ -78,6 +78,7 @@ exports.postAddConference = (req, res, next) => {
         startTime,
         endTime,
         address,
+        conferenceImg,
         speakerName,
         speakerDescription,
         speakerImg
@@ -98,6 +99,7 @@ exports.postAddConference = (req, res, next) => {
             startTime,
             endTime,
             address,
+            conferenceImg,
             userId
         })
 

@@ -21,7 +21,7 @@
         <% if(conference.startTime<currentDate){ %>
         <div class="main1">
             <article class="active">
-                <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+                <img src="<%=conference.conferenceId.conferenceImg%>" class="img" alt="Sample photo">
                 <div class="text">
                     <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
                     <p><b>Start time: </b><%=conference.startTime.toString().substring(0, 21)%></p>
@@ -42,7 +42,7 @@
 
         <div class="main1">
             <article class="active">
-                <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+                <img src="<%=conference.conferenceId.conferenceImg%>" class="img" alt="Sample photo">
                 <div class="text">
                     <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
                     <p><b>Start time: </b><%=conference.startTime.toString().substring(0, 21)%></p>
@@ -67,7 +67,7 @@
 
         <div class="main1">
             <article class="active">
-                <img src="https://picsum.photos/600/400?image=1083" class="img" alt="Sample photo">
+                <img src="<%=conference.conferenceId.conferenceImg%>" class="img" alt="Sample photo">
                 <div class="text">
                     <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
                     <p><b>Start time: </b><%=conference.startTime.toString().substring(0, 21)%></p>
