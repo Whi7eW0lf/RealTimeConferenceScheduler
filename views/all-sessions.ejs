@@ -1,4 +1,13 @@
 <%- include('includes/head.ejs') %>
+<style>
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+      width: -webkit-fill-available;
+    }
+    </style>
 </head>
 
 <body class="body">
@@ -21,7 +30,7 @@
         <% if(conference.startTime<currentDate){ %>
         <div class="mainGrid">
             <article class="active">
-                <img src="<%=conference.conferenceId.conferenceImg%>" class="img" alt="Sample photo">
+                <img class="conference-image" src="<%=conference.conferenceId.conferenceImg%>" class="img" alt="Sample photo">
                 <div class="text">
                     <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
                     <p><b>Start time: </b><%=conference.startTime.toString().substring(0, 21)%></p>
@@ -42,7 +51,7 @@
 
         <div class="mainGrid">
             <article class="active">
-                <img src="<%=conference.conferenceId.conferenceImg%>" class="img" alt="Sample photo">
+                <img class="conference-image" src="<%=conference.conferenceId.conferenceImg%>" class="img" alt="Sample photo">
                 <div class="text">
                     <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
                     <p><b>Start time: </b><%=conference.startTime.toString().substring(0, 21)%></p>
@@ -67,7 +76,7 @@
 
         <div class="mainGrid">
             <article class="active">
-                <img src="<%=conference.conferenceId.conferenceImg%>" class="img" alt="Sample photo">
+                <img class="conference-image" src="<%=conference.conferenceId.conferenceImg%>" class="img" alt="Sample photo">
                 <div class="text">
                     <p class="sign conference-header" align="center"><%=conference.conferenceId.name%></p>
                     <p><b>Start time: </b><%=conference.startTime.toString().substring(0, 21)%></p>

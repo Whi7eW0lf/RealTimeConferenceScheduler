@@ -15,9 +15,7 @@
 
   <div class="main2 marginn ">
     <article class="active">
-      <div class="circular--landscape">
-        <img src="<%=conference.conferenceImg%>" alt="Conference Photo">
-      </div>
+      <img src="<%=conference.conferenceImg%>" class="img" alt="Conference Photo">
       <div class="text">
         <p class="sign conference-header" align="center"><%=conference.name%></p>
         <p><b>Description: </b><%=conference.description%></p>
@@ -97,8 +95,8 @@
         <div class="circular--landscape">
           <img src="<%=session.speakerId.speakerImg%>" class="img" alt="Speaker Photo">
         </div>
-        <p class="sign2"><b class="sign2">Speaker name: </b><%=session.speakerId.speakerName%></p>
-        <p class="sign2"><b class="sign2">Speaker description: </b><%=session.speakerId.speakerDescription%></p>
+        <p><b class="sign2">Speaker name: </b><%=session.speakerId.speakerName%></p>
+        <p><b class="sign2">Speaker description: </b><%=session.speakerId.speakerDescription%></p>
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
         <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime.toString().substring(0, 21)%></p>
@@ -159,67 +157,6 @@
       allSess.classList.toggle(' collapse');
       upcommingSess.classList.toggle(' collapse');
     }
-
-
-    // allBtn.addEventListener('click', function allFunctF() {
-    //   if (allSess.style.display = "none !important") {
-    //     allSess.style.display = "grid !important";
-    //     pastSess.style.display = "none !important";
-    //     // activeSess.style.display = "none";
-    //     upcommingSess.style.display = "none !important";
-    //   } else {
-    //     pastSess.style.display = "none !important";
-    //     // activeSess.style.display = "none";
-    //     upcommingSess.style.display = "none !important";
-    //   }
-    // })
-
-
-    // pastBtn.addEventListener('click', function pastFunctF() {
-    //   if (pastSess.style.display = "none") {
-    //     pastSess.style.display = "grid !important";
-    //     allSess.style.display = "none !important";
-    //     // activeSess.style.display = "none";
-    //     upcommingSess.style.display = "none !important";
-    //   } else {
-    //     allSess.style.display = "none !important";
-    //     // activeSess.style.display = "none";
-    //     upcommingSess.style.display = "none !important";
-    //   }
-    // })
-
-
-
-    // activeBtn.addEventListener('click', function activeFunctF() {
-    //   if (activeSess.style.display = "none") {
-    //     activeSess.style.display = "grid";
-    //     allSess.style.display = "none";
-    //     pastSess.style.display = "none";
-    //     upcommingSess.style.display = "none";
-    //   } else {
-    //     allSess.style.display = "none";
-    //     pastSess.style.display = "none";
-    //     upcommingSess.style.display = "none";
-    //   }
-    // })
-
-
-
-    // upcommingBtn.addEventListener('click', function upcommingFunctF() {
-    //   if (upcommingSess.style.display = "none") {
-    //     upcommingSess.style.display = "grid";
-    //     allSess.style.display = "none";
-    //     pastSess.style.display = "none";
-    //     activeSess.style.display = "none";
-    //   } else {
-    //     allSess.style.display = "none";
-    //     pastSess.style.display = "none";
-    //     activeSess.style.display = "none";
-    //   }
-    // })
-
-
-
 
   </script>
 

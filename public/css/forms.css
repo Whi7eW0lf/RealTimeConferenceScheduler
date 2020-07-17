@@ -43,7 +43,10 @@
   height: 100%;
   background: url("https://picsum.photos/600/400?image=1083") center no-repeat;
 }
-
+.conference-image {
+  width: 450px;
+  height:300px;
+}
 .textt {
   font-family: "Ubuntu", sans-serif;
   color: #f2f2f2;
@@ -258,14 +261,6 @@ body {
 .article {
   size: 50px;
 }
-
-/* p {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
-  width: -webkit-fill-available;
-} */
 
 .head {
   font-size: 4vh;
@@ -702,14 +697,7 @@ a.active {
     display: flow-root;
     padding: 40px;
   }
-  /* 
-  p {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: -webkit-fill-available;
-  } */
-
+ 
   .main {
     max-width: min-content;
   }
