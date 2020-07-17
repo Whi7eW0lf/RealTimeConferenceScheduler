@@ -1,12 +1,12 @@
 <%- include('includes/head.ejs') %>
 <style>
-p {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
-  width: -webkit-fill-available;
-}
+    p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        width: -webkit-fill-available;
+    }
 </style>
 </head>
 
@@ -22,7 +22,7 @@ p {
         <main class="grid">
             <% for (let conference of conferences) { %>
             <% if(conference.startTime < currentDate && conference.endTime > currentDate) {%>
-            <div class="main1">
+            <div class="mainGrid">
                 <article class="active">
                     <img class="conference-image" src="<%=conference.conferenceImg%>" class="img" alt="Sample photo">
                     <div class="text">
