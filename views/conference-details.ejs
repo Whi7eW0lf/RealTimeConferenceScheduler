@@ -79,9 +79,11 @@
 
   <div class="buttons-data-filter2" id="myBtnContainer">
 
-    <button class="submit1 button btn-session allSessionsDisplayBtn active" type="button">ALL</button>
+    <button class="submit1 button btn-session allSessionsDisplayBtn active" onclick="allBttns()"
+      type="button">ALL</button>
 
-    <button class="submit1 button btn-session upcommingSessionsDisplayBtn" type="button">UPCOMING</button>
+    <button class="submit1 button btn-session upcommingSessionsDisplayBtn" onclick="upcommingBttns()"
+      type="button">UPCOMING</button>
 
 
 
@@ -144,15 +146,19 @@
     const allSess = document.querySelector('.allSessionsDisplay');
     const upcommingSess = document.querySelector('.upcommingSessionsDisplay');
 
-    allBtn.addEventListener('click', function () {
-      allSess.classList.toggle(' collapse');
-      upcommingSess.classList.toggle(' collapse');
-    })
+    function allBttns() {
+      console.log(allSess.className);
+      for (let i = 0; i < allSess.lenght; i++) {
+        allSess[i].className += " collapse";
+        upcommingSess[i].className += " collapse";
+      }
 
-    upcommingBtn.addEventListener('click', function () {
+    }
+
+    function upcommingBttns() {
       allSess.classList.toggle(' collapse');
       upcommingSess.classList.toggle(' collapse');
-    })
+    }
 
 
     // allBtn.addEventListener('click', function allFunctF() {
@@ -212,21 +218,6 @@
     //   }
     // })
 
-
-
-
-    // Add active class to the current control button (highlight it)
-    var btnContainer = document.getElementById("myBtnContainer");
-    var btns = btnContainer.getElementsByClassName("btn");
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener("click", function () {
-        var current = document.getElementsByClassName("active");
-        console.log(current);
-        current[1].className = current[1].className.replace(" active", "");
-        this.classList.add("active");
-        // this.className += " active";
-      });
-    };
 
 
 

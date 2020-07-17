@@ -651,6 +651,10 @@ a.active {
     width: fit-content;
   }
 
+  .form4 {
+    width: initial;
+  }
+
   .form2 {
     width: fit-content;
     display: contents;
@@ -672,6 +676,10 @@ a.active {
     display: contents;
   }
 
+  .grid4 {
+    display: contents;
+  }
+
   .container {
     display: flow-root;
     padding: 40px;
@@ -685,6 +693,10 @@ a.active {
   } */
 
   .main {
+    max-width: min-content;
+  }
+
+  .main4 {
     max-width: min-content;
   }
 
