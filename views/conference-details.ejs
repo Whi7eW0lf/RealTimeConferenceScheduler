@@ -108,13 +108,13 @@
 
   <div class="grid">
     <% for(let session of allSessions) { %>
-    <div class=" main1 allSessions collapse allSessionsDisplay" id="allSessionsDisplay">
+    
       <article class="sessions">
         <div class="circular--landscape">
           <img src="<%=session.speakerId.speakerImg%>" class="img" alt="Speaker Photo">
         </div>
         <p class="sign2"><b class="sign2">Speaker name: </b><%=session.speakerId.speakerName%></p>
-        <p class="sign2"><b class="sign2">Speaker description: </b><%=session.speakerId.speakerDesc%></p>
+        <p class="sign2"><b class="sign2">Speaker description: </b><%=session.speakerId.speakerDescription%></p>
         <h3><b class="sign2">Hall: </b><%=session.hallId.name%></h3>
         <h3><b class="sign2">Seats available: </b><%=session.sessionSeats%></h3>
         <p class="pStartTime"><b class="sign2">Start time: </b><%=session.startTime.toString().substring(0, 21)%></p>
@@ -125,7 +125,7 @@
           <button class="submit button btn-block" type="submit">Join session</button>
         </form>
       </article>
-    </div>
+
     <% } %>
 
     <% for(let session of pastSessions) { %>
